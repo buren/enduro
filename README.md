@@ -42,5 +42,5 @@ After ```pvg-done``` and ```pvg-ready-to-release``` a precommit hook script will
     
 ## Continuous integration
 
-After ```pvg-done``` and ```pvg-ready-to-release``` is done the project will be sent to Travis CI, which will then try to build the project and run its entire test suite.
+After ```pvg-done``` and ```pvg-ready-to-release``` is done the project will be sent to Travis CI, which will then build the project and run its entire test suite.
 
