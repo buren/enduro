@@ -21,17 +21,17 @@ This will download the Enduro project and include a simplified SCM command line 
 
 ####Workflow:
 
-    pvg-dev story23                 
+    $ pvg-dev story23                 
 use when starting on a new story.
 This will download the latest changes from master and create a new branch named 'story23'.
 You will now be ready to implement your story/task/bugfix.
 
-    pvg-done 'Implemented Story 23'
+    $ pvg-done 'Implemented Story 23'
 When a story is finished, commit with a descriptive message. 
 This is when you'll be ready for potential merge conflicts.
 (Automatic tests will run see the Automatic testing section for details.)
 
-    pvg-ready-to-release
+    $ pvg-ready-to-release
 When all merged conflicts (if there are any) are fixed and your ready to push to master.
 (Automatic tests will run see the Automatic testing section for details.)
 
