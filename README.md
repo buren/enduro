@@ -1,5 +1,11 @@
 # Enduro
 
+
+- [Getting started](README.md#getting-started)
+- [Simplified SCM](README.md#simplified-scm)
+- [Automatic testing](README.md#automatic-testing)
+- [Continuous integration](README.md#continuous-integration)
+
 ## Getting started
 
 Navigate (in a terminal) to the folder where you'd like to put the Enduro project folder.
