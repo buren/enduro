@@ -1,5 +1,4 @@
-# Enduro
-
+# Enduro [![Build Status](https://travis-ci.org/buren/enduro.png?branch=master)](https://travis-ci.org/buren/enduro)
 
 - [Getting started](README.md#getting-started)
 - [Simplified SCM](README.md#simplified-scm)
