@@ -18,6 +18,8 @@ This will download the Enduro project and include a simplified SCM command line 
 
 ## Simplified VCS
 
+VCS tool: [git-story](https://github.com/buren/git-story)
+
 ####Workflow:
 
     $ gs dev story23                 
