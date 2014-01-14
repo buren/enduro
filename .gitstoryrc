@@ -1,0 +1,1 @@
+export PRE_COMMIT_COMMAND='mvn test'
