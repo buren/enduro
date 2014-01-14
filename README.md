@@ -11,7 +11,7 @@ Navigate (in a terminal) to the folder where you'd like to put the Enduro projec
 
 Then copy and paste this command:
 
-    git clone git@github.com:buren/enduro.git && cd ~ && git clone git@github.com:buren/dot-bash.git && mv dot-bash .dot-bash && cat ~/.dot-bash/setup/importSimplifiedGit.sh >> ~/.zshrc && source ~/.zshrc
+    git clone git@github.com:buren/enduro.git && cd ~ && git clone git@github.com:buren/enduro.git && cd ~ &&  curl https://raw.github.com/buren/dot-bash/master/setup.sh | bash
 
 This will download the Enduro project and include a simplified SCM command line utility. 
 
