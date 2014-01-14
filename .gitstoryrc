@@ -1,1 +1,1 @@
-export PRE_COMMIT_COMMAND='mvn test'
+export PRE_COMMIT_HOOK='mvn test'
