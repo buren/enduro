@@ -1,1 +1,3 @@
-export PRE_COMMIT_HOOK='mvn test'
+GS_PRE_COMMIT_HOOK='mvn test'
+GS_PRINT_CHECKLIST=true
+GS_PROMPT_ON_DONE=true
