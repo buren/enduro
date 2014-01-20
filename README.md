@@ -11,7 +11,8 @@ Navigate (in a terminal) to the folder where you'd like to put the Enduro projec
 
 Then copy and paste this command:
 
-    git clone git@github.com:buren/enduro.git
+    curl https://raw2.github.com/buren/enduro/master/install_enduro.sh | bash
+install logs are saved to ~/eda260_pvg/_*_install.log.
 
 This will download the Enduro project and include a simplified SCM command line utility. 
 
