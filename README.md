@@ -1,7 +1,7 @@
 # Enduro [![Build Status](https://travis-ci.org/buren/enduro.png?branch=master)](https://travis-ci.org/buren/enduro)
 
 - [Getting started](README.md#getting-started)
-- [Simplified SCM](README.md#simplified-scm)
+- [Simplified VCS](README.md#simplified-vcs)
 - [Automatic testing](README.md#automatic-testing)
 - [Continuous integration](README.md#continuous-integration)
 
