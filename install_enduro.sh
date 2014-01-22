@@ -24,9 +24,7 @@ __enduro-install-source() {
     echo "[ENDURO] Installing enduro"
     cd enduro
     $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn install
-    echo "[ENDURO] Running enduro tests"
-    $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn test
-    echo "[ENDURO] Testing done."
+    echo "[ENDURO] Installed. Testing done."
     echo "[ENDURO] Check status."
     cd $current_dir
 }
