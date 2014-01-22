@@ -33,5 +33,4 @@ target_dir=$HOME/eda260_pvg/
 mkdir -p $target_dir
 echo "Created directory: $target_dir"
 
-__enduro-install-maven | tee -a $target_dir/_maven_install.log
-__enduro-install-source $target_dir | tee -a $target_dir/_enduro_install.log
+__enduro-install-maven $target_dir | tee -a $target_dir/_maven_install.log && __enduro-install-source "$1" | tee -a $target_dir/_enduro_install.log
