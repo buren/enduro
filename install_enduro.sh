@@ -23,7 +23,7 @@ __enduro-install-source() {
     cd "$1" && git clone git@github.com:buren/enduro.git && echo "[ENDURO] Downloaded enduro"
     echo "[ENDURO] Installing enduro"
     cd enduro
-    $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn install
+    $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn clean install
     echo "[ENDURO] Installed. Testing done."
     echo "[ENDURO] Check status."
     cd $current_dir
