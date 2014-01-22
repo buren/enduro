@@ -42,6 +42,15 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.classpath
+.project
+
+# Java
+*.class
+*.war
+*.ear
+*.jar
+
 
 # External tool builders
 .externalToolBuilders/
