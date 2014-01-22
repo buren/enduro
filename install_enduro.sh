@@ -20,7 +20,7 @@ __enduro-install-maven() {
 __enduro-install-source() {
     current_dir=$(pwd)
     echo "[ENDURO] Downloading enduro"
-    cd $target_dir && git clone git@github.com:buren/enduro.git && echo "[ENDURO] Downloaded enduro"
+    cd "$1" && git clone git@github.com:buren/enduro.git && echo "[ENDURO] Downloaded enduro"
     echo "[ENDURO] Installing enduro"
     cd enduro
     $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn install
@@ -36,4 +36,4 @@ mkdir -p $target_dir
 echo "Created directory: $target_dir"
 
 __enduro-install-maven | tee -a $target_dir/_maven_install.log
-__enduro-install-source | tee -a $target_dir/_enduro_install.log
+__enduro-install-source $target_dir | tee -a $target_dir/_enduro_install.log
