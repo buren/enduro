@@ -20,5 +20,4 @@ public class MainTest {
     public void dummyTest() {
         Assert.assertEquals("Should be true", true, true);
     }
-
 }
