@@ -31,11 +31,11 @@ You will now be ready to implement your story/task/bugfix.
     $ gs done 'Implemented Story 23'
 When a story is finished, commit with a descriptive message. 
 This is when you'll be ready for potential merge conflicts.
-(Automatic tests will run see the Automatic testing section for details.)
+(Automatic test will run see the Automatic testing section for details.)
 
 
 ## Automatic testing
-After ```gs done``` a precommit hook script will be called, which will run the entire test suite and prompt if any of the tests fail. You can then either choose to abort or ignore the failing tests and commit anyway. 
+After ```gs done``` a precommit hook script will be called, which will run the entire test suite and prompt if any of the test fail. You can then either choose to abort or ignore the failing test and commit anyway.
     
     
 ## Continuous integration
