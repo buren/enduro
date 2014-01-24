@@ -54,12 +54,12 @@ public class FileReaderTest {
         Assert.assertEquals("Should be 'a'", lines.get(0), "a");
     }
 
-
     @Test
-    public void testThrowsFileNotFoundException() {
+    public void testThrowsFileNotFoundException() throws Exception {
+        ArrayList<String> lines = null;
         boolean success = false;
         try {
-            fileReader.readFile("/file_does_not_exist");
+            lines = fileReader.readFile("/file_does_not_exist");
         } catch (FileNotFoundException e) {
             success = true;
         } finally {

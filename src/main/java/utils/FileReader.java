@@ -1,7 +1,6 @@
 package utils;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class FileReader {
@@ -14,8 +13,9 @@ public class FileReader {
      */
     public ArrayList<String> readFile(String relativeFilePath) throws FileNotFoundException {
         ArrayList<String> fileLines = new ArrayList<String>();
-        FileInputStream fStream = new FileInputStream(this.getResourcePath("../") + relativeFilePath);
-        DataInputStream in = new DataInputStream(fStream);
+        String filePath = Enduro.getInstance().getResourcePath(relativeFilePath);
+        FileInputStream inputStream = new FileInputStream(filePath);
+        DataInputStream in = new DataInputStream(inputStream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String line;
         try {
@@ -29,16 +29,6 @@ public class FileReader {
             e.printStackTrace();
         }
         return fileLines;
-    }
-
-    /**
-     * Get path relative to root.
-     * @param relativePath the relative path to get.
-     * @return the absolute path to resource.
-     */
-    private String getResourcePath(String relativePath) {
-        URL resourceUrl = getClass().getResource(relativePath);
-        return resourceUrl.getPath();
     }
 
 
