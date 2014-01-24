@@ -19,4 +19,9 @@ public class EnduroTest {
         Assert.assertNotNull("Enduro instance should not be null", enduro.getResourcePath(""));
         Assert.assertEquals("Should have /utils/ in path", true, enduro.getResourcePath("utils/").contains("/utils/"));
     }
+
+    @Test
+    public void testApplicationName() {
+        Assert.assertEquals("Should be equal", "Enduro", Enduro.APPLCATION_NAME);
+    }
 }
