@@ -20,8 +20,4 @@ public class EnduroTest {
         Assert.assertEquals("Should have /utils/ in path", true, enduro.getResourcePath("utils/").contains("/utils/"));
     }
 
-    @Test
-    public void testApplicationName() {
-        Assert.assertEquals("Should be equal", "Enduro", Enduro.APPLCATION_NAME);
-    }
 }

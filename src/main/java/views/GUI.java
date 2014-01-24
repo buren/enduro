@@ -1,6 +1,5 @@
 package views;
 
-import utils.Enduro;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ public class GUI extends JFrame {
 
 
     public GUI(){
-        this.setTitle(Enduro.APPLCATION_NAME);
+        this.setTitle("Enduro");
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);

@@ -3,10 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>enduro</groupId>
+    <groupId>main</groupId>
     <artifactId>enduro</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <version>0.0.1</version>
+    <name>Enduro</name>
+
+    <properties>
+        <jdk.version>1.7</jdk.version>
+    </properties>
 
     <dependencies>
 
@@ -44,21 +49,25 @@
            <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-jar-plugin</artifactId>
+               <version>2.4</version>
                <configuration>
                    <archive>
                        <manifest>
-                           <mainClass>main.java.main.Main</mainClass>
-                           <packageName>main.java.main</packageName>
+                           <mainClass>main.Main</mainClass>
+                           <packageName>main</packageName>
                            <addClasspath>true</addClasspath>
-                           <mainClass>fully.qualified.MainClass</mainClass>
                        </manifest>
                    </archive>
                </configuration>
            </plugin>
 
            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-compiler-plugin</artifactId>
+               <version>2.3.2</version>
                <configuration>
+                   <source>1.7</source>
+                   <target>1.7</target>
                    <showDeprecation>true</showDeprecation>
                    <showWarnings>true</showWarnings>
                    <encoding>UTF-8</encoding>
