@@ -3,8 +3,6 @@ package utils;
 import java.net.URL;
 
 public class Enduro {
-    public static final String APPLCATION_NAME = "Enduro";
-
     private static Enduro ourInstance = new Enduro();
 
     public static Enduro getInstance() {
