@@ -47,7 +47,7 @@
 <pre><code>curl https://raw2.github.com/buren/enduro/master/install_enduro.sh | bash
 </code></pre>
 
-<p>install logs are saved to ~/eda260_pvg/<em>*</em>install.log.</p>
+<p>install logs are saved to ~/eda260_pvg/_*_install.log.</p>
 
 <p>This will download the Enduro project and include a simplified SCM command line utility. </p>
 
@@ -71,12 +71,12 @@ You will now be ready to implement your story/task/bugfix.</p>
 
 <p>When a story is finished, commit with a descriptive message. 
 This is when you'll be ready for potential merge conflicts.
-(Automatic tests will run see the Automatic testing section for details.)</p>
+(Automatic test will run see the Automatic testing section for details.)</p>
 
 <h2>
 <a name="automatic-testing" class="anchor" href="#automatic-testing"><span class="octicon octicon-link"></span></a>Automatic testing</h2>
 
-<p>After <code>gs done</code> a precommit hook script will be called, which will run the entire test suite and prompt if any of the tests fail. You can then either choose to abort or ignore the failing tests and commit anyway. </p>
+<p>After <code>gs done</code> a precommit hook script will be called, which will run the entire test suite and prompt if any of the test fail. You can then either choose to abort or ignore the failing test and commit anyway.</p>
 
 <h2>
 <a name="continuous-integration" class="anchor" href="#continuous-integration"><span class="octicon octicon-link"></span></a>Continuous integration</h2>
