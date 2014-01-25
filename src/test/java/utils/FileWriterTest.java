@@ -9,14 +9,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class FileWriterTest {
-    FileWriter fileWriter;
     FileReader fileReader;
+    Enduro enduro;
     ArrayList<String> lines;
 
     @Before
     public void setUp() throws Exception {
         fileReader = new FileReader();
-        fileWriter = new FileWriter();
+        enduro = Enduro.getInstance();
         lines = new ArrayList<String>();
         for (String line : new String[]{"1", "2", "3", "4", "5"}) {
             lines.add(line);
@@ -30,10 +30,10 @@ public class FileWriterTest {
 
     @Test
     public void testCanWriteEMptyFile() {
-        String file = "utils/testOutputEmptyFile.csv";
-        fileWriter.writeFile(file, new ArrayList<String>());
+        String file = enduro.getResourcePath("utils/testOutputEmptyFile.csv");
+        FileWriter.writeFile(file, new ArrayList<String>().iterator());
         try {
-            fileReader.readFile(file);
+            fileReader.readFileByLine(file);
         } catch (FileNotFoundException e) {
             Assert.fail("Write failed: FileNotFoundException!");
         }
@@ -41,11 +41,11 @@ public class FileWriterTest {
 
     @Test
     public void testCanWriteFile() {
-        String file = "utils/testOutputFile.csv";
-        fileWriter.writeFile(file, lines);
+        String file = enduro.getResourcePath("utils/testOutputFile.csv");
+        FileWriter.writeFile(file, lines.iterator());
         ArrayList<String> resultLines = null;
         try {
-            resultLines = fileReader.readFile(file);
+            resultLines = fileReader.readFileByLine(file);
         } catch (FileNotFoundException e) {
             Assert.fail("Write failed: FileNotFoundException!");
         }
