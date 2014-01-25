@@ -7,13 +7,12 @@ public class FileReader {
 
     /**
      * Returns a list with each non-empty line for specified file.
-     * @param relativeFilePath absolute path to file.
+     * @param filePath absolute path to file.
      * @return ArrayList<String> with each non-empty line.
      * @throws FileNotFoundException
      */
-    public ArrayList<String> readFile(String relativeFilePath) throws FileNotFoundException {
+    public ArrayList<String> readFileByLine(String filePath) throws FileNotFoundException {
         ArrayList<String> fileLines = new ArrayList<String>();
-        String filePath = Enduro.getInstance().getResourcePath(relativeFilePath);
         FileInputStream inputStream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(inputStream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));

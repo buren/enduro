@@ -1,17 +1,21 @@
 package utils;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FileWriter {
 
-    public static void writeFile(String relativePath, ArrayList<String> lines) {
+    /**
+     * Writes each line to specified path.
+     * @param filePath file to write to.
+     * @param lines lines to be written to file.
+     */
+    public static void writeFile(String filePath, Iterator<String> lines) {
         Writer writer = null;
-        String absolutePath = Enduro.getInstance().getResourcePath(relativePath);
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(absolutePath), "UTF-8"));
-            for (String line : lines) {
-                writer.write(line + "\n");
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8"));
+            while (lines.hasNext()) {
+                writer.write(lines.next() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

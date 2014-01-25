@@ -14,14 +14,16 @@ public class GUI extends JFrame {
     public GUI(){
         this.setTitle("Enduro");
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(true);
         this.setLayout(new BorderLayout());
-        this.setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width/2,java.awt.Toolkit.getDefaultToolkit().getScreenSize().height/2);
+        int width =  java.awt.Toolkit.getDefaultToolkit().getScreenSize().width  / 2;
+        int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
+        this.setSize(width, height);
         this.setLocationRelativeTo(null);
 
         buttonPanel = new JPanel();
-        button =new JButton("Example");
+        button = new JButton("Example");
         buttonPanel.add(button);
         this.add(buttonPanel, BorderLayout.EAST);
 
