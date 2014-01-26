@@ -1,0 +1,44 @@
+Instruktioner f�r k�rning av nya acceptanstester under Iteration2, Stories 9-18.
+
+acceptanstest9 - Varvlopp
+data f�r ett varvlopp med 5 f�rare som k�r 3 varv
+
+acceptanstest10 - Flera registrerar m�ltider
+Samma data som i story9 men m�ldata uppdelat p� tv� filer.
+Om denna story blir f�rdig f�re story9 s� anv�nd data fr�n story5 och dela upp maldata.txt i tv� filer
+
+acceptanstest11 - Enkel Masstart
+Startfilen modifierad s� samma startid f�r alla - ev beh�ver inte startfilen anv�ndas utan den gemensamma starttiden angess p� annat s�tt.
+
+Story12 - Skitig nummerpl�t
+Acceptanstest - l�t kunden granska
+
+acceptanstest13 - Klasser
+Namnfilen inneh�ller nu �ven klassnamn
+Resultatfilen  inneh�ller motsvarande information
+
+Story14 - Manualer
+Acceptanstest - l�t kunden granska
+
+acceptanstest15 - felaktiga tidsdata
+F�ruts�tter att det inte �r masstart.
+Bygger p� att story 13, Klasser, st�djes. Om s� ej �r fallet  g�r enkelt en egen version av testen med klassnamn borttaget i namnfil och resultatfil.
+
+acceptanstest16  - otill�tna startnummer
+F�ruts�tter att det inte �r masstart.
+(OBS om Story13 ej klar g�r en egen tempor�r version av acceptanstesten d�r klassnamnen �r borttagna)
+
+acceptanstest17 - variabelt antal uppgifter om f�rarna
+Namnfil och resultatfil inneh�ller mer uppgifter om f�rarna
+(OBS om Story13 ej klar g�r en egen tempor�r version av acceptanstesten d�r klassnamnen �r borttagna)
+
+acceptanstest18 - Sorterad resultatlista
+resultatet finns p� filen sortresultat.txt
+Bygger p� att Story13 �r klar, om s� ej �r fallet - g�r en egen tempor�r version  d�r motsvarande funktionalitet (klasser) �r borttagen.
+
+N�r iterationen �r klar �r det bara acceptanstesterna 18, 17, 15 �r meningsfulla att beh�lla.
+--------
+varvlopptid
+Detta �r en omg�ng riktiga data fr�n en t�vling som gick i h�stas med ett 50-tal deltagare i en klass. T�vlingen k�rdes med masstart, 12.05.30 och �ver 3 timmar.
+Filen  resultat.txt inneh�ller resultat i startnummerordning
+Filen  sortresultat.txt inneh�ller resultat klassvis i placeringsordning.
