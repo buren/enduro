@@ -14,7 +14,7 @@ Then copy and paste this command:
     curl https://raw2.github.com/buren/enduro/master/install_enduro.sh | bash
 install logs are saved to ~/eda260_pvg/\_*_install.log.
 
-This will download the Enduro project and include a simplified SCM command line utility. 
+This will download the Enduro project and include a simplified VCS command line utility. 
 
 
 ## Simplified VCS
@@ -35,11 +35,11 @@ This is when you'll be ready for potential merge conflicts.
 
 
 ## Automatic testing
-After ```gs done``` a precommit hook script will be called, which will run the entire test suite and prompt if any of the test fail. You can then either choose to abort or ignore the failing test and commit anyway.
+After ```gs done``` a precommit hook script will be called, which will run the entire test suite and prompt you to answer if any of the tests fail. You can then either choose to abort or ignore failing tests and commit anyway.
     
     
 ## Continuous integration
 
-After ```gs done``` is done the project will be sent to Travis CI, which will then build the project and run its entire test suite.
+After ```gs done``` is done the project will be sent to Travis CI, which will then build the project and run its entire test suite. [Travis CI for Enduro.](https://travis-ci.org/buren/enduro)
 
  
