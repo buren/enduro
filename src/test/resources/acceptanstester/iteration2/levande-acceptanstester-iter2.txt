@@ -1,0 +1,16 @@
+Levande acceptanstester
+-------------------
+M�nga av acceptanstesterna �r inriktade p� att validera den funktionalitet som tillkomer i en story. N�r sedan mer funktionalitet tillkommer s� blir acceptanstesten "gammal", det den testar testas d� ocks� av senare acceptnastester. Detta g�ller specielt testerna fr�n f�rsta iterationen.
+H�r �r ett f�rs�k att reda ut vilka stories som �r levande i slutet av iteration 2.
+
+Efter iteration-1 - "Maratonlopp"
+acceptanstest5 - ber�kna totaltid (inneh�ller �ven personuppgifter)
+acceptanstest6 - felaktiga indata
+
+Efter iteration-2 - "Varvlopp"
+acceptanstest13 - Varvlopp, resultat i klass och startnummerordning
+acceptanstest15 - Felaktiga tidsdata - varvlopp
+acceptanstest16 - Otill�tna startnummer - varvlopp
+acceptnastest17 - Variabla personuppgifter
+acceptanstest18 -  Sorterad resultatlista (i placeringsordning) - varvlopp
+varvlopptid - Riktiga data fr�n riktig t�vling

@@ -1,0 +1,21 @@
+Tester f�r  (stories 1-6) av iteration 1
+
+Detta �r en upps�ttning mycket korta acceptanstester f�r att testa den helt grundl�ggande funktionaliteten  under iteration 1. F�rhoppningsvis �r det mesta sj�lvklart, men h�r �r n�gra korta kommentarer.
+Filerna f�r respektive acceptanstest  ligger i vars en katalog men namn efter story.
+Varje katalog inneh�ller filer:
+- starttider.txt: inneh�ller rader med par: StartNo; Tid - ex; 1; 12.00.00
+- maltider.txt: samma format som starttider
+- namnfil.txt: namnuppgifter enl format story 4 (denna fil finns ej f�r story 3)
+- resultat.txt: rader med f�rv�ntat resultata som byggs p� efter varje story.
+
+Sm� saker som kan st�lla till problem:
+- raderna inneh�ller ett blanktecken efter varje ; - f�r att underl�tta l�sbarhet. Inl�sning b�r klara s� kallad "white space" runt de uppgifter det f�rv�ntar sig. Utmatningen b�r l�mpligen ocks� skriva ett blanktecken efter ; s� att resultatet enkelt kan j�mf�ras med det f�rv�ntade med t ex diff, och l�ttare att l�sa.
+- tiderna inneh�ller inledande nolla, t ex 01.23.56 och 00.12.34  (om detta �r ett stort problem f�r alla kan vi �ndra det till typ 1.23.56 resp 0.12.34)
+- inget av namnen i dessa inledande exempel inneh�ller ��� eller andra specialtecken, men det kommer naturligtvis sen.
+
+Story4 och Story5 kan utf�ras parallellt. och det finns tv� acceptanstester som kan anv�ndas i respektive fall:
+- Story3 f�rdig, testa Story4 - anv�nd acceptanstest3_4
+- Story3 f�rdig, testa Story5 - anv�nd acceptanstest3_5
+- Story3&4 f�rdiga, testa Story5 - anv�nd acceptanstest5
+N�r Story3,4,5 alla �r f�rdiga kan man forts�tta att anv�nda acceptanstest5 (medan 3, 3_4 och 3_5 �r inaktuella).
+Dessutom f�ruts�tter Acceptanstest6 att story 3,4,5 �r f�rdiga, men kan enkelt anpassas f�r att fungera �ven om story  4 ej �r f�rdig (ta bort kolumnen med Namn i resultat.txt)
