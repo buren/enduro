@@ -1,0 +1,200 @@
+Start Nr; Namn; Klubb; MC; Klass
+Senior
+1; Karlsson, Jerry; FMCK Blekinge; Yam; S
+2; AlmŽn, Kristofer ; SMK Värnamo / www.superbike.se; KTM; S
+3; Johansson Björn; Skene MK / Cricket Lighters Honda Johansson; Hond ; S
+4; Johansson Joakim; Skene MK / Cricket Lighters Honda Johansson; Hond; S
+5; Olofsson, Henrik; FMCK Hässleholm / Keva Firstracing Sweden; Praga; S
+6; Svensson Pelle; Huskvarna MK / Kamikaze Racing Team; Yam; S
+7; Ahlgren, Roger; FMCK Hässleholm; KTM; S
+8; Ambernotsson, Lars; Ulricehamns Mk; KTM; S
+9; Svensson, Fredrik; FMCK Hässleholm; Husab; S
+10; Karlsson, Magnus; Älvbygdens MK; Husab; S
+11; Rohlen, Daniel; Motor Amatörerna Lerum / Team Aktiv Fritid; KTM; S
+12; Gustafsson, Christoffer; FMCK Eksjö; Yam; S
+13; Jansson, Christer; SMK Värnamo; Hva; S
+14; Bengtsson, Erik; FMCK Varberg; Hond; S
+15; Svensson, Erik; Tibro MK / Team First Racing Sweden; Yam; S
+16; Hansen, Nikolaj; Dansk Enduro Klub / DK; KTM; S
+17; Dalby Damm, Henrik; Dansk Enduro Klub / DK; KTM; S
+18; Hansen, Jacob; Dansk Enduro Klub / DK; KTM; S
+19; Hansen, Jan; Dansk Enduro Klub / DK; KTM; S
+20; Andersen, Curt; Dansk Enduro Klub / DK; KTM; S
+21; Pedersen, Johnny; Dansk Enduro Klub / DK; KTM; S
+22; Larsen, Andre; Dansk Enduro Klub / DK; Yam; S
+23; Christoffersen, Lars; Dansk Enduro Klub / DK; Yam; S
+24; Hultberg, Jan; MK Tranan; HVA; S
+25; Pennholm, Peter; BMK Uddevalla / www.jema.se; KTM; S
+26; Hedendahl, Joackim; Motor Amatörerna Lerum / MC-Sport Arlanda; ; S
+27; Rosendal, Andreas; Göta MS; Suz; S
+28; Harrysson, Thomas; Vimmerby MS; KTM; S
+29; Johansson, Joakim; Tranemo MK; ; S
+30; Larsson Lars-Erik; Motor Amatörerna Lerum / Team Yamahacenter Göteborg; Yam; S
+31; Hermansson, Jonas; Motor Amatörerna Lerum / Team Yamahacenter Göteborg; Yam; S
+32; Olsson, Pär; Kils MK MC; Yam; S
+33; Pettersson, Tony; Norrahammars MK; KTM; S
+34; Turesson, Magnus; FMCK Hässleholm; Yam; S 
+35; Andersson, Pierre; Vimmerby MS; Husab; S 
+36; Johansson, Håkan; FMCK Blekinge; KTM; S 
+37; Adielsson, Olof; SMK Göteborg; Honda; S 
+38; Olofsson, Magnus; FME Lv6 ; KTM; S
+39; Bengtsson, Thomas; Karlskoga Enduro Klubb / MC Sport Arlanda; Yam; S 
+40; Roslund, Mattias; Försvarsmakten enduro Lv-6; Husab; S
+41; Johansson, Daniel; Tibro MK / www.jgstrading.com; Gas Gas; S
+42; Svenman, Rickard; Västerås MK; HVA; S
+43; Björklund, Mikael; Västerås MK / Team MB Racing; Kawa; S
+44; Johansson, Tomas; Västerås MK / Team MB Racing; Kawa; S
+45; Johansson, Christian; Västerås MK / Taem Green Kawasaki; Kawa; S
+46; Klövmark, Henrik; MA Lerum; KTM; S
+47; Tenggren, Christian; FMCK Eksjö; Honda; S
+48; Dupont, Johan;                       / DK; KTM; S
+49; Gottfridsson, Christian; FMCK Blekinge; Hond; S
+50; Andersson, Magnus; ; KTM; S
+51; Berglund, Thomas; Försvarsmaktens Enduro / Karlströms Motor; KTM; S
+52; Jönsson, Sven Erik; Tibro motorklubb; Yam; S
+53; Hansson, Richard; FMCK Eksjö / CNC Snickerier; Yam; S
+Junior
+101; Larsson Gimmy; Sösdala MK /  Team Cross & Enduro Shopen; Yam; J
+102; Killen, Fredrik; SMK Trollhättan / Trollhättans MC-Sport; Gas Gas; J
+103; Söderberg, Patrik; Nybro Motorklubb / CNC Snickerier AB; Yam; J
+104; Hermansson, Marcus; FMCK Hässleholm; Gas Gas; J
+105; Adielsson, Sebastian; MK Pionjär; Hond; J
+106; Lindbom, Tobias; Göta MS / Team Karlström Race Tech Europa; KTM; J
+107; Johnsson, Christoffer; Älvbygdens MK / Betonghåltagning; Hond; J
+108; Vidlund, Daniel; Västerås MK; Yam; J
+109; Nilsson, Kim; Vimmerby ; HVA; J
+110; Söderblom, Charlie; Enduro Team Örebro / Team Ljunggrens Motor; KTM; J
+111; Jonsson, Joakim; FMCK Eksjö; KTM; J
+Bredd
+201; Lundahl, Lars; FMCK Blekinge; Honda; B
+203; Carlsson, Magnus; Försvarsmakten enduro; ; B
+204; Hansson, Bosse; Nyköpings MK; TM; B
+205; Forsberg, Magnus; MK Pionjär; Yam; B
+206; Gunnerhielm, Mikael; FMCK Stockholm; ; B
+207; Pettersson, Matti; Solshester MCK; Yam; B
+208; Henfors, Per; Nyköpings MK; Yam; B
+209; Wickström, Mats; Husqvarna Motorklubb; KTM; B
+210; Larsson Tony; FMCK Borås; Yam; B
+211; Hedman, Ronnie; Linköpings Motorsälskap / Hoj Racing Team; KTM; B
+212; Andersson, Christer; Tranemo MK; Yam; B
+213; Hedström, Michael ; Hallsbergs MK; KTM; B
+214; Hallberg, Roger; SMK Värnamo; KTM; B
+215; Hinsch, Rene; Dansk Enduro Klub / DK; Hva; B
+216; Haupt, Remus; Dansk Enduro Klub / DK; Husab; B
+217; Lövenskjold, Henrik; Dansk Enduro Klub / DK; Hva; B
+218; Johansson, B Tommy; Alingsås MCK / Team Aktiv Fritid; ; B
+219; Johansson, Anders; MCK Hallandia; KTM; B
+220; Jönsson, Frank; ; Husab; B
+221; Berglund, Tommy; UMK; Husab; B
+222; Aulin, Johan; FMCK Eksjö; ; B
+224; Andersson, Pär Olof; Alingsås MCK; Yam; B
+225; Fransson, Stefan; Uppvidinge MK; KTM; B
+226; Tranberg, Robert; SMI MK; KTM; B
+227; Isaksson, Peter; Kullinge Motorsällskap; Suz; B
+228; Berndtson, Kristian; Motor Amatörerna Lerum ; KTM; B
+230; Ragnarsson, Magnus; Skene Motorsällskap; KTM; B
+231; Rydell, Anton ; FMCK Eksjö; Yam; B
+232; Niska, Jaakko; FMCK Borås; KTM; B
+233; Martinsson, Jems; FMCK Eksjö; KTM; B
+234; Starck, Niclas; Wäxjö MS; Yam; B
+236; Torstensson, Johan; Stenugnsunds Motorsällskap; HVA; B
+237; Kvarnström, Tomas; FMCK Eksjö; Yam; B
+238; Söderberg, Lars; Nybro Motorklubb / CNC Snickerier AB; Yam; B
+239; Nilsson, Tomas; Vansbergs Motorklubb; KTM; B
+240; Gustafson, Hans; FMCK Varberg; KTM; B
+241; Sollman, Carl-Johan; Skövde FMEK; ; B
+242; Svensson, Robert; ; ; B
+243; Nilsson, Micke; MA Lerum; Husab; B
+244; Wienck, Matthias; MC GroB Schwiesow / D; KTM; B
+246; Nilsson, Håkan; Vimmerby ; HVA; B
+247; Johansson, Jonny; MCK Hallandia; KTM; B
+248; Johansson, Christer; FMCK Varberg; HVA; B
+249; Svensson, Peter; MK Pionjär; Yam; B
+250; Thell, Anders; MK Pionjär; Honda; B
+251; Igelström, Mats; Linköpings MS / Speedman Racing; TM; B
+252; Karlsson, Joakim; VMS; Yam; B
+253; Svensson, Marcus; FMCK Borås; Hond; B
+254; Hinsegård, Pär; Nybro MK; KTM; B
+255; Hedberg, Ronny; Rödeby Crossclub; Yam; B
+Militär
+301; Strandh, Magnus; FME-F17; ; Mil
+302; Mitkiewicz, Stefan; Försvarsmakten enduro P7; ; Mil
+351; Kollman, Vanja; SMI MK; KTM; D
+Dam
+352; Däldebring, Pia; UMK; Husab; D
+353; Adriansson, Sandra; ; Suz; D
+Motion
+401; Gydevik, Peter; Norrahammars MK; KTM; Mot
+402; Rosenqvist , Ola; Örebro Motorklubb; KTM; Mot
+403; Ed, Mikael; FMCK Blekinge; KTM; Mot
+404; Kullander, Bengt; Helsingborgs Motocross; KTM; Mot
+405; Svensson, Per; Kullings Motorsällskap; Yam; Mot
+406; Elmgren, Claes; FMCK Borås; KTM; Mot
+407; Persson, Johan; HBK MCK; ; Mot
+408; Karlsson, Lennart; Växjö MS; Suz; Mot
+409; Johansson, Kenneth; Tidaholms MK; KTM; Mot
+410; Hjärner, Hans; FMCK Hässleholm; Husab; Mot
+411; Johansson, Per; MCK Hallandia; Hva; Mot
+413; Röllqvist, Ingemar; Borås MK; Hond; Mot
+414; Svensson, Ronny; FMCK Hässleholm; Husab; Mot
+415; Blomberg, Lars; ; ; Mot
+416; Berglund, Bengt; Landskrona MK; Hond; Mot
+417; Karlsson, Ingvar ; Varbergs MK; KTM; Mot
+418; Olsson, Torbjörn; Växjö MS; ; Mot
+419; Karlsson, Bo; Älvbygdens MK; KTM; Mot
+420; Adolfsson, Magnus; Tidaholms MK; KTM; Mot
+421; Torstensson, Villgoth; Stenugnsunds Motorsällskap; Hva; Mot
+422; Staberg, Per; FMCK Kronoberg; Kawa; Mot
+423; Ljungberg, Arne; Älvsbygdens MK; KTM; Mot
+424; Jönsson, Per; Lanskrona Motorklubb; Hond; Mot
+425; Thorsson, Lennart; Vimmerby MS; KTM; Mot
+426; Pettersson, Leif; MCK Hallandia; KTM; Mot
+427; Berghuvud, Ansel; FMCK Blekinge; Suz; Mot
+428; Kristensson, Mikael; MCK Hallandia; Suz; Mot
+429; Åkesson, Lars-Olof; Ullareds MK; KTM; Mot
+430; Waitman, Alexander; Hyllinge MS; Yam; Mot
+431; Svanberg, Anders; Hökensås MCK; KTM; Mot
+432; Olofsson, Jan; Alingsås MCK ; Gas Gas; Mot
+433; Arvidsson, Peter; ; Suz; Mot
+434; Lejhagen, Anders; Älvbygdens MK; Yam; Mot
+435; Nordin, Ulf; FMCK Borås; ; Mot
+436; Elwenvik, Wilho; ; Suz; Mot
+437; Schuberg, Ronny; ; Yam; Mot
+438; Gunnarsson, Hans; MCK Hallandia; Gas Gas; Mot
+439; Johansson, Ola; FMCK Hässleholm; Hond; Mot
+440; Braun, Björn; FMCK Hässleholm; KTM; Mot
+441; Winberg, Gerth; Sösdala MK /  Team Cross & Enduro Shopen; Yam; Mot
+442; Olsson, Göran; MK Tranan; KTM; Mot
+443; Berglund, Rolf; HMCK Helsingborg; Hond; Mot
+444; Axelsson, Dan; Kinds MK; Yam; Mot
+445; Alfredson, Carl-Olof; FMCK Kronoberg; Kawa; Mot
+446; Lundblad,Niclas; Helsingborgs MCK; Husab; Mot
+447; Olofsson, Klas; SMK Trollhättan / Trollhättans MC-Sport; Gas Gas; Mot
+448; Adiels, Stefan; Älvbygdens MK; Suz; Mot
+449; Grahn, Leif; Älvbygdens MK; Vor; Mot
+450; Bengtsson, Sven; Helsingborgs MCK; Husab; Mot
+451; Larsson, Mats; MCK Hallandia; Kawa; Mot
+452; Hjelm, Anders; FMCK Hässleholm; Husab; Mot
+453; Larsson, Gösta; Älvbygdens MK; Hond; Mot
+455; Enström, Jan; MCK Hallandia; KTM; Mot
+456; Ivarsson, Ralf; Varbergs MK; KTM; Mot
+457; Ottosson, Roger; Vimmerby MS; KTM; Mot
+458; Bengtsson, Stig; ÄMK; ; Mot
+459; Arvidsson, Bengt; FMCK Borås; Husab; Mot
+460; Braun, Manfred; MC Wolgast / D; KTM; Mot
+461; Samuelsson, Mikale; Kullings MC-Klubb; Yam; Mot
+462; Leeman, Lars; MK Pionjer; ; Mot
+463; Pettersson, Jerry; MK Pionjer; ; Mot
+464; Thörn, Anders; Vetlanda MS; Suz; Mot
+465; Jansson, David; Bengtsfors MCC; Gas Gas; Mot
+466; LovŽn, Stefan; Helsingborgs MCK; Yam; Mot
+467; Tyrenhag, Jan; Bengtsfors MCC; Husab; Mot
+468; Ekdahl, Bengt; FMCK Borås; Yam; Mot
+469; Persson, Magnus; Hyllinge MS; Hond; Mot
+470; Karlsson, Magnus; Helsingborgs MCK; Husab; Mot
+471; Johannesson, Peter; ; Yam; Mot
+472; Karlsson, Sven-Åke; Tibro MK; KTM; Mot
+474; Jonsson, Mikael; MCK Hallandia; KTM; Mot
+475; Svensson, Hans; FMCK Borås; Hond; Mot
+477; Jansson, Mikael; MCK Hallandia; KTM; Mot
+

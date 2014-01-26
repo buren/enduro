@@ -1,0 +1,8 @@
+Enhetstest 1 (skisserat - modifera till ert API)
+
+PutStart(1,"12:00:00")
+PutStart(2,"12:01:00")
+PutFinish(2,"13:06:56")
+PutFinish(1,"13:15:10")
+GetResult(1) -> 1,"12:00:00","13:15:10"
+GetResult(2) -> 2,"12:01:00","13:06:56"

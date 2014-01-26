@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FileWriterTest {
     FileReader fileReader;
@@ -43,15 +44,16 @@ public class FileWriterTest {
     public void testCanWriteFile() {
         String file = enduro.getResourcePath("utils/testOutputFile.csv");
         FileWriter.writeFile(file, lines.iterator());
-        ArrayList<String> resultLines = null;
+        Iterator<String> resultLines = null;
         try {
             resultLines = fileReader.readFileByLine(file);
         } catch (FileNotFoundException e) {
             Assert.fail("Write failed: FileNotFoundException!");
         }
         Assert.assertEquals("Should be 5", 5, lines.size());
-        for (int i = 0; i < resultLines.size(); i++) {
-            Assert.assertEquals("Should be equal!", lines.get(i), resultLines.get(i));
+        int index = 0;
+        while (resultLines.hasNext()) {
+            Assert.assertEquals("Should be equal!", lines.get(index++), resultLines.next());
         }
     }
 
