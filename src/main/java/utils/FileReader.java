@@ -2,6 +2,7 @@ package utils;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FileReader {
 
@@ -11,7 +12,7 @@ public class FileReader {
      * @return ArrayList<String> with each non-empty line.
      * @throws FileNotFoundException
      */
-    public ArrayList<String> readFileByLine(String filePath) throws FileNotFoundException {
+    public Iterator<String> readFileByLine(String filePath) throws FileNotFoundException {
         ArrayList<String> fileLines = new ArrayList<String>();
         FileInputStream inputStream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(inputStream);
@@ -27,7 +28,7 @@ public class FileReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return fileLines;
+        return fileLines.iterator();
     }
 
 

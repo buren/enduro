@@ -1,0 +1,3 @@
+Story 20 - Specialprov med vikt
+Etapp2 skall ha vikten 5
+

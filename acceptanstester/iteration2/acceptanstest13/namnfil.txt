@@ -1,0 +1,8 @@
+StartNr; Namn
+SENIOR
+1; Anders Asson
+2; Bengt Bsson
+JUNIOR
+101; Chris Csson
+102; David Dsson
+103; Erik Esson

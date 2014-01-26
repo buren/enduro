@@ -11,7 +11,6 @@ public class Enduro {
 
     private Enduro() { }
 
-
     /**
      * Get path relative to root.
      * @param relativePath the relative path to get.
@@ -21,4 +20,5 @@ public class Enduro {
         URL resourceUrl = Enduro.getInstance().getClass().getResource("../");
         return resourceUrl.getPath() + relativePath;
     }
+
 }

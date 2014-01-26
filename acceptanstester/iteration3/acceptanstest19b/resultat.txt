@@ -1,0 +1,5 @@
+GemensamKlass
+StartNr; Namn; Klubb; MC; Totaltid; #Etapper; Etapp1; Etapp2; Start1; Mål1; Start2; Mål2
+1; Ander Asson; Aklubb; ATM; 01.11.01; 2; 01.00.00; 00.11.01; 11.00.00; 12.00.00; 12.30.00; 12.41.01
+2; Bengt Bsson; Bklobb; BTM; 01.22.02; 2; 01.10.00; 00.12.02; 11.01.00; 12.11.00; 12.31.00; 12.43.02
+3; Claes Csson; Cklubb; CTM; 01.33.03; 2; 01.20.00; 00.14.03; 11.02.00; 12.22.00; 12.32.00; 12.46.03
