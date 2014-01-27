@@ -6,6 +6,7 @@ public class Participant {
 
 	public Participant(String id) {
 		this.id = id;
+		name = "Not named";
 	}
 
 	public String getId() {
@@ -14,6 +15,10 @@ public class Participant {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getName(){
+		return name;
 	}
 
 }
