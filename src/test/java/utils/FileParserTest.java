@@ -25,7 +25,7 @@ public class FileParserTest {
 
     @After
     public void tearDown() throws Exception { }
-	
+
 	@Test
 	public void testStartParsing() throws FileNotFoundException {
 		timeHandler = fileParser.parseStartFile(enduro.getResourcePath("/acceptanstester/iteration1/acceptanstest3/starttider.txt"));
@@ -36,7 +36,7 @@ public class FileParserTest {
 		assertEquals("12.03.00", timeHandler.getStart(3));
 		assertEquals("12.04.00", timeHandler.getStart(4));
 	}
-	
+
 	@Test
 	public void testFinishParsing() throws FileNotFoundException {
 		timeHandler = fileParser.parseFinishFile(enduro.getResourcePath("/acceptanstester/iteration1/acceptanstest3/maltider.txt"));

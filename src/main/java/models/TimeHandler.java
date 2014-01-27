@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TimeHandler {
@@ -8,46 +7,45 @@ public class TimeHandler {
 
 	public TimeHandler() {
 		timeHandler = new HashMap<String, Times>();
-
 	}
 
+
 	public void addStart(Participant participant, String startTime) {
+        if(timeHandler.get(participant.getId()) == null) {
+            addParticipant(participant);
+        }
 		timeHandler.get(participant.getId()).setStart(startTime);
 	}
 
 	public String getStart(Participant participant) {
-		return timeHandler.get(participant.getId()).getStart();
+        if (timeHandler.get(participant.getId()) == null){
+        return "--.--.--";
+    }
+
+        String start = timeHandler.get(participant.getId()).getStart();
+ 		return start;
 	}
 
 	public void addFinish(Participant participant, String finishTime) {
+        if(timeHandler.get(participant.getId()) == null) {
+            addParticipant(participant);
+        }
 		timeHandler.get(participant.getId()).setFinish(finishTime);
 	}
 
 	public String getFinish(Participant participant) {
-		return timeHandler.get(participant.getId()).getFinish();
+        if(timeHandler.get(participant.getId()) == null) {
+            return "--.--.--";
+        }
+        String finish = timeHandler.get(participant.getId()).getFinish();
+
+        return finish;
 	}
 
-	// public String print() {
-	// StringBuilder sb = new StringBuilder();
-	// sb.append("Start Time; Finish Time\n");
-	// if (startTime.size() == 0) {
-	// if (finishTime.size() == 0) {
-	// return "Empty time list.";
-	// }
-	// for (String s : finishTime) {
-	// sb.append("--.--.--; " + s + "\n");
-	// }
-	// return sb.toString();
-	// } else if (finishTime.size() == 0) {
-	// for (String s : startTime) {
-	// sb.append(s + "; --.--.--\n");
-	// }
-	// return sb.toString();
-	// } else {
-	// for (int i = 0; i < startTime.size(); i++) {
-	// sb.append(startTime.get(i) + "; " + finishTime.get(i) + "\n");
-	// }
-	// return sb.toString();
-	// }
-	// }
+
+    private void addParticipant(Participant participant) {
+        Times time = new Times();
+        timeHandler.put(participant.getId(), time);
+    }
+
 }

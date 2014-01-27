@@ -1,8 +1,10 @@
 package utils;
 
+import models.Participant;
+import models.TimeHandler;
+
 import java.io.FileNotFoundException;
 import java.util.Iterator;
-import models.TimeHandler;
 
 public class FileParser {
 	
@@ -15,9 +17,8 @@ public class FileParser {
 
 		while (iterator.hasNext()) {
 			String line = (String) iterator.next();
-			String lineID = (String)line.charAt(0);
 			line = line.substring(3);
-			timeHandler.addStart(, new times());
+			timeHandler.addStart(new Participant(" "), " ");
 		}
 		return timeHandler;
 	}
@@ -30,7 +31,7 @@ public class FileParser {
 		while(iterator.hasNext()) {
 			String line = (String) iterator.next();
 			line = line.substring(3);
-			timeHandler.addFinish(line);
+			timeHandler.addFinish(new Participant(" "), " ");
 		}
 		return timeHandler;
 	}
