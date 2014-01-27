@@ -1,7 +1,8 @@
 package utils;
 
+import static org.junit.Assert.*;
+
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import junit.framework.Assert;
 import models.TimeHandler;
@@ -28,11 +29,11 @@ public class FileParserTest {
 	public void testParsing() throws FileNotFoundException {
 		TimeHandler timeHandler = fileParser.parseFile(enduro.getResourcePath("/acceptanstester/iteration1/acceptanstest3/starttider.txt"));
 
-		Assert.assertEquals("12.00.00", timeHandler.getStart(0));
-		Assert.assertEquals("12.01.00", timeHandler.getStart(1));
-		Assert.assertEquals("12.02.00", timeHandler.getStart(2));
-		Assert.assertEquals("12.03.00", timeHandler.getStart(3));
-		Assert.assertEquals("12.04.00", timeHandler.getStart(4));
+		assertEquals("12.00.00", timeHandler.getStart(0));
+		assertEquals("12.01.00", timeHandler.getStart(1));
+		assertEquals("12.02.00", timeHandler.getStart(2));
+		assertEquals("12.03.00", timeHandler.getStart(3));
+		assertEquals("12.04.00", timeHandler.getStart(4));
 	}
 
 }
