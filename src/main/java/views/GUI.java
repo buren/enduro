@@ -7,6 +7,7 @@ import java.awt.*;
 public class GUI extends JFrame {
 
 	private static final long serialVersionUID = -2948560310654842046L;
+
 	private JPanel topPanel;
 	private JTextArea textArea;
 	private JButton registerButton;
@@ -16,7 +17,7 @@ public class GUI extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(true);
-		this.setLayout(new GridLayout(2,1));
+		this.setLayout(new GridLayout(2, 1));
 		int width = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width / 2;
 		int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 		this.setSize(width, height);
