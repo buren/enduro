@@ -6,9 +6,8 @@ import java.util.Iterator;
 
 public class Printer {
 
-	public Printer() {
-
-	}
+	// public Printer() {
+	// }
 
 	public String generateResultList(ArrayList<String> startTimes,
 			ArrayList<String> finishTimes) {
@@ -30,34 +29,28 @@ public class Printer {
 	}
 
 	public String generateResultList(String pathToStartFile,
-			String pathToFinishFile) {
+			String pathToFinishFile) throws FileNotFoundException {
 		ArrayList<String> startList = new ArrayList<String>();
 		ArrayList<String> endList = new ArrayList<String>();
 
 		FileReader f = new FileReader();
 		String s = Enduro.getInstance().getResourcePath(
 				"acceptanstester/iteration1/acceptanstest3");
-		try {
-			Iterator<String> starts = f.readFileByLine(s + "/"
-					+ pathToStartFile);
-			Iterator<String> finishes = f.readFileByLine(s + "/"
-					+ pathToFinishFile);
 
-			while (starts.hasNext()) {
-				String temp = starts.next();
-				int index = temp.indexOf(" ");
-				startList.add(temp.substring(index + 1));
-			}
+		Iterator<String> starts = f.readFileByLine(s + "/" + pathToStartFile);
+		Iterator<String> finishes = f
+				.readFileByLine(s + "/" + pathToFinishFile);
 
-			while (finishes.hasNext()) {
-				String temp = finishes.next();
-				int index = temp.indexOf(" ");
-				endList.add(temp.substring(index + 1));
-			}
+		while (starts.hasNext()) {
+			String temp = starts.next();
+			int index = temp.indexOf(" ");
+			startList.add(temp.substring(index + 1));
+		}
 
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
+		while (finishes.hasNext()) {
+			String temp = finishes.next();
+			int index = temp.indexOf(" ");
+			endList.add(temp.substring(index + 1));
 		}
 
 		return generateResultList(startList, endList);
