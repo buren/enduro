@@ -16,9 +16,17 @@ public class Participant {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
+	}
+
+	public int HashCode() {
+		return Integer.parseInt(id);
+	}
+
+	public boolean equals(Participant p) {
+		return p.getId().equals(id);
 	}
 
 }
