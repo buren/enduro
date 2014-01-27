@@ -4,18 +4,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import models.TimeHandler;
+
 public class FileParser {
 	
-	public ArrayList<String> parseFile(String filePath) throws FileNotFoundException {
+	public TimeHandler parseFile(String filePath) throws FileNotFoundException {
 		FileReader fileReader = new FileReader();
 		Iterator<String> iterator = fileReader.readFileByLine(filePath);
 		
-		ArrayList<String> timeHandler = new ArrayList<String>();
+		TimeHandler timeHandler = new TimeHandler();
 		
 		while(iterator.hasNext()) {
 			String line = (String) iterator.next();
 			line = line.substring(3);
-			timeHandler.add(line);
+			timeHandler.addStart(line);
 		}
 		return timeHandler;
 	}
