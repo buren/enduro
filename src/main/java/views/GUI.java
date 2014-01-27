@@ -8,8 +8,9 @@ public class GUI extends JFrame {
 	private static final long serialVersionUID = -2948560310654842046L;
 
 	private JPanel topPanel;
-	private JTextArea textArea;
-	private JButton registerButton;
+	private JTextArea resultField;
+	private RegisterButton registerButton;
+	private JTextArea registerField;
 
 	public GUI() {
 		this.setTitle("Enduro");
@@ -21,18 +22,21 @@ public class GUI extends JFrame {
 		int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
-
+		
+		registerField = new JTextArea();
+		resultField = new JTextArea();
+		resultField.setEditable(false);
 		topPanel = new JPanel();
-		this.add(topPanel);
 		topPanel.setLayout(new GridLayout(1, 2));
-		registerButton = new JButton("Register");
+		registerButton = new RegisterButton("Register", registerField, resultField);
 		registerButton.setPreferredSize(new Dimension(width / 2, height / 2));
-		topPanel.add(new TextArea());
+		
+		this.add(topPanel);
+		this.add(resultField);
+		topPanel.add(registerField);
 		topPanel.add(registerButton);
 
-		textArea = new JTextArea("Hello World");
-		textArea.setEditable(false);
-		this.add(textArea);
+
 	}
 
 }
