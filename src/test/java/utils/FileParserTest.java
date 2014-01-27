@@ -2,22 +2,19 @@ package utils;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
-import org.junit.Assert.*;
-
 import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import models.TimeHandler;
 
 public class FileParserTest {
 	Enduro enduro;
+	FileParser fileParser;
 	
 	@Before
     public void setUp() throws Exception {
+		fileParser = new FileParser();
         enduro = Enduro.getInstance();
     }
 
@@ -26,7 +23,6 @@ public class FileParserTest {
 	
 	@Test
 	public void testParsing() throws FileNotFoundException {
-		FileParser fileParser = new FileParser();
 		ArrayList<String> timeHandler = fileParser.parseFile(enduro.getResourcePath("/acceptanstester/iteration1/acceptanstest3/starttider.txt"));
 
 		Assert.assertEquals("12.00.00", timeHandler.get(0));
