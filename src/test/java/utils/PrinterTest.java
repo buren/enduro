@@ -2,7 +2,9 @@ package utils;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.Before;
@@ -48,8 +50,36 @@ public class PrinterTest {
 	public void testEmptyLists() {
 		Printer printer = new Printer();
 		String result = printer.generateResultList(startTimes, finishTimes);
-		assertEquals(result, "StartNo; TotalTime; StartTime; ResultTime\n");
+		assertEquals(result, "Both lists are empty!");
 		
+	}
+	
+	@Test
+	public void testResultsWithFiles() {
+		
+		FileReader f = new FileReader();
+		String path = Enduro.getInstance().getResourcePath(
+				"acceptanstester/iteration1/acceptanstest3/resultat.txt");
+		
+		Iterator<String> iter;
+		StringBuilder sb = new StringBuilder();
+		try {
+			iter = f.readFileByLine(path);
+			while(iter.hasNext()) {
+				sb.append(iter.next() + "\n");
+			}
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(printer.generateResultList("starttider.txt", "maltider.txt"), sb.toString());
 	}
 
 }
+
+
+
+
+
