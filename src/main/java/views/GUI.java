@@ -12,6 +12,7 @@ public class GUI extends JFrame {
 	private RegisterButton registerButton;
 	private JTextArea registerField;
 
+
 	public GUI() {
 		this.setTitle("Enduro");
 		this.setVisible(true);
@@ -23,9 +24,11 @@ public class GUI extends JFrame {
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
 		
-		registerField = new JTextArea();
 		resultField = new JTextArea();
 		resultField.setEditable(false);
+		registerField = new JTextArea("Enter start number");
+		Font font1 = new Font("SansSerif", Font.BOLD, 20);
+		registerField.setFont(font1);
 		topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(1, 2));
 		registerButton = new RegisterButton("Register", registerField, resultField);
@@ -36,7 +39,7 @@ public class GUI extends JFrame {
 		topPanel.add(registerField);
 		topPanel.add(registerButton);
 
-
+		this.pack();
 	}
 
 }
