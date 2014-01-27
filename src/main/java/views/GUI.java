@@ -26,9 +26,11 @@ public class GUI extends JFrame {
 		
 		resultField = new JTextArea();
 		resultField.setEditable(false);
-		registerField = new JTextArea("Enter start number");
-		Font font1 = new Font("SansSerif", Font.BOLD, 20);
+		registerField = new JTextArea("Enter \nstart\nnumber");
+		Font font1 = new Font("SansSerif", Font.BOLD, 60);
+		Font font2 = new Font("SansSerif", Font.BOLD, 16);
 		registerField.setFont(font1);
+		resultField.setFont(font2);
 		topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(1, 2));
 		registerButton = new RegisterButton("Register", registerField, resultField);

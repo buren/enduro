@@ -1,37 +1,37 @@
 package utils;
 
-import models.Participant;
-import models.TimeHandler;
-
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
+import java.util.Scanner;
+
+import models.Participant;
+import models.TimeHandler;
 
 public class FileParser {
 	
 	public TimeHandler parseStartFile(String filePath) throws FileNotFoundException {
 
-		FileReader fileReader = new FileReader();
-		Iterator<String> iterator = fileReader.readFileByLine(filePath);
-
 		TimeHandler timeHandler = new TimeHandler();
-
-		while (iterator.hasNext()) {
-			String line = (String) iterator.next();
-			line = line.substring(3);
-			timeHandler.addStart(new Participant(" "), " ");
+		
+		Scanner scan = new Scanner(new File(filePath));
+		while (scan.hasNext()) {
+			String line = scan.nextLine();
+			String strings[] = line.split("; ");
+			timeHandler.addStart((new Participant(strings[0])), strings[1]);
 		}
 		return timeHandler;
 	}
 	
 	public TimeHandler parseFinishFile(String filePath) throws FileNotFoundException {
-		FileReader fileReader = new FileReader();
-		Iterator<String> iterator = fileReader.readFileByLine(filePath);
-		
+
 		TimeHandler timeHandler = new TimeHandler();
-		while(iterator.hasNext()) {
-			String line = (String) iterator.next();
-			line = line.substring(3);
-			timeHandler.addFinish(new Participant(" "), " ");
+		
+		Scanner scan = new Scanner(new File(filePath));
+		while (scan.hasNext()) {
+			String line = scan.nextLine();
+			String strings[] = line.split("; ");
+			timeHandler.addFinish((new Participant(strings[0])), strings[1]);
 		}
 		return timeHandler;
 	}
