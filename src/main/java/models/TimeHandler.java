@@ -1,14 +1,14 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TimeHandler {
-	private ArrayList<String> startTime;
-	private ArrayList<String> finishTime;
+	private HashMap<Participant, Times> timeHandler;
 
 	public TimeHandler() {
-		startTime = new ArrayList<String>();
-		finishTime = new ArrayList<String>();
+		timeHandler = new HashMap<Participant.getID(), Times>();
+
 	}
 
 	public void addStart(String startTime) {
