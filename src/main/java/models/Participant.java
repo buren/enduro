@@ -2,27 +2,11 @@ package models;
 
 public class Participant {
     private String id;
-    private String startTime;
-    private String endTime;
+    private String name;
 
-    public Participant(String id) {
+    public Participant(String name, String id) {
         this.id = id;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+        this.name = name;
     }
 
     public String getId() {
