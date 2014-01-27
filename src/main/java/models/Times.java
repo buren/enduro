@@ -1,5 +1,10 @@
 package models;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Times {
 
 	private String startTime;
@@ -18,8 +23,13 @@ public class Times {
 		finishTime = s;
 	}
 
-	public String totalTime() {
-		return "Totaltiden";
+	public String getTotalTime() {
+		if (startTime.equals("--.--,--") || finishTime.equals("--.--.--")) {
+
+			return "Start or Finish time missing.";
+		}
+
+		return totalTime();
 	}
 
 	public String getStart() {
@@ -28,6 +38,26 @@ public class Times {
 
 	public String getFinish() {
 		return finishTime;
+	}
+
+	private String totalTime() {
+		DateFormat df = new SimpleDateFormat("HH:mm:ss");
+		Date startDate, finishDate, totalDate;
+		totalDate = new Date();
+		try {
+			startDate = df.parse(startTime);
+			finishDate = df.parse(finishTime);
+			if(!(finishDate.getTime()-startDate.getTime()<0)){
+			totalDate.setTime(finishDate.getTime()-startDate.getTime()-3600000);
+			String time = df.format(totalDate);
+			return time;
+			}
+			else{
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return "--.--.--";
 	}
 
 }
