@@ -10,6 +10,7 @@ public class GUI extends JFrame {
 	private JPanel topPanel;
 	private JTextArea textArea;
 	private JButton registerButton;
+	private JTextArea startNbrArea;
 
 	public GUI() {
 		this.setTitle("Enduro");
@@ -22,17 +23,22 @@ public class GUI extends JFrame {
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
 
+		startNbrArea = new JTextArea("Enter start number");
+		Font font1 = new Font("SansSerif", Font.BOLD, 20);
+		startNbrArea.setFont(font1);
 		topPanel = new JPanel();
 		this.add(topPanel);
 		topPanel.setLayout(new GridLayout(1, 2));
 		registerButton = new JButton("Register");
 		registerButton.setPreferredSize(new Dimension(width / 2, height / 2));
-		topPanel.add(new TextArea());
+		topPanel.add(startNbrArea);
 		topPanel.add(registerButton);
 
 		textArea = new JTextArea("Hello World");
 		textArea.setEditable(false);
 		this.add(textArea);
+
+		this.pack();
 	}
 
 }
