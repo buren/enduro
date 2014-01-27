@@ -28,6 +28,7 @@ public class GUI extends JFrame {
         this.add(buttonPanel, BorderLayout.EAST);
 
         textArea = new JTextArea("Hello World");
+        textArea.setEditable(false);
         this.add(textArea, BorderLayout.CENTER);
     }
 
