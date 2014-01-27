@@ -1,29 +1,51 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TimeHandler {
-	private ArrayList<String> startTime;
-	private ArrayList<String> finishTime;
+	private HashMap<String, Times> timeHandler;
 
 	public TimeHandler() {
-		startTime = new ArrayList<String>();
-		finishTime = new ArrayList<String>();
+		timeHandler = new HashMap<String, Times>();
 	}
 
-	public void addStart(String startTime) {
-		this.startTime.add(startTime);
+
+	public void addStart(Participant participant, String startTime) {
+        if(timeHandler.get(participant.getId()) == null) {
+            addParticipant(participant);
+        }
+		timeHandler.get(participant.getId()).setStart(startTime);
 	}
 
-	public String getStart(int i) {
-		return startTime.get(i);
+	public String getStart(Participant participant) {
+        if (timeHandler.get(participant.getId()) == null){
+        return "--.--.--";
+    }
+
+        String start = timeHandler.get(participant.getId()).getStart();
+ 		return start;
 	}
 
-	public void addFinish(String finishTime) {
-		this.finishTime.add(finishTime);
+	public void addFinish(Participant participant, String finishTime) {
+        if(timeHandler.get(participant.getId()) == null) {
+            addParticipant(participant);
+        }
+		timeHandler.get(participant.getId()).setFinish(finishTime);
 	}
 
-	public String getFinish(int i) {
-		return finishTime.get(i);
+	public String getFinish(Participant participant) {
+        if(timeHandler.get(participant.getId()) == null) {
+            return "--.--.--";
+        }
+        String finish = timeHandler.get(participant.getId()).getFinish();
+
+        return finish;
 	}
+
+
+    private void addParticipant(Participant participant) {
+        Times time = new Times();
+        timeHandler.put(participant.getId(), time);
+    }
+
 }
