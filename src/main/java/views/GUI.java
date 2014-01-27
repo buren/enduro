@@ -7,10 +7,9 @@ import java.awt.*;
 public class GUI extends JFrame {
     private static final long serialVersionUID = -2948560310654842046L;
     private JPanel buttonPanel;
-    private JTextArea textArea;
+    private JTextArea registrationArea;
     private JButton button;
-
-
+    
     public GUI(){
         this.setTitle("Enduro");
         this.setVisible(true);
@@ -26,10 +25,12 @@ public class GUI extends JFrame {
         button = new JButton("Example");
         buttonPanel.add(button);
         this.add(buttonPanel, BorderLayout.EAST);
-
-        textArea = new JTextArea("Hello World");
-        textArea.setEditable(false);
-        this.add(textArea, BorderLayout.CENTER);
+        
+        registrationArea = new JTextArea("Registreringar\n");
+        registrationArea.setEditable(false);
+        this.add(registrationArea, BorderLayout.SOUTH);
+        
+        registrationArea.append("Registered 1");
     }
 
 }
