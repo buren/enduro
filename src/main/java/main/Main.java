@@ -28,7 +28,7 @@ public class Main {
         for (Participant ps : participants) {
             startLines.add(ps.getId() + "; " + ps.getStartTime());
         }
-        FileWriter.writeFile(enduro.getResourcePath("start_file.csv"), startLines.iterator());
+        FileWriter.writeFile(enduro.getResourcePath("start_	file.csv"), startLines.iterator());
 
         // Generate end file
         ArrayList<String> endLines = new ArrayList<String>();
