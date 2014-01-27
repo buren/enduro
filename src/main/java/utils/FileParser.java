@@ -8,7 +8,7 @@ import models.TimeHandler;
 
 public class FileParser {
 	
-	public TimeHandler parseFile(String filePath) throws FileNotFoundException {
+	public TimeHandler parseStartFile(String filePath) throws FileNotFoundException {
 		FileReader fileReader = new FileReader();
 		Iterator<String> iterator = fileReader.readFileByLine(filePath);
 		
@@ -18,6 +18,19 @@ public class FileParser {
 			String line = (String) iterator.next();
 			line = line.substring(3);
 			timeHandler.addStart(line);
+		}
+		return timeHandler;
+	}
+	
+	public TimeHandler parseFinishFile(String filePath) throws FileNotFoundException {
+		FileReader fileReader = new FileReader();
+		Iterator<String> iterator = fileReader.readFileByLine(filePath);
+		
+		TimeHandler timeHandler = new TimeHandler();
+		while(iterator.hasNext()) {
+			String line = (String) iterator.next();
+			line = line.substring(3);
+			timeHandler.addFinish(line);
 		}
 		return timeHandler;
 	}
