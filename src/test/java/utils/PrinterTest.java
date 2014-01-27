@@ -71,12 +71,14 @@ public class PrinterTest {
 			}
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		assertEquals(
 				printer.generateResultList("starttider.txt", "maltider.txt"),
 				sb.toString());
+		
+		System.out.print(sb.toString());
 	}
 
 	@Test
