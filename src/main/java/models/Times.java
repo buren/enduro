@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class Times {
 
@@ -42,13 +43,14 @@ public class Times {
 
 	private String totalTime() {
 		DateFormat df = new SimpleDateFormat("HH:mm:ss");
+		df.setTimeZone(TimeZone.getTimeZone("UTC"));
 		Date startDate, finishDate, totalDate;
 		totalDate = new Date();
 		try {
 			startDate = df.parse(startTime);
 			finishDate = df.parse(finishTime);
 			if(!(finishDate.getTime()-startDate.getTime()<0)){
-			totalDate.setTime(finishDate.getTime()-startDate.getTime()-3600000);
+			totalDate.setTime(finishDate.getTime()-startDate.getTime());
 			String time = df.format(totalDate);
 			return time;
 			}
