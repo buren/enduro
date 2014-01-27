@@ -22,4 +22,12 @@ public class ParticipantTest {
     public void testGetId() throws Exception {
         Assert.assertEquals("Should be 1", "1", p.getId());
     }
+    
+
+    @Test
+    public void testGetName() throws Exception {
+    	Assert.assertEquals("Not named", p.getName());
+    	p.setName("Oskar");
+        Assert.assertEquals("Oskar", p.getName());
+    }
 }
