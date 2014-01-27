@@ -15,8 +15,9 @@ public class FileParser {
 
 		while (iterator.hasNext()) {
 			String line = (String) iterator.next();
+			String lineID = (String)line.charAt(0);
 			line = line.substring(3);
-			timeHandler.addStart(line);
+			timeHandler.addStart(, new times());
 		}
 		return timeHandler;
 	}
