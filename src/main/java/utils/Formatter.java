@@ -3,8 +3,7 @@ package utils;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import models.TimeHandler;
+import models.Time;
 
 public class Formatter {
 
@@ -31,17 +30,18 @@ public class Formatter {
 		return columns;
 	}
 
-	public String generateResultList(ArrayList<String> startTimes,
-			ArrayList<String> finishTimes) {
+	public String generateResultList(ArrayList<Time> startTimes,
+			ArrayList<Time> finishTimes) {
 		if (startTimes.isEmpty() && finishTimes.isEmpty()) {
 			return "Both lists are empty!";
 		} else {
 			StringBuilder sb = new StringBuilder();
-			sb.append("StartNo; TotalTime; StartTime; ResultTime\n");
+			sb.append("StartNr; TotalTid; StartTider; Maltider\n");
 			int count = startTimes.size();
 
 			for (int i = 0; i < count; i++) {
-				sb.append(i + 1 + "; --.--.--; " + startTimes.get(i) + "; "
+				Time totalTime = startTimes.get(i).compareTo(finishTimes.get(i));
+				sb.append(i + 1 + "; "+totalTime+"; " + startTimes.get(i) + "; "
 						+ finishTimes.get(i) + "\n");
 			}
 			return sb.toString();
@@ -56,8 +56,8 @@ public class Formatter {
 	 */
 	public String generateResultList(String pathToStartFile,
 			String pathToFinishFile) throws FileNotFoundException {
-		ArrayList<String> startList = new ArrayList<String>();
-		ArrayList<String> endList = new ArrayList<String>();
+		ArrayList<Time> startList = new ArrayList<Time>();
+		ArrayList<Time> endList = new ArrayList<Time>();
 		FileReader f = new FileReader();
 
 		Iterator<String> starts = f.readFileByLine(pathToStartFile);
@@ -67,12 +67,15 @@ public class Formatter {
 		while (starts.hasNext()) {
 			String temp = starts.next();
 			int index = temp.indexOf(" ");
-			startList.add(temp.substring(index + 1));
+			startList.add(new Time(temp.substring(index + 1)));
 		}
+		
+		finishes.next();
+		
 		while (finishes.hasNext()) {
 			String temp = finishes.next();
 			int index = temp.indexOf(" ");
-			endList.add(temp.substring(index + 1));
+			endList.add(new Time(temp.substring(index + 1)));
 		}
 		return generateResultList(startList, endList);
 	}
