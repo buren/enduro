@@ -80,5 +80,28 @@ public class TimeHandler {
 		Times time = new Times();
 		timeHandler.put(participant, time);
 	}
+	
+	public void addName(Participant participant, String name) {
+		if (timeHandler.get(participant) == null) {
+			addParticipant(participant);
+		}
+		int id = participant.getId();
+		for (Participant p : timeHandler.keySet()) {
+			if (p.getId() == id) {
+				p.setName(name);
+			}
+		}
+	}
+	
+	public String getName(Participant participant){
+		for (Participant p : timeHandler.keySet()) {
+			if (p.getId() == participant.getId()) {
+				return p.getName();
+			}
+		}
+		addParticipant(participant);
+		return participant.getName();
+		
+	}
 
 }

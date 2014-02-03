@@ -16,9 +16,6 @@ public class Formatter {
 	 */
 	public String readColumnNames(String filePath) throws FileNotFoundException {
 		FileReader f = new FileReader();
-
-	
-		
 		Iterator<String> itr = f.readFileByLine(filePath);
 		String columns;
 		if (itr.hasNext()) {

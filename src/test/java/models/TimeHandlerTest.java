@@ -26,6 +26,7 @@ public class TimeHandlerTest {
 	public void testAddMultipleStartTimes() {
 		time.addStart(part1, "12.00.00");
 		time.addStart(part2, "13.00.00");
+		
 		assertEquals("Should be the same", "13.00.00", time.getStart(part2));
 		assertEquals("Should be the same", "12.00.00", time.getStart(part1));
 	}
@@ -33,7 +34,9 @@ public class TimeHandlerTest {
 	@Test
 	public void testAddFinishTime() {
 		time.addFinish(part1, "12.00.00");
+		Participant p = new Participant(1);
 		assertEquals("Should be the same", "12.00.00", time.getFinish(part1));
+		assertEquals("Should be the same", "12.00.00", time.getFinish(p));
 	}
 
 	@Test
@@ -62,4 +65,16 @@ public class TimeHandlerTest {
 		assertEquals("Should be the same", "13.00.00", time.getFinish(part1));
 	}
 
+	@Test
+	public void testName() {
+		time.addName(part1, "Calle");
+		assertEquals("Shall be the same", "Calle", part1.getName());
+	}
+
+	@Test
+	public void testIfInTime() {
+		time.addName(part1, "Calle");
+		assertEquals("Should be the same", time.getName(new Participant(1)),
+				"Calle");
+	}
 }
