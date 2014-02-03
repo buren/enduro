@@ -75,10 +75,18 @@ public class TimeHandler {
 
 		return finish;
 	}
-
+	
+	public Time getTotalTime(Participant participant){
+		if (timeHandler.get(participant) == null) {
+			return new Time();
+		}
+		return timeHandler.get(participant).getTotalTime();
+	}
+	
 	private void addParticipant(Participant participant) {
 		Times time = new Times();
 		timeHandler.put(participant, time);
 	}
 
+	
 }

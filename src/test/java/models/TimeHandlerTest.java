@@ -62,4 +62,10 @@ public class TimeHandlerTest {
 		assertEquals("Should be the same", "13.00.00", time.getFinish(part1).toString());
 	}
 
+	@Test
+	public void testTotalTime() {
+		time.addStart(part1, "12.00.00");
+		time.addFinish(part1, "13.00.00");
+		assertEquals("Should be 01.00.00", "01.00.00", time.getTotalTime(part1).toString());
+	}
 }

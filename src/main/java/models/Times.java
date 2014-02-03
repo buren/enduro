@@ -33,5 +33,4 @@ public class Times {
 	public Time getFinish() {
 		return finishTime;
 	}
-
 }
