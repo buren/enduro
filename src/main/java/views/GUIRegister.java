@@ -17,6 +17,7 @@ public class GUIRegister extends JFrame {
 	private RegisterButton registerButton;
 	private JTextArea registerField;
 	private String filePath;
+
 	public GUIRegister(String filePath) {
 		this.filePath = filePath;
 		this.setTitle("Enduro");
@@ -31,7 +32,7 @@ public class GUIRegister extends JFrame {
 
 		resultField = new JTextArea();
 		resultField.setEditable(false);
-		registerField = new JTextArea("Enter \nstart\nnumber");
+		registerField = new JTextArea();
 		Font font1 = new Font("SansSerif", Font.BOLD, 60);
 		Font font2 = new Font("SansSerif", Font.BOLD, 16);
 		registerField.setFont(font1);
@@ -50,28 +51,40 @@ public class GUIRegister extends JFrame {
 
 		this.pack();
 	}
-	/** Prints the resultField to a .txt file and updates the registerField
+
+	/**
+	 * Prints the resultField to a .txt file and updates the registerField
 	 * 
 	 */
 	public void printResults() {
 		Date date = new Date();
 		try {
-			Integer.parseInt(registerField.getText());
-			
-			String time = new SimpleDateFormat("HH.mm.ss").format(date);
-			String out = registerField.getText()+";"+time+"\n";
-			String allText = resultField.getText() + out;
-		
-			
-			FileWriter.writeFile(filePath , allText);
-			
-			resultField.append(out);
-			registerField.setText("");	
-		}
-		catch (NumberFormatException e) {
+			if (registerField.getText().equals("")) {
+				PreregisterPane prp = new PreregisterPane("Förregistrering");
+				String s = prp.showInputDialog("Förregistrerad id");
+				String time = new SimpleDateFormat("HH.mm.ss").format(date);
+				String out = s + ";" + time + "\n";
+				String allText = resultField.getText() + out;
+
+				FileWriter.writeFile(filePath, allText);
+
+				resultField.append(out);
+				registerField.setText("");
+
+			} else {
+				String time = new SimpleDateFormat("HH.mm.ss").format(date);
+				String out = registerField.getText() + ";" + time + "\n";
+				String allText = resultField.getText() + out;
+
+				FileWriter.writeFile(filePath, allText);
+
+				resultField.append(out);
+				registerField.setText("");
+			}
+		} catch (NumberFormatException e) {
 			registerField.setText("");
 		}
-		
+
 	}
 
 }
