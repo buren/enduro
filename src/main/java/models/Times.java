@@ -47,7 +47,7 @@ public class Times {
 	}
 
 	private String totalTime() {
-		DateFormat df = new SimpleDateFormat("HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("HH.mm.ss");
 		df.setTimeZone(TimeZone.getTimeZone("UTC"));
 		Date startDate, finishDate, totalDate;
 		totalDate = new Date();

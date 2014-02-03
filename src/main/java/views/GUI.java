@@ -48,7 +48,9 @@ public class GUI extends JFrame {
 
 		this.pack();
 	}
-	
+	/** Prints the resultField to a .txt file and updates the registerField
+	 * 
+	 */
 	public void printResults() {
 		Date date = new Date();
 		try {

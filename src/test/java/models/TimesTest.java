@@ -33,9 +33,9 @@ public class TimesTest {
 	
 	@Test
 	public void testTotalTime(){
-		times.setStart("12:00:00");
-		times.setFinish("12:00:01");
-		assertEquals("00:00:01", times.getTotalTime());
+		times.setStart("12.00.00");
+		times.setFinish("12.00.01");
+		assertEquals("00.00.01", times.getTotalTime());
 	}
 
 }

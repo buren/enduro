@@ -75,10 +75,17 @@ public class TimeHandler {
 
 		return finish;
 	}
-
+	public String getTotalTime(Participant participant){
+		if (timeHandler.get(participant) == null) {
+			return "--.--.--";
+		}
+		return timeHandler.get(participant).getTotalTime();
+	}
+	
 	private void addParticipant(Participant participant) {
 		Times time = new Times();
 		timeHandler.put(participant, time);
 	}
 
+	
 }
