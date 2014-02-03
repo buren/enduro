@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import utils.FileWriter;
-import utils.Printer;
+import utils.Formatter;
 
 public class PrintButton extends JButton implements ActionListener {
 
-	private Printer printer;
+	private Formatter formatter;
 	private LoadStartButton sb;
 	private LoadFinishButton fb;
 	private FileWriter writer;
@@ -30,8 +30,8 @@ public class PrintButton extends JButton implements ActionListener {
 		fc.showSaveDialog(this);
 		String filePath = fc.getSelectedFile().getAbsolutePath();
 		try {
-			printer = new Printer();
-			String resultat = printer.generateResultList(sb.getPath(),
+			formatter = new Formatter();
+			String resultat = formatter.generateResultList(sb.getPath(),
 					fb.getPath());
 
 			String[] results = resultat.split("\n");

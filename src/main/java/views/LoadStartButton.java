@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 
 import javax.swing.*;
 
-import utils.Printer;
-
 public class LoadStartButton extends JButton implements ActionListener {
 	private String startfil;
 	

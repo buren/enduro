@@ -3,6 +3,7 @@ package utils;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class FileWriter {
 
@@ -33,7 +34,27 @@ public class FileWriter {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
+	public static void writeFile(String filePath, String string) {
+		Writer writer = null;
+		try {
+			Scanner scan = new Scanner(string);
+			writer = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream(filePath), "UTF-8"));
+			while (scan.hasNext()) {
+				writer.write(scan.next() + "\n");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (writer != null) {
+					writer.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

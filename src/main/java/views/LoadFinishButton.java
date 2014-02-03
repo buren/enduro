@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import utils.Printer;
-
 public class LoadFinishButton extends JButton implements ActionListener {
-	
+
 	private String malfil;
 
 	public LoadFinishButton(String s) {
@@ -24,6 +22,7 @@ public class LoadFinishButton extends JButton implements ActionListener {
 		malfil = fc.getSelectedFile().getAbsolutePath();
 
 	}
+
 	public String getPath() {
 		return malfil;
 	}

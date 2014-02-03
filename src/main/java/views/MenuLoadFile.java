@@ -6,11 +6,11 @@ import java.io.FileNotFoundException;
 
 import javax.swing.*;
 
-import utils.Printer;
+import utils.Formatter;
 
 public class MenuLoadFile extends JMenuItem implements ActionListener {
 
-	private Printer printer;
+	private Formatter formatter;
 
 	public MenuLoadFile(String flag) {
 		super(flag);
@@ -25,8 +25,8 @@ public class MenuLoadFile extends JMenuItem implements ActionListener {
 		fc.showOpenDialog(this);
 		String malfil = fc.getSelectedFile().getAbsolutePath();
 		try {
-			printer = new Printer();
-			String resultat = printer.generateResultList(startfil, malfil);
+			formatter = new Formatter();
+			String resultat = formatter.generateResultList(startfil, malfil);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

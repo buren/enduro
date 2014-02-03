@@ -15,7 +15,7 @@ public class Times {
 		startTime = "--.--.--";
 		finishTime = "--.--.--";
 	}
-
+	
 	public void setStart(String s) {
 		startTime = s;
 	}
@@ -23,7 +23,12 @@ public class Times {
 	public void setFinish(String s) {
 		finishTime = s;
 	}
-
+	
+	/**
+	 * Gets the duration of the race for the participant.
+	 * @return the duration of the race unless either the start time or the finish time is missing.
+	 */
+	
 	public String getTotalTime() {
 		if (startTime.equals("--.--,--") || finishTime.equals("--.--.--")) {
 
@@ -42,7 +47,7 @@ public class Times {
 	}
 
 	private String totalTime() {
-		DateFormat df = new SimpleDateFormat("HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("HH.mm.ss");
 		df.setTimeZone(TimeZone.getTimeZone("UTC"));
 		Date startDate, finishDate, totalDate;
 		totalDate = new Date();
