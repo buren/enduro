@@ -7,6 +7,7 @@ import java.util.Iterator;
 public class Printer {
 
 
+
 	public String generateResultList(ArrayList<String> startTimes,
 			ArrayList<String> finishTimes) {
 		if (startTimes.isEmpty() && finishTimes.isEmpty()) {
@@ -26,6 +27,14 @@ public class Printer {
 		}
 	}
 
+	/**
+	 * 
+	 * @param pathToStartFile
+	 * @param pathToFinishFile
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	
 	public String generateResultList(String pathToStartFile,
 			String pathToFinishFile) throws FileNotFoundException {
 		ArrayList<String> startList = new ArrayList<String>();
