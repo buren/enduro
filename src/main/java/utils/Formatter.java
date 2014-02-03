@@ -47,13 +47,11 @@ public class Formatter {
 	}
 
 	/**
-	 * 
 	 * @param pathToStartFile
 	 * @param pathToFinishFile
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-
 	public String generateResultList(String pathToStartFile,
 			String pathToFinishFile) throws FileNotFoundException {
 		ArrayList<String> startList = new ArrayList<String>();
