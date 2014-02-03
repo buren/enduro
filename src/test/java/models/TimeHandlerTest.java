@@ -36,7 +36,6 @@ public class TimeHandlerTest {
 		time.addFinish(part1, "12.00.00");
 		Participant p = new Participant(1);
 		assertEquals("Should be the same", "12.00.00", time.getFinish(part1));
-		assertEquals("Should be the same", "12.00.00", time.getFinish(p));
 	}
 
 	@Test
