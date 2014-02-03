@@ -7,7 +7,6 @@ import models.TimeHandler;
 import utils.FileReader;
 
 public abstract class Sorter {
-	// protected TimeHandler time;
 	private FileReader fr;
 
 	public Sorter() {

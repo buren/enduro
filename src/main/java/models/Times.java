@@ -1,70 +1,38 @@
 package models;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 public class Times {
 
-	private String startTime;
-	private String finishTime;
+	private Time startTime;
+	private Time finishTime;
 
 	public Times() {
-		startTime = "--.--.--";
-		finishTime = "--.--.--";
-	}
-	
-	public void setStart(String s) {
-		startTime = s;
+		startTime = new Time();
+		finishTime = new Time();
 	}
 
-	public void setFinish(String s) {
-		finishTime = s;
+	public void setStart(String time) {
+		startTime = new Time(time);
 	}
-	
+
+	public void setFinish(String time) {
+		finishTime = new Time(time);
+	}
+
 	/**
 	 * Gets the duration of the race for the participant.
-	 * @return the duration of the race unless either the start time or the finish time is missing.
+	 * 
+	 * @return the duration of the race unless either the start time or the
+	 *         finish time is missing.
 	 */
-	
-	public String getTotalTime() {
-		if (startTime.equals("--.--,--") || finishTime.equals("--.--.--")) {
-
-			return "Start or Finish time missing.";
-		}
-
-		return totalTime();
+	public Time getTotalTime() {
+		return startTime.compareTo(finishTime);
 	}
 
-	public String getStart() {
+	public Time getStart() {
 		return startTime;
 	}
 
-	public String getFinish() {
+	public Time getFinish() {
 		return finishTime;
 	}
-
-	private String totalTime() {
-		DateFormat df = new SimpleDateFormat("HH:mm:ss");
-		df.setTimeZone(TimeZone.getTimeZone("UTC"));
-		Date startDate, finishDate, totalDate;
-		totalDate = new Date();
-		try {
-			startDate = df.parse(startTime);
-			finishDate = df.parse(finishTime);
-			if(!(finishDate.getTime()-startDate.getTime()<0)){
-			totalDate.setTime(finishDate.getTime()-startDate.getTime());
-			String time = df.format(totalDate);
-			return time;
-			}
-			else{
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return "--.--.--";
-	}
-
 }

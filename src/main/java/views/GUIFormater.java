@@ -4,17 +4,15 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class GUI extends JFrame {
+public class GUIFormater extends JFrame {
 	private static final long serialVersionUID = -2948560310654842046L;
 
 	private JPanel topPanel;
-	private JTextArea resultField;
-	private RegisterButton registerButton;
-	private JTextArea registerField;
+	private LoadStartButton sb;
+	private LoadFinishButton fb;
 
-
-	public GUI() {
-		this.setTitle("Enduro");
+	public GUIFormater() {
+		this.setTitle("Enduro Formater");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -23,23 +21,19 @@ public class GUI extends JFrame {
 		int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
-		
-		resultField = new JTextArea();
-		resultField.setEditable(false);
-		registerField = new JTextArea("Enter \nstart\nnumber");
+
 		Font font1 = new Font("SansSerif", Font.BOLD, 60);
 		Font font2 = new Font("SansSerif", Font.BOLD, 16);
-		registerField.setFont(font1);
-		resultField.setFont(font2);
+
 		topPanel = new JPanel();
-		topPanel.setLayout(new GridLayout(1, 2));
-		registerButton = new RegisterButton("Register", registerField, resultField);
-		registerButton.setPreferredSize(new Dimension(width / 2, height / 2));
-		
+		topPanel.setLayout(new GridLayout(1, 3));
+		sb = new LoadStartButton("Ladda in startfil");
+		fb = new LoadFinishButton("Ladda in målfil");
+		topPanel.add(sb);
+		topPanel.add(fb);
+		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb));
+
 		this.add(topPanel);
-		this.add(resultField);
-		topPanel.add(registerField);
-		topPanel.add(registerButton);
 
 		this.pack();
 	}

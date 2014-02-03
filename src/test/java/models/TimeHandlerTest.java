@@ -19,52 +19,55 @@ public class TimeHandlerTest {
 	@Test
 	public void testAddStartTime() {
 		time.addStart(part1, "12.00.00");
-		assertEquals("Should be the same", "12.00.00", time.getStart(part1));
+		assertEquals("Should be the same", "12.00.00", time.getStart(part1).toString());
 	}
 
 	@Test
 	public void testAddMultipleStartTimes() {
 		time.addStart(part1, "12.00.00");
 		time.addStart(part2, "13.00.00");
-		
-		assertEquals("Should be the same", "13.00.00", time.getStart(part2));
-		assertEquals("Should be the same", "12.00.00", time.getStart(part1));
+
+		assertEquals("Should be the same", "13.00.00", time.getStart(part2).toString());
+		assertEquals("Should be the same", "12.00.00", time.getStart(part1).toString());
+
 	}
 
 	@Test
 	public void testAddFinishTime() {
 		time.addFinish(part1, "12.00.00");
-		Participant p = new Participant(1);
-		assertEquals("Should be the same", "12.00.00", time.getFinish(part1));
+
+		assertEquals("Should be the same", "12.00.00", time.getFinish(part1).toString());
+
 	}
 
 	@Test
 	public void testGetNonExistingStartTime() throws Exception {
-		assertEquals("Should be the same", time.getStart(part2), "--.--.--");
+		assertEquals("Should be the same", time.getStart(part2).toString(), new Time().toString());
 	}
 
 	@Test
 	public void testGetNonExistingFinishTime() throws Exception {
-		assertEquals("Should be the same", time.getFinish(part2), "--.--.--");
+		assertEquals("Should be the same", time.getFinish(part2).toString(), new Time().toString());
 	}
 
 	@Test
 	public void testAddMultipleFinishTimes() {
 		time.addFinish(part1, "12.00.00");
 		time.addFinish(part2, "13.00.00");
-		assertEquals("Should be the same", "12.00.00", time.getFinish(part1));
-		assertEquals("Should be the same", "13.00.00", time.getFinish(part2));
+		assertEquals("Should be the same", "12.00.00", time.getFinish(part1).toString());
+		assertEquals("Should be the same", "13.00.00", time.getFinish(part2).toString());
 	}
 
 	@Test
 	public void testStartAndFinish() {
 		time.addStart(part1, "12.00.00");
 		time.addFinish(part1, "13.00.00");
-		assertEquals("Should be the same", "12.00.00", time.getStart(part1));
-		assertEquals("Should be the same", "13.00.00", time.getFinish(part1));
+		assertEquals("Should be the same", "12.00.00", time.getStart(part1).toString());
+		assertEquals("Should be the same", "13.00.00", time.getFinish(part1).toString());
 	}
 
 	@Test
+
 	public void testName() {
 		time.addName(part1, "Calle");
 		assertEquals("Shall be the same", "Calle", part1.getName());
@@ -75,5 +78,12 @@ public class TimeHandlerTest {
 		time.addName(part1, "Calle");
 		assertEquals("Should be the same", time.getName(new Participant(1)),
 				"Calle");
+	}
+
+	public void testTotalTime() {
+		time.addStart(part1, "12.00.00");
+		time.addFinish(part1, "13.00.00");
+		assertEquals("Should be 01.00.00", "01.00.00", time.getTotalTime(part1).toString());
+
 	}
 }

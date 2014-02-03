@@ -13,7 +13,7 @@ public class Enduro {
 
     /**
      * Get path relative to root.
-     * @param relativePath the relative path to get.
+     * @param relativePath the relative path to get (Starting at src/test/resources).
      * @return the absolute path to resource.
      */
     public String getResourcePath(String relativePath) {

@@ -34,12 +34,12 @@ public class TimeHandler {
 	 * @return "--.--.--" if participant is missing, otherwise it returns the
 	 *         value.
 	 */
-	public String getStart(Participant participant) {
+	public Time getStart(Participant participant) {
 		if (timeHandler.get(participant) == null) {
-			return "--.--.--";
+			return new Time();
 		}
 
-		String start = timeHandler.get(participant).getStart();
+		Time start = timeHandler.get(participant).getStart();
 		return start;
 	}
 
@@ -56,6 +56,7 @@ public class TimeHandler {
 		if (timeHandler.get(participant) == null) {
 			addParticipant(participant);
 		}
+		
 		timeHandler.get(participant).setFinish(finishTime);
 	}
 
@@ -67,20 +68,32 @@ public class TimeHandler {
 	 * @return "--.--.--" if participant is missing, otherwise it returns the
 	 *         value.
 	 */
-	public String getFinish(Participant participant) {
+	public Time getFinish(Participant participant) {
 		if (timeHandler.get(participant) == null) {
-			return "--.--.--";
+//			 if (timeHandler.get(participant).equals(participant)){
+			// && timeHandler.get(participant).equals(participant)) {
+			return new Time();
 		}
-		String finish = timeHandler.get(participant).getFinish();
+		if (timeHandler.get(participant).equals(participant)) {
+			return timeHandler.get(participant).getFinish();
+		}
+		Time finish = timeHandler.get(participant).getFinish();
 
 		return finish;
+	}
+
+	public Time getTotalTime(Participant participant) {
+		if (timeHandler.get(participant) == null) {
+			return new Time();
+		}
+		return timeHandler.get(participant).getTotalTime();
 	}
 
 	private void addParticipant(Participant participant) {
 		Times time = new Times();
 		timeHandler.put(participant, time);
 	}
-	
+
 	public void addName(Participant participant, String name) {
 		if (timeHandler.get(participant) == null) {
 			addParticipant(participant);
@@ -92,8 +105,8 @@ public class TimeHandler {
 			}
 		}
 	}
-	
-	public String getName(Participant participant){
+
+	public String getName(Participant participant) {
 		for (Participant p : timeHandler.keySet()) {
 			if (p.getId() == participant.getId()) {
 				return p.getName();
@@ -101,7 +114,7 @@ public class TimeHandler {
 		}
 		addParticipant(participant);
 		return participant.getName();
-		
+
 	}
 
 }

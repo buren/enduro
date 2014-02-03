@@ -34,13 +34,26 @@ public class SorterTest {
 	@Test
 	public void testSetFinishTime() {
 		Sorter sort = new SortFinishTime();
+		Participant p = new Participant(1);
 		sort.insertInfo(
 				Enduro.getInstance()
 						.getResourcePath(
 								"acceptanstester/iteration1/acceptanstest3_5/maltider.txt"),
 				"Maltider", time);
-		assertEquals("Should be same", "13.23.34",
-				time.getFinish(new Participant(1)));
+		assertEquals("Should be same", "13.23.34", time.getFinish(p).toString());
+
+	}
+
+	@Test
+	public void testSetStartTime() {
+		Sorter sort = new SortStartTime();
+		Participant p = new Participant(1);
+		sort.insertInfo(
+				Enduro.getInstance()
+						.getResourcePath(
+								"acceptanstester/iteration1/acceptanstest3_5/resultat.txt"),
+				"StartTider", time);
+		assertEquals("Should be same", "12.00.00", time.getStart(p).toString());
 
 	}
 
