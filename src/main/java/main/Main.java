@@ -1,6 +1,4 @@
 package main;
-
-
 import views.GUI;
 
 public class Main {

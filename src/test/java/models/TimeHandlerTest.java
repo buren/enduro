@@ -12,8 +12,8 @@ public class TimeHandlerTest {
 	@Before
 	public void setUp() {
 		time = new TimeHandler();
-		part1 = new Participant("1");
-		part2 = new Participant("2");
+		part1 = new Participant(1);
+		part2 = new Participant(2);
 	}
 
 	@Test
