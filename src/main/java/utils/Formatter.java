@@ -59,12 +59,10 @@ public class Formatter {
 		ArrayList<String> startList = new ArrayList<String>();
 		ArrayList<String> endList = new ArrayList<String>();
 		FileReader f = new FileReader();
-		// OBS HÅRDKODAT
-		String s = Enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration1/acceptanstest3");
-		Iterator<String> starts = f.readFileByLine(s + "/" + pathToStartFile);
+
+		Iterator<String> starts = f.readFileByLine(pathToStartFile);
 		Iterator<String> finishes = f
-				.readFileByLine(s + "/" + pathToFinishFile);
+				.readFileByLine(pathToFinishFile);
 		while (starts.hasNext()) {
 			String temp = starts.next();
 			int index = temp.indexOf(" ");

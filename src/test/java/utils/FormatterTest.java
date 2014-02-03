@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PrinterTest {
+public class FormatterTest {
 
 	private ArrayList<String> startTimes;
 	private ArrayList<String> finishTimes;
@@ -55,11 +55,11 @@ public class PrinterTest {
 	public void testResultsWithFiles() throws FileNotFoundException {
 		FileReader f = new FileReader();
 		String path = Enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration1/acceptanstest3/resultat.txt");
+				"acceptanstester/iteration1/acceptanstest3/");
 		Iterator<String> iter;
 		StringBuilder sb = new StringBuilder();
 		try {
-			iter = f.readFileByLine(path);
+			iter = f.readFileByLine(path + "resultat.txt");
 			while (iter.hasNext()) {
 				sb.append(iter.next() + "\n");
 			}
@@ -68,7 +68,7 @@ public class PrinterTest {
 			e.printStackTrace();
 		}
 		assertEquals(
-				formatter.generateResultList("starttider.txt", "maltider.txt"),
+				formatter.generateResultList(path + "starttider.txt", path + "maltider.txt"),
 				sb.toString());
 	}
 
