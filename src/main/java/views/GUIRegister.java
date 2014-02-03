@@ -16,8 +16,9 @@ public class GUIRegister extends JFrame {
 	private JTextArea resultField;
 	private RegisterButton registerButton;
 	private JTextArea registerField;
-	
-	public GUIRegister() {
+	private String filePath;
+	public GUIRegister(String filePath) {
+		this.filePath = filePath;
 		this.setTitle("Enduro");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -61,7 +62,7 @@ public class GUIRegister extends JFrame {
 			String out = registerField.getText()+";"+time+"\n";
 			String allText = resultField.getText() + out;
 		
-			String filePath = Enduro.getInstance().getResourcePath("registrationOutput.txt");
+			
 			FileWriter.writeFile(filePath , allText);
 			
 			resultField.append(out);
