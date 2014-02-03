@@ -10,6 +10,7 @@ public class GUIFormater extends JFrame {
 	private JPanel topPanel;
 	private LoadStartButton sb;
 	private LoadFinishButton fb;
+	private LoadNamesButton nb;
 
 	public GUIFormater() {
 		this.setTitle("Enduro Formater");
@@ -29,9 +30,11 @@ public class GUIFormater extends JFrame {
 		topPanel.setLayout(new GridLayout(1, 3));
 		sb = new LoadStartButton("Ladda in startfil");
 		fb = new LoadFinishButton("Ladda in målfil");
+		nb = new LoadNamesButton("Ladda in namnfil");
 		topPanel.add(sb);
 		topPanel.add(fb);
-		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb));
+		topPanel.add(nb);
+		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb));
 
 		this.add(topPanel);
 

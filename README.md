@@ -42,4 +42,15 @@ After ```gs done``` a precommit hook script will be called, which will run the e
 
 After ```gs done``` is done the project will be sent to Travis CI, which will then build the project and run its entire test suite. [Travis CI for Enduro.](https://travis-ci.org/buren/enduro)
 
- 
+## Manual 
+
+För att använda formaterare:
+Kör .jar filen med argumentet "formater".
+Tryck på "Ladda in "startfil"-knappen och välj sedan textfilen med starttider.
+Tryck på "Ladda in "målfil"-knappen och välj sedan textfilen med måltider.
+Tryck på "Spara resultat till fil"-knappen och välj sedan plats där du vill spara filen och skriv namnet du vill ha på filen.
+
+För att använda registerare:
+Kör .jar filen med argumenten "register" och sökväg för tempfil av registreringsvärden.Skriv in deltagarens siffra i den övre vänstra textrutan.
+Tryck på "Registrera"-knappen för att registrera nuvarade tid på vald deltagare.
+En bekräftelse på registrering visas i textrutan längst ner på sidan och värdet sparas i tidigare definierad tempfil.
