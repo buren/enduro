@@ -12,7 +12,7 @@ public class ParticipantTest {
 
     @Before
     public void setUp() throws Exception {
-        p = new Participant("1");
+        p = new Participant(1);
     }
 
     @After
@@ -22,7 +22,7 @@ public class ParticipantTest {
 
     @Test
     public void testGetId() throws Exception {
-        Assert.assertEquals("Should be 1", "1", p.getId());
+        Assert.assertEquals("Should be 1", 1, p.getId());
     }
     
 
@@ -35,8 +35,8 @@ public class ParticipantTest {
     
     @Test
     public void testEquals(){
-    	Participant q = new Participant("1");
-    	Participant r = new Participant("2");
+    	Participant q = new Participant(1);
+    	Participant r = new Participant(2);
     	assertTrue(q.equals(p));
     	assertTrue(p.equals(q));
     	

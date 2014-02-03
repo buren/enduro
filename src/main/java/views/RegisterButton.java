@@ -26,7 +26,7 @@ public class RegisterButton extends JButton implements ActionListener {
 //			System.out.println(regField.getText());
 			try {
 				Integer.parseInt(regField.getText());
-				 String time = new SimpleDateFormat("HH:mm:ss").format(date);
+				 String time = new SimpleDateFormat("HH.mm.ss").format(date);
 				 resField.append(regField.getText()+"	"+time+"\n");
 				 regField.setText("");
 	
