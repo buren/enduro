@@ -8,7 +8,7 @@ public class Time {
 	public Time() {
 		empty = true;
 	}
-	
+
 	public Time(String time) {
 		seconds = Integer.parseInt(time.substring(0, 2)) * 3600;
 		seconds += Integer.parseInt(time.substring(3, 5)) * 60;
