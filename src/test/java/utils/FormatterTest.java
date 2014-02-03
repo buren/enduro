@@ -16,6 +16,7 @@ public class FormatterTest {
 
 	private ArrayList<Time> startTimes;
 	private ArrayList<Time> finishTimes;
+	private ArrayList<String> names;
 	private Formatter formatter;
 	private Enduro enduro;
 
@@ -39,18 +40,21 @@ public class FormatterTest {
 		finishTimes.add(new Time("13.13.13"));
 		finishTimes.add(new Time("19.19.19"));
 		finishTimes.add(new Time("20.16.48"));
+		names.add("Oskar");
+		names.add("Viktor");
+		names.add("Patrik");
 		String resultList = formatter.generateResultList(startTimes,
-				finishTimes);
-		assertEquals(resultList, "StartNr; TotalTid; StartTider; Maltider\n"
-				+ "1; 01.01.01; 12.12.12; 13.13.13\n"
-				+ "2; 05.05.05; 14.14.14; 19.19.19\n"
-				+ "3; 02.59.31; 17.17.17; 20.16.48\n");
+				finishTimes, names);
+		assertEquals(resultList, "StartNr; Namn; TotalTid; StartTider; Maltider\n"
+				+ "1; Oskar 01.01.01; 12.12.12; 13.13.13\n"
+				+ "2; Vikar 05.05.05; 14.14.14; 19.19.19\n"
+				+ "3; Patrik 02.59.31; 17.17.17; 20.16.48\n");
 	}
 
 	@Test
 	public void testEmptyLists() {
 		Formatter printer = new Formatter();
-		String result = printer.generateResultList(startTimes, finishTimes);
+		String result = printer.generateResultList(startTimes, finishTimes, names);
 		assertEquals(result, "Both lists are empty!");
 	}
 
@@ -73,7 +77,7 @@ public class FormatterTest {
 		}
 		assertEquals(
 				formatter.generateResultList(path + "starttider.txt", path
-						+ "maltider.txt"), sb.toString());
+						+ "maltider.txt", path + "namnfil.txt"), sb.toString());
 	}
 
 	@Test
@@ -81,7 +85,7 @@ public class FormatterTest {
 		boolean success = false;
 		try {
 			formatter.generateResultList("lololzosdldsl",
-					"dhrlhrol.malware.exe.virus.ru.warez");
+					"dhrlhrol.malware.exe.virus.ru.warez", "asduiasdhj12");
 		} catch (FileNotFoundException e) {
 			success = true;
 		} finally {
