@@ -70,6 +70,9 @@ public class Formatter {
 			int index = temp.indexOf(" ");
 			startList.add(new Time(temp.substring(index + 1)));
 		}
+		
+		finishes.next();
+		
 		while (finishes.hasNext()) {
 			String temp = finishes.next();
 			int index = temp.indexOf(" ");
