@@ -14,9 +14,9 @@ import utils.FileWriter;
 
 public class RegisterButton extends JButton implements ActionListener {
 	
-	private GUI gui;
+	private GUIRegister gui;
 
-		public RegisterButton(String s, GUI gui){
+		public RegisterButton(String s, GUIRegister gui){
 			super(s);
 			this.gui = gui;
 			this.addActionListener(this);
