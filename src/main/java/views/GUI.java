@@ -57,6 +57,7 @@ public class GUI extends JFrame {
 			String time = new SimpleDateFormat("HH.mm.ss").format(date);
 			String out = registerField.getText()+";"+time+"\n";
 			String allText = resultField.getText() + out;
+		
 			String filePath = Enduro.getInstance().getResourcePath("registrationOutput.txt");
 			FileWriter.writeFile(filePath , allText);
 			
