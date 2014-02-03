@@ -26,7 +26,7 @@ public class SorterTest {
 				Enduro.getInstance()
 						.getResourcePath(
 								"acceptanstester/iteration1/acceptanstest3_5/namnfil.txt"),
-				"Namn", time);
+				"Name", time);
 		assertEquals("Should be same", time.getName(new Participant(2)),
 				"Bengt Bsson");
 
@@ -64,21 +64,21 @@ public class SorterTest {
 		sort.insertInfo(
 				Enduro.getInstance()
 						.getResourcePath(
-								"acceptanstester/iteration1/acceptanstest3_4/namnfil.txt"),
+								"acceptanstester/iteration1/acceptanstest5/namnfil.txt"),
 				"Namn", time);
 		sort = new SortFinishTime();
 		Participant p = new Participant(1);
 		sort.insertInfo(
 				Enduro.getInstance()
 						.getResourcePath(
-								"acceptanstester/iteration1/acceptanstest3_4/maltider.txt"),
+								"acceptanstester/iteration1/acceptanstest5/maltider.txt"),
 				"Maltider", time);
 		sort = new SortStartTime();
 		p = new Participant(1);
 		sort.insertInfo(
 				Enduro.getInstance()
 						.getResourcePath(
-								"acceptanstester/iteration1/acceptanstest3_4/starttider.txt"),
+								"acceptanstester/iteration1/acceptanstest5/starttider.txt"),
 				"StartTider", time);		
 	
 	StringBuilder sb = new StringBuilder();
