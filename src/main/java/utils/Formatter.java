@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import models.TimeHandler;
+
 public class Formatter {
 
 	/**
