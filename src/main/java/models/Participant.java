@@ -5,15 +5,15 @@ package models;
 
 
 public class Participant {
-	private String id;
+	private int id;
 	private String name;
 
-	public Participant(String id) {
+	public Participant(int id) {
 		this.id = id;
 		name = "Not named";
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -26,11 +26,11 @@ public class Participant {
 	}
 
 	public int HashCode() {
-		return Integer.parseInt(id);
+		return id;
 	}
 
 	public boolean equals(Participant p) {
-		return p.getId().equals(id);
+		return p.getId()==id;
 	}
 
 }
