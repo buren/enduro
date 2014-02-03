@@ -18,7 +18,8 @@ public class PrintButton extends JButton implements ActionListener {
 	private LoadNamesButton nb;
 	private FileWriter writer;
 
-	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb, LoadNamesButton nb) {
+	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb,
+			LoadNamesButton nb) {
 		super(s);
 		this.addActionListener(this);
 		this.sb = sb;
@@ -34,7 +35,7 @@ public class PrintButton extends JButton implements ActionListener {
 		try {
 			formatter = new Formatter();
 			String resultat = formatter.generateResultList(sb.getPath(),
-					fb.getPath());
+					fb.getPath(), nb.getPath());
 
 			String[] results = resultat.split("\n");
 			ArrayList<String> lines = new ArrayList<String>();
@@ -42,7 +43,6 @@ public class PrintButton extends JButton implements ActionListener {
 				lines.add(s);
 			}
 
-			
 			writer.writeFile(filePath, lines.iterator());
 		} catch (FileNotFoundException ex) {
 			// TODO Auto-generated catch block
