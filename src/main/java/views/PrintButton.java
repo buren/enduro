@@ -15,13 +15,15 @@ public class PrintButton extends JButton implements ActionListener {
 	private Formatter formatter;
 	private LoadStartButton sb;
 	private LoadFinishButton fb;
+	private LoadNamesButton nb;
 	private FileWriter writer;
 
-	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb) {
+	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb, LoadNamesButton nb) {
 		super(s);
 		this.addActionListener(this);
 		this.sb = sb;
 		this.fb = fb;
+		this.nb = nb;
 	}
 
 	@Override
@@ -40,7 +42,7 @@ public class PrintButton extends JButton implements ActionListener {
 				lines.add(s);
 			}
 
-			System.out.println(resultat);
+			
 			writer.writeFile(filePath, lines.iterator());
 		} catch (FileNotFoundException ex) {
 			// TODO Auto-generated catch block
