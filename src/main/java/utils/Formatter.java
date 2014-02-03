@@ -4,8 +4,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Formatter {
+import sorter.SortFinishTime;
+import sorter.SortName;
+import sorter.SortStartTime;
+import sorter.Sorter;
+import models.Participant;
+import models.TimeHandler;
 
+public class Formatter {
+	private TimeHandler time;
 	/**
 	 * Actually returns the first line of the file.
 	 * 
@@ -35,12 +42,11 @@ public class Formatter {
 			return "Both lists are empty!";
 		} else {
 			StringBuilder sb = new StringBuilder();
-			sb.append("StartNo; TotalTime; StartTime; ResultTime\n");
+			sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
 			int count = startTimes.size();
-
 			for (int i = 0; i < count; i++) {
-				sb.append(i + 1 + "; --.--.--; " + startTimes.get(i) + "; "
-						+ finishTimes.get(i) + "\n");
+				sb.append(i + 1 + "; " + time.getName(new Participant(i+1)) + "; --.--.--; "
+						+ time.getStart(new Participant(i+1)) + "; " + time.getFinish(new Participant(i+1)) + "\n");
 			}
 			return sb.toString();
 		}
@@ -71,7 +77,15 @@ public class Formatter {
 			String temp = finishes.next();
 			int index = temp.indexOf(" ");
 			endList.add(temp.substring(index + 1));
+			
 		}
+		time = new TimeHandler();
+		Sorter sort = new SortName();
+		sort.insertInfo(pathToStartFile, "Name", time);
+		sort = new SortFinishTime();
+		sort.insertInfo(pathToStartFile, "Maltider", time);
+		sort = new SortStartTime();
+		sort.insertInfo(pathToStartFile, "StartTider", time);
 		return generateResultList(startList, endList);
 	}
 }

@@ -55,7 +55,7 @@ public class FormatterTest {
 	public void testResultsWithFiles() throws FileNotFoundException {
 		FileReader f = new FileReader();
 		String path = Enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration1/acceptanstest3/");
+				"acceptanstester/iteration1/acceptanstest3_4/");
 		Iterator<String> iter;
 		StringBuilder sb = new StringBuilder();
 		try {
