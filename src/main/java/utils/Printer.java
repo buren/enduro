@@ -6,8 +6,12 @@ import java.util.Iterator;
 
 public class Printer {
 
-	// public Printer() {
-	// }
+	/**
+	 * 
+	 * @param startTimes
+	 * @param finishTimes
+	 * @return
+	 */
 
 	public String generateResultList(ArrayList<String> startTimes,
 			ArrayList<String> finishTimes) {
@@ -28,6 +32,14 @@ public class Printer {
 		}
 	}
 
+	/**
+	 * 
+	 * @param pathToStartFile
+	 * @param pathToFinishFile
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	
 	public String generateResultList(String pathToStartFile,
 			String pathToFinishFile) throws FileNotFoundException {
 		ArrayList<String> startList = new ArrayList<String>();
