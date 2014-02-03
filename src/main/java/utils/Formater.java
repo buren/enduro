@@ -10,11 +10,10 @@ import sorter.SortStartTime;
 import sorter.Sorter;
 import models.Participant;
 import models.TimeHandler;
-
 import models.Time;
 
-public class Formatter {
-
+public class Formater {
+	private TimeHandler time;
 
 	/**
 	 * Actually returns the first line of the file.
@@ -52,16 +51,14 @@ public class Formatter {
 			for (int i = 0; i < count; i++) {
 				Time totalTime = startTimes.get(i)
 						.compareTo(finishTimes.get(i));
-				sb.append(i + 1 + "; " + nameList.get(i)
-						+ "; " + totalTime + "; "
-						+ startTimes.get(i) + "; "
-						+ finishTimes.get(i) + "\n");
+				sb.append(i + 1 + "; " + nameList.get(i) + "; " + totalTime
+						+ "; " + startTimes.get(i) + "; " + finishTimes.get(i)
+						+ "\n");
 
 			}
 			return sb.toString();
 		}
 	}
-
 
 	/**
 	 * @param pathToStartFile
@@ -72,42 +69,31 @@ public class Formatter {
 	public String generateResultList(String pathToStartFile,
 			String pathToFinishFile, String pathToNameFile)
 			throws FileNotFoundException {
-		ArrayList<Time> startList = new ArrayList<Time>();
-		ArrayList<Time> endList = new ArrayList<Time>();
-		ArrayList<String> nameList = new ArrayList<String>();
-		FileReader f = new FileReader();
 
-		Iterator<String> starts = f.readFileByLine(pathToStartFile);
+		time = new TimeHandler();
 
-		Iterator<String> finishes = f.readFileByLine(pathToFinishFile);
-		Iterator<String> names = f.readFileByLine(pathToNameFile);
+		Sorter sort = new SortName();
+		sort.insertInfo(pathToNameFile, "Namn", time);
 
-		starts.next();
-		finishes.next();
-		names.next();
-		while (starts.hasNext()) {
-			String temp = starts.next();
-			int index = temp.indexOf(" ");
-			startList.add(new Time(temp.substring(index + 1)));
-		}
+		sort = new SortFinishTime();
+		Participant p = new Participant(1);
+		sort.insertInfo(pathToFinishFile, "Maltider", time);
+		sort = new SortStartTime();
+		p = new Participant(1);
+		sort.insertInfo(pathToStartFile, "StartTider", time);
 
-		while (finishes.hasNext()) {
-			String temp = finishes.next();
-			int index = temp.indexOf(" ");
-
-			endList.add(new Time(temp.substring(index + 1)));
-
-		}
-		while (names.hasNext()) {
-			String temp = names.next();
-			int index = temp.indexOf(" ");
-
-			nameList.add(temp.substring(index + 1));
+		StringBuilder sb = new StringBuilder();
+		sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
+		int count = time.size();
+		for (int i = 0; i < count; i++) {
+			Time totalTime = time.getStart(new Participant(i + 1)).compareTo(
+					time.getFinish(new Participant(i + 1)));
+			sb.append(i + 1 + "; " + time.getName(new Participant(i + 1))
+					+ "; " + totalTime + "; "
+					+ time.getStart(new Participant(i + 1)) + "; "
+					+ time.getFinish(new Participant(i + 1)) + "\n");
 
 		}
-
-	
-
-		return generateResultList(startList, endList, nameList);
+		return sb.toString();
 	}
 }

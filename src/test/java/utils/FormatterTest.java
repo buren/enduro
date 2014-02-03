@@ -17,12 +17,12 @@ public class FormatterTest {
 	private ArrayList<Time> startTimes;
 	private ArrayList<Time> finishTimes;
 	private ArrayList<String> names;
-	private Formatter formatter;
+	private Formater formatter;
 	private Enduro enduro;
 
 	@Before
 	public void setUp() throws Exception {
-		formatter = new Formatter();
+		formatter = new Formater();
 		startTimes = new ArrayList<Time>();
 		finishTimes = new ArrayList<Time>();
 		enduro = Enduro.getInstance();
@@ -53,7 +53,7 @@ public class FormatterTest {
 
 	@Test
 	public void testEmptyLists() {
-		Formatter printer = new Formatter();
+		Formater printer = new Formater();
 		String result = printer.generateResultList(startTimes, finishTimes, names);
 		assertEquals(result, "Both lists are empty!");
 	}
