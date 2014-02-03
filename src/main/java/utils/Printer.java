@@ -34,13 +34,9 @@ public class Printer {
 		ArrayList<String> endList = new ArrayList<String>();
 
 		FileReader f = new FileReader();
-		String s = Enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration1/acceptanstest3");
 
-		Iterator<String> starts = f.readFileByLine(s + "/" + pathToStartFile);
-		Iterator<String> finishes = f
-				.readFileByLine(s + "/" + pathToFinishFile);
-
+		Iterator<String> starts = f.readFileByLine(pathToStartFile);
+		Iterator<String> finishes = f.readFileByLine(pathToFinishFile);
 		while (starts.hasNext()) {
 			String temp = starts.next();
 			int index = temp.indexOf(" ");
