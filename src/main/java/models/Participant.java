@@ -1,9 +1,5 @@
 package models;
 
-
-
-
-
 public class Participant {
 	private int id;
 	private String name;
@@ -30,7 +26,38 @@ public class Participant {
 	}
 
 	public boolean equals(Participant p) {
-		return p.getId()==id;
+		return p.getId() == id;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Participant other = (Participant) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+//	public boolean equals(Object object) {
+//		if (object instanceof Participant
+//				&& ((Participant) object).getId() == this.id) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//
+//	}
 }

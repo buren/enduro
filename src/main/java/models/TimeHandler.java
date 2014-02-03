@@ -56,6 +56,7 @@ public class TimeHandler {
 		if (timeHandler.get(participant) == null) {
 			addParticipant(participant);
 		}
+		
 		timeHandler.get(participant).setFinish(finishTime);
 	}
 
@@ -69,24 +70,51 @@ public class TimeHandler {
 	 */
 	public Time getFinish(Participant participant) {
 		if (timeHandler.get(participant) == null) {
+//			 if (timeHandler.get(participant).equals(participant)){
+			// && timeHandler.get(participant).equals(participant)) {
 			return new Time();
+		}
+		if (timeHandler.get(participant).equals(participant)) {
+			return timeHandler.get(participant).getFinish();
 		}
 		Time finish = timeHandler.get(participant).getFinish();
 
 		return finish;
 	}
-	
-	public Time getTotalTime(Participant participant){
+
+	public Time getTotalTime(Participant participant) {
 		if (timeHandler.get(participant) == null) {
 			return new Time();
 		}
 		return timeHandler.get(participant).getTotalTime();
 	}
-	
+
 	private void addParticipant(Participant participant) {
 		Times time = new Times();
 		timeHandler.put(participant, time);
 	}
 
-	
+	public void addName(Participant participant, String name) {
+		if (timeHandler.get(participant) == null) {
+			addParticipant(participant);
+		}
+		int id = participant.getId();
+		for (Participant p : timeHandler.keySet()) {
+			if (p.getId() == id) {
+				p.setName(name);
+			}
+		}
+	}
+
+	public String getName(Participant participant) {
+		for (Participant p : timeHandler.keySet()) {
+			if (p.getId() == participant.getId()) {
+				return p.getName();
+			}
+		}
+		addParticipant(participant);
+		return participant.getName();
+
+	}
+
 }
