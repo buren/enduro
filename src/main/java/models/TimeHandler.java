@@ -9,43 +9,76 @@ public class TimeHandler {
 		timeHandler = new HashMap<Participant, Times>();
 	}
 
+	/**
+	 * Links starting time to participant. If participant is missing it adds it
+	 * to hashmap.
+	 * 
+	 * @param participant
+	 *            Participant you want to link time to
+	 * @param startTime
+	 *            Value of starting time
+	 */
 
 	public void addStart(Participant participant, String startTime) {
-        if(timeHandler.get(participant) == null) {
-            addParticipant(participant);
-        }
+		if (timeHandler.get(participant) == null) {
+			addParticipant(participant);
+		}
 		timeHandler.get(participant).setStart(startTime);
 	}
 
+	/**
+	 * Gets start value linked to participant
+	 * 
+	 * @param participant
+	 *            Participant you want to know value of
+	 * @return "--.--.--" if participant is missing, otherwise it returns the
+	 *         value.
+	 */
 	public String getStart(Participant participant) {
-        if (timeHandler.get(participant) == null){
-        return "--.--.--";
-    }
+		if (timeHandler.get(participant) == null) {
+			return "--.--.--";
+		}
 
-        String start = timeHandler.get(participant).getStart();
- 		return start;
+		String start = timeHandler.get(participant).getStart();
+		return start;
 	}
 
+	/**
+	 * Links finish time to participant. If participant is missing it adds it to
+	 * hashmap.
+	 * 
+	 * @param participant
+	 *            Participant you want to link time to
+	 * @param finishTime
+	 *            Value of finish time
+	 */
 	public void addFinish(Participant participant, String finishTime) {
-        if(timeHandler.get(participant) == null) {
-            addParticipant(participant);
-        }
+		if (timeHandler.get(participant) == null) {
+			addParticipant(participant);
+		}
 		timeHandler.get(participant).setFinish(finishTime);
 	}
 
+	/**
+	 * Gets finish value linked to participant
+	 * 
+	 * @param participant
+	 *            Participant you want to know value of
+	 * @return "--.--.--" if participant is missing, otherwise it returns the
+	 *         value.
+	 */
 	public String getFinish(Participant participant) {
-        if(timeHandler.get(participant) == null) {
-            return "--.--.--";
-        }
-        String finish = timeHandler.get(participant).getFinish();
+		if (timeHandler.get(participant) == null) {
+			return "--.--.--";
+		}
+		String finish = timeHandler.get(participant).getFinish();
 
-        return finish;
+		return finish;
 	}
 
-
-    private void addParticipant(Participant participant) {
-        Times time = new Times();
-        timeHandler.put(participant, time);
-    }
+	private void addParticipant(Participant participant) {
+		Times time = new Times();
+		timeHandler.put(participant, time);
+	}
 
 }
