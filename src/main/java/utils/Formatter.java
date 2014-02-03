@@ -11,8 +11,11 @@ import sorter.Sorter;
 import models.Participant;
 import models.TimeHandler;
 
+import models.Time;
+
 public class Formatter {
 	private TimeHandler time;
+
 	/**
 	 * Actually returns the first line of the file.
 	 * 
@@ -36,17 +39,24 @@ public class Formatter {
 		return columns;
 	}
 
-	public String generateResultList(ArrayList<String> startTimes,
-			ArrayList<String> finishTimes) {
+	public String generateResultList(ArrayList<Time> startTimes,
+			ArrayList<Time> finishTimes) {
 		if (startTimes.isEmpty() && finishTimes.isEmpty()) {
 			return "Both lists are empty!";
 		} else {
 			StringBuilder sb = new StringBuilder();
+
 			sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
+
 			int count = startTimes.size();
 			for (int i = 0; i < count; i++) {
-				sb.append(i + 1 + "; " + time.getName(new Participant(i+1)) + "; --.--.--; "
-						+ time.getStart(new Participant(i+1)) + "; " + time.getFinish(new Participant(i+1)) + "\n");
+				Time totalTime = startTimes.get(i)
+						.compareTo(finishTimes.get(i));
+				sb.append(i + 1 + "; " + time.getName(new Participant(i + 1))
+						+ "; " + totalTime + "; "
+						+ time.getStart(new Participant(i + 1)) + "; "
+						+ time.getFinish(new Participant(i + 1)) + "\n");
+
 			}
 			return sb.toString();
 		}
@@ -60,24 +70,27 @@ public class Formatter {
 	 */
 	public String generateResultList(String pathToStartFile,
 			String pathToFinishFile) throws FileNotFoundException {
-		ArrayList<String> startList = new ArrayList<String>();
-		ArrayList<String> endList = new ArrayList<String>();
+		ArrayList<Time> startList = new ArrayList<Time>();
+		ArrayList<Time> endList = new ArrayList<Time>();
 		FileReader f = new FileReader();
 
 		Iterator<String> starts = f.readFileByLine(pathToStartFile);
 
 		Iterator<String> finishes = f.readFileByLine(pathToFinishFile);
-
+		starts.next();
+		finishes.next();
 		while (starts.hasNext()) {
 			String temp = starts.next();
 			int index = temp.indexOf(" ");
-			startList.add(temp.substring(index + 1));
+			startList.add(new Time(temp.substring(index + 1)));
 		}
+		
 		while (finishes.hasNext()) {
 			String temp = finishes.next();
 			int index = temp.indexOf(" ");
-			endList.add(temp.substring(index + 1));
-			
+
+			endList.add(new Time(temp.substring(index + 1)));
+
 		}
 		time = new TimeHandler();
 		Sorter sort = new SortName();
