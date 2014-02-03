@@ -34,12 +34,12 @@ public class TimeHandler {
 	 * @return "--.--.--" if participant is missing, otherwise it returns the
 	 *         value.
 	 */
-	public String getStart(Participant participant) {
+	public Time getStart(Participant participant) {
 		if (timeHandler.get(participant) == null) {
-			return "--.--.--";
+			return new Time();
 		}
 
-		String start = timeHandler.get(participant).getStart();
+		Time start = timeHandler.get(participant).getStart();
 		return start;
 	}
 
@@ -67,11 +67,11 @@ public class TimeHandler {
 	 * @return "--.--.--" if participant is missing, otherwise it returns the
 	 *         value.
 	 */
-	public String getFinish(Participant participant) {
+	public Time getFinish(Participant participant) {
 		if (timeHandler.get(participant) == null) {
-			return "--.--.--";
+			return new Time();
 		}
-		String finish = timeHandler.get(participant).getFinish();
+		Time finish = timeHandler.get(participant).getFinish();
 
 		return finish;
 	}
