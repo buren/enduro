@@ -9,33 +9,21 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
+import utils.Enduro;
+import utils.FileWriter;
+
 public class RegisterButton extends JButton implements ActionListener {
 	
-	private JTextArea regField;
-	private JTextArea resField;
+	private GUI gui;
 
-		public RegisterButton(String s, JTextArea regField, JTextArea resField){
+		public RegisterButton(String s, GUI gui){
 			super(s);
-			this.regField=regField;
-			this.resField=resField;
+			this.gui = gui;
 			this.addActionListener(this);
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			Date date = new Date();
-//			System.out.println(regField.getText());
-			try {
-				Integer.parseInt(regField.getText());
-				 String time = new SimpleDateFormat("HH.mm.ss").format(date);
-				 resField.append(regField.getText()+"	"+time+"\n");
-				 regField.setText("");
-	
-			}
-			catch (NumberFormatException e) {
-				regField.setText("");
-			}
-			
-		
+			gui.printResults();
 		}
 		
 		
