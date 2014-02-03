@@ -9,6 +9,9 @@ public class TimeHandler {
 		timeHandler = new HashMap<Participant, Times>();
 	}
 
+	public int size() {
+		return timeHandler.size();
+	}
 	/**
 	 * Links starting time to participant. If participant is missing it adds it
 	 * to hashmap.

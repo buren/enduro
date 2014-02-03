@@ -13,7 +13,8 @@ public abstract class Sorter {
 		fr = new FileReader();
 	}
 
-	public void insertInfo(String filePath, String column, TimeHandler time) {
+	public void insertInfo(String filePath, String column, TimeHandler time)
+			throws FileNotFoundException {
 		try {
 			Iterator itr = fr.readFileByLine(filePath);
 			String columns = (String) itr.next();
@@ -28,7 +29,7 @@ public abstract class Sorter {
 			addInfo(columnNbr, itr, time);
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			throw e;
 		}
 
 	}
