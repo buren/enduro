@@ -40,7 +40,7 @@ public class PrintButton extends JButton implements ActionListener {
 				lines.add(s);
 			}
 
-			System.out.println(resultat);
+			
 			writer.writeFile(filePath, lines.iterator());
 		} catch (FileNotFoundException ex) {
 			// TODO Auto-generated catch block
