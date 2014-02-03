@@ -6,12 +6,7 @@ import java.util.Iterator;
 
 public class Printer {
 
-	/**
-	 * 
-	 * @param startTimes
-	 * @param finishTimes
-	 * @return
-	 */
+
 
 	public String generateResultList(ArrayList<String> startTimes,
 			ArrayList<String> finishTimes) {
