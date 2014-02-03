@@ -8,20 +8,23 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import utils.FileWriter;
-import utils.Formatter;
+import utils.Formater;
 
 public class PrintButton extends JButton implements ActionListener {
 
-	private Formatter formatter;
+	private Formater formatter;
 	private LoadStartButton sb;
 	private LoadFinishButton fb;
+	private LoadNamesButton nb;
 	private FileWriter writer;
 
-	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb) {
+	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb,
+			LoadNamesButton nb) {
 		super(s);
 		this.addActionListener(this);
 		this.sb = sb;
 		this.fb = fb;
+		this.nb = nb;
 	}
 
 	@Override
@@ -30,9 +33,9 @@ public class PrintButton extends JButton implements ActionListener {
 		fc.showSaveDialog(this);
 		String filePath = fc.getSelectedFile().getAbsolutePath();
 		try {
-			formatter = new Formatter();
+			formatter = new Formater();
 			String resultat = formatter.generateResultList(sb.getPath(),
-					fb.getPath());
+					fb.getPath(), nb.getPath());
 
 			String[] results = resultat.split("\n");
 			ArrayList<String> lines = new ArrayList<String>();
