@@ -6,19 +6,19 @@ import java.util.Iterator;
 
 public class Formatter {
 
-	
 	/**
 	 * Actually returns the first line of the file.
 	 * 
-	 * @param filePath - Path to file
-	 * @return A string with columns in the format "columnOne; columnTwo; columnThree; columnFour" should be returned.
+	 * @param filePath
+	 *            - Path to file
+	 * @return A string with columns in the format
+	 *         "columnOne; columnTwo; columnThree; columnFour" should be
+	 *         returned.
 	 * @throws FileNotFoundException
 	 */
 	public String readColumnNames(String filePath) throws FileNotFoundException {
 		FileReader f = new FileReader();
 
-	
-		
 		Iterator<String> itr = f.readFileByLine(filePath);
 		String columns;
 		if (itr.hasNext()) {
@@ -53,7 +53,7 @@ public class Formatter {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	
+
 	public String generateResultList(String pathToStartFile,
 			String pathToFinishFile) throws FileNotFoundException {
 		ArrayList<String> startList = new ArrayList<String>();
@@ -61,8 +61,9 @@ public class Formatter {
 		FileReader f = new FileReader();
 
 		Iterator<String> starts = f.readFileByLine(pathToStartFile);
-		Iterator<String> finishes = f
-				.readFileByLine(pathToFinishFile);
+
+		Iterator<String> finishes = f.readFileByLine(pathToFinishFile);
+
 		while (starts.hasNext()) {
 			String temp = starts.next();
 			int index = temp.indexOf(" ");

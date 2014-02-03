@@ -7,11 +7,6 @@ import org.junit.Test;
 
 public class EnduroTest {
 
-    @After
-    public void setUp() throws Exception { }
-
-    @Before
-    public void tearDown() throws Exception { }
 
     @Test
     public void testGetResourcePath() throws Exception {
