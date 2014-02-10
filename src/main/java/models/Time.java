@@ -45,8 +45,8 @@ public class Time {
 	}
 
     public boolean isBefore(Time time) {
-        
-
+        if(seconds < time.seconds)
+            return true;
         return false;
     }
 

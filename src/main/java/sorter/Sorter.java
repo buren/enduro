@@ -7,7 +7,7 @@ import models.RaceEvent;
 import utils.FileReader;
 
 public abstract class Sorter {
-	private FileReader fr;
+	protected FileReader fr;
 
 	public Sorter() {
 		fr = new FileReader();

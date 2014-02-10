@@ -44,19 +44,19 @@ public class SortFinishTime extends Sorter {
 
     }
 
-	@Override
-	protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
-		while (itr.hasNext()) {
-			String line = (String) itr.next();
-
-			line = formatString(line);
-			String[] lines = line.split(";");
-			raceEvent.addFinish(new Participant(Integer.parseInt(lines[0])),
-					new Time(lines[columnNbr]));
-		}
-	}
-
     @Override
+    protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
+        while (itr.hasNext()) {
+            String line = (String) itr.next();
+
+            line = formatString(line);
+            String[] lines = line.split(";");
+            raceEvent.addFinish(new Participant(Integer.parseInt(lines[0])),
+                    new Time(lines[columnNbr]));
+        }
+    }
+
+
     protected void addInfo(int columnNbr, Iterator[] itr, RaceEvent raceEvent) {
         timeList = new ArrayList<Time>();
         intList = new ArrayList<Integer>();
@@ -70,16 +70,31 @@ public class SortFinishTime extends Sorter {
                 intList.add(Integer.parseInt(lines[0]));
             }
         }
+        sortTime();
 
 
-
-
-            raceEvent.addFinish(new Participant(Integer.parseInt(lines[0])),
-                    new Time(lines[columnNbr]));
-
+        for(int i=0; i<timeList.size(); i++) {
+            raceEvent.addFinish(new Participant(intList.get(i)), timeList.get(i));
+        }
     }
 
+    /**
+     * Sorts the Time array
+     */
     private void sortTime() {
+        for(int i = 0; i < timeList.size(); i++) {
+            for(int j = 1; j < (timeList.size()-i); j++) {
+                if(!timeList.get(i).isBefore(timeList.get(i+1))) {
+                    Time temp = timeList.get(i);
+                    timeList.set(i, timeList.get(i+1));
+                    timeList.set(i+1, temp);
 
+                    int itemp = intList.get(i);
+                    intList.set(i, intList.get(i+1));
+                    intList.set(i+1, itemp);
+                }
+            }
+        }
     }
+
 }
