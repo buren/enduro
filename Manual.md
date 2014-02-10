@@ -2,11 +2,12 @@
 
 För att använda formaterare:
 
-1. Kör .jar filen med argumentet "formater".
+1. Kör .jar filen med argumentet "formatter".
 2. Tryck på ```"Ladda in "startfil"```-knappen och välj sedan textfilen med starttider.
 3. Tryck på ```"Ladda in "målfil"```-knappen och välj sedan textfilen med måltider.
 4. Tryck på ```"Ladda in "namnfil"```-knappen och välj sedan textfilen med namn.
 5. Tryck på ```"Spara resultat till fil"```-knappen och välj sedan plats där du vill spara filen och skriv namnet du vill ha på filen.
+6. Ange de antal varv som du vill få med i utskriften. Tryck ```"OK"```
 
 För att använda registerare:
 
