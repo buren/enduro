@@ -92,10 +92,9 @@ public class Formatter {
 		for (int i = 0; i < count; i++) {
 			Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(raceEvent.getFinish(new Participant(i + 1)));
 			sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1)) + "; " 
-					+ raceEvent.getRace(new Participant(i + 1)).getNumberOfLaps() + "; "
+					+ (raceEvent.getRace(new Participant(i + 1)).getNumberOfLaps() - 1) + "; "
 					+ totalTime + "; "
 					+ printTotalLapTimes(new Participant(i + 1))
-					+ raceEvent.getStart(new Participant(i + 1)) + "; "
 					+ printActualLapTimes(new Participant(i + 1))
 					+ raceEvent.getFinish(new Participant(i + 1)) + "\n");
 		}
@@ -104,7 +103,7 @@ public class Formatter {
 	
 	public String printTotalLapTimes(Participant participant) {
 		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < raceEvent.getRace(participant).getNumberOfLaps(); i++) {
+		for(int i = 1; i < raceEvent.getRace(participant).getNumberOfLaps(); i++) {
 			sb.append(raceEvent.getRace(participant).getLapTime(i));
 			sb.append("; ");
 		}
