@@ -37,7 +37,14 @@ public class Formatter {
 		}
 		return columns;
 	}
-
+	/**
+	 * 
+	 * @param startTimes
+	 * @param finishTimes
+	 * @param nameList
+	 * @param lapAmount
+	 * @return
+	 */
 	public String generateResultList(ArrayList<Time> startTimes,
 			ArrayList<Time> finishTimes, ArrayList<String> nameList,
 			int lapAmount) {
@@ -111,7 +118,12 @@ public class Formatter {
 //		return sb.toString();
 //	}
 
-
+	/**
+	 * 
+	 * @param participant
+	 * @param lapAmount
+	 * @return
+	 */
 	public String printTotalLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
 
@@ -123,7 +135,12 @@ public class Formatter {
 		return sb.toString();
     }
 
-
+	/**
+	 * 
+	 * @param participant
+	 * @param lapAmount
+	 * @return
+	 */
 	public String printActualLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
 
