@@ -94,25 +94,25 @@ public class Formatter {
 			sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1)) + "; " 
 					+ (raceEvent.getRace(new Participant(i + 1)).getNumberOfLaps() - 1) + "; "
 					+ totalTime + "; "
-					+ printTotalLapTimes(new Participant(i + 1))
-					+ printActualLapTimes(new Participant(i + 1))
+					+ printTotalLapTimes(new Participant(i + 1), maxLaps)
+					+ printActualLapTimes(new Participant(i + 1), maxLaps)
 					+ raceEvent.getFinish(new Participant(i + 1)) + "\n");
 		}
 		return sb.toString();
 	}
 	
-	public String printTotalLapTimes(Participant participant) {
+	public String printTotalLapTimes(Participant participant, int maxLaps) {
 		StringBuilder sb = new StringBuilder();
-		for(int i = 1; i < raceEvent.getRace(participant).getNumberOfLaps(); i++) {
+		for(int i = 1; i < maxLaps; i++) {
 			sb.append(raceEvent.getRace(participant).getLapTime(i));
 			sb.append("; ");
 		}
 		return sb.toString();
 	}
 	
-	public String printActualLapTimes(Participant participant) {
+	public String printActualLapTimes(Participant participant, int maxLaps) {
 		StringBuilder sb = new StringBuilder();
-		for(int i = 1; i < raceEvent.getRace(participant).getNumberOfLaps(); i++) {
+		for(int i = 1; i < maxLaps; i++) {
 			sb.append(raceEvent.getRace(participant).getLapStartTime(i));
 			sb.append("; ");
 		}
