@@ -21,5 +21,4 @@ public class SortFinishTime extends Sorter {
 			
 		}
 	}
-
 }

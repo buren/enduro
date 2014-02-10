@@ -36,16 +36,14 @@ public class PrintButton extends JButton implements ActionListener {
 		String filePath = fc.getSelectedFile().getAbsolutePath();
 
 		try {
-			int labAmount= 0;
+			int labAmount = 0;
 			formatter = new Formatter();
-			try{
-			do{
-			labAmount = Integer.parseInt(JOptionPane
-					.showInputDialog("Mata in antal varv"));
-			}
-			while(labAmount==0);
-			}
-			catch (NumberFormatException ex){
+			try {
+				do {
+					labAmount = Integer.parseInt(JOptionPane
+							.showInputDialog("Mata in antal varv"));
+				} while (labAmount == 0);
+			} catch (NumberFormatException ex) {
 				statusText.setText("Felaktig inmatning! Måste vara en siffra.");
 			}
 			String resultat = formatter.generateResultList(sb.getPath(),

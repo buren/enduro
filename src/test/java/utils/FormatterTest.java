@@ -6,12 +6,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import utils.Formatter;
+
 import models.Time;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import utils.Formatter;
 
 public class FormatterTest {
 
@@ -79,8 +80,10 @@ public class FormatterTest {
 			e.printStackTrace();
 		}
 		assertEquals(
+
 				formatter.generateResultList(path + "starttider.txt", path
-						+ "maltider.txt", path + "namnfil.txt", 1), sb.toString());
+						+ "maltider.txt", path + "namnfil.txt", 1),
+				sb.toString());
 	}
 
 	@Test
