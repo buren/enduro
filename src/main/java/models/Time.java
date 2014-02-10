@@ -50,17 +50,30 @@ public class Time {
 	 * @param equals
 	 * @return
 	 */
-	public boolean equals(Time equals) {
-		if (this.empty || equals.empty)
-			return false;
-		if (Math.abs(seconds - equals.seconds) == 0)
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		else
+		if (obj == null)
 			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Time other = (Time) obj;
+		if (seconds != other.seconds)
+			return false;
+		return true;
 	}
 
 	public boolean isEmpty() {
 		return empty;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + seconds;
+		return result;
 	}
 
 }
