@@ -63,7 +63,9 @@ public class RaceEvent {
 			addParticipant(participant);
 		}
 
-		raceEvent.get(participant).setFinish(finishTime);
+
+		raceEvent.get(participant).setLapTime(finishTime);
+
 	}
 
 	/**
@@ -121,6 +123,20 @@ public class RaceEvent {
 		addParticipant(participant);
 		return participant.getName();
 
+	}
+
+	public Time getLapStartTime(Participant participant, int lap) {
+		if (raceEvent.get(participant) == null) {
+			return new Time();
+		}
+		return raceEvent.get(participant).getLapStartTime(lap);
+	}
+	
+	public Time getLapTime(Participant participant, int lap) {
+		if (raceEvent.get(participant) == null) {
+			return new Time();
+		}
+		return raceEvent.get(participant).getLapTime(lap);
 	}
 
 }
