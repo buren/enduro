@@ -125,8 +125,13 @@ public class Formatter {
 	public String printActualLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i <= lapAmount; i++) {
+            if(raceEvent.getRace(participant).getLapStartTime(i).equals(
+                    raceEvent.getRace(participant).getFinish() )) {
+                sb.append(new Time() + "; ");
+            } else {
 			sb.append(raceEvent.getRace(participant).getLapStartTime(i));
 			sb.append("; ");
+            }
 		}
 		return sb.toString();
 	}
