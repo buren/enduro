@@ -22,7 +22,6 @@ public class LoadNamesButton extends JButton implements ActionListener {
 
 		fc.showOpenDialog(this);
 		namnfil = fc.getSelectedFile().getAbsolutePath();
-		
 		statusText.append("Namnfil inläst\n");
 
 	}
