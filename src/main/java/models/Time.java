@@ -44,6 +44,12 @@ public class Time {
 		return new Time(difference);
 	}
 
+    public boolean isBefore(Time time) {
+        
+
+        return false;
+    }
+
 	/**
 	 * Compares two times. Returns false if either of the times are empty.
 	 * 
