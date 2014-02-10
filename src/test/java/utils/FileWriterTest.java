@@ -1,13 +1,18 @@
 package utils;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import utils.Enduro;
+import utils.FileReader;
+import utils.FileWriter;
 
 public class FileWriterTest {
     FileReader fileReader;

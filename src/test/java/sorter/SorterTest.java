@@ -1,17 +1,19 @@
 package sorter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 
 import models.Participant;
-import models.Time;
 import models.RaceEvent;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import sorter.SortFinishTime;
+import sorter.SortName;
+import sorter.SortStartTime;
+import sorter.Sorter;
 import utils.Enduro;
 
 public class SorterTest {

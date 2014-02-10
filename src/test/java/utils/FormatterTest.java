@@ -6,13 +6,17 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import utils.Formatter;
 import models.Participant;
+import models.RaceEvent;
 import models.Time;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import utils.Enduro;
+import utils.FileReader;
+import utils.Formatter;
 
 public class FormatterTest {
 
@@ -22,9 +26,10 @@ public class FormatterTest {
 	private Formatter formatter;
 	private Enduro enduro;
 
+
 	@Before
 	public void setUp() throws Exception {
-		formatter = new Formatter();
+		formatter = new Formatter("20");
 		startTimes = new ArrayList<Time>();
 		finishTimes = new ArrayList<Time>();
 		enduro = Enduro.getInstance();
@@ -56,8 +61,8 @@ public class FormatterTest {
 
 	@Test
 	public void testEmptyLists() {
-		Formatter printer = new Formatter();
-		String result = printer.generateResultList(startTimes, finishTimes,
+
+		String result = formatter.generateResultList(startTimes, finishTimes,
 				names, 1);
 		assertEquals(result, "Listorna är tomma!");
 	}
@@ -145,4 +150,20 @@ public class FormatterTest {
 		}
 		assertEquals("Should raise illegalStateException", true, success);
 	}
+	
+//	@Test
+//	public void testPrintActualLapTimes() {
+//		RaceEvent event = new RaceEvent(20);
+//		Participant p1 = new Participant(10);
+//		p1.setName("Gunde Svan");
+//		event.addParticipant(p1);
+//		event.addStart(p1, new Time("12:12:12"));
+//		event.getRace(p1).setLapTime(new Time("13:13:13"));
+//		System.out.println(event.getRace(p1).getStart());
+//	
+//		System.out.println(formatter.printActualLapTimes(p1, 2));
+//		
+//		assertEquals(formatter.printActualLapTimes(p1, 2), "13:13:13");
+//		
+//	}
 }

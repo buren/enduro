@@ -15,6 +15,10 @@ import models.Time;
 public class Formatter {
 	private RaceEvent raceEvent;
 
+	public Formatter(String s) {
+		raceEvent = new RaceEvent(Integer.parseInt(s));
+	}
+
 	/**
 	 * Actually returns the first line of the file.
 	 * 
@@ -37,6 +41,7 @@ public class Formatter {
 		}
 		return columns;
 	}
+
 	/**
 	 * 
 	 * @param startTimes
@@ -78,8 +83,6 @@ public class Formatter {
 			String pathToFinishFile, String pathToNameFile, int lapAmount)
 			throws FileNotFoundException {
 
-		raceEvent = new RaceEvent(lapAmount);
-
 		Sorter sort = new SortName();
 		sort.insertInfo(pathToNameFile, "Namn", raceEvent);
 		sort = new SortFinishTime();
@@ -108,8 +111,8 @@ public class Formatter {
 					+ "; "
 					+ raceEvent.getName(new Participant(i + 1))
 					+ "; "
-					+ (raceEvent.getRace(new Participant(i + 1)).getCurrentLap())
-					+ "; " + totalTime + "; "
+					+ (raceEvent.getRace(new Participant(i + 1))
+							.getCurrentLap()) + "; " + totalTime + "; "
 					+ printTotalLapTimes(new Participant(i + 1), lapAmount)
 					+ printActualLapTimes(new Participant(i + 1), lapAmount)
 
@@ -126,14 +129,13 @@ public class Formatter {
 	 */
 	public String printTotalLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
-
 		for (int i = 1; i <= lapAmount; i++) {
 
 			sb.append(raceEvent.getRace(participant).getLapTime(i));
 			sb.append("; ");
 		}
 		return sb.toString();
-    }
+	}
 
 	/**
 	 * 
@@ -143,7 +145,6 @@ public class Formatter {
 	 */
 	public String printActualLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
-
 		for (int i = 1; i <= lapAmount; i++) {
 			sb.append(raceEvent.getRace(participant).getLapStartTime(i));
 			sb.append("; ");

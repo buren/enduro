@@ -2,6 +2,7 @@ package models;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import models.Participant;
 
 import org.junit.After;
 import org.junit.Before;
