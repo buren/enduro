@@ -1,11 +1,11 @@
 package models;
 
-public class Times {
+public class Lap {
 
 	private Time startTime;
 	private Time finishTime;
 
-	public Times() {
+	public Lap() {
 		startTime = new Time();
 		finishTime = new Time();
 	}

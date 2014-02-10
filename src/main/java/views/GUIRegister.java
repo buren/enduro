@@ -15,7 +15,7 @@ public class GUIRegister extends JFrame {
 	private JPanel topPanel;
 	private JTextArea resultField;
 	private RegisterButton registerButton;
-	private JTextArea registerField;
+	private JTextField registerField;
 	private String filePath;
 
 	public GUIRegister(String filePath) {
@@ -32,7 +32,8 @@ public class GUIRegister extends JFrame {
 
 		resultField = new JTextArea();
 		resultField.setEditable(false);
-		registerField = new JTextArea();
+		registerField = new JTextField();
+		registerField.setHorizontalAlignment(JTextField.CENTER);
 		Font font1 = new Font("SansSerif", Font.BOLD, 60);
 		Font font2 = new Font("SansSerif", Font.BOLD, 16);
 		registerField.setFont(font1);

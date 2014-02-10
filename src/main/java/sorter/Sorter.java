@@ -3,7 +3,7 @@ package sorter;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
-import models.TimeHandler;
+import models.RaceEvent;
 import utils.FileReader;
 
 public abstract class Sorter {
@@ -13,7 +13,7 @@ public abstract class Sorter {
 		fr = new FileReader();
 	}
 
-	public void insertInfo(String filePath, String column, TimeHandler time)
+	public void insertInfo(String filePath, String column, RaceEvent time)
 			throws FileNotFoundException {
 		try {
 			Iterator itr = fr.readFileByLine(filePath);
@@ -35,6 +35,6 @@ public abstract class Sorter {
 	}
 
 	protected abstract void addInfo(int columnNbr, Iterator itr,
-			TimeHandler time);
+			RaceEvent time);
 
 }

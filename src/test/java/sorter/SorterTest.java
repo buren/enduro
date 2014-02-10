@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 import models.Participant;
 import models.Time;
-import models.TimeHandler;
+import models.RaceEvent;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,11 +15,11 @@ import org.junit.Test;
 import utils.Enduro;
 
 public class SorterTest {
-	private TimeHandler time;
+	private RaceEvent time;
 
 	@Before
 	public void setUp() throws Exception {
-		time = new TimeHandler();
+		time = new RaceEvent();
 	}
 
 	@Test
