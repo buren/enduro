@@ -33,7 +33,7 @@ public class Formatter {
 		if (itr.hasNext()) {
 			columns = itr.next();
 		} else {
-			throw new IllegalStateException("Input file is empty.");
+			throw new IllegalStateException("Indatafilen är tom.");
 		}
 		return columns;
 	}
@@ -89,7 +89,7 @@ public class Formatter {
 		}
 		sb.append("Start; ");
 		for (int i = 1; i < lapAmount; i++) {
-			sb.append("Varvning" + i + "; ");
+			sb.append("Overtake" + i + "; ");
 		}
 		sb.append("Finish\n");
 		for (int i = 0; i < count; i++) {
