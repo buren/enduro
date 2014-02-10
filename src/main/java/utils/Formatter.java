@@ -89,7 +89,7 @@ public class Formatter {
 		}
 		sb.append("Start; ");
 		for (int i = 1; i < lapAmount; i++) {
-			sb.append("Overtake" + i + "; ");
+			sb.append("Checkpoint" + i + "; ");
 		}
 		sb.append("Finish\n");
 		for (int i = 0; i < count; i++) {
@@ -100,7 +100,7 @@ public class Formatter {
 					+ "; "
 					+ raceEvent.getName(new Participant(i + 1))
 					+ "; "
-					+ (raceEvent.getRace(new Participant(i + 1)).getLapsCap() - 1)
+					+ (raceEvent.getRace(new Participant(i + 1)).getCurrentLap())
 					+ "; " + totalTime + "; "
 					+ printTotalLapTimes(new Participant(i + 1), lapAmount)
 					+ printActualLapTimes(new Participant(i + 1), lapAmount)
