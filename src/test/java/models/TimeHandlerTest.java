@@ -6,12 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TimeHandlerTest {
-	private TimeHandler time;
+	private RaceEvent time;
 	private Participant part1, part2;
 
 	@Before
 	public void setUp() {
-		time = new TimeHandler();
+		time = new RaceEvent();
 		part1 = new Participant(1);
 		part2 = new Participant(2);
 	}

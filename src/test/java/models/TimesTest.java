@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TimesTest {
-	Times times;
+	Lap times;
 
 	@Before
 	public void setUp() {
-		times = new Times();
+		times = new Lap();
 	}
 
 	@Test
