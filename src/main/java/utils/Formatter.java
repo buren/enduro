@@ -70,7 +70,7 @@ public class Formatter {
 			String pathToFinishFile, String pathToNameFile)
 			throws FileNotFoundException {
 
-		raceEvent = new RaceEvent();
+		raceEvent = new RaceEvent(1);
 
 		Sorter sort = new SortName();
 		sort.insertInfo(pathToNameFile, "Namn", raceEvent);
@@ -86,8 +86,8 @@ public class Formatter {
 		sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
 		int count = raceEvent.size();
 		for (int i = 0; i < count; i++) {
-			Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(
-					raceEvent.getFinish(new Participant(i + 1)));
+			Time totalTime = raceEvent.getStart(new Participant(i + 1))
+					.compareTo(raceEvent.getFinish(new Participant(i + 1)));
 			sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1))
 					+ "; " + totalTime + "; "
 					+ raceEvent.getStart(new Participant(i + 1)) + "; "

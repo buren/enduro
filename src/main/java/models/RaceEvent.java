@@ -4,14 +4,17 @@ import java.util.HashMap;
 
 public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
+	private int laps;
 
-	public RaceEvent() {
+	public RaceEvent(int laps) {
 		raceEvent = new HashMap<Participant, Race>();
+		this.laps = laps;
 	}
 
 	public int size() {
 		return raceEvent.size();
 	}
+
 	/**
 	 * Links starting time to participant. If participant is missing it adds it
 	 * to hashmap.
@@ -59,7 +62,7 @@ public class RaceEvent {
 		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);
 		}
-		
+
 		raceEvent.get(participant).setFinish(finishTime);
 	}
 
@@ -73,7 +76,7 @@ public class RaceEvent {
 	 */
 	public Time getFinish(Participant participant) {
 		if (raceEvent.get(participant) == null) {
-//			 if (timeHandler.get(participant).equals(participant)){
+			// if (timeHandler.get(participant).equals(participant)){
 			// && timeHandler.get(participant).equals(participant)) {
 			return new Time();
 		}
@@ -93,7 +96,7 @@ public class RaceEvent {
 	}
 
 	private void addParticipant(Participant participant) {
-		Race race = new Race();
+		Race race = new Race(laps);
 		raceEvent.put(participant, race);
 	}
 

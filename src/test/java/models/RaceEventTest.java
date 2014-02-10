@@ -11,7 +11,7 @@ public class RaceEventTest {
 
 	@Before
 	public void setUp() {
-		raceEvent = new RaceEvent();
+		raceEvent = new RaceEvent(1);
 		part1 = new Participant(1);
 		part2 = new Participant(2);
 	}
