@@ -2,11 +2,11 @@ package models;
 
 import java.util.HashMap;
 
-public class TimeHandler {
-	private HashMap<Participant, Times> timeHandler;
+public class RaceEvent {
+	private HashMap<Participant, Lap> timeHandler;
 
-	public TimeHandler() {
-		timeHandler = new HashMap<Participant, Times>();
+	public RaceEvent() {
+		timeHandler = new HashMap<Participant, Lap>();
 	}
 
 	public int size() {
@@ -93,7 +93,7 @@ public class TimeHandler {
 	}
 
 	private void addParticipant(Participant participant) {
-		Times time = new Times();
+		Lap time = new Lap();
 		timeHandler.put(participant, time);
 	}
 

@@ -9,11 +9,11 @@ import sorter.SortName;
 import sorter.SortStartTime;
 import sorter.Sorter;
 import models.Participant;
-import models.TimeHandler;
+import models.RaceEvent;
 import models.Time;
 
 public class Formater {
-	private TimeHandler time;
+	private RaceEvent time;
 
 	/**
 	 * Actually returns the first line of the file.
@@ -70,7 +70,7 @@ public class Formater {
 			String pathToFinishFile, String pathToNameFile)
 			throws FileNotFoundException {
 
-		time = new TimeHandler();
+		time = new RaceEvent();
 
 		Sorter sort = new SortName();
 		sort.insertInfo(pathToNameFile, "Namn", time);
