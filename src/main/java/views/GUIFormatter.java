@@ -2,6 +2,8 @@ package views;
 
 import javax.swing.*;
 
+import controllers.FormatterController;
+
 import java.awt.*;
 
 public class GUIFormatter extends JFrame {
@@ -13,8 +15,9 @@ public class GUIFormatter extends JFrame {
 	private LoadNamesButton nb;
 	private JPanel textPanel;
 	private JTextArea statusText;
+	private FormatterController formCont;
 
-	public GUIFormatter() {
+	public GUIFormatter(FormatterController formCont) {
 
 		this.setTitle("Enduro Formatter");
 		this.setVisible(true);
@@ -25,6 +28,7 @@ public class GUIFormatter extends JFrame {
 		int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
+		this.formCont = formCont;
 
 		Font font1 = new Font("SansSerif", Font.BOLD, 60);
 		Font font2 = new Font("SansSerif", Font.BOLD, 16);
@@ -42,7 +46,7 @@ public class GUIFormatter extends JFrame {
 		topPanel.add(fb);
 		topPanel.add(nb);
 		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb,
-				statusText));
+				statusText, formCont));
 
 		this.add(topPanel);
 		this.add(textPanel);
