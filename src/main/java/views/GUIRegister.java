@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
+import controllers.RegisterController;
+
 public class GUIRegister extends JFrame {
 	private static final long serialVersionUID = -2948560310654842046L;
 
@@ -13,8 +15,10 @@ public class GUIRegister extends JFrame {
 	private JTextArea resultField;
 	private JTextField registerField;
 	private RegisterButton registerButton;
+	private RegisterController regCont;
 
-	public GUIRegister() {
+	public GUIRegister(RegisterController regCont) {
+		this.regCont = regCont;
 		this.setTitle("Enduro");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -36,7 +40,7 @@ public class GUIRegister extends JFrame {
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 2));
 
-		registerButton = new RegisterButton("Registrera");
+		registerButton = new RegisterButton("Registrera", this, regCont);
 
 		registerButton.setPreferredSize(new Dimension(width / 2, height / 2));
 
