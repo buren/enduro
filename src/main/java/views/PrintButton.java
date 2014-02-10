@@ -40,7 +40,6 @@ public class PrintButton extends JButton implements ActionListener {
 			formatter = new Formatter();
 			String resultat = formatter.generateResultList(sb.getPath(),
 					fb.getPath(), nb.getPath(), Integer.parseInt(inputValue));
-
 			String[] results = resultat.split("\n");
 			ArrayList<String> lines = new ArrayList<String>();
 			for (String s : results) {
