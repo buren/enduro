@@ -10,6 +10,13 @@ public class RegisterController {
 		this.filePath = filePath;
 	}
 
+	/**
+	 * 
+	 * @param resText, String representation of text contained within the resultfield of the GUI.
+	 * @param startNr, String representation of the start number of the participant to be registered.
+	 * @param time, String representation of the time to register.
+	 * @return
+	 */
 	public String formatResults(String resText, String startNr, String time) {
 		String out;
 		out = startNr + ";" + time + "\n";
