@@ -37,32 +37,29 @@ public class PrintButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
 		fc.showSaveDialog(this);
-
 		String filePath;
-
 		File f = fc.getSelectedFile();
 		if (f != null) {
 			filePath = f.getAbsolutePath();
 			try {
+				String inputValue = JOptionPane
+						.showInputDialog("Hur många varvtider önskas?");
 				String resultat = formCont.result(sb.getPath(), fb.getPath(),
-						nb.getPath(), 3); // 3 varv hårdkodat
-
+						nb.getPath(), Integer.parseInt(inputValue));
 				String[] results = resultat.split("\n");
 				ArrayList<String> lines = new ArrayList<String>();
 				for (String s : results) {
 					lines.add(s);
 				}
-
 				formCont.writeToFile(filePath, lines.iterator());
 				statusText.setText("Resultatfil utskriven!");
 			} catch (FileNotFoundException ex) {
 				statusText.setText("Fel! En av filerna hittades inte!");
+			} catch (NumberFormatException numberFormatex) {
+				statusText.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");
 			} catch (Exception randomException) {
 				statusText.setText("Fel! Resultatfil ej utskriven!");
-				randomException.printStackTrace();
 			}
 		}
-
 	}
-
-	}
+}

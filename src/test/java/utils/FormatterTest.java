@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import utils.Formatter;
-
+import models.Participant;
 import models.Time;
 
 import org.junit.After;
