@@ -33,10 +33,10 @@ public class PrintButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
 		fc.showSaveDialog(this);
-		String filePath = fc.getSelectedFile().getAbsolutePath();
-		String inputValue = JOptionPane
-				.showInputDialog("Hur många varvtider önskas?");
 		try {
+			String filePath = fc.getSelectedFile().getAbsolutePath();
+			String inputValue = JOptionPane
+					.showInputDialog("Hur många varvtider önskas?");
 			formatter = new Formatter();
 			String resultat = formatter.generateResultList(sb.getPath(),
 					fb.getPath(), nb.getPath(), Integer.parseInt(inputValue));
@@ -50,12 +50,13 @@ public class PrintButton extends JButton implements ActionListener {
 			statusText.setText("Resultatfil utskriven!");
 		} catch (FileNotFoundException ex) {
 			statusText.setText("Fel! En av filerna hittades inte!");
+		} catch (NullPointerException nullPointer) {
+			statusText.append("Ingen fil valdes.");
 		} catch (NumberFormatException numberFormatex) {
-			statusText.setText("Fel! Endast siffror tillåtna när du väljer antal varv.");
+			statusText.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");
 		} catch (Exception randomException) {
 			statusText.setText("Fel! Resultatfil ej utskriven!");
 			randomException.printStackTrace();
 		}
-
 	}
 }
