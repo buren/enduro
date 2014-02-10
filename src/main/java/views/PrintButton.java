@@ -37,6 +37,7 @@ public class PrintButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
 		fc.showSaveDialog(this);
+
 		String filePath;
 
 		File f = fc.getSelectedFile();
@@ -64,4 +65,4 @@ public class PrintButton extends JButton implements ActionListener {
 
 	}
 
-}
+	}

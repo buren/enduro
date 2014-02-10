@@ -27,6 +27,7 @@ public class Main {
 				throw new Exception("Felaktigt argument.");
 			}
 		} catch (ArrayIndexOutOfBoundsException b) {
+
 			RegisterController regCont = new RegisterController(Enduro
 					.getInstance().getResourcePath("registrationOutput.txt"));
 			GUIRegister reg = new GUIRegister(regCont);
