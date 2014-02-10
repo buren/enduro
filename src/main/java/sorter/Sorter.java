@@ -18,7 +18,8 @@ public abstract class Sorter {
 		try {
 			Iterator itr = fr.readFileByLine(filePath);
 			String columns = (String) itr.next();
-			String[] column_list = columns.split("; ");
+			columns = formatString(columns);
+			String[] column_list = columns.split(";"); 
 			int columnNbr = 0;
 			for (int i = 0; i < column_list.length; i++) {
 				if (column_list[i].equals(column)) {
@@ -32,6 +33,17 @@ public abstract class Sorter {
 			throw e;
 		}
 
+	}
+	
+	protected String formatString(String string) { 
+		while (string.contains("\\s\\s")) {
+			string = string.replaceAll("\\s\\s", " ");
+		}
+		while (string.contains("; ")) {
+			string = string.replaceAll("; ", ";");
+		}
+		return string;
+		
 	}
 
 	protected abstract void addInfo(int columnNbr, Iterator itr,
