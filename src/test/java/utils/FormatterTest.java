@@ -145,4 +145,9 @@ public class FormatterTest {
 		}
 		assertEquals("Should raise illegalStateException", true, success);
 	}
+
+    @Test
+    public void testMultipleFinishFiles() {
+
+    }
 }

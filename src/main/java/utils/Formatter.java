@@ -74,49 +74,56 @@ public class Formatter {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-//	public String generateResultList(String pathToStartFile,
-//			String pathToFinishFile, String pathToNameFile, int lapAmount)
-//			throws FileNotFoundException {
-//
-//		raceEvent = new RaceEvent(lapAmount);
-//
-//		Sorter sort = new SortName();
-//		sort.insertInfo(pathToNameFile, "Namn", raceEvent);
-//		sort = new SortFinishTime();
-//		Participant p = new Participant(1);
-//		sort.insertInfo(pathToFinishFile, "Maltider", raceEvent);
-//		sort = new SortStartTime();
-//		p = new Participant(1);
-//		sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
-//		int count = raceEvent.size();
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("StartNo; Name; #Laps; TotalTime; ");
-//		for (int i = 1; i <= lapAmount; i++) {
-//			sb.append("Lap" + i + "; ");
-//		}
-//		sb.append("Start; ");
-//		for (int i = 1; i < lapAmount; i++) {
-//			sb.append("Checkpoint" + i + "; ");
-//
-//		}
-//		sb.append("Finish\n");
-//		for (int i = 0; i < count; i++) {
-//			Time totalTime = raceEvent.getStart(new Participant(i + 1))
-//					.compareTo(raceEvent.getFinish(new Participant(i + 1)));
-//			sb.append(i
-//					+ 1
-//					+ "; "
-//					+ raceEvent.getName(new Participant(i + 1))
-//					+ "; "
-//					+ (raceEvent.getRace(new Participant(i + 1)).getCurrentLap())
-//					+ "; " + totalTime + "; "
-//					+ printTotalLapTimes(new Participant(i + 1), lapAmount)
-//					+ printActualLapTimes(new Participant(i + 1), lapAmount)
-//
-//					+ raceEvent.getFinish(new Participant(i + 1)) + "\n");
-//		}
-//		return sb.toString();
-//	}
+    public String generateResultList(String pathToStartFile,
+                              String pathToFinishFile, String pathToNameFile, int lapAmount) throws FileNotFoundException {
+        String[] hehe = new String[2];
+        hehe[0] = pathToFinishFile;
+        hehe[1] = hehe[0].replaceAll("maltider1", "maltider2");
+        return generateResultListlol(pathToStartFile, hehe, pathToNameFile, lapAmount);
+    }
+
+
+	private String generateResultListlol(String pathToStartFile,
+			String[] pathToFinishFile, String pathToNameFile, int lapAmount)
+			throws FileNotFoundException {
+
+		raceEvent = new RaceEvent(lapAmount);
+
+		Sorter sort = new SortName();
+		sort.insertInfo(pathToNameFile, "Namn", raceEvent);
+		SortFinishTime sortFinishTime = new SortFinishTime();
+		sortFinishTime.insertInfo(pathToFinishFile, "Maltider", raceEvent);
+		sort = new SortStartTime();
+		sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
+		int count = raceEvent.size();
+		StringBuilder sb = new StringBuilder();
+		sb.append("StartNo; Name; #Laps; TotalTime; ");
+		for (int i = 1; i <= lapAmount; i++) {
+			sb.append("Lap" + i + "; ");
+		}
+		sb.append("Start; ");
+		for (int i = 1; i < lapAmount; i++) {
+			sb.append("Checkpoint" + i + "; ");
+
+		}
+		sb.append("Finish\n");
+		for (int i = 0; i < count; i++) {
+			Time totalTime = raceEvent.getStart(new Participant(i + 1))
+					.compareTo(raceEvent.getFinish(new Participant(i + 1)));
+			sb.append(i
+					+ 1
+					+ "; "
+					+ raceEvent.getName(new Participant(i + 1))
+					+ "; "
+					+ (raceEvent.getRace(new Participant(i + 1)).getCurrentLap())
+					+ "; " + totalTime + "; "
+					+ printTotalLapTimes(new Participant(i + 1), lapAmount)
+					+ printActualLapTimes(new Participant(i + 1), lapAmount)
+
+					+ raceEvent.getFinish(new Participant(i + 1)) + "\n");
+		}
+		return sb.toString();
+	}
 
 	/**
 	 * 
@@ -150,44 +157,4 @@ public class Formatter {
 		}
 		return sb.toString();
 	}
-
-    public String generateResultList(String pathToStartFile,
-                                     String pathToFinishFile, String pathToNameFile, int lapAmount)
-            throws FileNotFoundException {
-
-        raceEvent = new RaceEvent(lapAmount);
-
-        Sorter sort = new SortName();
-        sort.insertInfo(pathToNameFile, "Namn", raceEvent);
-
-        sort = new SortFinishTime();
-        Participant p = new Participant(1);
-        
-        String basePath = Enduro.getInstance()
-                .getResourcePath(
-                        "acceptanstester/iteration2/acceptanstest10/");
-        String[] paths = new String[2];
-        paths[0] = basePath+"maltider1.txt";
-        paths[1] = basePath+"maltider2.txt";
-        SortFinishTime fSorter = new SortFinishTime();
-        fSorter.insertInfo(paths, "Maltider", raceEvent);
-
-        sort = new SortStartTime();
-        p = new Participant(1);
-        sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
-        int count = raceEvent.size();
-        for (int i = 0; i < count; i++) {
-            Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(
-                    raceEvent.getFinish(new Participant(i + 1)));
-            sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1))
-                    + "; " + totalTime + "; "
-                    + raceEvent.getStart(new Participant(i + 1)) + "; "
-                    + raceEvent.getFinish(new Participant(i + 1)) + "\n");
-
-        }
-        return sb.toString();
-    }
 }
