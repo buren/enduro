@@ -90,6 +90,7 @@ public class Formatter {
 		sb.append("Start; ");
 		for (int i = 1; i < lapAmount; i++) {
 			sb.append("Checkpoint" + i + "; ");
+
 		}
 		sb.append("Finish\n");
 		for (int i = 0; i < count; i++) {
@@ -113,6 +114,7 @@ public class Formatter {
 
 	public String printTotalLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
+
 		for (int i = 1; i <= lapAmount; i++) {
 
 			sb.append(raceEvent.getRace(participant).getLapTime(i));
@@ -124,6 +126,7 @@ public class Formatter {
 
 	public String printActualLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
+
 		for (int i = 1; i <= lapAmount; i++) {
             if(raceEvent.getRace(participant).getLapStartTime(i).equals(
                     raceEvent.getRace(participant).getFinish() )) {

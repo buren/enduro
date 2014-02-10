@@ -21,18 +21,14 @@ public class LoadStartButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
 		fc.showOpenDialog(this);
-		File f = fc.getSelectedFile();
-		if (f != null) {
-			startfil = f.getAbsolutePath();
+		try {
+			startfil = fc.getSelectedFile().getAbsolutePath();
 			statusText.append("Startfil inläst\n");
-		} 
-		
-		
-
+		} catch (NullPointerException nullPointer) {
+			statusText.append("Ingen fil vald \n");
+		}
 	}
-	
 	public String getPath() {
 		return startfil;
 	}
-
 }

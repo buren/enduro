@@ -20,14 +20,13 @@ public class LoadFinishButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
-
 		fc.showOpenDialog(this);
-		File f = fc.getSelectedFile();
-		if (f != null) {
-			malfil = f.getAbsolutePath();
+		try {
+			malfil = fc.getSelectedFile().getAbsolutePath();
 			statusText.append("Måltider inläst\n");
-		} 
-	
+		} catch (NullPointerException nullPointer) {
+			statusText.append("Ingen fil vald \n");
+		}
 	}
 
 	public String getPath() {

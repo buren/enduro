@@ -20,19 +20,16 @@ public class LoadNamesButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
-
 		fc.showOpenDialog(this);
-		File f = fc.getSelectedFile();
-		if (f != null) {
-			namnfil = f.getAbsolutePath();
-			statusText.append("namnfil inläst\n");
-		} 
-		
-
+		try {
+			namnfil = fc.getSelectedFile().getAbsolutePath();
+			statusText.append("Namnfil inläst\n");
+		} catch (NullPointerException nullPointer) {
+			statusText.append("Ingen fil vald \n");
+		}
 	}
 
 	public String getPath() {
 		return namnfil;
 	}
-
 }
