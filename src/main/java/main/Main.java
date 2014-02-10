@@ -21,7 +21,7 @@ public class Main {
 							"registrationOutput.txt"));
 					controller.initiate();
 				}
-			} else if (args[0].equals("formater")) {
+			} else if (args[0].equals("formatter")) {
 				new GUIFormatter();
 			} else {
 				throw new Exception("Felaktigt argument.");

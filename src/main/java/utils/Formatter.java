@@ -87,7 +87,7 @@ public class Formatter {
 		int count = raceEvent.size();
 		for (int i = 0; i < count; i++) {
 			Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(
-					raceEvent.getFinish(new Participant(i + 1)));
+                    raceEvent.getFinish(new Participant(i + 1)));
 			sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1))
 					+ "; " + totalTime + "; "
 					+ raceEvent.getStart(new Participant(i + 1)) + "; "
@@ -96,4 +96,44 @@ public class Formatter {
 		}
 		return sb.toString();
 	}
+
+    public String generateResultList(String pathToStartFile,
+                                     String[] pathsToFinishFiles, String pathToNameFile)
+            throws FileNotFoundException {
+
+        raceEvent = new RaceEvent();
+
+        Sorter sort = new SortName();
+        sort.insertInfo(pathToNameFile, "Namn", raceEvent);
+
+        sort = new SortFinishTime();
+        Participant p = new Participant(1);
+        
+        String basePath = Enduro.getInstance()
+                .getResourcePath(
+                        "acceptanstester/iteration2/acceptanstest10/");
+        String[] paths = new String[2];
+        paths[0] = basePath+"maltider1.txt";
+        paths[1] = basePath+"maltider2.txt";
+        SortFinishTime fSorter = new SortFinishTime();
+        fSorter.insertInfo(paths, "Maltider", raceEvent);
+
+        sort = new SortStartTime();
+        p = new Participant(1);
+        sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
+        int count = raceEvent.size();
+        for (int i = 0; i < count; i++) {
+            Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(
+                    raceEvent.getFinish(new Participant(i + 1)));
+            sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1))
+                    + "; " + totalTime + "; "
+                    + raceEvent.getStart(new Participant(i + 1)) + "; "
+                    + raceEvent.getFinish(new Participant(i + 1)) + "\n");
+
+        }
+        return sb.toString();
+    }
 }
