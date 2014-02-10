@@ -13,7 +13,7 @@ import models.RaceEvent;
 import models.Time;
 
 public class Formater {
-	private RaceEvent time;
+	private RaceEvent raceEvent;
 
 	/**
 	 * Actually returns the first line of the file.
@@ -70,28 +70,28 @@ public class Formater {
 			String pathToFinishFile, String pathToNameFile)
 			throws FileNotFoundException {
 
-		time = new RaceEvent();
+		raceEvent = new RaceEvent();
 
 		Sorter sort = new SortName();
-		sort.insertInfo(pathToNameFile, "Namn", time);
+		sort.insertInfo(pathToNameFile, "Namn", raceEvent);
 
 		sort = new SortFinishTime();
 		Participant p = new Participant(1);
-		sort.insertInfo(pathToFinishFile, "Maltider", time);
+		sort.insertInfo(pathToFinishFile, "Maltider", raceEvent);
 		sort = new SortStartTime();
 		p = new Participant(1);
-		sort.insertInfo(pathToStartFile, "StartTider", time);
+		sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
-		int count = time.size();
+		int count = raceEvent.size();
 		for (int i = 0; i < count; i++) {
-			Time totalTime = time.getStart(new Participant(i + 1)).compareTo(
-					time.getFinish(new Participant(i + 1)));
-			sb.append(i + 1 + "; " + time.getName(new Participant(i + 1))
+			Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(
+					raceEvent.getFinish(new Participant(i + 1)));
+			sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1))
 					+ "; " + totalTime + "; "
-					+ time.getStart(new Participant(i + 1)) + "; "
-					+ time.getFinish(new Participant(i + 1)) + "\n");
+					+ raceEvent.getStart(new Participant(i + 1)) + "; "
+					+ raceEvent.getFinish(new Participant(i + 1)) + "\n");
 
 		}
 		return sb.toString();

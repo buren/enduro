@@ -4,16 +4,17 @@ import java.util.Iterator;
 
 import models.Participant;
 import models.RaceEvent;
+import models.Time;
 
 public class SortStartTime extends Sorter {
 
 	@Override
-	protected void addInfo(int columnNbr, Iterator itr, RaceEvent time) {
+	protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
 		while (itr.hasNext()) {
 			String line = (String) itr.next();
 			String[] lines = line.split("; ");
-			time.addStart(new Participant(Integer.parseInt(lines[0])),
-					lines[columnNbr]);
+			raceEvent.addStart(new Participant(Integer.parseInt(lines[0])),
+					new Time(lines[columnNbr]));
 		}
 	}
 

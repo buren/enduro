@@ -15,11 +15,11 @@ import org.junit.Test;
 import utils.Enduro;
 
 public class SorterTest {
-	private RaceEvent time;
+	private RaceEvent raceEvent;
 
 	@Before
 	public void setUp() throws Exception {
-		time = new RaceEvent();
+		raceEvent = new RaceEvent();
 	}
 
 	@Test
@@ -30,11 +30,11 @@ public class SorterTest {
 					Enduro.getInstance()
 							.getResourcePath(
 									"acceptanstester/iteration1/acceptanstest3_5/namnfil.txt"),
-					"Name", time);
+					"Name", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", time.getName(new Participant(2)),
+		assertEquals("Should be same", raceEvent.getName(new Participant(2)),
 				"Bengt Bsson");
 
 	}
@@ -48,11 +48,11 @@ public class SorterTest {
 					Enduro.getInstance()
 							.getResourcePath(
 									"acceptanstester/iteration1/acceptanstest3_5/maltider.txt"),
-					"Maltider", time);
+					"Maltider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", "13.23.34", time.getFinish(p).toString());
+		assertEquals("Should be same", "13.23.34", raceEvent.getFinish(p).toString());
 
 	}
 
@@ -65,11 +65,11 @@ public class SorterTest {
 					Enduro.getInstance()
 							.getResourcePath(
 									"acceptanstester/iteration1/acceptanstest3_5/resultat.txt"),
-					"StartTider", time);
+					"StartTider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", "12.00.00", time.getStart(p).toString());
+		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p).toString());
 
 	}
 

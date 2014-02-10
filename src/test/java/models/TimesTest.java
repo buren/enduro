@@ -20,21 +20,21 @@ public class TimesTest {
 	}
 	@Test
 	public void testStartTimeOnly(){
-		times.setStart("12.12.12");
+		times.setStart(new Time("12.12.12"));
 		assertEquals("12.12.12", times.getStart().toString());
 		assertEquals("--.--.--", times.getFinish().toString());
 	}
 	@Test
 	public void testFinishTimeOnly(){
-		times.setFinish("12.12.12");
+		times.setFinish(new Time("12.12.12"));
 		assertEquals("12.12.12", times.getFinish().toString());
 		assertEquals("--.--.--", times.getStart().toString());
 	}
 	
 	@Test
 	public void testTotalTime(){
-		times.setStart("12.00.00");
-		times.setFinish("12.00.01");
+		times.setStart(new Time("12.00.00"));
+		times.setFinish(new Time("12.00.01"));
 		assertEquals("00.00.01", times.getTotalTime().toString());
 	}
 
