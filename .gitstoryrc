@@ -1,4 +1,4 @@
 GS_PRE_COMMIT_HOOK="bash $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn clean test"
-GS_PACKAGE="bash $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn clean package"
+GS_PACKAGE="bash $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn clean package && bash release.sh"
 GS_PRINT_CHECKLIST=true
 GS_PROMPT_ON_DONE=true
