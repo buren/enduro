@@ -10,12 +10,12 @@ public class Lap {
 		finishTime = new Time();
 	}
 
-	public void setStart(String time) {
-		startTime = new Time(time);
+	public void setStart(Time startTime) {
+		this.startTime = startTime;
 	}
 
-	public void setFinish(String time) {
-		finishTime = new Time(time);
+	public void setFinish(Time finishTime) {
+		this.finishTime = finishTime;
 	}
 
 	/**

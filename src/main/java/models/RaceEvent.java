@@ -3,14 +3,14 @@ package models;
 import java.util.HashMap;
 
 public class RaceEvent {
-	private HashMap<Participant, Lap> timeHandler;
+	private HashMap<Participant, Race> raceEvent;
 
 	public RaceEvent() {
-		timeHandler = new HashMap<Participant, Lap>();
+		raceEvent = new HashMap<Participant, Race>();
 	}
 
 	public int size() {
-		return timeHandler.size();
+		return raceEvent.size();
 	}
 	/**
 	 * Links starting time to participant. If participant is missing it adds it
@@ -22,11 +22,11 @@ public class RaceEvent {
 	 *            Value of starting time
 	 */
 
-	public void addStart(Participant participant, String startTime) {
-		if (timeHandler.get(participant) == null) {
+	public void addStart(Participant participant, Time startTime) {
+		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);
 		}
-		timeHandler.get(participant).setStart(startTime);
+		raceEvent.get(participant).setStart(startTime);
 	}
 
 	/**
@@ -38,11 +38,11 @@ public class RaceEvent {
 	 *         value.
 	 */
 	public Time getStart(Participant participant) {
-		if (timeHandler.get(participant) == null) {
+		if (raceEvent.get(participant) == null) {
 			return new Time();
 		}
 
-		Time start = timeHandler.get(participant).getStart();
+		Time start = raceEvent.get(participant).getStart();
 		return start;
 	}
 
@@ -55,12 +55,12 @@ public class RaceEvent {
 	 * @param finishTime
 	 *            Value of finish time
 	 */
-	public void addFinish(Participant participant, String finishTime) {
-		if (timeHandler.get(participant) == null) {
+	public void addFinish(Participant participant, Time finishTime) {
+		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);
 		}
 		
-		timeHandler.get(participant).setFinish(finishTime);
+		raceEvent.get(participant).setFinish(finishTime);
 	}
 
 	/**
@@ -72,37 +72,37 @@ public class RaceEvent {
 	 *         value.
 	 */
 	public Time getFinish(Participant participant) {
-		if (timeHandler.get(participant) == null) {
+		if (raceEvent.get(participant) == null) {
 //			 if (timeHandler.get(participant).equals(participant)){
 			// && timeHandler.get(participant).equals(participant)) {
 			return new Time();
 		}
-		if (timeHandler.get(participant).equals(participant)) {
-			return timeHandler.get(participant).getFinish();
+		if (raceEvent.get(participant).equals(participant)) {
+			return raceEvent.get(participant).getFinish();
 		}
-		Time finish = timeHandler.get(participant).getFinish();
+		Time finish = raceEvent.get(participant).getFinish();
 
 		return finish;
 	}
 
 	public Time getTotalTime(Participant participant) {
-		if (timeHandler.get(participant) == null) {
+		if (raceEvent.get(participant) == null) {
 			return new Time();
 		}
-		return timeHandler.get(participant).getTotalTime();
+		return raceEvent.get(participant).getTotalTime();
 	}
 
 	private void addParticipant(Participant participant) {
-		Lap time = new Lap();
-		timeHandler.put(participant, time);
+		Race race = new Race();
+		raceEvent.put(participant, race);
 	}
 
 	public void addName(Participant participant, String name) {
-		if (timeHandler.get(participant) == null) {
+		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);
 		}
 		int id = participant.getId();
-		for (Participant p : timeHandler.keySet()) {
+		for (Participant p : raceEvent.keySet()) {
 			if (p.getId() == id) {
 				p.setName(name);
 			}
@@ -110,7 +110,7 @@ public class RaceEvent {
 	}
 
 	public String getName(Participant participant) {
-		for (Participant p : timeHandler.keySet()) {
+		for (Participant p : raceEvent.keySet()) {
 			if (p.getId() == participant.getId()) {
 				return p.getName();
 			}
