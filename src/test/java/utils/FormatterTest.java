@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import utils.Formatter;
+
 import models.Time;
 
 import org.junit.After;
@@ -79,8 +81,10 @@ public class FormatterTest {
 			e.printStackTrace();
 		}
 		assertEquals(
-				formatter.generateResultList(path + "starttider.txt", path
-						+ "maltider.txt", path + "namnfil.txt"), sb.toString());
+				formatter.generateResultList(path + "starttider.txt",
+						path + "maltider.txt",
+						path + "namnfil.txt", 1)
+						, sb.toString());
 	}
 
 	@Test
@@ -88,7 +92,7 @@ public class FormatterTest {
 		boolean success = false;
 		try {
 			formatter.generateResultList("lololzosdldsl",
-					"dhrlhrol.malware.exe.virus.ru.warez", "asduiasdhj12");
+					"dhrlhrol.malware.exe.virus.ru.warez", "asduiasdhj12", 1);
 		} catch (FileNotFoundException e) {
 			success = true;
 		} finally {

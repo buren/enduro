@@ -119,5 +119,9 @@ public class RaceEvent {
 		return participant.getName();
 
 	}
+	
+	public Race getRace(Participant participant) {
+		return raceEvent.get(participant);
+	}
 
 }

@@ -38,7 +38,7 @@ public class PrintButton extends JButton implements ActionListener {
 		try {
 			formatter = new Formatter();
 			String resultat = formatter.generateResultList(sb.getPath(),
-					fb.getPath(), nb.getPath());
+					fb.getPath(), nb.getPath(), 3); // 3 varv hårdkodat
 
 			String[] results = resultat.split("\n");
 			ArrayList<String> lines = new ArrayList<String>();

@@ -64,7 +64,7 @@ public class Race {
 	 * @return
 	 */
 	public Time getLapActualTime(int lap) {
-		return laps.get(lap).getStart();
+		return laps.get(lap).getFinish();
 	}
 	
 	/**
@@ -78,6 +78,11 @@ public class Race {
 		newLap.setStart(lapTime);
 		laps.add(newLap);
 		size++;
+	}
+	
+	
+	public int getNumberOfLaps() {
+		return size + 1;
 	}
 	
 
