@@ -45,7 +45,7 @@ public class FormatterTest {
 		names.add("Viktor");
 		names.add("Patrik");
 		String resultList = formatter.generateResultList(startTimes,
-				finishTimes, names);
+				finishTimes, names, 1);
 		assertEquals(resultList,
 				"StartNr; Namn; TotalTid; StartTider; Maltider\n"
 						+ "1; Oskar 01.01.01; 12.12.12; 13.13.13\n"
@@ -57,7 +57,7 @@ public class FormatterTest {
 	public void testEmptyLists() {
 		Formatter printer = new Formatter();
 		String result = printer.generateResultList(startTimes, finishTimes,
-				names);
+				names, 1);
 		assertEquals(result, "Listorna är tomma!");
 	}
 
@@ -80,7 +80,7 @@ public class FormatterTest {
 		}
 		assertEquals(
 				formatter.generateResultList(path + "starttider.txt", path
-						+ "maltider.txt", path + "namnfil.txt"), sb.toString());
+						+ "maltider.txt", path + "namnfil.txt", 1), sb.toString());
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class FormatterTest {
 		boolean success = false;
 		try {
 			formatter.generateResultList("lololzosdldsl",
-					"dhrlhrol.malware.exe.virus.ru.warez", "asduiasdhj12");
+					"dhrlhrol.malware.exe.virus.ru.warez", "asduiasdhj12", 1);
 		} catch (FileNotFoundException e) {
 			success = true;
 		} finally {

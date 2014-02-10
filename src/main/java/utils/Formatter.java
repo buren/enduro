@@ -39,7 +39,7 @@ public class Formatter {
 	}
 
 	public String generateResultList(ArrayList<Time> startTimes,
-			ArrayList<Time> finishTimes, ArrayList<String> nameList) {
+			ArrayList<Time> finishTimes, ArrayList<String> nameList, int lapAmount) {
 		if (startTimes.isEmpty() && finishTimes.isEmpty()) {
 			return "Listorna är tomma!";
 		} else {
@@ -67,10 +67,10 @@ public class Formatter {
 	 * @throws FileNotFoundException
 	 */
 	public String generateResultList(String pathToStartFile,
-			String pathToFinishFile, String pathToNameFile)
+			String pathToFinishFile, String pathToNameFile, int lapAmount)
 			throws FileNotFoundException {
 
-		raceEvent = new RaceEvent(1);
+		raceEvent = new RaceEvent(lapAmount);
 
 		Sorter sort = new SortName();
 		sort.insertInfo(pathToNameFile, "Namn", raceEvent);

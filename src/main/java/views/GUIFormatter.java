@@ -16,8 +16,7 @@ public class GUIFormatter extends JFrame {
 
 	public GUIFormatter() {
 
-
-		this.setTitle("Enduro Formater");
+		this.setTitle("Enduro Formatter");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -49,6 +48,22 @@ public class GUIFormatter extends JFrame {
 		this.add(textPanel);
 
 		this.pack();
+	}
+
+	public JButton getNameButton() {
+		return nb;
+	}
+
+	public JButton getStartButton() {
+		return sb;
+	}
+
+	public JButton getFinishButton() {
+		return fb;
+	}
+
+	public JTextArea getStatusText() {
+		return statusText;
 	}
 
 }
