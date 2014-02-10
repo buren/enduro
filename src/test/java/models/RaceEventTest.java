@@ -20,8 +20,10 @@ public class RaceEventTest {
 
 	@Before
 	public void setUp() {
+
 		enduro = Enduro.getInstance();
-		raceEvent = new RaceEvent();
+		raceEvent = new RaceEvent(3);
+
 		part1 = new Participant(1);
 		part2 = new Participant(2);
 	}

@@ -27,6 +27,7 @@ public class SortFinishTime extends Sorter {
             }
 
 
+
             columns = formatString(columns);
             String[] column_list = columns.split(";");
             int columnNbr = 0;
@@ -96,5 +97,8 @@ public class SortFinishTime extends Sorter {
             }
         }
     }
+
+			
+
 
 }
