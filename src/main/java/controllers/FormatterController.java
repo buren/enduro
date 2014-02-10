@@ -3,6 +3,7 @@ package controllers;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
+import models.RaceEvent;
 import utils.FileWriter;
 import utils.Formatter;
 
@@ -10,8 +11,8 @@ public class FormatterController {
 
 	private Formatter formatter;
 	
-	public FormatterController() {
-		formatter = new Formatter();
+	public FormatterController(RaceEvent raceEvent) {
+		formatter = new Formatter(raceEvent);
 	}
 	
 	

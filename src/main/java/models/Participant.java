@@ -50,14 +50,4 @@ public class Participant {
 			return false;
 		return true;
 	}
-
-//	public boolean equals(Object object) {
-//		if (object instanceof Participant
-//				&& ((Participant) object).getId() == this.id) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//
-//	}
 }

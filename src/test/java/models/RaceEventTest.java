@@ -78,16 +78,11 @@ public class RaceEventTest {
 		assertEquals("Should be the same", "13.00.00", raceEvent.getFinish(part1).toString());
 	}
 
-	@Test
-
-	public void testName() {
-		raceEvent.addName(part1, "Calle");
-		assertEquals("Shall be the same", "Calle", part1.getName());
-	}
 
 	@Test
 	public void testIfInTime() {
-		raceEvent.addName(part1, "Calle");
+		raceEvent.addParticipant(part1);
+		part1.setName("Calle");
 		assertEquals("Should be the same", raceEvent.getName(new Participant(1)),
 				"Calle");
 	}
