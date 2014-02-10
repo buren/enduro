@@ -12,6 +12,10 @@ public class GUIFormater extends JFrame {
 	private LoadFinishButton fb;
 	private LoadNamesButton nb;
 
+	private JPanel textPanel;
+
+	private JTextArea statusText;
+
 	public GUIFormater() {
 		this.setTitle("Enduro Formater");
 		this.setVisible(true);
@@ -25,18 +29,27 @@ public class GUIFormater extends JFrame {
 
 		Font font1 = new Font("SansSerif", Font.BOLD, 60);
 		Font font2 = new Font("SansSerif", Font.BOLD, 16);
+		
+		textPanel = new JPanel();
+		statusText = new JTextArea();
+		textPanel.add(statusText);
 
 		topPanel = new JPanel();
-		topPanel.setLayout(new GridLayout(1, 3));
-		sb = new LoadStartButton("Ladda in startfil");
-		fb = new LoadFinishButton("Ladda in målfil");
-		nb = new LoadNamesButton("Ladda in namnfil");
+		topPanel.setLayout(new GridLayout(2, 1));
+		sb = new LoadStartButton("Ladda in startfil", statusText);
+		fb = new LoadFinishButton("Ladda in målfil", statusText);
+		nb = new LoadNamesButton("Ladda in namnfil", statusText);
 		topPanel.add(sb);
 		topPanel.add(fb);
 		topPanel.add(nb);
-		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb));
+		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb, statusText));
+		
+		
 
 		this.add(topPanel);
+		this.add(textPanel);
+		
+		
 
 		this.pack();
 	}

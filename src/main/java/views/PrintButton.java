@@ -17,14 +17,16 @@ public class PrintButton extends JButton implements ActionListener {
 	private LoadFinishButton fb;
 	private LoadNamesButton nb;
 	private FileWriter writer;
+	private JTextArea statusText;
 
 	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb,
-			LoadNamesButton nb) {
+			LoadNamesButton nb, JTextArea statusText) {
 		super(s);
 		this.addActionListener(this);
 		this.sb = sb;
 		this.fb = fb;
 		this.nb = nb;
+		this.statusText = statusText;
 	}
 
 	@Override
@@ -32,6 +34,7 @@ public class PrintButton extends JButton implements ActionListener {
 		JFileChooser fc = new JFileChooser();
 		fc.showSaveDialog(this);
 		String filePath = fc.getSelectedFile().getAbsolutePath();
+		
 		try {
 			formatter = new Formater();
 			String resultat = formatter.generateResultList(sb.getPath(),
@@ -43,9 +46,13 @@ public class PrintButton extends JButton implements ActionListener {
 				lines.add(s);
 			}
 			writer.writeFile(filePath, lines.iterator());
+			
+			statusText.setText("Resultatfil utskriven!");
 		} catch (FileNotFoundException ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
+			statusText.setText("Fel! En av filerna hittades inte!");
+		} catch (Exception randomException) {
+			statusText.setText("Fel! Resultatfil ej utskriven!");
+			randomException.printStackTrace();
 		}
 	}
 

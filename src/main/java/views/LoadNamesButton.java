@@ -8,10 +8,12 @@ import javax.swing.*;
 public class LoadNamesButton extends JButton implements ActionListener {
 
 	private String namnfil;
+	private JTextArea statusText;
 
-	public LoadNamesButton(String s) {
+	public LoadNamesButton(String s, JTextArea statusText) {
 		super(s);
 		this.addActionListener(this);
+		this.statusText = statusText;
 	}
 
 	@Override
@@ -20,6 +22,8 @@ public class LoadNamesButton extends JButton implements ActionListener {
 
 		fc.showOpenDialog(this);
 		namnfil = fc.getSelectedFile().getAbsolutePath();
+		
+		statusText.append("Namnfil inläst\n");
 
 	}
 
