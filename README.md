@@ -41,3 +41,4 @@ After ```gs done``` a precommit hook script will be called, which will run the e
 ## Continuous integration
 
 After ```gs done``` is done the project will be sent to Travis CI, which will then build the project and run its entire test suite. [Travis CI for Enduro.](https://travis-ci.org/buren/enduro)
+Some change
