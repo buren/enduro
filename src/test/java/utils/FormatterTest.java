@@ -11,6 +11,7 @@ import models.Time;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import utils.Formatter;
 
 public class FormatterTest {
 

@@ -8,10 +8,12 @@ import javax.swing.*;
 public class LoadFinishButton extends JButton implements ActionListener {
 
 	private String malfil;
+	private JTextArea statusText;
 
-	public LoadFinishButton(String s) {
+	public LoadFinishButton(String s, JTextArea statusText) {
 		super(s);
 		this.addActionListener(this);
+		this.statusText = statusText;
 	}
 
 	@Override
@@ -20,7 +22,7 @@ public class LoadFinishButton extends JButton implements ActionListener {
 
 		fc.showOpenDialog(this);
 		malfil = fc.getSelectedFile().getAbsolutePath();
-
+		statusText.append("Måltider inläst\n");
 	}
 
 	public String getPath() {

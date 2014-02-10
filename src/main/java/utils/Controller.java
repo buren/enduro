@@ -64,7 +64,8 @@ public class Controller {
 				FileWriter.writeFile(filePath, allText);
 
 			}
-			reg.getResult().append(out);
+			String y = reg.getResult().getText() + out;
+			reg.getResult().setText(y);
 			reg.getRegister().setText("");
 		} catch (NumberFormatException e) {
 			reg.getRegister().setText("");
