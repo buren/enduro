@@ -33,7 +33,7 @@ public class Formatter {
 		if (itr.hasNext()) {
 			columns = itr.next();
 		} else {
-			throw new IllegalStateException("Input file is empty.");
+			throw new IllegalStateException("Indatafilen är tom.");
 		}
 		return columns;
 	}
@@ -89,7 +89,7 @@ public class Formatter {
 		}
 		sb.append("Start; ");
 		for (int i = 1; i < lapAmount; i++) {
-			sb.append("Varvning" + i + "; ");
+			sb.append("Overtake" + i + "; ");
 		}
 		sb.append("Finish\n");
 		for (int i = 0; i < count; i++) {
@@ -101,7 +101,7 @@ public class Formatter {
 					+ "; "
 					+ raceEvent.getName(new Participant(i + 1))
 					+ "; "
-					+ (raceEvent.getRace(new Participant(i + 1)).getLapsCap() - 1)
+					+ (raceEvent.getRace(new Participant(i + 1)).getCurrentLap())
 					+ "; " + totalTime + "; "
 					+ printTotalLapTimes(new Participant(i + 1))
 					+ printActualLapTimes(new Participant(i + 1))
@@ -113,7 +113,7 @@ public class Formatter {
 
 	public String printTotalLapTimes(Participant participant) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i < raceEvent.getRace(participant).getLapsCap(); i++) {
+		for (int i = 1; i <= raceEvent.getRace(participant).getLapsCap(); i++) {
 			sb.append(raceEvent.getRace(participant).getLapTime(i));
 			sb.append("; ");
 		}
@@ -122,7 +122,7 @@ public class Formatter {
 
 	public String printActualLapTimes(Participant participant) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i < raceEvent.getRace(participant).getLapsCap(); i++) {
+		for (int i = 1; i <= raceEvent.getRace(participant).getLapsCap(); i++) {
 			sb.append(raceEvent.getRace(participant).getLapStartTime(i));
 			sb.append("; ");
 		}
