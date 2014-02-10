@@ -10,5 +10,4 @@ public class PreregisterPane extends JOptionPane {
 	public PreregisterPane(String s) {
 		super(s);
 	}
-
 }

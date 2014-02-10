@@ -12,7 +12,7 @@ import models.Participant;
 import models.RaceEvent;
 import models.Time;
 
-public class Formater {
+public class Formatter {
 	private RaceEvent raceEvent;
 
 	/**
@@ -41,7 +41,7 @@ public class Formater {
 	public String generateResultList(ArrayList<Time> startTimes,
 			ArrayList<Time> finishTimes, ArrayList<String> nameList) {
 		if (startTimes.isEmpty() && finishTimes.isEmpty()) {
-			return "Both lists are empty!";
+			return "Listorna är tomma!";
 		} else {
 			StringBuilder sb = new StringBuilder();
 

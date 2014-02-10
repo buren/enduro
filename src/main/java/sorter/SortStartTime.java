@@ -12,7 +12,9 @@ public class SortStartTime extends Sorter {
 	protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
 		while (itr.hasNext()) {
 			String line = (String) itr.next();
-			String[] lines = line.split("; ");
+
+			line = formatString(line);
+			String[] lines = line.split(";");
 			raceEvent.addStart(new Participant(Integer.parseInt(lines[0])),
 					new Time(lines[columnNbr]));
 		}

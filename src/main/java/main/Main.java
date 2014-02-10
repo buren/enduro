@@ -1,27 +1,36 @@
 package main;
 
+import models.RaceEvent;
+import utils.Controller;
 import utils.Enduro;
-import views.GUIFormater;
+import views.GUIFormatter;
 import views.GUIRegister;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		try{
+		try {
 			if (args[0].equals("register")) {
-		
-			try{
-				new GUIRegister (args[1]);
-			} catch(ArrayIndexOutOfBoundsException e){
-				new GUIRegister (Enduro.getInstance().getResourcePath("registrationOutput.txt"));
+				try {
+					GUIRegister reg = new GUIRegister();
+					Controller controller = new Controller(new RaceEvent(),reg, args[1]);
+					controller.initiate();
+				} catch (ArrayIndexOutOfBoundsException e) {
+					GUIRegister reg = new GUIRegister();
+					Controller controller = new Controller(new RaceEvent(), reg, Enduro.getInstance().getResourcePath(
+							"registrationOutput.txt"));
+					controller.initiate();
+				}
+			} else if (args[0].equals("formater")) {
+				new GUIFormatter();
+			} else {
+				throw new Exception("Felaktigt argument.");
 			}
-		} else if (args[0].equals("formater")) {
-			new GUIFormater();
-		} else {
-			throw new Exception("Felaktigt argument.");
-		}
-		}catch(ArrayIndexOutOfBoundsException b){
-			new GUIRegister (Enduro.getInstance().getResourcePath("registrationOutput.txt"));
+		} catch (ArrayIndexOutOfBoundsException b) {
+			GUIRegister reg = new GUIRegister();
+			Controller controller = new Controller(new RaceEvent(), reg, Enduro.getInstance().getResourcePath(
+					"registrationOutput.txt"));
+			controller.initiate();
 		}
 	}
 }

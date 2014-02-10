@@ -11,7 +11,9 @@ public class SortName extends Sorter {
 	protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
 		while (itr.hasNext()) {
 			String line = (String) itr.next();
-			String[] lines = line.split("; ");
+
+			line = formatString(line);	
+			String[] lines = line.split(";");
 			raceEvent.addName(new Participant(Integer.parseInt(lines[0])),
 					lines[columnNbr]);
 		}

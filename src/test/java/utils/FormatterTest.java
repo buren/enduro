@@ -11,18 +11,19 @@ import models.Time;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import utils.Formatter;
 
 public class FormatterTest {
 
 	private ArrayList<Time> startTimes;
 	private ArrayList<Time> finishTimes;
 	private ArrayList<String> names;
-	private Formater formatter;
+	private Formatter formatter;
 	private Enduro enduro;
 
 	@Before
 	public void setUp() throws Exception {
-		formatter = new Formater();
+		formatter = new Formatter();
 		startTimes = new ArrayList<Time>();
 		finishTimes = new ArrayList<Time>();
 		enduro = Enduro.getInstance();
@@ -45,17 +46,19 @@ public class FormatterTest {
 		names.add("Patrik");
 		String resultList = formatter.generateResultList(startTimes,
 				finishTimes, names);
-		assertEquals(resultList, "StartNr; Namn; TotalTid; StartTider; Maltider\n"
-				+ "1; Oskar 01.01.01; 12.12.12; 13.13.13\n"
-				+ "2; Vikar 05.05.05; 14.14.14; 19.19.19\n"
-				+ "3; Patrik 02.59.31; 17.17.17; 20.16.48\n");
+		assertEquals(resultList,
+				"StartNr; Namn; TotalTid; StartTider; Maltider\n"
+						+ "1; Oskar 01.01.01; 12.12.12; 13.13.13\n"
+						+ "2; Vikar 05.05.05; 14.14.14; 19.19.19\n"
+						+ "3; Patrik 02.59.31; 17.17.17; 20.16.48\n");
 	}
 
 	@Test
 	public void testEmptyLists() {
-		Formater printer = new Formater();
-		String result = printer.generateResultList(startTimes, finishTimes, names);
-		assertEquals(result, "Both lists are empty!");
+		Formatter printer = new Formatter();
+		String result = printer.generateResultList(startTimes, finishTimes,
+				names);
+		assertEquals(result, "Listorna är tomma!");
 	}
 
 	// @Test
