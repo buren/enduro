@@ -11,7 +11,8 @@ public class SortFinishTime extends Sorter {
 	protected void addInfo(int columnNbr, Iterator itr, TimeHandler time) {
 		while (itr.hasNext()) {
 			String line = (String) itr.next();
-			String[] lines = line.split("; ");
+			line = formatString(line);
+			String[] lines = line.split(";");
 			time.addFinish(new Participant(Integer.parseInt(lines[0])),
 					lines[columnNbr]);
 			
