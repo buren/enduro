@@ -33,7 +33,7 @@ public class Formatter {
 		if (itr.hasNext()) {
 			columns = itr.next();
 		} else {
-			throw new IllegalStateException("Input file is empty.");
+			throw new IllegalStateException("Indatafilen är tom.");
 		}
 		return columns;
 	}
@@ -89,11 +89,10 @@ public class Formatter {
 		}
 		sb.append("Start; ");
 		for (int i = 1; i < lapAmount; i++) {
-			sb.append("Varvning" + i + "; ");
+			sb.append("Overtake" + i + "; ");
 		}
 		sb.append("Finish\n");
 		for (int i = 0; i < count; i++) {
-
 			Time totalTime = raceEvent.getStart(new Participant(i + 1))
 					.compareTo(raceEvent.getFinish(new Participant(i + 1)));
 			sb.append(i
@@ -103,26 +102,29 @@ public class Formatter {
 					+ "; "
 					+ (raceEvent.getRace(new Participant(i + 1)).getLapsCap() - 1)
 					+ "; " + totalTime + "; "
-					+ printTotalLapTimes(new Participant(i + 1))
-					+ printActualLapTimes(new Participant(i + 1))
+					+ printTotalLapTimes(new Participant(i + 1), lapAmount)
+					+ printActualLapTimes(new Participant(i + 1), lapAmount)
 
 					+ raceEvent.getFinish(new Participant(i + 1)) + "\n");
 		}
 		return sb.toString();
 	}
 
-	public String printTotalLapTimes(Participant participant) {
+
+	public String printTotalLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i < raceEvent.getRace(participant).getLapsCap(); i++) {
+		for (int i = 1; i <= lapAmount; i++) {
+
 			sb.append(raceEvent.getRace(participant).getLapTime(i));
 			sb.append("; ");
 		}
 		return sb.toString();
-	}
+    }
 
-	public String printActualLapTimes(Participant participant) {
+
+	public String printActualLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i < raceEvent.getRace(participant).getLapsCap(); i++) {
+		for (int i = 1; i <= lapAmount; i++) {
 			sb.append(raceEvent.getRace(participant).getLapStartTime(i));
 			sb.append("; ");
 		}
