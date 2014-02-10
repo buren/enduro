@@ -2,6 +2,7 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import javax.swing.*;
@@ -20,9 +21,13 @@ public class LoadStartButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
 		fc.showOpenDialog(this);
-		startfil = fc.getSelectedFile().getAbsolutePath();
+		File f = fc.getSelectedFile();
+		if (f != null) {
+			startfil = f.getAbsolutePath();
+			statusText.append("Startfil inläst\n");
+		} 
 		
-		statusText.append("Startfil inläst\n");
+		
 
 	}
 	
