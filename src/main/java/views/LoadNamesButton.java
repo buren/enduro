@@ -2,6 +2,7 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -21,8 +22,12 @@ public class LoadNamesButton extends JButton implements ActionListener {
 		JFileChooser fc = new JFileChooser();
 
 		fc.showOpenDialog(this);
-		namnfil = fc.getSelectedFile().getAbsolutePath();
-		statusText.append("Namnfil inläst\n");
+		File f = fc.getSelectedFile();
+		if (f != null) {
+			namnfil = f.getAbsolutePath();
+			statusText.append("namnfil inläst\n");
+		} 
+		
 
 	}
 

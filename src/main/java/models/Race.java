@@ -67,6 +67,9 @@ public class Race {
 	 * @return
 	 */
 	public Time getLapTime(int lap) {
+        if (lap > laps.size()) {
+            return new Time();
+        }
 		return laps.get(lap - 1).getTotalTime();
 	}
 
@@ -91,6 +94,9 @@ public class Race {
 	 * @return
 	 */
 	public Time getLapStartTime(int lap) {
+        if (lap > laps.size()) {
+            return new Time();
+        }
 		return laps.get(lap - 1).getStart();
 	}
 
