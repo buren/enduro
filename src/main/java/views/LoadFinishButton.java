@@ -2,6 +2,7 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -21,8 +22,12 @@ public class LoadFinishButton extends JButton implements ActionListener {
 		JFileChooser fc = new JFileChooser();
 
 		fc.showOpenDialog(this);
-		malfil = fc.getSelectedFile().getAbsolutePath();
-		statusText.append("Måltider inläst\n");
+		File f = fc.getSelectedFile();
+		if (f != null) {
+			malfil = f.getAbsolutePath();
+			statusText.append("Måltider inläst\n");
+		} 
+	
 	}
 
 	public String getPath() {

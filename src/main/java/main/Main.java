@@ -3,6 +3,7 @@ package main;
 import utils.Enduro;
 import views.GUIFormatter;
 import views.GUIRegister;
+import controllers.FormatterController;
 import controllers.RegisterController;
 
 public class Main {
@@ -20,7 +21,8 @@ public class Main {
 					GUIRegister reg = new GUIRegister(regCont);
 				}
 			} else if (args[0].equals("formatter")) {
-				new GUIFormatter();
+				FormatterController formCont = new FormatterController();
+				new GUIFormatter(formCont);
 			} else {
 				throw new Exception("Felaktigt argument.");
 			}
