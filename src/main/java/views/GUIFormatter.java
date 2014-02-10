@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class GUIFormater extends JFrame {
+public class GUIFormatter extends JFrame {
 	private static final long serialVersionUID = -2948560310654842046L;
 
 	private JPanel topPanel;
@@ -12,7 +12,7 @@ public class GUIFormater extends JFrame {
 	private LoadFinishButton fb;
 	private LoadNamesButton nb;
 
-	public GUIFormater() {
+	public GUIFormatter() {
 		this.setTitle("Enduro Formater");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

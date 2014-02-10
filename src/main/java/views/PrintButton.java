@@ -4,15 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import utils.Formatter;
 
 import javax.swing.*;
 
 import utils.FileWriter;
-import utils.Formater;
 
 public class PrintButton extends JButton implements ActionListener {
 
-	private Formater formatter;
+	private Formatter formatter;
 	private LoadStartButton sb;
 	private LoadFinishButton fb;
 	private LoadNamesButton nb;
@@ -33,7 +33,7 @@ public class PrintButton extends JButton implements ActionListener {
 		fc.showSaveDialog(this);
 		String filePath = fc.getSelectedFile().getAbsolutePath();
 		try {
-			formatter = new Formater();
+			formatter = new Formatter();
 			String resultat = formatter.generateResultList(sb.getPath(),
 					fb.getPath(), nb.getPath());
 
