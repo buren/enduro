@@ -11,8 +11,8 @@ public class FormatterController {
 
 	private Formatter formatter;
 	
-	public FormatterController(RaceEvent raceEvent) {
-		formatter = new Formatter(raceEvent);
+	public FormatterController(String s){
+		formatter = new Formatter(s);
 	}
 	
 	

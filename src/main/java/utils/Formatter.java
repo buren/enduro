@@ -15,9 +15,10 @@ import models.Time;
 public class Formatter {
 	private RaceEvent raceEvent;
 
-	public Formatter(RaceEvent raceEvent){
-		this.raceEvent= raceEvent;
+	public Formatter(String s) {
+		raceEvent = new RaceEvent(Integer.parseInt(s));
 	}
+
 	/**
 	 * Actually returns the first line of the file.
 	 * 
@@ -41,6 +42,14 @@ public class Formatter {
 		return columns;
 	}
 
+	/**
+	 * 
+	 * @param startTimes
+	 * @param finishTimes
+	 * @param nameList
+	 * @param lapAmount
+	 * @return
+	 */
 	public String generateResultList(ArrayList<Time> startTimes,
 			ArrayList<Time> finishTimes, ArrayList<String> nameList,
 			int lapAmount) {
@@ -112,6 +121,12 @@ public class Formatter {
 		return sb.toString();
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 * @param lapAmount
+	 * @return
+	 */
 	public String printTotalLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i <= lapAmount; i++) {
@@ -122,9 +137,15 @@ public class Formatter {
 		return sb.toString();
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 * @param lapAmount
+	 * @return
+	 */
 	public String printActualLapTimes(Participant participant, int lapAmount) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i <= lapAmount; i++){
+		for (int i = 1; i <= lapAmount; i++) {
 			sb.append(raceEvent.getRace(participant).getLapStartTime(i));
 			sb.append("; ");
 		}

@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 
+import models.Participant;
+import models.RaceEvent;
+import models.Time;
+
 import org.junit.Before;
 import org.junit.Test;
 
