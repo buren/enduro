@@ -92,6 +92,4 @@ public class Race {
 		laps.add(newLap);
 		size++;
 	}
-	
-
 }

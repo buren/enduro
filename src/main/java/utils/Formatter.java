@@ -67,33 +67,56 @@ public class Formatter {
 	 * @throws FileNotFoundException
 	 */
 	public String generateResultList(String pathToStartFile,
-			String pathToFinishFile, String pathToNameFile)
+			String pathToFinishFile, String pathToNameFile, int maxLaps)
 			throws FileNotFoundException {
-
 		raceEvent = new RaceEvent();
-
 		Sorter sort = new SortName();
 		sort.insertInfo(pathToNameFile, "Namn", raceEvent);
-
 		sort = new SortFinishTime();
 		Participant p = new Participant(1);
 		sort.insertInfo(pathToFinishFile, "Maltider", raceEvent);
 		sort = new SortStartTime();
-		p = new Participant(1);
+		p = new Participant(1);		
 		sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
 		int count = raceEvent.size();
+		StringBuilder sb = new StringBuilder();
+		sb.append("StartNo; Name; #Laps; TotalTime; ");		
+		for(int i = 1; i <= maxLaps; i++) {
+			sb.append("Lap" + i + "; ");
+		}		
+		sb.append("Start; ");		
+		for(int i = 1; i < maxLaps; i++) {
+			sb.append("Varvning" + i + "; ");
+		}
+		sb.append("Finish\n");	
 		for (int i = 0; i < count; i++) {
-			Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(
-					raceEvent.getFinish(new Participant(i + 1)));
-			sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1))
-					+ "; " + totalTime + "; "
-					+ raceEvent.getStart(new Participant(i + 1)) + "; "
+			Time totalTime = raceEvent.getStart(new Participant(i + 1)).compareTo(raceEvent.getFinish(new Participant(i + 1)));
+			sb.append(i + 1 + "; " + raceEvent.getName(new Participant(i + 1)) + "; " 
+					+ (raceEvent.getRace(new Participant(i + 1)).getNumberOfLaps() - 1) + "; "
+					+ totalTime + "; "
+					+ printTotalLapTimes(new Participant(i + 1))
+					+ printActualLapTimes(new Participant(i + 1))
 					+ raceEvent.getFinish(new Participant(i + 1)) + "\n");
-
 		}
 		return sb.toString();
 	}
+	
+	public String printTotalLapTimes(Participant participant) {
+		StringBuilder sb = new StringBuilder();
+		for(int i = 1; i < raceEvent.getRace(participant).getNumberOfLaps(); i++) {
+			sb.append(raceEvent.getRace(participant).getLapTime(i));
+			sb.append("; ");
+		}
+		return sb.toString();
+	}
+	
+	public String printActualLapTimes(Participant participant) {
+		StringBuilder sb = new StringBuilder();
+		for(int i = 1; i < raceEvent.getRace(participant).getNumberOfLaps(); i++) {
+			sb.append(raceEvent.getRace(participant).getLapStartTime(i));
+			sb.append("; ");
+		}
+		return sb.toString();
+	}
+	
 }
