@@ -4,19 +4,19 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class GUIFormater extends JFrame {
+public class GUIFormatter extends JFrame {
 	private static final long serialVersionUID = -2948560310654842046L;
 
 	private JPanel topPanel;
 	private LoadStartButton sb;
 	private LoadFinishButton fb;
 	private LoadNamesButton nb;
-
 	private JPanel textPanel;
-
 	private JTextArea statusText;
 
-	public GUIFormater() {
+	public GUIFormatter() {
+
+
 		this.setTitle("Enduro Formater");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -29,7 +29,7 @@ public class GUIFormater extends JFrame {
 
 		Font font1 = new Font("SansSerif", Font.BOLD, 60);
 		Font font2 = new Font("SansSerif", Font.BOLD, 16);
-		
+
 		textPanel = new JPanel();
 		statusText = new JTextArea();
 		textPanel.add(statusText);
@@ -42,14 +42,11 @@ public class GUIFormater extends JFrame {
 		topPanel.add(sb);
 		topPanel.add(fb);
 		topPanel.add(nb);
-		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb, statusText));
-		
-		
+		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb,
+				statusText));
 
 		this.add(topPanel);
 		this.add(textPanel);
-		
-		
 
 		this.pack();
 	}

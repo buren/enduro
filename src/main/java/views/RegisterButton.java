@@ -9,22 +9,13 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
+import utils.Controller;
 import utils.Enduro;
 import utils.FileWriter;
 
-public class RegisterButton extends JButton implements ActionListener {
+public class RegisterButton extends JButton{
 	
-	private GUIRegister gui;
-
-		public RegisterButton(String s, GUIRegister gui){
+		public RegisterButton(String s){
 			super(s);
-			this.gui = gui;
-			this.addActionListener(this);
-		}
-
-		public void actionPerformed(ActionEvent arg0) {
-			gui.printResults();
-		}
-		
-		
+		}		
 }
