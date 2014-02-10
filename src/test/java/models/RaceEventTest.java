@@ -22,7 +22,7 @@ public class RaceEventTest {
 	public void setUp() {
 
 		enduro = Enduro.getInstance();
-		raceEvent = new RaceEvent(1);
+		raceEvent = new RaceEvent(3);
 
 		part1 = new Participant(1);
 		part2 = new Participant(2);
