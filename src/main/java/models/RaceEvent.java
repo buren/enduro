@@ -12,6 +12,7 @@ public class RaceEvent {
 	public int size() {
 		return raceEvent.size();
 	}
+
 	/**
 	 * Links starting time to participant. If participant is missing it adds it
 	 * to hashmap.
@@ -59,8 +60,8 @@ public class RaceEvent {
 		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);
 		}
-		
-		raceEvent.get(participant).setFinish(finishTime);
+
+		raceEvent.get(participant).setLapTime(finishTime);
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class RaceEvent {
 	 */
 	public Time getFinish(Participant participant) {
 		if (raceEvent.get(participant) == null) {
-//			 if (timeHandler.get(participant).equals(participant)){
+			// if (timeHandler.get(participant).equals(participant)){
 			// && timeHandler.get(participant).equals(participant)) {
 			return new Time();
 		}
@@ -118,6 +119,20 @@ public class RaceEvent {
 		addParticipant(participant);
 		return participant.getName();
 
+	}
+
+	public Time getLapStartTime(Participant participant, int lap) {
+		if (raceEvent.get(participant) == null) {
+			return new Time();
+		}
+		return raceEvent.get(participant).getLapStartTime(lap);
+	}
+	
+	public Time getLapTime(Participant participant, int lap) {
+		if (raceEvent.get(participant) == null) {
+			return new Time();
+		}
+		return raceEvent.get(participant).getLapTime(lap);
 	}
 
 }
