@@ -19,7 +19,7 @@ public class SorterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		raceEvent = new RaceEvent();
+		raceEvent = new RaceEvent(1);
 	}
 
 	@Test

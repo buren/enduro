@@ -4,9 +4,11 @@ import java.util.HashMap;
 
 public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
+	private int laps;
 
-	public RaceEvent() {
+	public RaceEvent(int laps) {
 		raceEvent = new HashMap<Participant, Race>();
+		this.laps = laps;
 	}
 
 	public int size() {
@@ -61,7 +63,9 @@ public class RaceEvent {
 			addParticipant(participant);
 		}
 
+
 		raceEvent.get(participant).setLapTime(finishTime);
+
 	}
 
 	/**
@@ -94,7 +98,7 @@ public class RaceEvent {
 	}
 
 	private void addParticipant(Participant participant) {
-		Race race = new Race();
+		Race race = new Race(laps);
 		raceEvent.put(participant, race);
 	}
 
