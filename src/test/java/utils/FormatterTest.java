@@ -13,7 +13,6 @@ import models.Time;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import utils.Formatter;
 
 public class FormatterTest {
 
@@ -47,7 +46,7 @@ public class FormatterTest {
 		names.add("Viktor");
 		names.add("Patrik");
 		String resultList = formatter.generateResultList(startTimes,
-				finishTimes, names);
+				finishTimes, names, 1);
 		assertEquals(resultList,
 				"StartNr; Namn; TotalTid; StartTider; Maltider\n"
 						+ "1; Oskar 01.01.01; 12.12.12; 13.13.13\n"
@@ -59,7 +58,7 @@ public class FormatterTest {
 	public void testEmptyLists() {
 		Formatter printer = new Formatter();
 		String result = printer.generateResultList(startTimes, finishTimes,
-				names);
+				names, 1);
 		assertEquals(result, "Listorna är tomma!");
 	}
 
@@ -81,10 +80,10 @@ public class FormatterTest {
 			e.printStackTrace();
 		}
 		assertEquals(
-				formatter.generateResultList(path + "starttider.txt",
-						path + "maltider.txt",
-						path + "namnfil.txt", 1)
-						, sb.toString());
+
+				formatter.generateResultList(path + "starttider.txt", path
+						+ "maltider.txt", path + "namnfil.txt", 1),
+				sb.toString());
 	}
 
 	@Test
