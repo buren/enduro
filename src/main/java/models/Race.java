@@ -45,26 +45,39 @@ public class Race {
 	 */
 	public Time getTotalTime() {
 		Time start = laps.get(0).getStart();
-		Time finish = laps.get(size).getFinish();
+		Time finish;
+		if(laps.get(size).getFinish().isEmpty()) {
+			finish = laps.get(size).getStart(); 
+		} else {
+			finish = laps.get(size).getFinish();
+		}
 		return start.compareTo(finish);
 	}
 	
 	/**
-	 * Returns the total time of a lap.
-	 * @param lap, lap 0 is the first lap.
+	 * Returns the total time of a lap. IE. time spent running that lap
+	 * @param lap, lap 1 is the first lap.
 	 * @return
 	 */
 	public Time getLapTime(int lap) {
-		return laps.get(lap).getTotalTime();
+		return laps.get(lap-1).getTotalTime();
+	}
+	
+	/**
+	 * Returns number of laps Started
+	 * @return
+	 */
+	public int getNumberOfLaps() {
+		return size+1;
 	}
 	
 	/**
 	 * Returns the actual time the lap was started.
-	 * @param lap, lap 0 is the first lap.
+	 * @param lap, lap 1 is the first lap.
 	 * @return
 	 */
-	public Time getLapActualTime(int lap) {
-		return laps.get(lap).getFinish();
+	public Time getLapStartTime(int lap) {
+		return laps.get(lap-1).getStart();
 	}
 	
 	/**
@@ -79,11 +92,4 @@ public class Race {
 		laps.add(newLap);
 		size++;
 	}
-	
-	
-	public int getNumberOfLaps() {
-		return size + 1;
-	}
-	
-
 }
