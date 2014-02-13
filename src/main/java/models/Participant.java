@@ -3,30 +3,41 @@ package models;
 public class Participant {
 	private int id;
 	private String name;
+	
+	/**
+	 * Participant identifies by their id, two participants with the same id are considered the same.
+	 * @param id , id number
+	 */
 
 	public Participant(int id) {
 		this.id = id;
 		name = "Not named";
 	}
+	
+	/**
+	 * @return id
+	 */
 
 	public int getId() {
 		return id;
 	}
+	
+	/**
+	 * Sets participant name to parameter
+	 * @param name , name
+	 */
 
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	/**
+	 * 
+	 * @return name
+	 */
 
 	public String getName() {
 		return name;
-	}
-
-	public int HashCode() {
-		return id;
-	}
-
-	public boolean equals(Participant p) {
-		return p.getId() == id;
 	}
 
 	@Override
