@@ -44,6 +44,11 @@ public class Time {
 		return new Time(difference);
 	}
 
+    /**
+     * Compares two times to see which is earlier.
+     * @param time Time to compare to.
+     * @return true if this is before other
+     */
     public boolean isBefore(Time time) {
         if(seconds < time.seconds)
             return true;

@@ -9,8 +9,6 @@ import models.RaceEvent;
 import models.Time;
 
 public class SortFinishTime extends Sorter {
-    ArrayList<Time> timeList;
-    ArrayList<Integer> intList;
 
     public void insertInfo(String[] filePath, String column, RaceEvent raceEvent)
             throws FileNotFoundException {
@@ -20,13 +18,11 @@ public class SortFinishTime extends Sorter {
             for (int i = 0; i < itr.length; i++) {
                 itr[i] = fr.readFileByLine(filePath[i]);
             }
-            //Iterator itr = fr.readFileByLine(filePath);
+
             String columns = (String) itr[0].next();
             for (int i = 1; i < itr.length; i++) {
                 itr[i].next();
             }
-
-
 
             columns = formatString(columns);
             String[] column_list = columns.split(";");
@@ -59,8 +55,8 @@ public class SortFinishTime extends Sorter {
 
 
     protected void addInfo(int columnNbr, Iterator[] itr, RaceEvent raceEvent) {
-        timeList = new ArrayList<Time>();
-        intList = new ArrayList<Integer>();
+        ArrayList<Time> timeList = new ArrayList<>();
+        ArrayList<Integer> intList = new ArrayList<>();
 
         for (int i = 0; i < itr.length; i++) {
             while (itr[i].hasNext()) {
@@ -71,7 +67,7 @@ public class SortFinishTime extends Sorter {
                 intList.add(Integer.parseInt(lines[0]));
             }
         }
-        sortTime();
+        sortTime(timeList, intList);
 
 
         for(int i=0; i<timeList.size(); i++) {
@@ -80,21 +76,33 @@ public class SortFinishTime extends Sorter {
     }
 
     /**
-     * Sorts the Time array
+     * Sorts the Time array, uses regular arrays to not blow the heap apart.
      */
-    private void sortTime() {
-        for(int i = 0; i < timeList.size(); i++) {
-            for(int j = 1; j < (timeList.size()-i); j++) {
-                if(!timeList.get(i).isBefore(timeList.get(i+1))) {
-                    Time temp = timeList.get(i);
-                    timeList.set(i, timeList.get(i+1));
-                    timeList.set(i+1, temp);
+    private void sortTime(ArrayList<Time> timeList, ArrayList<Integer> intList) {
+        Time[] timeArray = new Time[timeList.size()];
+        timeList.toArray(timeArray);
+        Integer[] intArray = new Integer[intList.size()];
+        intList.toArray(intArray);
 
-                    int itemp = intList.get(i);
-                    intList.set(i, intList.get(i+1));
-                    intList.set(i+1, itemp);
+        timeList.clear();
+        intList.clear();
+
+        for(int i = 0; i < timeArray.length; i++) {
+            for(int j = 1; j < (intArray.length-i); j++) {
+                if(timeArray[j].isBefore(timeArray[j-1])) {
+                    Time temp = timeArray[j-1];
+                    timeArray[j-1] = timeArray[j];
+                    timeArray[j] = temp;
+
+                    int intTemp = intArray[j-1];
+                    intArray[j-1] = intArray[j];
+                    intArray[j] = intTemp;
                 }
             }
+        }
+        for (int i = 0; i < timeArray.length; i++) {
+            timeList.add(timeArray[i]);
+            intList.add(intArray[i]);
         }
     }
 
