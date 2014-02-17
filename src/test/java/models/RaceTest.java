@@ -1,4 +1,5 @@
 package models;
+
 import static org.junit.Assert.*;
 import models.Race;
 import models.Time;
@@ -7,95 +8,110 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RaceTest {
-	private Race race;
+	private Race lapRace;
+	private Race timeRace;
 
 	@Before
 	public void setUp() {
-		race = new Race(3);
+		lapRace = new Race(3);
+		timeRace = new Race("00.30.00");
 	}
 
 	@Test
 	public void testEmpty() {
-		assertEquals("Should be one", race.getCurrentLap(), 1);
+		assertEquals("Should be one", lapRace.getCurrentLap(), 1);
 	}
 
 	@Test
 	public void testStartTime() {
-		race.setStart(new Time("12.00.00"));
-		assertEquals("Should be 12.00.00", race.getStart(),
-				new Time("12.00.00"));
+		lapRace.setStart(new Time("12.00.00"));
+		assertEquals("Should be 12.00.00", lapRace.getStart(), new Time(
+				"12.00.00"));
 	}
 
 	@Test
 	public void testFinishTime() {
-		race.setStart(new Time("12.00.00"));
-		race.setFinish(new Time("14.00.00"));
-		assertEquals("Should be 14.00.00", race.getFinish(), new Time(
+		lapRace.setStart(new Time("12.00.00"));
+		lapRace.setFinish(new Time("14.00.00"));
+		assertEquals("Should be 14.00.00", lapRace.getFinish(), new Time(
 				"14.00.00"));
 	}
 
 	@Test
 	public void testTwoLapsFinish() {
-		race.setStart(new Time("12.00.00"));
-		race.setLapTime(new Time("12.30.00"));
-		race.setLapTime(new Time("13.00.00"));
-		assertEquals("Should be 13.00.00", race.getFinish(), new Time(
+		lapRace.setStart(new Time("12.00.00"));
+		lapRace.setLapTime(new Time("12.30.00"));
+		lapRace.setLapTime(new Time("13.00.00"));
+		assertEquals("Should be 13.00.00", lapRace.getFinish(), new Time(
 				"13.00.00"));
 	}
 
 	@Test
 	public void testNoFinishTime() {
-		race.setStart(new Time("12.00.00"));
-		assertEquals("Should be 12.00.00", race.getFinish(), new Time(
+		lapRace.setStart(new Time("12.00.00"));
+		assertEquals("Should be 12.00.00", lapRace.getFinish(), new Time(
 				"12.00.00"));
 	}
 
 	@Test
 	public void testNoStartTime() {
-		assertEquals("Should be --.--.--", race.getStart(), new Time());
+		assertEquals("Should be --.--.--", lapRace.getStart(), new Time());
 	}
 
 	@Test
 	public void testFinishTimeWithNoStartTime() {
-		assertEquals("Should be --.--.--", race.getFinish(), new Time());
+		assertEquals("Should be --.--.--", lapRace.getFinish(), new Time());
 	}
 
 	@Test
 	public void getOneLapTime() {
-		race.setStart(new Time("12.00.00"));
-		race.setLapTime(new Time("12.30.00"));
-		race.setLapTime(new Time("13.50.00"));
-		assertEquals("Should be 00.30.00", race.getLapTime(1), new Time(
+		lapRace.setStart(new Time("12.00.00"));
+		lapRace.setLapTime(new Time("12.30.00"));
+		lapRace.setLapTime(new Time("13.50.00"));
+		assertEquals("Should be 00.30.00", lapRace.getLapTime(1), new Time(
 				"00.30.00"));
 	}
 
 	@Test
 	public void getLapStartingTime() {
-		race.setStart(new Time("12.00.00"));
-		race.setLapTime(new Time("12.30.00"));
-		race.setLapTime(new Time("13.50.00"));
-		assertEquals("Should be 13.50.00", race.getLapStartTime(3), new Time(
-				"13.50.00"));
+		lapRace.setStart(new Time("12.00.00"));
+		lapRace.setLapTime(new Time("12.30.00"));
+		lapRace.setLapTime(new Time("13.50.00"));
+		assertEquals("Should be 13.50.00", lapRace.getLapStartTime(3),
+				new Time("13.50.00"));
 	}
 
 	@Test
 	public void addTooManyLaps() {
-		race.setStart(new Time("12.00.00"));
-		race.setLapTime(new Time("12.30.00"));
-		race.setLapTime(new Time("13.50.00"));
-		race.setLapTime(new Time("14.50.00"));
-		race.setLapTime(new Time("15.50.00"));
-		assertEquals("Should be three", race.getCurrentLap(), 3);
+		lapRace.setStart(new Time("12.00.00"));
+		lapRace.setLapTime(new Time("12.30.00"));
+		lapRace.setLapTime(new Time("13.50.00"));
+		lapRace.setLapTime(new Time("14.50.00"));
+		lapRace.setLapTime(new Time("15.50.00"));
+		assertEquals("Should be three", lapRace.getCurrentLap(), 3);
+		assertEquals("Should be same", lapRace.getTotalTime(), new Time("02.50.00"));
 	}
 
 	@Test
 	public void testLapTime() {
-		race.setStart(new Time("12.00.00"));
-		race.setLapTime(new Time("12.30.00"));
-		race.setLapTime(new Time("12.40.00"));
-		assertEquals("Should be the same ", race.getLapTime(1), new Time(
+		lapRace.setStart(new Time("12.00.00"));
+		lapRace.setLapTime(new Time("12.30.00"));
+		lapRace.setLapTime(new Time("12.40.00"));
+		assertEquals("Should be the same ", lapRace.getLapTime(1), new Time(
 				"00.30.00"));
-		assertEquals("Should be the same ", race.getLapTime(2), new Time(
+		assertEquals("Should be the same ", lapRace.getLapTime(2), new Time(
 				"00.10.00"));
+	}
+
+	@Test
+	public void testRaceTimeCap() {
+		timeRace.setStart(new Time("12.00.00"));
+		timeRace.setLapTime(new Time("12.15.00"));
+		timeRace.setLapTime(new Time("12.35.00"));
+		assertEquals("Should be the same", timeRace.getLapTime(1), new Time(
+				"00.15.00"));
+		assertEquals("Should be the same ", timeRace.getLapTime(2), new Time(
+				"00.20.00"));
+		assertEquals("Should be the same (two)", timeRace.getCurrentLap(), 2);
 	}
 }
