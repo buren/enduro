@@ -19,7 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		JFrame frame = new JFrame();
-		Object[] options = { "Register", "Formatter" };
+		Object[] options = { "Registrering", "Formaterare" };
 		int n = JOptionPane.showOptionDialog(frame, "Välj programdel",
 				"Enduro", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
