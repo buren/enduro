@@ -53,7 +53,7 @@ Package sorter:
 
     SortFinishTime:
     SortFinishTime kan användas för att läsa flera måltider. För att läsa flera måltider så skickar man in en sträng-vektor till insertInfo istället för en vanlig sträng.
-    
+
 
 Package utils:
 	
