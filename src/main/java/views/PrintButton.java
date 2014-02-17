@@ -5,13 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
-import utils.Formatter;
-
 import javax.swing.*;
 
 import controllers.FormatterController;
-import utils.FileWriter;
 
 public class PrintButton extends JButton implements ActionListener {
 
@@ -20,6 +16,8 @@ public class PrintButton extends JButton implements ActionListener {
 	private LoadNamesButton nb;
 	private JTextArea statusText;
 	private FormatterController formCont;
+    private JComboBox raceType;
+    JTextField limitField;
 
     /**
      * Creates a new PrintButton
@@ -32,7 +30,7 @@ public class PrintButton extends JButton implements ActionListener {
      */
 	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb,
 			LoadNamesButton nb, JTextArea statusText,
-			FormatterController formCont) {
+			FormatterController formCont, JComboBox raceType, JTextField limitField) {
 		super(s);
 		this.addActionListener(this);
 		this.sb = sb;
@@ -40,6 +38,8 @@ public class PrintButton extends JButton implements ActionListener {
 		this.nb = nb;
 		this.statusText = statusText;
 		this.formCont = formCont;
+        this.raceType = raceType;
+        this.limitField = limitField;
 	}
 
     /**
@@ -58,9 +58,9 @@ public class PrintButton extends JButton implements ActionListener {
 				String inputValue = JOptionPane
 						.showInputDialog("Hur många varvtider önskas?");
 				String resultat = formCont.result(sb.getPath(), fb.getPaths(),
-						nb.getPath(), Integer.parseInt(inputValue));
+						nb.getPath(),raceType.getSelectedIndex(), limitField.getText(), Integer.parseInt(inputValue));  //TODO; fix shit
 				String[] results = resultat.split("\n");
-				ArrayList<String> lines = new ArrayList<String>();
+				ArrayList<String> lines = new ArrayList<>();
 				for (String s : results) {
 					lines.add(s);
 				}
@@ -71,8 +71,6 @@ public class PrintButton extends JButton implements ActionListener {
 				statusText.setText("Fel! En av filerna hittades inte!");
 			} catch (NumberFormatException numberFormatex) {
 				statusText.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");
-//			} catch (Exception randomException) {
-//				statusText.setText(randomException.getMessage());
 			}
 		}
 	}

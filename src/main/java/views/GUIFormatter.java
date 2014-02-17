@@ -22,8 +22,7 @@ public class GUIFormatter extends JFrame {
      * @param formCont the formatter Controller
      */
 	public GUIFormatter(FormatterController formCont) {
-
-		this.setTitle("Enduro Formatter");
+        this.setTitle("Enduro Formatter");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -34,23 +33,25 @@ public class GUIFormatter extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.formCont = formCont;
 
-		Font font1 = new Font("SansSerif", Font.BOLD, 60);
-		Font font2 = new Font("SansSerif", Font.BOLD, 16);
-
 		textPanel = new JPanel();
 		statusText = new JTextArea();
 		textPanel.add(statusText);
 
-		topPanel = new JPanel();
-		topPanel.setLayout(new GridLayout(2, 1));
-		sb = new LoadStartButton("Ladda in startfil", statusText);
-		fb = new LoadFinishButton("Ladda in målfil", statusText);
-		nb = new LoadNamesButton("Ladda in namnfil", statusText);
-		topPanel.add(sb);
-		topPanel.add(fb);
-		topPanel.add(nb);
-		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb,
-				statusText, formCont));
+        String[] raceTypes = {"SimpleRace", "LapRace", "TimeRace"};
+        JComboBox raceType = new JComboBox(raceTypes);
+        JTextField limitField = new JTextField();
+
+        topPanel = new JPanel();
+        topPanel.setLayout(new GridLayout(2, 1));
+        sb = new LoadStartButton("Ladda in startfil", statusText);
+        fb = new LoadFinishButton("Ladda in målfil", statusText);
+        nb = new LoadNamesButton("Ladda in namnfil", statusText);
+        topPanel.add(sb);
+        topPanel.add(fb);
+        topPanel.add(nb);
+        topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb,
+        statusText, formCont, raceType, limitField));
+
 
 		this.add(topPanel);
 		this.add(textPanel);

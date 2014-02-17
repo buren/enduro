@@ -13,46 +13,36 @@ public class SortFinishTime extends Sorter {
 
     /**
      * Finds the correct column, and then inserts it in the raceEvent
-     * @param filePath , URL-address of target files.
-     * @param column , name of column to sort
+     *
+     * @param files     , URL-address of target files.
+     * @param column    , name of column to sort
      * @param raceEvent , RaceEvent to sort
      * @throws FileNotFoundException
      */
-    public void insertInfo(String[] filePath, String column, RaceEvent raceEvent)
+    public void insertInfo(Iterator[] files, String column, RaceEvent raceEvent)
             throws FileNotFoundException {
-        try {
 
-            Iterator[] itr = new Iterator[filePath.length];
-            for (int i = 0; i < itr.length; i++) {
-                itr[i] = fr.readFileByLine(filePath[i]);
-            }
-
-            String columns = (String) itr[0].next();
-            for (int i = 1; i < itr.length; i++) {
-                itr[i].next();
-            }
-
-            columns = formatString(columns);
-            String[] column_list = columns.split(";");
-            int columnNbr = 0;
-            for (int i = 0; i < column_list.length; i++) {
-                if (column_list[i].equals(column)) {
-                    columnNbr = i;
-                }
-
-            }
-            addInfo(columnNbr, itr, raceEvent);
-
-        } catch (FileNotFoundException e) {
-            throw e;
+        Iterator[] itr = files;
+        String columns = (String) itr[0].next();
+        for (int i = 1; i < itr.length; i++) {
+            itr[i].next();
         }
 
+        columns = formatString(columns);
+        String[] column_list = columns.split(";");
+        int columnNbr = 0;
+        for (int i = 0; i < column_list.length; i++) {
+            if (column_list[i].equals(column))
+                columnNbr = i;
+        }
+        addInfo(columnNbr, itr, raceEvent);
     }
 
     /**
      * Adds information within the file path to the correct column
+     *
      * @param columnNbr the number of the column
-     * @param itr the iterator containing the rows
+     * @param itr       the iterator containing the rows
      * @param raceEvent the raceEvent that gets the information.
      */
     @Override
@@ -62,16 +52,23 @@ public class SortFinishTime extends Sorter {
 
             line = formatString(line);
             String[] lines = line.split(";");
-            raceEvent.addFinish(new Participant(Integer.parseInt(lines[0])),
-                    new Time(lines[columnNbr]));
+            Time finishTime = new Time(lines[columnNbr]);
+            int id = Integer.parseInt(lines[0]);
+            if (raceEvent.containsParticipant(id))
+                raceEvent.getParticipant(id).getRace().addTime(finishTime);
+            else {
+                Participant p = new Participant(id);
+                p.getRace().addTime(finishTime);
+            }
         }
     }
 
 
     /**
      * Adds information within the file path to the correct column, for multiple files
+     *
      * @param columnNbr the number of the column
-     * @param itr the iterators containing the rows
+     * @param itr       the iterators containing the rows
      * @param raceEvent the raceEvent that gets the information.
      */
     protected void addInfo(int columnNbr, Iterator[] itr, RaceEvent raceEvent) {
@@ -89,16 +86,23 @@ public class SortFinishTime extends Sorter {
         }
         sortTime(timeList, intList);
 
-
-        for(int i=0; i<timeList.size(); i++) {
-            raceEvent.addFinish(new Participant(intList.get(i)), timeList.get(i));
+        for (int i = 0; i < timeList.size(); i++) {
+            int id = intList.get(i);
+            Time finishTime = timeList.get(i);
+            if (raceEvent.containsParticipant(id))
+                raceEvent.getParticipant(id).getRace().addTime(finishTime);
+            else {
+                Participant p = new Participant(id);
+                p.getRace().addTime(finishTime);
+            }
         }
     }
 
     /**
      * Sorts two lists, a list of times and IDs simultaneously, sorting by first time
+     *
      * @param timeList list of times to sort
-     * @param idList list of IDs to sort
+     * @param idList   list of IDs to sort
      */
     private void sortTime(ArrayList<Time> timeList, ArrayList<Integer> idList) {
         Time[] timeArray = new Time[timeList.size()];
@@ -109,15 +113,15 @@ public class SortFinishTime extends Sorter {
         timeList.clear();
         idList.clear();
 
-        for(int i = 0; i < timeArray.length; i++) {
-            for(int j = 1; j < (intArray.length-i); j++) {
-                if(timeArray[j].isBefore(timeArray[j-1])) {
-                    Time temp = timeArray[j-1];
-                    timeArray[j-1] = timeArray[j];
+        for (int i = 0; i < timeArray.length; i++) {
+            for (int j = 1; j < (intArray.length - i); j++) {
+                if (timeArray[j].isBefore(timeArray[j - 1])) {
+                    Time temp = timeArray[j - 1];
+                    timeArray[j - 1] = timeArray[j];
                     timeArray[j] = temp;
 
-                    int intTemp = intArray[j-1];
-                    intArray[j-1] = intArray[j];
+                    int intTemp = intArray[j - 1];
+                    intArray[j - 1] = intArray[j];
                     intArray[j] = intTemp;
                 }
             }
@@ -127,8 +131,6 @@ public class SortFinishTime extends Sorter {
             idList.add(intArray[i]);
         }
     }
-
-			
 
 
 }

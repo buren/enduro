@@ -3,29 +3,17 @@ package controllers;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
-import models.RaceEvent;
+import models.*;
+import sorter.SortFinishTime;
+import sorter.SortName;
+import sorter.SortStartTime;
+import sorter.Sorter;
+import utils.FileReader;
 import utils.FileWriter;
-import utils.Formatter;
 
 public class FormatterController {
-
-	private Formatter formatter;
-
-	/**
-	 * 
-	 * @param s , the time cap for a race in format hh.mm.ss
-	 */
-	public FormatterController(String s) {
-		formatter = new Formatter(s);
-	}
-	
-	/**
-	 * 
-	 * @param laps, the lap cap for a race.
-	 */
-	public FormatterController(int laps) {
-		formatter = new Formatter(laps);
-	}
+    public final int LAP_RACE = 0;
+    public final int TIME_RACE = 1;
 
 	/**
 	 * Writes the Strings within the Iterator to the given filepath.
@@ -49,17 +37,44 @@ public class FormatterController {
 	 *            , URL-address of file containing start times.
 	 * @param namePath
 	 *            , URL-address of file containing start times.
-	 * @param nLaps
+	 * @param printLimit
 	 *            , Number of laps to be displayed in the result table.
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	public String result(String startPath, String[] finishPath, String namePath,
-			int nLaps) throws FileNotFoundException {
+	public String result(String startPath, String[] finishPath, String namePath, int raceType, String limit, int printLimit) throws FileNotFoundException {
+        Race race;
+        switch (raceType) {
+            case LAP_RACE:
+                int lapLimit = Integer.parseInt(limit);
+                race = new LapRace(lapLimit);
+                break;
+            case TIME_RACE:
+                Time timeLimit = new Time(limit);
+                race = new TimeRace(timeLimit);
+                break;
+            default:
+                race = new SimpleRace();
+                break;
+        }
+        RaceEvent raceEvent = new RaceEvent(race);
+        FileReader fr = new FileReader();
 
-		return formatter.generateResultList(startPath, finishPath, namePath,
-				nLaps);
+        Iterator iterator = fr.readFileByLine(namePath);
+        Sorter sorter = new SortName();
+        sorter.insertInfo(iterator, "Namn", raceEvent);
 
-	}
+        iterator = fr.readFileByLine(startPath);
+        sorter = new SortStartTime();
+        sorter.insertInfo(iterator, "StartTider", raceEvent);
 
+        Iterator[] iterators = new Iterator[finishPath.length];
+        for (int i = 0; i < finishPath.length; i++) {
+            iterators[i] = fr.readFileByLine(finishPath[i]);
+        }
+        SortFinishTime finishTimeSorter = new SortFinishTime();
+        finishTimeSorter.insertInfo(iterators, "Maltider", raceEvent);
+
+        return raceEvent.print(printLimit);
+    }
 }

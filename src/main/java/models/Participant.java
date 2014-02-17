@@ -3,6 +3,7 @@ package models;
 public class Participant {
 	private int id;
 	private String name;
+    private Race race;
 	
 	/**
 	 * Participant identifies by their id, two participants with the same id are considered the same.
@@ -37,6 +38,14 @@ public class Participant {
 		return name;
 	}
 
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
     /**
      * Generates the hashCode for this participant
      * @return hashCode
@@ -68,4 +77,8 @@ public class Participant {
 			return false;
 		return true;
 	}
+
+    public String print(int printLimit) {
+        return id+"; "+name+race.print(printLimit);
+    }
 }

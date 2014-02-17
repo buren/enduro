@@ -25,7 +25,7 @@ public class Lap {
 	/**
 	 * Sets the finish time to parameter.
 	 * 
-	 * @param startTime
+	 * @param finishTime
 	 */
 	public void setFinish(Time finishTime) {
 		this.finishTime = finishTime;

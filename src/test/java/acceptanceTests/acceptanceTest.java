@@ -4,23 +4,21 @@ import static org.junit.Assert.assertEquals;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
+import controllers.FormatterController;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import utils.Enduro;
 import utils.FileReader;
-import utils.Formatter;
 
 public class acceptanceTest {
 
 	private Enduro enduro;
-	private Formatter lapsFormatter;
 
 	@Before
 	public void setUp() throws Exception {
 		enduro = Enduro.getInstance();
-		lapsFormatter = new Formatter(20);
 	}
 
 	@After
@@ -43,6 +41,8 @@ public class acceptanceTest {
 
 	@Test
 	public void acceptanceTest10() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
+
 		String acceptanceTestFolderPath = Enduro.getInstance().getResourcePath(
 				"acceptanstester/iteration2/acceptanstest10/");
 		String pathToStartFile = acceptanceTestFolderPath + "starttider.txt";
@@ -51,9 +51,9 @@ public class acceptanceTest {
 		String pathToNameFile = acceptanceTestFolderPath + "namnfil.txt";
 		String resultFilePath = acceptanceTestFolderPath + "resultat.txt";
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
-		String resultList = lapsFormatter.generateResultList(pathToStartFile,
-				finishFileArray, pathToNameFile, 3);
-		assertEquals(readFileToString(resultFilePath), resultList);
+
+        String result = fc.result(pathToStartFile, finishFileArray, pathToNameFile, fc.LAP_RACE, "3", 3);
+		assertEquals(readFileToString(resultFilePath), result);
 	}
 
 	private String readFileToString(String filePath)

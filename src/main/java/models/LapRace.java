@@ -1,38 +1,24 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class LapRace extends Race {
-	private int lapCap;
-	
-	
-	public LapRace(Object lapCap) {
-		super(lapCap);
-		laps = new ArrayList<>();
-		laps.add(new Lap());
-		this.lapCap = (Integer) lapCap;
-	}
-	
-	/**
-     * Returns the lap cap
-     * @return the lap cap
-     */
-	public int getLapsCap() {
-		return lapCap;
-	}
+    private int limit;
 
-	@Override
-	public void setLapTime(Time lapTime) {
-		setFinish(lapTime);
-		if (size + 1 < lapCap) {
-			Lap newLap = new Lap();
-			newLap.setStart(lapTime);
-			laps.add(newLap);
-			size++;
-		}
-	}
-	
-	
-		
+    public LapRace(int limit) {
+        this.limit = limit;
+    }
+
+
+    @Override
+    protected boolean testLimit(Time time) {
+        if(super.getLaps() <= limit)
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    protected Race copy() {
+        return new LapRace(limit);
+    }
 }

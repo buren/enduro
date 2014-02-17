@@ -19,7 +19,9 @@ public class SortName extends Sorter {
 			String line = (String) itr.next();
 			line = formatString(line);	
 			String[] lines = line.split(";");
-			Participant participant = new Participant(Integer.parseInt(lines[0]));
+
+            int id = Integer.parseInt(lines[0]);
+			Participant participant = new Participant(id);
 			participant.setName(lines[columnNbr]);
 			raceEvent.addParticipant(participant);
 		}

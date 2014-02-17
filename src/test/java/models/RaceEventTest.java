@@ -35,7 +35,7 @@ public class RaceEventTest {
 	@Test
 	public void testAddStartTime() {
 		raceEvent.addStart(part1, new Time("12.00.00"));
-		assertEquals("Should be the same", "12.00.00", raceEvent.getStart(part1).toString());
+		assertEquals("Should be the same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
 	}
 
 	@Test
@@ -43,8 +43,8 @@ public class RaceEventTest {
 		raceEvent.addStart(part1,new Time("12.00.00"));
 		raceEvent.addStart(part2,new Time("13.00.00"));
 
-		assertEquals("Should be the same", "13.00.00", raceEvent.getStart(part2).toString());
-		assertEquals("Should be the same", "12.00.00", raceEvent.getStart(part1).toString());
+		assertEquals("Should be the same", "13.00.00", raceEvent.getParticipant(2).getRace().getStart().toString());
+		assertEquals("Should be the same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
 
 	}
 
@@ -58,7 +58,7 @@ public class RaceEventTest {
 
 	@Test
 	public void testGetNonExistingStartTime() throws Exception {
-		assertEquals("Should be the same", raceEvent.getStart(part2).toString(), new Time().toString());
+		assertEquals("Should be the same", raceEvent.getParticipant(2).getRace().getStart().toString(), new Time().toString());
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class RaceEventTest {
 	public void testStartAndFinish() {
 		raceEvent.addStart(part1, new Time("12.00.00"));
 		raceEvent.addFinish(part1, new Time("13.00.00"));
-		assertEquals("Should be the same", "12.00.00", raceEvent.getStart(part1).toString());
+		assertEquals("Should be the same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
 		assertEquals("Should be the same", "13.00.00", raceEvent.getFinish(part1).toString());
 	}
 
@@ -87,7 +87,7 @@ public class RaceEventTest {
 	public void testIfInTime() {
 		raceEvent.addParticipant(part1);
 		part1.setName("Calle");
-		assertEquals("Should be the same", raceEvent.getName(new Participant(1)),
+		assertEquals("Should be the same", raceEvent.getParticipant(1).getName()),
 				"Calle");
 	}
 	

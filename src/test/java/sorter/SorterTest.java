@@ -2,8 +2,11 @@ package sorter;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 
+import models.LapRace;
 import models.Participant;
 import models.RaceEvent;
 
@@ -15,48 +18,44 @@ import sorter.SortName;
 import sorter.SortStartTime;
 import sorter.Sorter;
 import utils.Enduro;
+import utils.FileReader;
 
 public class SorterTest {
 	private RaceEvent raceEvent;
+    FileReader fr;
+    String path;
 
 	@Before
 	public void setUp() throws Exception {
-		raceEvent = new RaceEvent(4);
+        path = Enduro.getInstance().getResourcePath("acceptanstester/iteration1/acceptanstest3_5/");
+		raceEvent = new RaceEvent(new LapRace(4));
+        FileReader fr = new FileReader();
 	}
 
 	@Test
 	public void testSetName() {
 		Sorter sort = new SortName();
-		try {
-			sort.insertInfo(
-					Enduro.getInstance()
-							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/namnfil.txt"),
-					"Name", raceEvent);
+        FileReader fr = new FileReader();
+        try {
+            Iterator iterator = fr.readFileByLine(path+"namnfil.txt");
+			sort.insertInfo(iterator,"Name", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", raceEvent.getName(new Participant(2)),
-				"Bengt Bsson");
+		assertEquals("Should be same", raceEvent.getParticipant(2).getName(), "Bengt Bsson");
 
 	}
 
 	@Test
 	public void testSetFinishTime() {
 		Sorter sort = new SortFinishTime();
-		Participant p = new Participant(1);
 		try {
-			sort.insertInfo(
-					Enduro.getInstance()
-							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/maltider.txt"),
-					"Maltider", raceEvent);
+            Iterator iterator = fr.readFileByLine(path+"maltider.txt");
+			sort.insertInfo(iterator, "Maltider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		assertEquals("Should be same", "13.23.34", raceEvent.getFinish(p)
-				.toString());
+		assertEquals("Should be same", "13.23.34", raceEvent.getParticipant(1).getRace().print(3));
 
 	}
 
@@ -74,70 +73,62 @@ public class SorterTest {
 		raceEvent.addParticipant(p4);
 		raceEvent.addParticipant(p5);
 		try {
-			sort.insertInfo(
-					Enduro.getInstance()
-							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/starttider.txt"),
-					"StartTider", raceEvent);
+            Iterator iterator = fr.readFileByLine(path+"starttider.txt");
+			sort.insertInfo(iterator, "StartTider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p1)
-				.toString());
-
+		assertEquals("Should be same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
 	}
 
 	@Test
 	public void testSetStartTime() {
 		Sorter sort = new SortStartTime();
-		Sorter namesort = new SortName();
-		Participant p = new Participant(1);
+		Sorter nameSort = new SortName();
 		try {
-			namesort.insertInfo(
-					Enduro.getInstance()
-							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/namnfil.txt"),
-					"Namn", raceEvent);
-			sort.insertInfo(
-					Enduro.getInstance()
-							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/starttider.txt"),
-					"StartTider", raceEvent);
+            Iterator iterator = fr.readFileByLine(path+"namnfil.txt");
+			nameSort.insertInfo(iterator, "Namn", raceEvent);
+            iterator = fr.readFileByLine(path+"starttider.txt");
+			sort.insertInfo(iterator,"StartTider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p)
-				.toString());
+		assertEquals("Should be same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
 
 	}
 
 	@Test
 	public void testSetMultipleFinishTime() {
-		RaceEvent rc = new RaceEvent(10);
+		RaceEvent rc = new RaceEvent(new LapRace(10));
 		SortFinishTime sort = new SortFinishTime();
-		Participant participant = new Participant(1);
 		Sorter originalSort;
 
 		try {
 			String basePath = Enduro.getInstance().getResourcePath(
 					"acceptanstester/iteration2/acceptanstest10/");
-			String[] paths = new String[2];
-			paths[0] = basePath + "maltider1.txt";
-			paths[1] = basePath + "maltider2.txt";
 
-			originalSort = new SortName();
-			originalSort.insertInfo(basePath + "namnfil.txt", "Namn", rc);
-			originalSort = new SortStartTime();
-			originalSort.insertInfo(basePath + "starttider.txt", "StartTider",
-					rc);
-			sort.insertInfo(paths, "Maltider", rc);
+
+            Iterator iterator = fr.readFileByLine(basePath + "namnfil.txt");
+            originalSort = new SortName();
+            originalSort.insertInfo(iterator, "Namn", rc);
+
+            iterator = fr.readFileByLine(basePath + "starttider.txt");
+            originalSort = new SortStartTime();
+            originalSort.insertInfo(iterator, "StartTider",	rc);
+
+            String[] paths = new String[2];
+            paths[0] = basePath + "maltider1.txt";
+            paths[1] = basePath + "maltider2.txt";
+            Iterator[] iterators = new Iterator[2];
+            iterators[0] = fr.readFileByLine(paths[0]);
+            iterators[1] = fr.readFileByLine(paths[1]);
+            sort.insertInfo(iterators, "Maltider", rc);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		assertEquals("Should be same", "13.23.34", rc.getFinish(participant)
-				.toString());
+		assertEquals("Should be same", "13.23.34", rc.getParticipant(1).print(3));
 
 	}
 
@@ -145,23 +136,15 @@ public class SorterTest {
 	public void testMassStartTimes() {
 		Sorter sort = new SortStartTime();
 		Sorter namesort = new SortName();
-		Participant p = new Participant(1);
 		try {
-			namesort.insertInfo(
-					Enduro.getInstance()
-							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/namnfil.txt"),
-					"Namn", raceEvent);
-			sort.insertInfo(
-					Enduro.getInstance()
-							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/masstart.txt"),
-					"StartTider", raceEvent);
+            Iterator iterator = fr.readFileByLine(path+"namnfil.txt");
+			namesort.insertInfo(iterator, "Namn", raceEvent);
+            iterator = fr.readFileByLine(path+"masstart.txt");
+			sort.insertInfo(iterator, "StartTider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p)
-				.toString());
+		assertEquals("Should be same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
 	}
 
 }
