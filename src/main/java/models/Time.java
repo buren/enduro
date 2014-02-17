@@ -16,6 +16,9 @@ public class Time {
 	}
 
 	public Time(int seconds) {
+		if( seconds == 0){
+			empty= true;
+		}
 		this.seconds = seconds;
 	}
 

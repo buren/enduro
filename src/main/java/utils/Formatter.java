@@ -24,7 +24,7 @@ public class Formatter {
 	 *            number of laps for this event
 	 */
 	public Formatter(String s) {
-		raceEvent = new RaceEvent(Integer.parseInt(s));
+		raceEvent = new RaceEvent(s);
 	}
 
 	/**
@@ -143,8 +143,10 @@ public class Formatter {
 	 */
 	private String generateResults() {
 		StringBuilder sb = new StringBuilder();
-		for (Participant p : raceEvent.getKeySet()) {
-
+		
+		ArrayList<Participant> sortedArray = sortParticipantsById(raceEvent);
+		
+		for (Participant p : sortedArray) {
 			Time totalTime = raceEvent.getStart(p).compareTo(
 					raceEvent.getFinish(p));
 
@@ -156,6 +158,18 @@ public class Formatter {
 			sb.append(raceEvent.getFinish(p) + "\n");
 		}
 		return sb.toString();
+	}
+	
+	private ArrayList<Participant> sortParticipantsById(RaceEvent raceEvent) {
+		ArrayList<Participant> sortedParticipantArray = new ArrayList<Participant>();
+		for (Participant p : raceEvent.getKeySet()) {
+			sortedParticipantArray.add(p);
+		}
+		for (Participant p : raceEvent.getKeySet()) {
+			sortedParticipantArray.remove(p.getId() - 1);
+			sortedParticipantArray.add(p.getId() - 1, p);
+		}
+		return sortedParticipantArray;
 	}
 
 	/**
