@@ -13,14 +13,18 @@ public class FormatterController {
 
 	/**
 	 * 
-	 * @param s , the number of laps wanted for this contest.
+	 * @param s , the time cap for a race in format hh.mm.ss
 	 */
 	public FormatterController(String s) {
 		formatter = new Formatter(s);
 	}
 	
-	public FormatterController(int time) {
-		formatter = new Formatter(time);
+	/**
+	 * 
+	 * @param laps, the lap cap for a race.
+	 */
+	public FormatterController(int laps) {
+		formatter = new Formatter(laps);
 	}
 
 	/**

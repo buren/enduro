@@ -33,7 +33,6 @@ public class Race {
      * @param startTime the new startTime
      */
 	public void setStart(Time startTime) {
-
 		laps.get(0).setStart(startTime);
 	}
 
@@ -98,8 +97,7 @@ public class Race {
 
 	/**
 	 * Returns number of laps finished
-	 * 
-	 * @return number of finished laps
+	 * @return number of laps finished
 	 */
 	public int getFinishedLaps() {
 		return size;

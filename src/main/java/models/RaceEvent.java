@@ -1,6 +1,7 @@
 package models;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
@@ -101,6 +102,11 @@ public class RaceEvent {
 		return finish;
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 * @return the total race time for participant.
+	 */
 	public Time getTotalTime(Participant participant) {
 		if (raceEvent.get(participant) == null) {
 			return new Time();
@@ -108,19 +114,27 @@ public class RaceEvent {
 		return raceEvent.get(participant).getTotalTime();
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 *            participant to add to RaceEvent
+	 */
 	public void addParticipant(Participant participant) {
 		Race race;
-		if (laps == 0 && time != null){
-			 race = new Race(time);
-		}else {
-			 race = new Race(laps);	
+		if (laps == 0 && time != null) {
+			race = new Race(time);
+		} else {
+			race = new Race(laps);
 		}
 		raceEvent.put(participant, race);
 	}
+
 	/**
 	 * 
-	 * @param participant participant to rename
-	 * @param name	name to be assigned
+	 * @param participant
+	 *            participant to rename
+	 * @param name
+	 *            name to be assigned
 	 */
 	public void changeName(Participant participant, String name) {
 		if (raceEvent.get(participant) == null) {
@@ -153,7 +167,7 @@ public class RaceEvent {
      * @return
      */
 	public Race getRace(Participant participant) {
-		if(raceEvent.get(participant)==null){
+		if (raceEvent.get(participant) == null) {
 			throw new IllegalArgumentException("Obefintlig deltagare");
 		}
 		return raceEvent.get(participant);
@@ -185,4 +199,8 @@ public class RaceEvent {
 		return raceEvent.get(participant).getLapTime(lap);
 	}
 
+
+	public Set<Participant> getKeySet() {
+		return raceEvent.keySet();
+	}
 }

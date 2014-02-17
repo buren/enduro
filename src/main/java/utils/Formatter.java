@@ -19,12 +19,16 @@ public class Formatter {
 
     /**
      * Creates a formatter
-     * @param s number of laps for this event
+     * @param n number of laps for this event
      */
     public Formatter(int n) {
         raceEvent = new RaceEvent(n);
     }
-    
+
+    /**
+     * Creates a formatter
+     * @param s the timelimit
+     */
     public Formatter (String s){
     	raceEvent = new RaceEvent(s);
     }
