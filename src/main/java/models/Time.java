@@ -39,9 +39,25 @@ public class Time {
 	 */
 	public Time compareTo(Time compare) {
 		if (this.empty || compare.empty)
-			return new Time();
+			return new Time(0);
 		int difference = Math.abs(seconds - compare.seconds);
 		return new Time(difference);
+}
+
+	/**
+	 * Returns the difference as an int value , if one of the times is
+	 * empty returns zero.
+	 * 
+	 * 
+	 * @param compare
+	 * @return int difference
+	 */
+	public int compareValue(Time compare) {
+		if (this.empty || compare.empty)
+			return 0;
+		int difference = seconds - compare.seconds;
+		return (difference);
+
 	}
 
 	/**
@@ -74,6 +90,12 @@ public class Time {
 		int result = 1;
 		result = prime * result + seconds;
 		return result;
+	}
+	
+	
+	public Time addTimes(Time other) {
+		int total = seconds + other.seconds;
+		return new Time(total);		
 	}
 
 }
