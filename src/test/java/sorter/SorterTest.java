@@ -54,6 +54,7 @@ public class SorterTest {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+
 		assertEquals("Should be same", "13.23.34", raceEvent.getFinish(p).toString());
 
 	}
@@ -75,32 +76,34 @@ public class SorterTest {
 
 	}
 
-    //TODO, fix this
-//    @Test
-//    public void testSetMultipleFinishTime() {
-//        SortFinishTime sort = new SortFinishTime();
-//        Participant participant = new Participant(1);
-//        Sorter originalSort = new SortStartTime();
-//        try {
-//            String basePath = Enduro.getInstance()
-//                    .getResourcePath(
-//                            "acceptanstester/iteration2/acceptanstest10/");
-//            String[] paths = new String[2];
-//            paths[0] = basePath+"maltider1.txt";
-//            paths[1] = basePath+"maltider2.txt";
-//
-//            sort.insertInfo(paths, "Maltider", raceEvent);
-//            originalSort.insertInfo(basePath+"starttider.txt", "StartTider", raceEvent);
-//            originalSort = new SortName();
-//            originalSort.insertInfo(basePath+"namnfil.txt", "Namn", raceEvent);
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println();
-//        assertEquals("Should be same", "13.23.34", raceEvent.getFinish(participant).toString());
-//
-//    }
+    @Test
+    public void testSetMultipleFinishTime() {
+        RaceEvent rc = new RaceEvent(10);
+        SortFinishTime sort = new SortFinishTime();
+        Participant participant = new Participant(1);
+        Sorter originalSort;
+
+        try {
+            String basePath = Enduro.getInstance()
+                    .getResourcePath(
+                            "acceptanstester/iteration2/acceptanstest10/");
+            String[] paths = new String[2];
+            paths[0] = basePath+"maltider1.txt";
+            paths[1] = basePath+"maltider2.txt";
+
+            originalSort = new SortName();
+            originalSort.insertInfo(basePath+"namnfil.txt", "Namn", rc);
+            originalSort = new SortStartTime();
+            originalSort.insertInfo(basePath+"starttider.txt", "StartTider", rc);
+            sort.insertInfo(paths, "Maltider", rc);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals("Should be same", "13.23.34", rc.getFinish(participant).toString());
+
+    }
 
 
 }

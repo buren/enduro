@@ -10,6 +10,7 @@ import models.Time;
 
 public class SortFinishTime extends Sorter {
 
+
     public void insertInfo(String[] filePath, String column, RaceEvent raceEvent)
             throws FileNotFoundException {
         try {
@@ -76,16 +77,18 @@ public class SortFinishTime extends Sorter {
     }
 
     /**
-     * Sorts the Time array, uses regular arrays to not blow the heap apart.
+     * Sorts two lists, a list of times and IDs simultaneously, sorting by first time
+     * @param timeList list of times to sort
+     * @param idList list of IDs to sort
      */
-    private void sortTime(ArrayList<Time> timeList, ArrayList<Integer> intList) {
+    private void sortTime(ArrayList<Time> timeList, ArrayList<Integer> idList) {
         Time[] timeArray = new Time[timeList.size()];
         timeList.toArray(timeArray);
-        Integer[] intArray = new Integer[intList.size()];
-        intList.toArray(intArray);
+        Integer[] intArray = new Integer[idList.size()];
+        idList.toArray(intArray);
 
         timeList.clear();
-        intList.clear();
+        idList.clear();
 
         for(int i = 0; i < timeArray.length; i++) {
             for(int j = 1; j < (intArray.length-i); j++) {
@@ -102,7 +105,7 @@ public class SortFinishTime extends Sorter {
         }
         for (int i = 0; i < timeArray.length; i++) {
             timeList.add(timeArray[i]);
-            intList.add(intArray[i]);
+            idList.add(intArray[i]);
         }
     }
 
