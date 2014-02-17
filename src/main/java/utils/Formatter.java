@@ -13,6 +13,7 @@ import java.util.Iterator;
 
 public class Formatter {
 
+	
     private RaceEvent raceEvent;
     private int lapAmount;
 
