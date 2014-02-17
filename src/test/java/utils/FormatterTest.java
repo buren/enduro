@@ -25,6 +25,7 @@ public class FormatterTest {
 		formatter = new Formatter();
 		startTimes = new ArrayList<Time>();
 		finishTimes = new ArrayList<Time>();
+		names = new ArrayList<String>();
 		enduro = Enduro.getInstance();
 	}
 
@@ -32,7 +33,7 @@ public class FormatterTest {
 	public void tearDown() throws Exception {
 	}
 
-	// @Test
+	@Test
 	public void testSimpleResultCase() {
 		startTimes.add(new Time("12.12.12"));
 		startTimes.add(new Time("14.14.14"));
@@ -45,16 +46,29 @@ public class FormatterTest {
 		names.add("Patrik");
 		String resultList = formatter.generateResultList(startTimes,
 				finishTimes, names);
-		assertEquals(resultList, "StartNr; Namn; TotalTid; StartTider; Maltider\n"
-				+ "1; Oskar 01.01.01; 12.12.12; 13.13.13\n"
-				+ "2; Vikar 05.05.05; 14.14.14; 19.19.19\n"
-				+ "3; Patrik 02.59.31; 17.17.17; 20.16.48\n");
+		assertEquals(resultList,
+				"StartNo; Name; TotalTime; StartTime; ResultTime\n"
+						+ "1; Oskar; 01.01.01; 12.12.12; 13.13.13\n"
+						+ "2; Viktor; 05.05.05; 14.14.14; 19.19.19\n"
+						+ "3; Patrik; 02.59.31; 17.17.17; 20.16.48\n");
+	}
+
+	@Test
+	public void testMissingStartTime() {
+		finishTimes.add(new Time("13.13.13"));
+		names.add("Oskar");
+		String resultList = formatter.generateResultList(startTimes,
+				finishTimes, names);
+		assertEquals(resultList,
+				"StartNo; Name; TotalTime; StartTime; ResultTime\n"
+						+ "1; Oskar; --.--.--; Start?; 13.13.13\n");
 	}
 
 	@Test
 	public void testEmptyLists() {
 		Formatter printer = new Formatter();
-		String result = printer.generateResultList(startTimes, finishTimes, names);
+		String result = printer.generateResultList(startTimes, finishTimes,
+				names);
 		assertEquals(result, "Both lists are empty!");
 	}
 

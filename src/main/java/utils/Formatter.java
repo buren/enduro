@@ -15,7 +15,6 @@ import models.Time;
 
 public class Formatter {
 
-
 	/**
 	 * Actually returns the first line of the file.
 	 * 
@@ -50,18 +49,25 @@ public class Formatter {
 
 			int count = startTimes.size();
 			for (int i = 0; i < count; i++) {
+				String startTime = startTimes.get(i).toString();
+				String finishTime = finishTimes.get(i).toString();
+				if (startTime.equals("--.--.--")) {
+					startTime = "Start?";
+				}
+				if (finishTime.equals("--.--.--")) {
+					finishTime = "Slut?";
+				}
+
 				Time totalTime = startTimes.get(i)
 						.compareTo(finishTimes.get(i));
-				sb.append(i + 1 + "; " + nameList.get(i)
-						+ "; " + totalTime + "; "
-						+ startTimes.get(i) + "; "
-						+ finishTimes.get(i) + "\n");
+				sb.append(i + 1 + "; " + nameList.get(i) + "; " + totalTime
+						+ "; " + startTime + "; " + finishTime + "\n");
 
 			}
+			System.out.println(sb);
 			return sb.toString();
 		}
 	}
-
 
 	/**
 	 * @param pathToStartFile
@@ -105,8 +111,6 @@ public class Formatter {
 			nameList.add(temp.substring(index + 1));
 
 		}
-
-	
 
 		return generateResultList(startList, endList, nameList);
 	}
