@@ -10,6 +10,9 @@ import java.util.Date;
 
 public class TimeArea extends JTextField implements ActionListener {
 
+    /**
+     * Creates a new TimeArea
+     */
     public TimeArea() {
         this.setEditable(false);
         Timer t = new Timer(1000, this);
@@ -18,7 +21,10 @@ public class TimeArea extends JTextField implements ActionListener {
         this.setFont(font);
     }
 
-
+    /**
+     * Changes the time every second.
+     * @param actionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");

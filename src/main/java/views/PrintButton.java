@@ -21,6 +21,15 @@ public class PrintButton extends JButton implements ActionListener {
 	private JTextArea statusText;
 	private FormatterController formCont;
 
+    /**
+     * Creates a new PrintButton
+     * @param s the button text.
+     * @param sb a LoadStartButton
+     * @param fb a LoadFinishButton
+     * @param nb a LoadNamesButton
+     * @param statusText the statusText
+     * @param formCont the formatterController
+     */
 	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb,
 			LoadNamesButton nb, JTextArea statusText,
 			FormatterController formCont) {
@@ -33,6 +42,10 @@ public class PrintButton extends JButton implements ActionListener {
 		this.formCont = formCont;
 	}
 
+    /**
+     * Prints the results to a file
+     * @param e
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
