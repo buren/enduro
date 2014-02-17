@@ -6,11 +6,13 @@ För att använda formaterare:
 
 1. Kör .jar filen.
 2. Tryck på ```"Formaterare"```-knappen.
-3. Tryck på ```"Ladda in "startfil"```-knappen och välj sedan textfilen med starttider.
-4. Tryck på ```"Ladda in "målfil"```-knappen och välj sedan textfilen med måltider.
-5. Tryck på ```"Ladda in "namnfil"```-knappen och välj sedan textfilen med namn.
-6. Tryck på ```"Spara resultat till fil"```-knappen och välj sedan plats där du vill spara filen och skriv namnet du vill ha på filen.
-7. Ange de antal varv som du vill få med i utskriften. Tryck ```"OK"```
+3. Välj mellan ```"Varv-lopp"``` och ```"Tids-lopp"```.
+4. Skriv in antal varv (siffror) eller tidsgräns på format hh.mm.ss beroende på val av lopp.
+5. Tryck på ```"Ladda in "startfil"```-knappen och välj sedan textfilen med starttider.
+6. Tryck på ```"Ladda in "målfil"```-knappen och välj sedan textfilen med måltider.
+7. Tryck på ```"Ladda in "namnfil"```-knappen och välj sedan textfilen med namn.
+8. Tryck på ```"Spara resultat till fil"```-knappen och välj sedan plats där du vill spara filen och skriv namnet du vill ha på filen.
+9. Ange de antal varv som du vill få med i utskriften. Tryck ```"OK"```
 
 För att använda registerare:
 
