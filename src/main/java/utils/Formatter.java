@@ -154,13 +154,14 @@ public class Formatter {
                                   String[] pathToFinishFile, String pathToNameFile)
             throws FileNotFoundException {
 
-        SortFinishTime sortFinishTime = new SortFinishTime();
-        sortFinishTime.insertInfo(pathToFinishFile, "Maltider", raceEvent);
 
         Sorter sort = new SortName();
         sort.insertInfo(pathToNameFile, "Namn", raceEvent);
         sort = new SortStartTime();
         sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
+
+        SortFinishTime sortFinishTime = new SortFinishTime();
+        sortFinishTime.insertInfo(pathToFinishFile, "Maltider", raceEvent);
 
         StringBuilder sb = new StringBuilder();
         sb.append("StartNo; Name; #Laps; TotalTime; ");
