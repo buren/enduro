@@ -37,13 +37,14 @@ public class Main {
 			GUIRegister reg = new GUIRegister(regCont);
 		} else if (n == 1) {
 			String s;
-			do{
-			s = JOptionPane.showInputDialog("Hur många varv ingår i loppet?");
-			}
-			while(s=="");
+			do {
+				s = JOptionPane
+						.showInputDialog("Hur många varv ingår i loppet?");
+			} while (s != null && s.equals(""));
+			if(s != null) {
 			FormatterController formCont = new FormatterController(s);
 			new GUIFormatter(formCont);
+			}
 		}
-
 	}
 }
