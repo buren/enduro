@@ -1,5 +1,3 @@
-#!/bin/bash
-
 __enduro-install-maven() {
     current_dir=$(pwd)
     mkdir $HOME/apps
@@ -20,9 +18,12 @@ __enduro-install-maven() {
 __enduro-install-source() {
     current_dir=$(pwd)
     echo "[ENDURO] Downloading enduro"
-    cd "$1" && git clone git@github.com:buren/enduro.git && echo "[ENDURO] Downloaded enduro"
+    echo $1
+    echo " $1 "
+    cd $target_dir && git clone git@github.com:buren/enduro.git && echo "[ENDURO] Downloaded enduro"
     echo "[ENDURO] Installing enduro"
-    cd enduro
+    mkdir $target_dir/enduro
+    cd $target_dir/enduro
     $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn clean install
     echo "[ENDURO] Installed. Testing done."
     echo "[ENDURO] Check status."
