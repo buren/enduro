@@ -6,17 +6,31 @@ public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
 	private int laps;
 	private String time;
-	
+
+	/**
+	 * 
+	 * @param laps
+	 *            , the lap cap for a race.
+	 */
 	public RaceEvent(int laps) {
 		raceEvent = new HashMap<Participant, Race>();
 		this.laps = laps;
 	}
-	
-	public RaceEvent(String time){
+
+	/**
+	 * 
+	 * @param time
+	 *            , the time cap for a race in format hh.mm.ss
+	 */
+	public RaceEvent(String time) {
 		raceEvent = new HashMap<Participant, Race>();
 		this.time = time;
 	}
 
+	/**
+	 * 
+	 * @return - the of RaceEvent.
+	 */
 	public int size() {
 		return raceEvent.size();
 	}
@@ -30,7 +44,6 @@ public class RaceEvent {
 	 * @param startTime
 	 *            Value of starting time
 	 */
-
 	public void addStart(Participant participant, Time startTime) {
 		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);
@@ -90,6 +103,11 @@ public class RaceEvent {
 		return finish;
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 * @return the total race time for participant.
+	 */
 	public Time getTotalTime(Participant participant) {
 		if (raceEvent.get(participant) == null) {
 			return new Time();
@@ -97,19 +115,27 @@ public class RaceEvent {
 		return raceEvent.get(participant).getTotalTime();
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 *            participant to add to RaceEvent
+	 */
 	public void addParticipant(Participant participant) {
 		Race race;
-		if (laps == 0 && time != null){
-			 race = new Race(time);
-		}else {
-			 race = new Race(laps);	
+		if (laps == 0 && time != null) {
+			race = new Race(time);
+		} else {
+			race = new Race(laps);
 		}
 		raceEvent.put(participant, race);
 	}
+
 	/**
 	 * 
-	 * @param participant participant to rename
-	 * @param name	name to be assigned
+	 * @param participant
+	 *            participant to rename
+	 * @param name
+	 *            name to be assigned
 	 */
 	public void changeName(Participant participant, String name) {
 		if (raceEvent.get(participant) == null) {
@@ -122,6 +148,11 @@ public class RaceEvent {
 		}
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 * @return the name of participant
+	 */
 	public String getName(Participant participant) {
 		for (Participant p : raceEvent.keySet()) {
 			if (p.getId() == participant.getId()) {
@@ -131,26 +162,42 @@ public class RaceEvent {
 		addParticipant(participant);
 		return participant.getName();
 	}
-	
+
+	/**
+	 * 
+	 * @param participant
+	 * @return the Race of participant
+	 */
 	public Race getRace(Participant participant) {
-		if(raceEvent.get(participant)==null){
+		if (raceEvent.get(participant) == null) {
 			throw new IllegalArgumentException("Obefintlig deltagare");
 		}
 		return raceEvent.get(participant);
 	}
 
+	/**
+	 * 
+	 * @param participant
+	 * @param lap
+	 * @return get start time for lap# for participant, if no participant returns empty time.
+	 */
 	public Time getLapStartTime(Participant participant, int lap) {
 		if (raceEvent.get(participant) == null) {
 			return new Time();
 		}
 		return raceEvent.get(participant).getLapStartTime(lap);
 	}
-	
+
+	/**
+	 * 
+	 * @param participant
+	 * @param lap
+	 * @return get lap time for lap# for participant, if no participant returns empty time.
+	 */
 	public Time getLapTime(Participant participant, int lap) {
 		if (raceEvent.get(participant) == null) {
 			return new Time();
 		}
 		return raceEvent.get(participant).getLapTime(lap);
 	}
-
 }
