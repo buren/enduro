@@ -1,6 +1,7 @@
 package models;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
@@ -106,10 +107,13 @@ public class RaceEvent {
 		}
 		raceEvent.put(participant, race);
 	}
+
 	/**
 	 * 
-	 * @param participant participant to rename
-	 * @param name	name to be assigned
+	 * @param participant
+	 *            participant to rename
+	 * @param name
+	 *            name to be assigned
 	 */
 	public void changeName(Participant participant, String name) {
 		if (raceEvent.get(participant) == null) {
@@ -131,9 +135,9 @@ public class RaceEvent {
 		addParticipant(participant);
 		return participant.getName();
 	}
-	
+
 	public Race getRace(Participant participant) {
-		if(raceEvent.get(participant)==null){
+		if (raceEvent.get(participant) == null) {
 			throw new IllegalArgumentException("Obefintlig deltagare");
 		}
 		return raceEvent.get(participant);
@@ -145,12 +149,16 @@ public class RaceEvent {
 		}
 		return raceEvent.get(participant).getLapStartTime(lap);
 	}
-	
+
 	public Time getLapTime(Participant participant, int lap) {
 		if (raceEvent.get(participant) == null) {
 			return new Time();
 		}
 		return raceEvent.get(participant).getLapTime(lap);
+	}
+
+	public Set<Participant> getKeySet() {
+		return raceEvent.keySet();
 	}
 
 }
