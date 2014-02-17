@@ -18,6 +18,10 @@ public class FormatterController {
 	public FormatterController(String s) {
 		formatter = new Formatter(s);
 	}
+	
+	public FormatterController(int time) {
+		formatter = new Formatter(time);
+	}
 
 	/**
 	 * Writes the Strings within the Iterator to the given filepath.

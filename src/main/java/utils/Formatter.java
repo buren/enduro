@@ -21,8 +21,12 @@ public class Formatter {
      * Creates a formatter
      * @param s number of laps for this event
      */
-    public Formatter(String s) {
-        raceEvent = new RaceEvent(Integer.parseInt(s));
+    public Formatter(int n) {
+        raceEvent = new RaceEvent(n);
+    }
+    
+    public Formatter (String s){
+    	raceEvent = new RaceEvent(s);
     }
 
     /**
@@ -92,8 +96,6 @@ public class Formatter {
     public String generateResultList(String pathToStartFile,
                                      String pathToFinishFile, String pathToNameFile, int lapAmount) throws FileNotFoundException {
         this.lapAmount = lapAmount;
-        raceEvent = new RaceEvent(lapAmount);
-
         String[] pathsToFinishFiles = new String[1];
         pathsToFinishFiles[0] = pathToFinishFile;
 
@@ -118,8 +120,6 @@ public class Formatter {
     public String generateResultList(String pathToStartFile,
                                      String[] pathsToFinishFiles, String pathToNameFile, int lapAmount) throws FileNotFoundException {
         this.lapAmount = lapAmount;
-        raceEvent = new RaceEvent(lapAmount);
-
         String resultString;
         resultString = generateHeader(pathToStartFile, pathsToFinishFiles, pathToNameFile);
         resultString += generateResults();
@@ -138,7 +138,7 @@ public class Formatter {
             Time totalTime = raceEvent.getStart(p).compareTo(raceEvent.getFinish(p));
 
             sb.append(i + "; " + raceEvent.getName(p) + "; ");
-            sb.append((raceEvent.getRace(p).getCurrentLap()) + "; ");
+            sb.append((raceEvent.getRace(p).getFinishedLaps()) + "; ");
             sb.append(totalTime + "; ");
             sb.append(printTotalLapTimes(p));
             sb.append(printActualLapTimes(p));

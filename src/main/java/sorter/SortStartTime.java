@@ -21,6 +21,7 @@ public class SortStartTime extends Sorter {
 
 			line = formatString(line);
 			String[] lines = line.split(";");
+			
 			raceEvent.addStart(new Participant(Integer.parseInt(lines[0])),
 					new Time(lines[columnNbr]));
 		}

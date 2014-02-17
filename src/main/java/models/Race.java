@@ -5,16 +5,32 @@ import java.util.ArrayList;
 public class Race {
 	private ArrayList<Lap> laps;
 	private int size;
-	private int sizeCap;
-	
+	private int lapCap;
+	private Time timeCap;
+
 	/**
+<<<<<<< HEAD
 	 * Creates a new race
 	 * @param sizeCap , max number of laps allowed.
 	 */
 	public Race(int sizeCap) {
+=======
+	 * 
+	 * @param lapCap
+	 *            ,
+	 */
+
+	public Race(int lapCap) {
 		laps = new ArrayList<>();
 		laps.add(new Lap());
-		this.sizeCap = sizeCap;
+		this.lapCap = lapCap;
+	}
+
+	public Race(String timeCap) {
+		this.timeCap = new Time(timeCap);
+>>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
+		laps = new ArrayList<>();
+		laps.add(new Lap());
 	}
 
     /**
@@ -22,6 +38,7 @@ public class Race {
      * @param startTime the new startTime
      */
 	public void setStart(Time startTime) {
+
 		laps.get(0).setStart(startTime);
 	}
 
@@ -34,11 +51,19 @@ public class Race {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Sets a finishtime for the race.
 	 * @param finishTime the finishTime
+=======
+	 * Sets a finishtime for the race if missing.
+	 * 
+	 * @param finishTime
+>>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
 	 */
 	public void setFinish(Time finishTime) {
-		laps.get(size).setFinish(finishTime);
+		if (laps.get(size).getFinish().isEmpty() == true ){
+		laps.get(size).setFinish(finishTime);	
+		}
 	}
 
 	/**
@@ -76,18 +101,28 @@ public class Race {
 	 * @return the elapsed time for specified lap.
 	 */
 	public Time getLapTime(int lap) {
-        if (lap > laps.size()) {
-            return new Time();
-        }
+		if (lap > laps.size()) {
+			return new Time();
+		}
 		return laps.get(lap - 1).getTotalTime();
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Returns number of laps Started
 	 * @return the current lap.
+=======
+	 * Returns number of laps finished
+	 * 
+	 * @return
+>>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
 	 */
+	public int getFinishedLaps() {
+		return size;
+	}
+	
 	public int getCurrentLap() {
-		return size + 1;
+		return getFinishedLaps() + 1;
 	}
 
     /**
@@ -95,7 +130,7 @@ public class Race {
      * @return
      */
 	public int getLapsCap() {
-		return sizeCap;
+		return lapCap;
 	}
 
 	/**
@@ -106,25 +141,41 @@ public class Race {
 	 * @return
 	 */
 	public Time getLapStartTime(int lap) {
-        if (lap > laps.size()) {
-            return new Time();
-        }
+		if (lap > laps.size()) {
+			return new Time();
+		}
 		return laps.get(lap - 1).getStart();
 	}
 
 	/**
 	 * When passing the finish/start line, adds a new finishtime to the current
 	 * lap and starts a new lap with the same time.
+<<<<<<< HEAD
 	 * 
 	 * @param lapTime Time to add.
+=======
+	 * If lap based race it doesn't add new laps past the lapcap.
+	 * If time based race it doesn't add new laps past the timecap.
+	 * @param lapTime
+>>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
 	 */
 	public void setLapTime(Time lapTime) {
-		laps.get(size).setFinish(lapTime);
-		if (size + 1 < sizeCap) {
-			Lap newLap = new Lap();
-			newLap.setStart(lapTime);
-			laps.add(newLap);
-			size++;
+		setFinish(lapTime);
+		if (lapCap != 0) {
+			if (size + 1 < lapCap) {
+				Lap newLap = new Lap();
+				newLap.setStart(lapTime);
+				laps.add(newLap);
+				size++;
+			}
+		} else {
+			if (timeCap.addTimes(getStart()).compareValue(lapTime) > 0) {
+				Lap newLap = new Lap();
+				newLap.setStart(lapTime);
+				laps.add(newLap);
+				size++;
+			}
+
 		}
 	}
 }

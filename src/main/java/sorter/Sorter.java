@@ -67,7 +67,13 @@ public abstract class Sorter {
 	 * @param itr the iterator containing the rows
 	 * @param raceEvent the raceEvent that gets the information.
 	 */
+<<<<<<< HEAD
 	protected abstract void addInfo(int columnNbr, Iterator itr,
 			RaceEvent raceEvent);
+=======
+
+	protected abstract void addInfo(int columnNbr, Iterator<String> itr,
+			RaceEvent time);
+>>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
 
 }
