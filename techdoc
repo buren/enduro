@@ -51,6 +51,10 @@ Package sorter:
 	Man anropar funktionen insertInfo som har tre parametrar (String filePath, String column, RaceEvent raceEvent) där filePath är URL-adress till filen som ska läsas in. 
 	Column är namnet på motsvarande kolumn som man vill läsa från och RaceEvent är det RaceEvent som informationen ska sparas till.
 
+    SortFinishTime:
+    SortFinishTime kan användas för att läsa flera måltider. För att läsa flera måltider så skickar man in en sträng-vektor till insertInfo istället för en vanlig sträng.
+    
+
 Package utils:
 	
 	Enduro:

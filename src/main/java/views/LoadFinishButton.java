@@ -11,6 +11,11 @@ public class LoadFinishButton extends JButton implements ActionListener {
     private ArrayList<String> malfiler;
     private JTextArea statusText;
 
+    /**
+     * Creates a loadFinishbutton
+     * @param s the buttontext
+     * @param statusText the statusText to print to
+     */
     public LoadFinishButton(String s, JTextArea statusText) {
         super(s);
         this.addActionListener(this);
@@ -18,18 +23,26 @@ public class LoadFinishButton extends JButton implements ActionListener {
         malfiler = new ArrayList<>();
     }
 
+    /**
+     * Loads a finishTimes file
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         try {
             malfiler.add(fc.getSelectedFile().getAbsolutePath());
-            statusText.append("Måltider "+malfiler.size()+1+" inläst\n");
+            statusText.append("Måltider "+malfiler.size()+" inläst\n");
         } catch (NullPointerException nullPointer) {
             statusText.append("Ingen fil vald \n");
         }
     }
 
+    /**
+     *
+     * @return paths to the finishTime files
+     */
     public String[] getPaths() {
         String[] paths = new String[malfiler.size()];
         malfiler.toArray(paths);

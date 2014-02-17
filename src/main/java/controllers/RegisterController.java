@@ -11,7 +11,6 @@ public class RegisterController {
 	 * @param filePath
 	 *            , URL-address of target folder.
 	 */
-
 	public RegisterController(String filePath) {
 		this.filePath = filePath;
 	}

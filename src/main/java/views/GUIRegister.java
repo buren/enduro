@@ -18,6 +18,10 @@ public class GUIRegister extends JFrame {
 	private RegisterButton registerButton;
 	private RegisterController regCont;
 
+    /**
+     * Creates a new Register GUI
+     * @param regCont the register controller
+     */
 	public GUIRegister(RegisterController regCont) {
 		this.regCont = regCont;
 		this.setTitle("Enduro");
@@ -56,18 +60,34 @@ public class GUIRegister extends JFrame {
 		this.pack();
 	}
 
+    /**
+     *
+     * @return the panel
+     */
 	public JPanel getPanel() {
 		return panel;
 	}
 
+    /**
+     *
+     * @return the resultField
+     */
 	public JTextArea getResult() {
 		return resultField;
 	}
 
+    /**
+     *
+     * @return the registerField
+     */
 	public JTextField getRegister() {
 		return registerField;
 	}
 
+    /**
+     *
+     * @return the RegisterButton
+     */
 	public JButton getRegisterButton() {
 		return registerButton;
 	}

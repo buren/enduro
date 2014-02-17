@@ -11,12 +11,21 @@ public class LoadNamesButton extends JButton implements ActionListener {
 	private String namnfil;
 	private JTextArea statusText;
 
+    /**
+     * Creates a loadNamesbutton
+     * @param s the buttontext
+     * @param statusText the statusText to print to
+     */
 	public LoadNamesButton(String s, JTextArea statusText) {
 		super(s);
 		this.addActionListener(this);
 		this.statusText = statusText;
 	}
 
+    /**
+     * Sets the path to the name file
+     * @param e
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
@@ -29,6 +38,10 @@ public class LoadNamesButton extends JButton implements ActionListener {
 		}
 	}
 
+    /**
+     * Gets the path to the nameFile
+     * @return path to nameFile
+     */
 	public String getPath() {
 		return namnfil;
 	}

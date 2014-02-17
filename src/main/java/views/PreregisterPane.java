@@ -7,6 +7,10 @@ import javax.swing.JOptionPane;
 
 public class PreregisterPane extends JOptionPane {
 
+    /**
+     * Creates a preregister pane
+     * @param s paneText
+     */
 	public PreregisterPane(String s) {
 		super(s);
 	}
