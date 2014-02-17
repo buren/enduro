@@ -1,18 +1,12 @@
 package main;
 
-import java.io.File;
-import java.util.Arrays;
-
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-
-import utils.Enduro;
-import views.GUIFormatter;
-import views.GUIRegister;
 import controllers.FormatterController;
 import controllers.RegisterController;
+import views.GUIFormatter;
+import views.GUIRegister;
+
+import javax.swing.*;
+import java.io.File;
 
 public class Main {
 
