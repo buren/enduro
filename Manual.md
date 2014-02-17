@@ -18,5 +18,5 @@ För att använda registerare:
 2. Tryck på ```"Registrering"```-knappen.
 3. Välj sökväg till var du vill ha din tempfil. OBS! Om du startar programmet med samma sökväg och namn som på tidigare tempfil så sparas den gamla över och går förlorad.OBS!
 4. Skriv in deltagarens siffra i den övre vänstra textrutan och tryck sedan på ```"Registrera"```-knappen för att registrera nuvarade tid på vald deltagare.
-4 b. Om du vill ha masstart så matas "*" in i den vänstra textrutan.
-4 c. Om du trycker på ```"Registrera"```-knappen först så sparas tiden direkt och det kommer upp en prompt ruta där du kan skriva upp numret i efterhand.
+5. Om du vill ha masstart så matas "*" in i den vänstra textrutan.
+6. Om du trycker på ```"Registrera"```-knappen först så sparas tiden direkt och det kommer upp en prompt ruta där du kan skriva upp numret i efterhand.
