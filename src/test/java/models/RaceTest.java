@@ -13,8 +13,8 @@ public class RaceTest {
 
 	@Before
 	public void setUp() {
-		lapRace = new Race(3);
-		timeRace = new Race("00.30.00");
+		lapRace = new LapRace(3);
+		timeRace = new TimeRace("00.30.00");
 	}
 
 	@Test
