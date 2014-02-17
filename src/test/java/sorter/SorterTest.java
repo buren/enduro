@@ -61,19 +61,28 @@ public class SorterTest {
 	}
 
 	@Test
-	public void testSetStartTimeWithoutRegister() { // Namesort ej gjord
+	public void testSetSortStartTime() {
 		Sorter sort = new SortStartTime();
-		Participant p = new Participant(1);
+		Participant p1 = new Participant(1);
+		Participant p2 = new Participant(2);
+		Participant p3 = new Participant(3);
+		Participant p4 = new Participant(4);
+		Participant p5 = new Participant(5);
+		raceEvent.addParticipant(p1);
+		raceEvent.addParticipant(p2);
+		raceEvent.addParticipant(p3);
+		raceEvent.addParticipant(p4);
+		raceEvent.addParticipant(p5);
 		try {
 			sort.insertInfo(
 					Enduro.getInstance()
 							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/resultat.txt"),
+									"acceptanstester/iteration1/acceptanstest3_5/starttider.txt"),
 					"StartTider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", "--.--.--", raceEvent.getStart(p)
+		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p1)
 				.toString());
 
 	}
@@ -131,9 +140,9 @@ public class SorterTest {
 				.toString());
 
 	}
-	
+
 	@Test
-	public void testMassStartTimes(){
+	public void testMassStartTimes() {
 		Sorter sort = new SortStartTime();
 		Sorter namesort = new SortName();
 		Participant p = new Participant(1);

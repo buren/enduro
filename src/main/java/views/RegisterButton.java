@@ -40,6 +40,7 @@ public class RegisterButton extends JButton implements ActionListener {
 		Date date = new Date();
 		String time = new SimpleDateFormat("HH.mm.ss").format(date);
 		try {
+			
 			if (gui.getRegister().getText().equals("")) {
 				do {
 					startNr = JOptionPane.showInputDialog("Förregistrerad id");

@@ -71,8 +71,8 @@ public class PrintButton extends JButton implements ActionListener {
 				statusText.setText("Fel! En av filerna hittades inte!");
 			} catch (NumberFormatException numberFormatex) {
 				statusText.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");
-			} catch (Exception randomException) {
-				statusText.setText("Fel! Resultatfil ej utskriven!");
+//			} catch (Exception randomException) {
+//				statusText.setText(randomException.getMessage());
 			}
 		}
 	}
