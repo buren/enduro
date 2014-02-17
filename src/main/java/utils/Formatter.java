@@ -28,6 +28,16 @@ public class Formatter {
 	}
 
 	/**
+	 * Creates a formatter
+	 * 
+	 * @param s
+	 *            number of laps for this event
+	 */
+	public Formatter(int n) {
+		raceEvent = new RaceEvent(n);
+	}
+
+	/**
 	 * Actually returns the first line of the file.
 	 * 
 	 * @param filePath

@@ -6,10 +6,16 @@ import java.util.Set;
 public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
 	private int laps;
-
+	private String time;
+	
 	public RaceEvent(int laps) {
 		raceEvent = new HashMap<Participant, Race>();
 		this.laps = laps;
+	}
+	
+	public RaceEvent(String time){
+		raceEvent = new HashMap<Participant, Race>();
+		this.time = time;
 	}
 
 	public int size() {
@@ -93,7 +99,12 @@ public class RaceEvent {
 	}
 
 	public void addParticipant(Participant participant) {
-		Race race = new Race(laps);
+		Race race;
+		if (laps == 0 && time != null){
+			 race = new Race(time);
+		}else {
+			 race = new Race(laps);	
+		}
 		raceEvent.put(participant, race);
 	}
 
