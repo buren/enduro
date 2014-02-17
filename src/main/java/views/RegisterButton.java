@@ -33,13 +33,12 @@ public class RegisterButton extends JButton implements ActionListener {
 			if (gui.getRegister().getText().equals("")) {
 				do {
 					startNr = JOptionPane.showInputDialog("Förregistrerad id");
-					respons = cont.formatResults(gui.getResult().getText(),
-							startNr, time);
-
 					if (startNr == null) {
 						throw new IllegalArgumentException(
 								"Avbruten registrering");
 					}
+					respons = cont.formatResults(gui.getResult().getText(),
+							startNr, time);
 				} while (startNr.equals(""));
 
 			} else {

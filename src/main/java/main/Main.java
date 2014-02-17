@@ -23,7 +23,6 @@ public class Main {
 		int n = JOptionPane.showOptionDialog(frame, "Välj programdel",
 				"Enduro", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-		System.out.println(n);
 		if (n == 0) {
 			File f;
 			String filePath;
