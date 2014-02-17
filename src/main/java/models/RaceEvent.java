@@ -1,6 +1,7 @@
 package models;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
@@ -199,5 +200,10 @@ public class RaceEvent {
 			return new Time();
 		}
 		return raceEvent.get(participant).getLapTime(lap);
+	}
+
+
+	public Set<Participant> getKeySet() {
+		return raceEvent.keySet();
 	}
 }
