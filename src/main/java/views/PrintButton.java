@@ -44,7 +44,7 @@ public class PrintButton extends JButton implements ActionListener {
 			try {
 				String inputValue = JOptionPane
 						.showInputDialog("Hur många varvtider önskas?");
-				String resultat = formCont.result(sb.getPath(), fb.getPath(),
+				String resultat = formCont.result(sb.getPath(), fb.getPaths(),
 						nb.getPath(), Integer.parseInt(inputValue));
 				String[] results = resultat.split("\n");
 				ArrayList<String> lines = new ArrayList<String>();
