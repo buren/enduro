@@ -8,29 +8,34 @@ public class Race {
 	private int sizeCap;
 	
 	/**
-	 * 
-	 * @param sizeCap , 
+	 * Creates a new race
+	 * @param sizeCap , max number of laps allowed.
 	 */
-
 	public Race(int sizeCap) {
 		laps = new ArrayList<>();
 		laps.add(new Lap());
 		this.sizeCap = sizeCap;
 	}
 
+    /**
+     * Sets startTime, if multiple laps then for the first lap.
+     * @param startTime the new startTime
+     */
 	public void setStart(Time startTime) {
 		laps.get(0).setStart(startTime);
-
 	}
 
+    /**
+     * Gets the startTime, if multiple laps then for the first lap.
+     * @return startTime the startTime
+     */
 	public Time getStart() {
 		return laps.get(0).getStart();
 	}
 
 	/**
 	 * Sets a finishtime for the race.
-	 * 
-	 * @param finishTime
+	 * @param finishTime the finishTime
 	 */
 	public void setFinish(Time finishTime) {
 		laps.get(size).setFinish(finishTime);
@@ -40,7 +45,7 @@ public class Race {
 	 * Returns the finishtime, if no finishtime has been registered returns the
 	 * last laptime.
 	 * 
-	 * @return
+	 * @return finishTime
 	 */
 	public Time getFinish() {
 		if (laps.get(size).getFinish().isEmpty())
@@ -51,7 +56,7 @@ public class Race {
 	/**
 	 * Returns the total time elapsed.
 	 * 
-	 * @return
+	 * @return the total time elapsed
 	 */
 	public Time getTotalTime() {
 		Time start = laps.get(0).getStart();
@@ -67,9 +72,8 @@ public class Race {
 	/**
 	 * Returns the total time of a lap. IE. time spent running that lap
 	 * 
-	 * @param lap
-	 *            , lap 1 is the first lap.
-	 * @return
+	 * @param lap , lap 1 is the first lap.
+	 * @return the elapsed time for specified lap.
 	 */
 	public Time getLapTime(int lap) {
         if (lap > laps.size()) {
@@ -80,13 +84,16 @@ public class Race {
 
 	/**
 	 * Returns number of laps Started
-	 * 
-	 * @return
+	 * @return the current lap.
 	 */
 	public int getCurrentLap() {
 		return size + 1;
 	}
 
+    /**
+     *
+     * @return
+     */
 	public int getLapsCap() {
 		return sizeCap;
 	}
@@ -109,7 +116,7 @@ public class Race {
 	 * When passing the finish/start line, adds a new finishtime to the current
 	 * lap and starts a new lap with the same time.
 	 * 
-	 * @param lapTime
+	 * @param lapTime Time to add.
 	 */
 	public void setLapTime(Time lapTime) {
 		laps.get(size).setFinish(lapTime);

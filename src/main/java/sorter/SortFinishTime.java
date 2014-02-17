@@ -11,6 +11,13 @@ import models.Time;
 public class SortFinishTime extends Sorter {
 
 
+    /**
+     * Finds the correct column, and then inserts it in the raceEvent
+     * @param filePath , URL-address of target files.
+     * @param column , name of column to sort
+     * @param raceEvent , RaceEvent to sort
+     * @throws FileNotFoundException
+     */
     public void insertInfo(String[] filePath, String column, RaceEvent raceEvent)
             throws FileNotFoundException {
         try {
@@ -42,6 +49,12 @@ public class SortFinishTime extends Sorter {
 
     }
 
+    /**
+     * Adds information within the file path to the correct column
+     * @param columnNbr the number of the column
+     * @param itr the iterator containing the rows
+     * @param raceEvent the raceEvent that gets the information.
+     */
     @Override
     protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
         while (itr.hasNext()) {
@@ -55,6 +68,12 @@ public class SortFinishTime extends Sorter {
     }
 
 
+    /**
+     * Adds information within the file path to the correct column, for multiple files
+     * @param columnNbr the number of the column
+     * @param itr the iterators containing the rows
+     * @param raceEvent the raceEvent that gets the information.
+     */
     protected void addInfo(int columnNbr, Iterator[] itr, RaceEvent raceEvent) {
         ArrayList<Time> timeList = new ArrayList<>();
         ArrayList<Integer> intList = new ArrayList<>();

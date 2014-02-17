@@ -9,18 +9,20 @@ import utils.FileReader;
 public abstract class Sorter {
 	protected FileReader fr;
 
+    /**
+     * Creates a new sorter
+     */
 	public Sorter() {
 		fr = new FileReader();
 	}
 	
 	/**
-	 * 
-	 * @param filePath , URL-address of target folder.
+	 * Finds the correct column, and then inserts it in the raceEvent
+	 * @param filePath , URL-address of target file.
 	 * @param column , name of column to sort
 	 * @param raceEvent , RaceEvent to sort
 	 * @throws FileNotFoundException
 	 */
-
 	public void insertInfo(String filePath, String column, RaceEvent raceEvent)
 			throws FileNotFoundException {
 		try {
@@ -44,12 +46,11 @@ public abstract class Sorter {
 	}
 	
 	/**
-	 * reformats string to remove blankspaces and replace "; " and ", " with ";".
+	 * Reformats string to remove blankspaces and replace "; " and ", " with ";".
 	 * @param string , string to be reformatted
 	 * @return reformatted string
 	 */
-	
-	protected String formatString(String string) { 
+	protected String formatString(String string) {
 		while (string.contains("\\s\\s")) {
 			string = string.replaceAll("\\s\\s", " ");
 		}
@@ -61,13 +62,12 @@ public abstract class Sorter {
 	}
 	
 	/**
-	 * adds information within the file path to the correct column
-	 * @param columnNbr
-	 * @param itr
-	 * @param time
+	 * Adds information within the file path to the correct column
+	 * @param columnNbr the number of the column
+	 * @param itr the iterator containing the rows
+	 * @param raceEvent the raceEvent that gets the information.
 	 */
-
 	protected abstract void addInfo(int columnNbr, Iterator itr,
-			RaceEvent time);
+			RaceEvent raceEvent);
 
 }

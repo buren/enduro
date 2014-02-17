@@ -6,11 +6,19 @@ public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
 	private int laps;
 
+    /**
+     * Creates a new RaceEvent
+     * @param laps  The number of laps in the race
+     */
 	public RaceEvent(int laps) {
 		raceEvent = new HashMap<Participant, Race>();
 		this.laps = laps;
 	}
 
+    /**
+     * Gets the number of participants
+     * @return number of participants
+     */
 	public int size() {
 		return raceEvent.size();
 	}
@@ -111,16 +119,25 @@ public class RaceEvent {
 		}
 	}
 
+    /**
+     * Gets the name of a participant
+     * @param participant A participant with the same id as we want to get the name of.
+     * @return Returns the name of the participant, otherwise it returns "Not Named"
+     */
 	public String getName(Participant participant) {
 		for (Participant p : raceEvent.keySet()) {
 			if (p.getId() == participant.getId()) {
 				return p.getName();
 			}
 		}
-		addParticipant(participant);
-		return participant.getName();
+		return "Not Named";
 	}
-	
+
+    /**
+     * Gets the race for the participant
+     * @param participant A participant with the same id as we want to get the race from.
+     * @return
+     */
 	public Race getRace(Participant participant) {
 		if(raceEvent.get(participant)==null){
 			throw new IllegalArgumentException("Obefintlig deltagare");
@@ -128,13 +145,25 @@ public class RaceEvent {
 		return raceEvent.get(participant);
 	}
 
+    /**
+     * Gets the time when the lap started
+     * @param participant A participant with the same id as we want to get the lap start time from.
+     * @param lap The lap we want the time for
+     * @return Returns the lap start time
+     */
 	public Time getLapStartTime(Participant participant, int lap) {
 		if (raceEvent.get(participant) == null) {
 			return new Time();
 		}
 		return raceEvent.get(participant).getLapStartTime(lap);
 	}
-	
+
+    /**
+     * Gets the time when the lap started
+     * @param participant A participant with the same id as we want to get the lap start time from.
+     * @param lap The lap we want the time for
+     * @return Returns the elapsed time
+     */
 	public Time getLapTime(Participant participant, int lap) {
 		if (raceEvent.get(participant) == null) {
 			return new Time();

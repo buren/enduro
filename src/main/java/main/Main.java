@@ -16,6 +16,10 @@ import controllers.RegisterController;
 
 public class Main {
 
+    /**
+     * Starts the program
+     * @param args  command line arguments
+     */
 	public static void main(String[] args) {
 
 		JFrame frame = new JFrame();

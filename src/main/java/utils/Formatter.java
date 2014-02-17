@@ -48,11 +48,12 @@ public class Formatter {
     }
 
     /**
-     * @param startTimes
-     * @param finishTimes
-     * @param nameList
-     * @param lapAmount
-     * @return
+     * Creates a result list based on ArrayList of information
+     * @param startTimes List of startTimes
+     * @param finishTimes List of finishTimes
+     * @param nameList List of names
+     * @param lapAmount The number of laps
+     * @return A formated list containing the information
      */
     public String generateResultList(ArrayList<Time> startTimes,
                                      ArrayList<Time> finishTimes, ArrayList<String> nameList,
@@ -79,10 +80,13 @@ public class Formatter {
     }
 
     /**
+     *
      * Generates a result string.
-     * @param pathToStartFile
-     * @param pathToFinishFile
-     * @return
+     * @param pathToStartFile URL to the start file
+     * @param pathToFinishFile URL to the finish file
+     * @param pathToNameFile URL to the name file
+     * @param lapAmount The number of laps
+     * @return A formated list containing the information
      * @throws FileNotFoundException
      */
     public String generateResultList(String pathToStartFile,
@@ -103,10 +107,11 @@ public class Formatter {
     /**
      * Generates a result list for multiple finishTime files
      *
-     * @param pathToStartFile
-     * @param pathsToFinishFiles
-     * @param pathToNameFile
-     * @param lapAmount
+     * @param pathToStartFile URL to the start file
+     * @param pathsToFinishFiles URL to the finish files
+     * @param pathToNameFile URL to the name file
+     * @param lapAmount The number of laps
+     * @return A formated list containing the information
      * @return
      * @throws FileNotFoundException
      */
@@ -123,8 +128,8 @@ public class Formatter {
     }
 
     /**
-     * Generates the results, I.E name and times for the output string.
-     * @return
+     * Generates the finished result string
+     * @return the finished result string
      */
     private String generateResults() {
         StringBuilder sb = new StringBuilder();
@@ -143,12 +148,7 @@ public class Formatter {
     }
 
     /**
-     * Generates a header for the result string.
-     * @param pathToStartFile
-     * @param pathToFinishFile
-     * @param pathToNameFile
-     * @return
-     * @throws FileNotFoundException
+     * generates the header and adds information from files to sorters.
      */
     private String generateHeader(String pathToStartFile,
                                   String[] pathToFinishFile, String pathToNameFile)
@@ -177,11 +177,7 @@ public class Formatter {
         return sb.toString();
     }
 
-    /**
-     * @param participant
-     * @param
-     * @return
-     */
+
     private String printTotalLapTimes(Participant participant) {
         StringBuilder sb = new StringBuilder();
 
@@ -193,11 +189,7 @@ public class Formatter {
         return sb.toString();
     }
 
-    /**
-     * @param participant
-     * @param
-     * @return
-     */
+
     private String printActualLapTimes(Participant participant) {
         StringBuilder sb = new StringBuilder();
 

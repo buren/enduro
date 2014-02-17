@@ -5,20 +5,35 @@ public class Time {
 	private int seconds;
 	private boolean empty;
 
+    /**
+     * Creates a new empty time
+     */
 	public Time() {
 		empty = true;
 	}
 
+    /**
+     * Creates a new time
+     * @param time the time
+     */
 	public Time(String time) {
 		seconds = Integer.parseInt(time.substring(0, 2)) * 3600;
 		seconds += Integer.parseInt(time.substring(3, 5)) * 60;
 		seconds += Integer.parseInt(time.substring(6));
 	}
 
+    /**
+     * Creates a new time, based of seconds
+     * @param seconds Number of seconds since midnight.
+     */
 	public Time(int seconds) {
 		this.seconds = seconds;
 	}
 
+    /**
+     * Returns a string representing the time
+     * @return a string
+     */
 	@Override
 	public String toString() {
 		if (empty)
@@ -75,10 +90,18 @@ public class Time {
 		return true;
 	}
 
+    /**
+     * Checks if there is a time
+     * @return true if it is empty
+     */
 	public boolean isEmpty() {
 		return empty;
 	}
 
+    /**
+     * Generates the hashCode
+     * @return the hashcode
+     */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

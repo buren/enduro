@@ -15,7 +15,6 @@ public class FormatterController {
 	 * 
 	 * @param s , the number of laps wanted for this contest.
 	 */
-
 	public FormatterController(String s) {
 		formatter = new Formatter(s);
 	}
@@ -28,7 +27,6 @@ public class FormatterController {
 	 * @param iter
 	 *            , iterator of strings to be written.
 	 */
-
 	public void writeToFile(String filePath, Iterator<String> iter) {
 		FileWriter.writeFile(filePath, iter);
 	}
@@ -48,7 +46,6 @@ public class FormatterController {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-
 	public String result(String startPath, String[] finishPath, String namePath,
 			int nLaps) throws FileNotFoundException {
 
