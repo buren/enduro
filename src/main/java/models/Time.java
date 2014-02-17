@@ -35,7 +35,7 @@ public class Time {
 	 * returns a new empty time.
 	 * 
 	 * @param compare
-	 * @return
+	 * @return time difference
 	 */
 	public Time compareTo(Time compare) {
 		if (this.empty || compare.empty)

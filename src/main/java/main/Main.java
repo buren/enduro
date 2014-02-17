@@ -37,7 +37,12 @@ public class Main {
 			RegisterController regCont = new RegisterController(filePath);
 			GUIRegister reg = new GUIRegister(regCont);
 		} else if (n == 1) {
-			FormatterController formCont = new FormatterController();
+			String s;
+			do{
+			s = JOptionPane.showInputDialog("Hur många varv ingår i loppet?");
+			}
+			while(s=="");
+			FormatterController formCont = new FormatterController(s);
 			new GUIFormatter(formCont);
 		}
 

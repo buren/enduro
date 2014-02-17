@@ -13,8 +13,17 @@ import models.RaceEvent;
 import models.Time;
 
 public class Formatter {
-    private RaceEvent rc;
+
+    private RaceEvent raceEvent;
     private int lapAmount;
+
+    /**
+     * Creates a formatter
+     * @param s number of laps for this event
+     */
+    public Formatter(String s) {
+        raceEvent = new RaceEvent(Integer.parseInt(s));
+    }
 
     /**
      * Actually returns the first line of the file.
@@ -70,6 +79,7 @@ public class Formatter {
     }
 
     /**
+     * Generates a result string.
      * @param pathToStartFile
      * @param pathToFinishFile
      * @return
@@ -78,7 +88,7 @@ public class Formatter {
     public String generateResultList(String pathToStartFile,
                                      String pathToFinishFile, String pathToNameFile, int lapAmount) throws FileNotFoundException {
         this.lapAmount = lapAmount;
-        rc = new RaceEvent(lapAmount);
+        raceEvent = new RaceEvent(lapAmount);
 
         String[] pathsToFinishFiles = new String[1];
         pathsToFinishFiles[0] = pathToFinishFile;
@@ -103,7 +113,7 @@ public class Formatter {
     public String generateResultList(String pathToStartFile,
                                      String[] pathsToFinishFiles, String pathToNameFile, int lapAmount) throws FileNotFoundException {
         this.lapAmount = lapAmount;
-        rc = new RaceEvent(lapAmount);
+        raceEvent = new RaceEvent(lapAmount);
 
         String resultString;
         resultString = generateHeader(pathToStartFile, pathsToFinishFiles, pathToNameFile);
@@ -112,34 +122,45 @@ public class Formatter {
         return resultString;
     }
 
-
+    /**
+     * Generates the results, I.E name and times for the output string.
+     * @return
+     */
     private String generateResults() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= rc.size(); i++) {
+        for (int i = 1; i <= raceEvent.size(); i++) {
             Participant p = new Participant(i);
-            Time totalTime = rc.getStart(p).compareTo(rc.getFinish(p));
+            Time totalTime = raceEvent.getStart(p).compareTo(raceEvent.getFinish(p));
 
-            sb.append(i + "; " + rc.getName(p) + "; ");
-            sb.append((rc.getRace(p).getCurrentLap()) + "; ");
+            sb.append(i + "; " + raceEvent.getName(p) + "; ");
+            sb.append((raceEvent.getRace(p).getCurrentLap()) + "; ");
             sb.append(totalTime + "; ");
             sb.append(printTotalLapTimes(p));
             sb.append(printActualLapTimes(p));
-            sb.append(rc.getFinish(p) + "\n");
+            sb.append(raceEvent.getFinish(p) + "\n");
         }
         return sb.toString();
     }
 
+    /**
+     * Generates a header for the result string.
+     * @param pathToStartFile
+     * @param pathToFinishFile
+     * @param pathToNameFile
+     * @return
+     * @throws FileNotFoundException
+     */
     private String generateHeader(String pathToStartFile,
                                   String[] pathToFinishFile, String pathToNameFile)
             throws FileNotFoundException {
 
         SortFinishTime sortFinishTime = new SortFinishTime();
-        sortFinishTime.insertInfo(pathToFinishFile, "Maltider", rc);
+        sortFinishTime.insertInfo(pathToFinishFile, "Maltider", raceEvent);
 
         Sorter sort = new SortName();
-        sort.insertInfo(pathToNameFile, "Namn", rc);
+        sort.insertInfo(pathToNameFile, "Namn", raceEvent);
         sort = new SortStartTime();
-        sort.insertInfo(pathToStartFile, "StartTider", rc);
+        sort.insertInfo(pathToStartFile, "StartTider", raceEvent);
 
         StringBuilder sb = new StringBuilder();
         sb.append("StartNo; Name; #Laps; TotalTime; ");
@@ -165,7 +186,7 @@ public class Formatter {
 
         for (int i = 1; i <= lapAmount; i++) {
 
-            sb.append(rc.getRace(participant).getLapTime(i));
+            sb.append(raceEvent.getRace(participant).getLapTime(i));
             sb.append("; ");
         }
         return sb.toString();
@@ -180,7 +201,7 @@ public class Formatter {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 1; i <= lapAmount; i++) {
-            sb.append(rc.getRace(participant).getLapStartTime(i));
+            sb.append(raceEvent.getRace(participant).getLapStartTime(i));
             sb.append("; ");
         }
         return sb.toString();

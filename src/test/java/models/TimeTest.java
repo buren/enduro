@@ -1,6 +1,7 @@
 package models;
 
 import static org.junit.Assert.*;
+import models.Time;
 
 import org.junit.Before;
 import org.junit.Test;
