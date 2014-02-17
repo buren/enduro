@@ -54,6 +54,7 @@ public class PrintButton extends JButton implements ActionListener {
 				formCont.writeToFile(filePath, lines.iterator());
 				statusText.setText("Resultatfil utskriven!");
 			} catch (FileNotFoundException ex) {
+                ex.printStackTrace();
 				statusText.setText("Fel! En av filerna hittades inte!");
 			} catch (NumberFormatException numberFormatex) {
 				statusText.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");
