@@ -14,6 +14,7 @@ import models.Time;
 
 public class Formatter {
 
+	
     private RaceEvent raceEvent;
     private int lapAmount;
 
