@@ -2,7 +2,7 @@ Package controllers:
 
 	FormatterController:
 	Klassen tar in en parameter av typen String. Denna parameter är de antal varv som tävlingen ska innefatta.
-	FormatterController finns till för att skilja vyn från modellen. Det tar därför endast emot String parametrar.
+	FormatterController finns till för att skilja vyn från modellen, den tar därför endast emot String som parameter.
 
 	RegisterController:
 	Kommunikationslänk mellan vy och modell. Tar endast emot String som parametrar i samtliga metoder.
@@ -22,12 +22,12 @@ Package models:
 
 	Lap:
 	Modellering av ett varv eller en etapp.
-	Består av två Time-objekt där den ena representerar start tiden för varvet och den andra sluttiden.
+	Består av två Time-objekt där den ena representerar starttiden för varvet och den andra sluttiden.
 	Har metoder för att sätta och hämta start respektive sluttid.
 	
 	Participant:
 	Modellering av en deltagare.
-	När en participant skapas anges en int parameter i konstruktorn som blir deltagarens tävlingsid.
+	När en participant skapas anges en int parameter i konstruktorn som blir deltagarens tävlingsId.
 	I participant finns också möjlighet att lägga till ett namn.
 	Klassen innehåller också metoder för jämföring samt getters för namn och id, samt setter för namn.
 	
@@ -41,7 +41,7 @@ Package models:
 	Modellering av ett tävlingstilfälle med flera tävlare.
 	Konstruktorn tar emot en int parameter som anger hur många varv som tävligen består av.
 	Består av en samling Participants med deras tillhörande Race.
-	Har metoder för att hantera tillägg av Participants och tider samt jämföring däremellan.
+	Har metoder för att hantera tillägg av Participants och tider.
 	
 Package sorter:
 	
