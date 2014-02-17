@@ -17,4 +17,4 @@ http://maven.apache.org/guides/introduction/introduction-to-the-standard-directo
         src/site	        Site
         LICENSE.txt	        Project's license
         NOTICE.txt	        Notices and attributions required by libraries that the project depends on
-        README.txt	        Project's readme
+        README.md	        Project's readme
