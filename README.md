@@ -7,7 +7,8 @@
 
 ## Getting started
 
-Navigate (in a terminal) to the folder where you'd like to put the Enduro project folder.
+If you haven't generated ssh-keys, then you need to do so.
+You can follow the guide here: https://help.github.com/articles/generating-ssh-keys
 
 Then copy and paste this command:
 

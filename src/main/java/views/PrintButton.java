@@ -44,7 +44,7 @@ public class PrintButton extends JButton implements ActionListener {
 			try {
 				String inputValue = JOptionPane
 						.showInputDialog("Hur många varvtider önskas?");
-				String resultat = formCont.result(sb.getPath(), fb.getPath(),
+				String resultat = formCont.result(sb.getPath(), fb.getPaths(),
 						nb.getPath(), Integer.parseInt(inputValue));
 				String[] results = resultat.split("\n");
 				ArrayList<String> lines = new ArrayList<String>();
@@ -54,6 +54,7 @@ public class PrintButton extends JButton implements ActionListener {
 				formCont.writeToFile(filePath, lines.iterator());
 				statusText.setText("Resultatfil utskriven!");
 			} catch (FileNotFoundException ex) {
+                ex.printStackTrace();
 				statusText.setText("Fel! En av filerna hittades inte!");
 			} catch (NumberFormatException numberFormatex) {
 				statusText.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");

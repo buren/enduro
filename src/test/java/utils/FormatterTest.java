@@ -160,10 +160,10 @@ public class FormatterTest {
 //		event.addStart(p1, new Time("12:12:12"));
 //		event.getRace(p1).setLapTime(new Time("13:13:13"));
 //		System.out.println(event.getRace(p1).getStart());
-//	
+//
 //		System.out.println(formatter.printActualLapTimes(p1, 2));
-//		
+//
 //		assertEquals(formatter.printActualLapTimes(p1, 2), "13:13:13");
-//		
+//
 //	}
 }

@@ -49,7 +49,7 @@ public class FormatterController {
 	 * @throws FileNotFoundException
 	 */
 
-	public String result(String startPath, String finishPath, String namePath,
+	public String result(String startPath, String[] finishPath, String namePath,
 			int nLaps) throws FileNotFoundException {
 
 		return formatter.generateResultList(startPath, finishPath, namePath,
