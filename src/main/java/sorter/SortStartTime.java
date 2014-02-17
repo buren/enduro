@@ -8,16 +8,33 @@ import models.Time;
 
 public class SortStartTime extends Sorter {
 
+	/**
+	 * Adds information within the file path to the correct column
+	 * 
+	 * @param columnNbr
+	 *            the number of the column
+	 * @param itr
+	 *            the iterator containing the rows
+	 * @param raceEvent
+	 *            the raceEvent that gets the information.
+	 */
 	@Override
 	protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
+
 		while (itr.hasNext()) {
 			String line = (String) itr.next();
-
 			line = formatString(line);
 			String[] lines = line.split(";");
-			
-			raceEvent.addStart(new Participant(Integer.parseInt(lines[0])),
-					new Time(lines[columnNbr]));
+			if (lines[0].equals("*")) {
+				for (Participant p : raceEvent.getKeySet()) {
+					raceEvent.addStart(p, new Time(lines[columnNbr]));
+				}
+			} else {
+				Participant p = raceEvent.getParticipant(Integer
+						.parseInt(lines[0]));
+				raceEvent.addStart(p, new Time(lines[columnNbr]));
+
+			}
 		}
 	}
 

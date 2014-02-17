@@ -55,55 +55,113 @@ public class SorterTest {
 			e.printStackTrace();
 		}
 
-		assertEquals("Should be same", "13.23.34", raceEvent.getFinish(p).toString());
+		assertEquals("Should be same", "13.23.34", raceEvent.getFinish(p)
+				.toString());
+
+	}
+
+	@Test
+	public void testSetSortStartTime() {
+		Sorter sort = new SortStartTime();
+		Participant p1 = new Participant(1);
+		Participant p2 = new Participant(2);
+		Participant p3 = new Participant(3);
+		Participant p4 = new Participant(4);
+		Participant p5 = new Participant(5);
+		raceEvent.addParticipant(p1);
+		raceEvent.addParticipant(p2);
+		raceEvent.addParticipant(p3);
+		raceEvent.addParticipant(p4);
+		raceEvent.addParticipant(p5);
+		try {
+			sort.insertInfo(
+					Enduro.getInstance()
+							.getResourcePath(
+									"acceptanstester/iteration1/acceptanstest3_5/starttider.txt"),
+					"StartTider", raceEvent);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p1)
+				.toString());
 
 	}
 
 	@Test
 	public void testSetStartTime() {
 		Sorter sort = new SortStartTime();
+		Sorter namesort = new SortName();
 		Participant p = new Participant(1);
 		try {
+			namesort.insertInfo(
+					Enduro.getInstance()
+							.getResourcePath(
+									"acceptanstester/iteration1/acceptanstest3_5/namnfil.txt"),
+					"Namn", raceEvent);
 			sort.insertInfo(
 					Enduro.getInstance()
 							.getResourcePath(
-									"acceptanstester/iteration1/acceptanstest3_5/resultat.txt"),
+									"acceptanstester/iteration1/acceptanstest3_5/starttider.txt"),
 					"StartTider", raceEvent);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p).toString());
+		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p)
+				.toString());
 
 	}
 
-    @Test
-    public void testSetMultipleFinishTime() {
-        RaceEvent rc = new RaceEvent(10);
-        SortFinishTime sort = new SortFinishTime();
-        Participant participant = new Participant(1);
-        Sorter originalSort;
+	@Test
+	public void testSetMultipleFinishTime() {
+		RaceEvent rc = new RaceEvent(10);
+		SortFinishTime sort = new SortFinishTime();
+		Participant participant = new Participant(1);
+		Sorter originalSort;
 
-        try {
-            String basePath = Enduro.getInstance()
-                    .getResourcePath(
-                            "acceptanstester/iteration2/acceptanstest10/");
-            String[] paths = new String[2];
-            paths[0] = basePath+"maltider1.txt";
-            paths[1] = basePath+"maltider2.txt";
+		try {
+			String basePath = Enduro.getInstance().getResourcePath(
+					"acceptanstester/iteration2/acceptanstest10/");
+			String[] paths = new String[2];
+			paths[0] = basePath + "maltider1.txt";
+			paths[1] = basePath + "maltider2.txt";
 
-            originalSort = new SortName();
-            originalSort.insertInfo(basePath+"namnfil.txt", "Namn", rc);
-            originalSort = new SortStartTime();
-            originalSort.insertInfo(basePath+"starttider.txt", "StartTider", rc);
-            sort.insertInfo(paths, "Maltider", rc);
+			originalSort = new SortName();
+			originalSort.insertInfo(basePath + "namnfil.txt", "Namn", rc);
+			originalSort = new SortStartTime();
+			originalSort.insertInfo(basePath + "starttider.txt", "StartTider",
+					rc);
+			sort.insertInfo(paths, "Maltider", rc);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
-        assertEquals("Should be same", "13.23.34", rc.getFinish(participant).toString());
+		assertEquals("Should be same", "13.23.34", rc.getFinish(participant)
+				.toString());
 
-    }
+	}
 
+	@Test
+	public void testMassStartTimes() {
+		Sorter sort = new SortStartTime();
+		Sorter namesort = new SortName();
+		Participant p = new Participant(1);
+		try {
+			namesort.insertInfo(
+					Enduro.getInstance()
+							.getResourcePath(
+									"acceptanstester/iteration1/acceptanstest3_5/namnfil.txt"),
+					"Namn", raceEvent);
+			sort.insertInfo(
+					Enduro.getInstance()
+							.getResourcePath(
+									"acceptanstester/iteration1/acceptanstest3_5/masstart.txt"),
+					"StartTider", raceEvent);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p)
+				.toString());
+	}
 
 }

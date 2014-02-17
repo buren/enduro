@@ -109,7 +109,7 @@ public class RaceEventTest {
 		sort.insertInfo(enduro.getResourcePath("acceptanstester/iteration2/acceptanstest9/maltider.txt"), "Maltider", raceEvent);
 		assertEquals("Should be 00.30.00", raceEvent.getLapTime(new Participant(1), 1), new Time("00.30.00"));
 		assertEquals("Should be 00.30.00", raceEvent.getLapTime(new Participant(1), 2), new Time("00.30.00"));
-		assertEquals("Should be 12.00.00", raceEvent.getLapStartTime(new Participant(1), 2), new Time("12.30.00"));
+		assertEquals("Should be 12.30.00", raceEvent.getLapStartTime(new Participant(1), 2), new Time("12.30.00"));
 		
 	}
 	

@@ -169,34 +169,6 @@
       <y="45"/>
    </type>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=enduro/src\/main\/java<views{GUIRegister.java[GUIRegister"/>
-      <targetType="=enduro/src\/main\/java<views{RegisterButton.java[RegisterButton"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
-      <targetType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=enduro/src\/main\/java<models{Race.java[Race"/>
-      <targetType="=enduro/src\/main\/java<models{Lap.java[Lap"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=enduro/src\/main\/java<models{RaceEvent.java[RaceEvent"/>
-      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
       <sourceType="=enduro/src\/main\/java<views{RegisterButton.java[RegisterButton"/>
       <targetType="=enduro/src\/main\/java<views{PreregisterPane.java[PreregisterPane"/>
@@ -204,65 +176,20 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=enduro/src\/main\/java<views{GUIFormatter.java[GUIFormatter"/>
-      <targetType="=enduro/src\/main\/java<views{LoadNamesButton.java[LoadNamesButton"/>
+      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
+      <sourceType="=enduro/src\/main\/java<sorter{SortStartTime.java[SortStartTime"/>
+      <targetType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
       <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=enduro/src\/main\/java<views{GUIFormatter.java[GUIFormatter"/>
-      <targetType="=enduro/src\/main\/java<views{LoadFinishButton.java[LoadFinishButton"/>
-      <bendpoints>
+         <bendpoint>
+            <x="1292"/>
+            <y="808"/>
+         </bendpoint>
       </bendpoints>
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
       <sourceType="=enduro/src\/main\/java<models{Lap.java[Lap"/>
       <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
-      <targetType="=enduro/src\/main\/java<utils{FileReader.java[FileReader"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
-      <targetType="=enduro/src\/main\/java<models{Participant.java[Participant"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=enduro/src\/main\/java<models{Race.java[Race"/>
-      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=enduro/src\/main\/java<models{Race.java[Race"/>
-      <targetType="=enduro/src\/main\/java<models{Lap.java[Lap"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
-      <targetType="=enduro/src\/main\/java<utils{FileReader.java[FileReader"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=enduro/src\/main\/java<views{GUIFormatter.java[GUIFormatter"/>
-      <targetType="=enduro/src\/main\/java<views{LoadStartButton.java[LoadStartButton"/>
       <bendpoints>
       </bendpoints>
    </relationship>
@@ -282,38 +209,51 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
-      <sourceType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
-      <targetType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
-      <bendpoints>
-         <bendpoint>
-            <x="956"/>
-            <y="924"/>
-         </bendpoint>
-      </bendpoints>
-   </relationship>
-   <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=enduro/src\/main\/java<models{RaceEvent.java[RaceEvent"/>
-      <targetType="=enduro/src\/main\/java<models{Race.java[Race"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
       <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
-      <targetType="=enduro/src\/main\/java<models{RaceEvent.java[RaceEvent"/>
+      <targetType="=enduro/src\/main\/java<models{Participant.java[Participant"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
-      <targetType="=enduro/src\/main\/java<models{Participant.java[Participant"/>
+      <sourceType="=enduro/src\/main\/java<sorter{SortStartTime.java[SortStartTime"/>
+      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
       <bendpoints>
          <bendpoint>
-            <x="737"/>
-            <y="909"/>
+            <x="1298"/>
+            <y="918"/>
+         </bendpoint>
+         <bendpoint>
+            <x="990"/>
+            <y="914"/>
+         </bendpoint>
+         <bendpoint>
+            <x="761"/>
+            <y="913"/>
+         </bendpoint>
+         <bendpoint>
+            <x="357"/>
+            <y="906"/>
+         </bendpoint>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
+      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
+      <bendpoints>
+         <bendpoint>
+            <x="817"/>
+            <y="945"/>
+         </bendpoint>
+         <bendpoint>
+            <x="813"/>
+            <y="942"/>
+         </bendpoint>
+         <bendpoint>
+            <x="324"/>
+            <y="933"/>
          </bendpoint>
       </bendpoints>
    </relationship>
@@ -334,6 +274,59 @@
             <x="0"/>
             <y="-40"/>
          </bendpoint>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
+      <targetType="=enduro/src\/main\/java<models{RaceEvent.java[RaceEvent"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=enduro/src\/main\/java<models{RaceEvent.java[RaceEvent"/>
+      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=enduro/src\/main\/java<views{GUIFormatter.java[GUIFormatter"/>
+      <targetType="=enduro/src\/main\/java<views{LoadNamesButton.java[LoadNamesButton"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=enduro/src\/main\/java<models{Race.java[Race"/>
+      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
+      <sourceType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
+      <targetType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
+      <bendpoints>
+         <bendpoint>
+            <x="956"/>
+            <y="924"/>
+         </bendpoint>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=enduro/src\/main\/java<views{GUIFormatter.java[GUIFormatter"/>
+      <targetType="=enduro/src\/main\/java<views{LoadFinishButton.java[LoadFinishButton"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=enduro/src\/main\/java<controllers{FormatterController.java[FormatterController"/>
+      <targetType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
+      <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
@@ -361,50 +354,48 @@
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=enduro/src\/main\/java<sorter{SortStartTime.java[SortStartTime"/>
-      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
+      <sourceType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
+      <targetType="=enduro/src\/main\/java<models{Participant.java[Participant"/>
       <bendpoints>
          <bendpoint>
-            <x="1298"/>
-            <y="918"/>
-         </bendpoint>
-         <bendpoint>
-            <x="990"/>
-            <y="914"/>
-         </bendpoint>
-         <bendpoint>
-            <x="761"/>
-            <y="913"/>
-         </bendpoint>
-         <bendpoint>
-            <x="357"/>
-            <y="906"/>
+            <x="737"/>
+            <y="909"/>
          </bendpoint>
       </bendpoints>
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
       <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
-      <targetType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
+      <targetType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=enduro/src\/main\/java<sorter{SortName.java[SortName"/>
-      <targetType="=enduro/src\/main\/java<models{Participant.java[Participant"/>
+      <sourceType="=enduro/src\/main\/java<models{Race.java[Race"/>
+      <targetType="=enduro/src\/main\/java<models{Lap.java[Lap"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
-      <sourceType="=enduro/src\/main\/java<sorter{SortStartTime.java[SortStartTime"/>
-      <targetType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=enduro/src\/main\/java<views{GUIFormatter.java[GUIFormatter"/>
+      <targetType="=enduro/src\/main\/java<views{LoadStartButton.java[LoadStartButton"/>
       <bendpoints>
-         <bendpoint>
-            <x="1292"/>
-            <y="808"/>
-         </bendpoint>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=enduro/src\/main\/java<models{RaceEvent.java[RaceEvent"/>
+      <targetType="=enduro/src\/main\/java<models{Race.java[Race"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=enduro/src\/main\/java<models{Race.java[Race"/>
+      <targetType="=enduro/src\/main\/java<models{Lap.java[Lap"/>
+      <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
@@ -416,28 +407,37 @@
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=enduro/src\/main\/java<controllers{FormatterController.java[FormatterController"/>
-      <targetType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
+      <sourceType="=enduro/src\/main\/java<views{GUIRegister.java[GUIRegister"/>
+      <targetType="=enduro/src\/main\/java<views{RegisterButton.java[RegisterButton"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
-      <targetType="=enduro/src\/main\/java<models{Time.java[Time"/>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=enduro/src\/main\/java<sorter{Sorter.java[Sorter"/>
+      <targetType="=enduro/src\/main\/java<utils{FileReader.java[FileReader"/>
       <bendpoints>
-         <bendpoint>
-            <x="817"/>
-            <y="945"/>
-         </bendpoint>
-         <bendpoint>
-            <x="813"/>
-            <y="942"/>
-         </bendpoint>
-         <bendpoint>
-            <x="324"/>
-            <y="933"/>
-         </bendpoint>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
+      <targetType="=enduro/src\/main\/java<sorter{SortFinishTime.java[SortFinishTime"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=enduro/src\/main\/java<utils{Formatter.java[Formatter"/>
+      <targetType="=enduro/src\/main\/java<utils{FileReader.java[FileReader"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=enduro/src\/main\/java<sorter{SortName.java[SortName"/>
+      <targetType="=enduro/src\/main\/java<models{Participant.java[Participant"/>
+      <bendpoints>
       </bendpoints>
    </relationship>
 </uml>

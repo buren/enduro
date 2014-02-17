@@ -17,6 +17,10 @@ public class GUIFormatter extends JFrame {
 	private JTextArea statusText;
 	private FormatterController formCont;
 
+    /**
+     * Creates a new Formatter GUI
+     * @param formCont the formatter Controller
+     */
 	public GUIFormatter(FormatterController formCont) {
 
 		this.setTitle("Enduro Formatter");
@@ -54,18 +58,33 @@ public class GUIFormatter extends JFrame {
 		this.pack();
 	}
 
+    /**
+     * @return the namebutton
+     */
 	public JButton getNameButton() {
 		return nb;
 	}
 
+    /**
+     *
+     * @return the StartButton
+     */
 	public JButton getStartButton() {
 		return sb;
 	}
 
+    /**
+     *
+     * @return the Finishbutton
+     */
 	public JButton getFinishButton() {
 		return fb;
 	}
 
+    /**
+     *
+     * @return the StatusText
+     */
 	public JTextArea getStatusText() {
 		return statusText;
 	}

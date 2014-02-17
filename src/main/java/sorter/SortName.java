@@ -7,6 +7,12 @@ import models.RaceEvent;
 
 public class SortName extends Sorter {
 
+    /**
+     * Adds information within the file path to the correct column
+     * @param columnNbr the number of the column
+     * @param itr the iterator containing the rows
+     * @param raceEvent the raceEvent that gets the information.
+     */
 	@Override
 	protected void addInfo(int columnNbr, Iterator itr, RaceEvent raceEvent) {
 		while (itr.hasNext()) {
