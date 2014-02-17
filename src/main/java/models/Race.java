@@ -2,33 +2,19 @@ package models;
 
 import java.util.ArrayList;
 
-public class Race {
-	private ArrayList<Lap> laps;
-	private int size;
-	private int lapCap;
-	private Time timeCap;
+public abstract class Race {
+	protected ArrayList<Lap> laps;
+	protected int size;
 
 	/**
 	 * Creates a new race
 	 * @param lapCap , max number of laps allowed.
 	 */
-	public Race(int lapCap) {
-		laps = new ArrayList<>();
-		laps.add(new Lap());
-		this.lapCap = lapCap;
+    public Race(Object o) {
 	}
 
-    /**
-     * Creates a new race
-     * @param timeCap the time limit
-     */
-	public Race(String timeCap) {
-		this.timeCap = new Time(timeCap);
-		laps = new ArrayList<>();
-		laps.add(new Lap());
-	}
 
-    /**
+	/**
      * Sets startTime, if multiple laps then for the first lap.
      * @param startTime the new startTime
      */
@@ -111,13 +97,6 @@ public class Race {
 		return getFinishedLaps() + 1;
 	}
 
-    /**
-     * Returns the lap cap
-     * @return the lap cap
-     */
-	public int getLapsCap() {
-		return lapCap;
-	}
 
 	/**
 	 * Returns the actual time the lap was started.
@@ -141,23 +120,9 @@ public class Race {
 	 * If time based race it doesn't add new laps past the timecap.
 	 * @param lapTime Time to add.
 	 */
-	public void setLapTime(Time lapTime) {
-		setFinish(lapTime);
-		if (lapCap != 0) {
-			if (size + 1 < lapCap) {
-				Lap newLap = new Lap();
-				newLap.setStart(lapTime);
-				laps.add(newLap);
-				size++;
-			}
-		} else {
-			if (timeCap.addTimes(getStart()).compareValue(lapTime) > 0) {
-				Lap newLap = new Lap();
-				newLap.setStart(lapTime);
-				laps.add(newLap);
-				size++;
-			}
+	public	abstract void setLapTime(Time lapTime); 
+		
 
-		}
-	}
+		
+	
 }
