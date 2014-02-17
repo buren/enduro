@@ -5,21 +5,21 @@ import java.util.HashMap;
 public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
 	private int laps;
-<<<<<<< HEAD
+    private String time;
 
     /**
      * Creates a new RaceEvent
      * @param laps  The number of laps in the race
      */
-=======
-	private String time;
-	
->>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
 	public RaceEvent(int laps) {
 		raceEvent = new HashMap<Participant, Race>();
 		this.laps = laps;
 	}
-	
+
+    /**
+     * Creates a new RaceEvent
+     * @param time The timelimit
+     */
 	public RaceEvent(String time){
 		raceEvent = new HashMap<Participant, Race>();
 		this.time = time;
@@ -42,7 +42,6 @@ public class RaceEvent {
 	 * @param startTime
 	 *            Value of starting time
 	 */
-
 	public void addStart(Participant participant, Time startTime) {
 		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);

@@ -9,26 +9,21 @@ public class Race {
 	private Time timeCap;
 
 	/**
-<<<<<<< HEAD
 	 * Creates a new race
-	 * @param sizeCap , max number of laps allowed.
+	 * @param lapCap , max number of laps allowed.
 	 */
-	public Race(int sizeCap) {
-=======
-	 * 
-	 * @param lapCap
-	 *            ,
-	 */
-
 	public Race(int lapCap) {
 		laps = new ArrayList<>();
 		laps.add(new Lap());
 		this.lapCap = lapCap;
 	}
 
+    /**
+     * Creates a new race
+     * @param timeCap the time limit
+     */
 	public Race(String timeCap) {
 		this.timeCap = new Time(timeCap);
->>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
 		laps = new ArrayList<>();
 		laps.add(new Lap());
 	}
@@ -51,14 +46,8 @@ public class Race {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Sets a finishtime for the race.
 	 * @param finishTime the finishTime
-=======
-	 * Sets a finishtime for the race if missing.
-	 * 
-	 * @param finishTime
->>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
 	 */
 	public void setFinish(Time finishTime) {
 		if (laps.get(size).getFinish().isEmpty() == true ){
@@ -108,26 +97,25 @@ public class Race {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Returns number of laps Started
-	 * @return the current lap.
-=======
 	 * Returns number of laps finished
 	 * 
-	 * @return
->>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
+	 * @return number of finished laps
 	 */
 	public int getFinishedLaps() {
 		return size;
 	}
-	
+
+    /**
+     * Returns the current lap
+     * @return the current lap
+     */
 	public int getCurrentLap() {
 		return getFinishedLaps() + 1;
 	}
 
     /**
-     *
-     * @return
+     * Returns the lap cap
+     * @return the lap cap
      */
 	public int getLapsCap() {
 		return lapCap;
@@ -150,14 +138,10 @@ public class Race {
 	/**
 	 * When passing the finish/start line, adds a new finishtime to the current
 	 * lap and starts a new lap with the same time.
-<<<<<<< HEAD
-	 * 
-	 * @param lapTime Time to add.
-=======
+     *
 	 * If lap based race it doesn't add new laps past the lapcap.
 	 * If time based race it doesn't add new laps past the timecap.
-	 * @param lapTime
->>>>>>> ee241efa8c57edd3243db5af54bb0eb17c0146e9
+	 * @param lapTime Time to add.
 	 */
 	public void setLapTime(Time lapTime) {
 		setFinish(lapTime);
