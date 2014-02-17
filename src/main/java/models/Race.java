@@ -10,28 +10,37 @@ public class Race {
 
 	/**
 	 * 
-	 * @param lapCap
-	 *            ,
+	 * @param lapCap - lap cap for race.
+	 *
 	 */
-
 	public Race(int lapCap) {
 		laps = new ArrayList<>();
 		laps.add(new Lap());
 		this.lapCap = lapCap;
 	}
 
+	/**
+	 * 
+	 * @param timeCap - time cap for race.
+	 */
 	public Race(String timeCap) {
 		this.timeCap = new Time(timeCap);
 		laps = new ArrayList<>();
 		laps.add(new Lap());
 	}
 
+	/**
+	 * 
+	 * @param startTime - set start time for the race.
+	 */
 	public void setStart(Time startTime) {
-
 		laps.get(0).setStart(startTime);
-
 	}
 
+	/**
+	 * 
+	 * @return - start time for the race.
+	 */
 	public Time getStart() {
 		return laps.get(0).getStart();
 	}
@@ -92,16 +101,24 @@ public class Race {
 	/**
 	 * Returns number of laps finished
 	 * 
-	 * @return
+	 * @return number of laps finished
 	 */
 	public int getFinishedLaps() {
 		return size;
 	}
 	
+	/**
+	 * 
+	 * @return current lap
+	 */
 	public int getCurrentLap() {
 		return getFinishedLaps() + 1;
 	}
 
+	/**
+	 * 
+	 * @return lap cap for race
+	 */
 	public int getLapsCap() {
 		return lapCap;
 	}
