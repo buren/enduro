@@ -11,7 +11,7 @@ public class FileWriter {
 	 * Writes each line to specified path.
 	 * 
 	 * @param filePath
-	 *            file to write to.
+	 *            URL-address of target folder.
 	 * @param lines
 	 *            lines to be written to file.
 	 */
@@ -35,6 +35,12 @@ public class FileWriter {
 			}
 		}
 	}
+	
+/**
+ * Writes each line to specified path.
+ * @param filePath URL-address of target folder.
+ * @param string string to be written.
+ */
 
 	public static void writeFile(String filePath, String string) {
 		Writer writer = null;

@@ -75,8 +75,6 @@ public class RaceEvent {
 	 */
 	public Time getFinish(Participant participant) {
 		if (raceEvent.get(participant) == null) {
-			// if (timeHandler.get(participant).equals(participant)){
-			// && timeHandler.get(participant).equals(participant)) {
 			return new Time();
 		}
 		if (raceEvent.get(participant).equals(participant)) {
