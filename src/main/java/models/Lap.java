@@ -5,14 +5,30 @@ public class Lap {
 	private Time startTime;
 	private Time finishTime;
 
+	/**
+	 * A lap consisting of one start time and one finish time.
+	 */
+
 	public Lap() {
 		startTime = new Time();
 		finishTime = new Time();
 	}
 
+	/**
+	 * Sets the start time to parameter.
+	 * 
+	 * @param startTime
+	 */
+
 	public void setStart(Time startTime) {
 		this.startTime = startTime;
 	}
+
+	/**
+	 * Sets the finish time to parameter.
+	 * 
+	 * @param startTime
+	 */
 
 	public void setFinish(Time finishTime) {
 		this.finishTime = finishTime;
@@ -28,9 +44,19 @@ public class Lap {
 		return startTime.compareTo(finishTime);
 	}
 
+	/**
+	 * 
+	 * @return start time
+	 */
+
 	public Time getStart() {
 		return startTime;
 	}
+
+	/**
+	 * 
+	 * @return finish time
+	 */
 
 	public Time getFinish() {
 		return finishTime;

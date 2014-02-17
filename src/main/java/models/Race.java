@@ -6,6 +6,11 @@ public class Race {
 	private ArrayList<Lap> laps;
 	private int size;
 	private int sizeCap;
+	
+	/**
+	 * 
+	 * @param sizeCap , 
+	 */
 
 	public Race(int sizeCap) {
 		laps = new ArrayList<>();

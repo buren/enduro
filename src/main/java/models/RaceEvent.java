@@ -62,10 +62,7 @@ public class RaceEvent {
 		if (raceEvent.get(participant) == null) {
 			addParticipant(participant);
 		}
-
-
 		raceEvent.get(participant).setLapTime(finishTime);
-
 	}
 
 	/**
@@ -78,15 +75,12 @@ public class RaceEvent {
 	 */
 	public Time getFinish(Participant participant) {
 		if (raceEvent.get(participant) == null) {
-			// if (timeHandler.get(participant).equals(participant)){
-			// && timeHandler.get(participant).equals(participant)) {
 			return new Time();
 		}
 		if (raceEvent.get(participant).equals(participant)) {
 			return raceEvent.get(participant).getFinish();
 		}
 		Time finish = raceEvent.get(participant).getFinish();
-
 		return finish;
 	}
 
@@ -97,18 +91,21 @@ public class RaceEvent {
 		return raceEvent.get(participant).getTotalTime();
 	}
 
-	private void addParticipant(Participant participant) {
+	public void addParticipant(Participant participant) {
 		Race race = new Race(laps);
 		raceEvent.put(participant, race);
 	}
-
-	public void addName(Participant participant, String name) {
+	/**
+	 * 
+	 * @param participant participant to rename
+	 * @param name	name to be assigned
+	 */
+	public void changeName(Participant participant, String name) {
 		if (raceEvent.get(participant) == null) {
-			addParticipant(participant);
+			throw new IllegalArgumentException("Oregistrerad deltagare");
 		}
-		int id = participant.getId();
 		for (Participant p : raceEvent.keySet()) {
-			if (p.getId() == id) {
+			if (p.equals(participant)) {
 				p.setName(name);
 			}
 		}
@@ -122,10 +119,12 @@ public class RaceEvent {
 		}
 		addParticipant(participant);
 		return participant.getName();
-
 	}
 	
 	public Race getRace(Participant participant) {
+		if(raceEvent.get(participant)==null){
+			throw new IllegalArgumentException("Obefintlig deltagare");
+		}
 		return raceEvent.get(participant);
 	}
 
