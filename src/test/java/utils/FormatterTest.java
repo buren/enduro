@@ -39,35 +39,7 @@ public class FormatterTest {
 	public void tearDown() throws Exception {
 	}
 
-	// @Test
-	public void testSimpleResultCase() {
-		startTimes.add(new Time("12.12.12"));
-		startTimes.add(new Time("14.14.14"));
-		startTimes.add(new Time("17.17.17"));
-		finishTimes.add(new Time("13.13.13"));
-		finishTimes.add(new Time("19.19.19"));
-		finishTimes.add(new Time("20.16.48"));
-		names.add("Oskar");
-		names.add("Viktor");
-		names.add("Patrik");
-		String resultList = formatter.generateResultList(startTimes,
-				finishTimes, names, 1);
-		assertEquals(resultList,
-				"StartNr; Namn; TotalTid; StartTider; Maltider\n"
-						+ "1; Oskar 01.01.01; 12.12.12; 13.13.13\n"
-						+ "2; Vikar 05.05.05; 14.14.14; 19.19.19\n"
-						+ "3; Patrik 02.59.31; 17.17.17; 20.16.48\n");
-	}
-
 	@Test
-	public void testEmptyLists() {
-
-		String result = formatter.generateResultList(startTimes, finishTimes,
-				names, 1);
-		assertEquals(result, "Listorna är tomma!");
-	}
-
-	// @Test
 	public void testResultsWithFiles() throws FileNotFoundException {
 		FileReader f = new FileReader();
 		String path = Enduro.getInstance().getResourcePath(
