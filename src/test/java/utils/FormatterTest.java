@@ -44,7 +44,7 @@ public class FormatterTest {
 		FileReader f = new FileReader();
 		String path = Enduro.getInstance().getResourcePath(
 
-		"acceptanstester/iteration2/acceptanstest9/");
+		"acceptanstester/iteration1/acceptanstest3_4/");
 
 		Iterator<String> iter;
 		StringBuilder sb = new StringBuilder();
@@ -59,7 +59,7 @@ public class FormatterTest {
 		assertEquals(
 
 				formatter.generateResultList(path + "starttider.txt", path
-						+ "maltider.txt", path + "namnfil.txt", 3),
+						+ "maltider.txt", path + "namnfil.txt", 1),
 				sb.toString());
 	}
 

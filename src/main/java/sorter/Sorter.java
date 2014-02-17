@@ -67,7 +67,7 @@ public abstract class Sorter {
 	 * @param time
 	 */
 
-	protected abstract void addInfo(int columnNbr, Iterator itr,
+	protected abstract void addInfo(int columnNbr, Iterator<String> itr,
 			RaceEvent time);
 
 }
