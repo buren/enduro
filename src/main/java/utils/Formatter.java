@@ -1,16 +1,15 @@
 package utils;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Iterator;
-
+import models.Participant;
+import models.RaceEvent;
+import models.Time;
 import sorter.SortFinishTime;
 import sorter.SortName;
 import sorter.SortStartTime;
 import sorter.Sorter;
-import models.Participant;
-import models.RaceEvent;
-import models.Time;
+
+import java.io.FileNotFoundException;
+import java.util.Iterator;
 
 public class Formatter {
 
@@ -53,38 +52,6 @@ public class Formatter {
             throw new IllegalStateException("Indatafilen är tom.");
         }
         return columns;
-    }
-
-    /**
-     * Creates a result list based on ArrayList of information
-     * @param startTimes List of startTimes
-     * @param finishTimes List of finishTimes
-     * @param nameList List of names
-     * @param lapAmount The number of laps
-     * @return A formated list containing the information
-     */
-    public String generateResultList(ArrayList<Time> startTimes,
-                                     ArrayList<Time> finishTimes, ArrayList<String> nameList,
-                                     int lapAmount) {
-        this.lapAmount = lapAmount;
-        if (startTimes.isEmpty() && finishTimes.isEmpty()) {
-            return "Listorna är tomma!";
-        } else {
-            StringBuilder sb = new StringBuilder();
-
-            sb.append("StartNo; Name; TotalTime; StartTime; ResultTime\n");
-
-            int count = startTimes.size();
-            for (int i = 0; i < count; i++) {
-                Time totalTime = startTimes.get(i)
-                        .compareTo(finishTimes.get(i));
-                sb.append(i + 1 + "; " + nameList.get(i) + "; " + totalTime
-                        + "; " + startTimes.get(i) + "; " + finishTimes.get(i)
-                        + "\n");
-
-            }
-            return sb.toString();
-        }
     }
 
     /**
