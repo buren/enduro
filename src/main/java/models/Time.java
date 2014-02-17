@@ -27,6 +27,9 @@ public class Time {
      * @param seconds Number of seconds since midnight.
      */
 	public Time(int seconds) {
+		if( seconds == 0){
+			empty= true;
+		}
 		this.seconds = seconds;
 	}
 
