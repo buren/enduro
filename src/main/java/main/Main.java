@@ -23,7 +23,6 @@ public class Main {
 		int n = JOptionPane.showOptionDialog(frame, "Välj programdel",
 				"Enduro", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-		System.out.println(n);
 		if (n == 0) {
 			File f;
 			String filePath;
@@ -38,13 +37,14 @@ public class Main {
 			GUIRegister reg = new GUIRegister(regCont);
 		} else if (n == 1) {
 			String s;
-			do{
-			s = JOptionPane.showInputDialog("Hur många varv ingår i loppet?");
-			}
-			while(s=="");
+			do {
+				s = JOptionPane
+						.showInputDialog("Hur många varv ingår i loppet?");
+			} while (s != null && s.equals(""));
+			if(s != null) {
 			FormatterController formCont = new FormatterController(s);
 			new GUIFormatter(formCont);
+			}
 		}
-
 	}
 }

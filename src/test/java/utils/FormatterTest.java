@@ -44,7 +44,7 @@ public class FormatterTest {
 		FileReader f = new FileReader();
 		String path = Enduro.getInstance().getResourcePath(
 
-		"acceptanstester/iteration1/acceptanstest3_4/");
+		"acceptanstester/iteration2/acceptanstest9/");
 
 		Iterator<String> iter;
 		StringBuilder sb = new StringBuilder();
@@ -59,7 +59,7 @@ public class FormatterTest {
 		assertEquals(
 
 				formatter.generateResultList(path + "starttider.txt", path
-						+ "maltider.txt", path + "namnfil.txt", 1),
+						+ "maltider.txt", path + "namnfil.txt", 3),
 				sb.toString());
 	}
 
@@ -132,10 +132,10 @@ public class FormatterTest {
 //		event.addStart(p1, new Time("12:12:12"));
 //		event.getRace(p1).setLapTime(new Time("13:13:13"));
 //		System.out.println(event.getRace(p1).getStart());
-//	
+//
 //		System.out.println(formatter.printActualLapTimes(p1, 2));
-//		
+//
 //		assertEquals(formatter.printActualLapTimes(p1, 2), "13:13:13");
-//		
+//
 //	}
 }

@@ -32,14 +32,20 @@ public class RegisterController {
 	 * @return three parameters in the following format: startNr;time\n
 	 */
 	public String formatResults(String resText, String startNr, String time) {
-		String out;
-		out = startNr + ";" + time + "\n";
+		String out = "";
+		StringBuilder sb = new StringBuilder();		
+		String[] startNumbers = startNr.split(",");
+		for( int i = 0; i < startNumbers.length; i++ ) {
+			startNr = startNumbers[i];
+			startNr = startNr.trim();
+			out = startNr + ";" + time + "\n";
+			sb.append(out);
+		}		
 		allText = resText + out;
-		writeToFile(allText);
-		return out;
-
+		writeToFile(allText);		
+		return sb.toString();
 	}
-
+	
 	private void writeToFile(String s) {
 		FileWriter.writeFile(filePath, allText);
 	}

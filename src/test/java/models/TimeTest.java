@@ -43,4 +43,14 @@ public class TimeTest {
 		assertTrue(time.isEmpty());
 	}
 
+    @Test
+    public void testIsBefore() {
+        Time time2 = new Time("10.00.00");
+        Time time3 = new Time("09.30.00");
+
+        assertTrue(time3.isBefore(time2));
+        assertTrue(time2.isBefore(time));
+        assertFalse(time.isBefore(time3));
+    }
+
 }

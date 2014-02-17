@@ -21,7 +21,7 @@ public class SorterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		raceEvent = new RaceEvent(1);
+		raceEvent = new RaceEvent(4);
 	}
 
 	@Test
@@ -54,6 +54,7 @@ public class SorterTest {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+
 		assertEquals("Should be same", "13.23.34", raceEvent.getFinish(p).toString());
 
 	}
@@ -74,5 +75,35 @@ public class SorterTest {
 		assertEquals("Should be same", "12.00.00", raceEvent.getStart(p).toString());
 
 	}
+
+    @Test
+    public void testSetMultipleFinishTime() {
+        RaceEvent rc = new RaceEvent(10);
+        SortFinishTime sort = new SortFinishTime();
+        Participant participant = new Participant(1);
+        Sorter originalSort;
+
+        try {
+            String basePath = Enduro.getInstance()
+                    .getResourcePath(
+                            "acceptanstester/iteration2/acceptanstest10/");
+            String[] paths = new String[2];
+            paths[0] = basePath+"maltider1.txt";
+            paths[1] = basePath+"maltider2.txt";
+
+            originalSort = new SortName();
+            originalSort.insertInfo(basePath+"namnfil.txt", "Namn", rc);
+            originalSort = new SortStartTime();
+            originalSort.insertInfo(basePath+"starttider.txt", "StartTider", rc);
+            sort.insertInfo(paths, "Maltider", rc);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals("Should be same", "13.23.34", rc.getFinish(participant).toString());
+
+    }
+
 
 }
