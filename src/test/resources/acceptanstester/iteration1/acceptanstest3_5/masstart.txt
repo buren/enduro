@@ -1,0 +1,2 @@
+StartNr; StartTider
+*; 12.00.00

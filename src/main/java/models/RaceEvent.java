@@ -7,13 +7,13 @@ public class RaceEvent {
 	private HashMap<Participant, Race> raceEvent;
 	private int laps;
 	private String time;
-	
+
 	public RaceEvent(int laps) {
 		raceEvent = new HashMap<Participant, Race>();
 		this.laps = laps;
 	}
-	
-	public RaceEvent(String time){
+
+	public RaceEvent(String time) {
 		raceEvent = new HashMap<Participant, Race>();
 		this.time = time;
 	}
@@ -100,10 +100,10 @@ public class RaceEvent {
 
 	public void addParticipant(Participant participant) {
 		Race race;
-		if (laps == 0 && time != null){
-			 race = new Race(time);
-		}else {
-			 race = new Race(laps);	
+		if (laps == 0 && time != null) {
+			race = new Race(time);
+		} else {
+			race = new Race(laps);
 		}
 		raceEvent.put(participant, race);
 	}
@@ -132,8 +132,7 @@ public class RaceEvent {
 				return p.getName();
 			}
 		}
-		addParticipant(participant);
-		return participant.getName();
+		throw new IllegalArgumentException("Angiven deltagare är ej registrerad");
 	}
 
 	public Race getRace(Participant participant) {
@@ -159,6 +158,16 @@ public class RaceEvent {
 
 	public Set<Participant> getKeySet() {
 		return raceEvent.keySet();
+	}
+
+	public Participant getParticipant(int id) {
+		for (Participant p : raceEvent.keySet()) {
+			if (p.getId() == id) {
+				return p;
+			}
+		}
+		throw new IllegalArgumentException("Participant med id nr " + id
+				+ " är ej registrerad");
 	}
 
 }
