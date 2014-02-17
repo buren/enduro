@@ -127,9 +127,9 @@ public class RaceEvent {
 	public void addParticipant(Participant participant) {
 		Race race;
 		if (laps == 0 && time != null) {
-			race = new Race(time);
+			race = new TimeRace(time);
 		} else {
-			race = new Race(laps);
+			race = new LapRace(laps);
 		}
 		raceEvent.put(participant, race);
 	}
