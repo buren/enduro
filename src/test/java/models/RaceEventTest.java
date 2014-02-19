@@ -1,117 +1,62 @@
 package models;
 
 import static org.junit.Assert.assertEquals;
-
-import java.io.FileNotFoundException;
-
-import models.Participant;
-import models.RaceEvent;
-import models.Time;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import sorter.SortFinishTime;
-import sorter.SortName;
-import sorter.SortStartTime;
-import sorter.Sorter;
 import utils.Enduro;
 
 public class RaceEventTest {
 	private RaceEvent raceEvent;
-	private Participant part1, part2;
-	private Enduro enduro;
+    private Enduro enduro;
+    private Participant participant;
 
 	@Before
 	public void setUp() {
-
 		enduro = Enduro.getInstance();
-		raceEvent = new RaceEvent(3);
-
-		part1 = new Participant(1);
-		part2 = new Participant(2);
+		raceEvent = new RaceEvent(new SimpleRace());
+        participant = new Participant(1);
 	}
 
-	@Test
-	public void testAddStartTime() {
-		raceEvent.addStart(part1, new Time("12.00.00"));
-		assertEquals("Should be the same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
-	}
+    @Test
+    public void testEmptyRaceEvent() {
+        assertEquals("Should be empty", 0, raceEvent.size());
+    }
 
-	@Test
-	public void testAddMultipleStartTimes() {
-		raceEvent.addStart(part1,new Time("12.00.00"));
-		raceEvent.addStart(part2,new Time("13.00.00"));
+    @Test
+    public void testAddParticipant() {
+        raceEvent.addParticipant(participant);
+        assertTrue("Should contain participant 1",raceEvent.containsParticipant(1));
+        assertFalse("Should not contain participant 2", raceEvent.containsParticipant(2));
 
-		assertEquals("Should be the same", "13.00.00", raceEvent.getParticipant(2).getRace().getStart().toString());
-		assertEquals("Should be the same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
+        assertEquals("Should get participant", participant, raceEvent.getParticipant(1));
+    }
 
-	}
+    @Test
+    public void testSetAllStartTimes() {
+        Participant p2, p3;
+        p2 = new Participant(2);
+        p3 = new Participant(3);
 
-	@Test
-	public void testAddFinishTime() {
-		raceEvent.addFinish(part1, new Time("12.00.00"));
+        raceEvent.addParticipant(participant);
+        raceEvent.addParticipant(p2);
+        raceEvent.addParticipant(p3);
 
-		assertEquals("Should be the same", "12.00.00", raceEvent.getFinish(part1).toString());
+        p2.getRace().setStart(new Time("11.00.00"));
+        p3.getRace().setStart(new Time("10.00.00"));
 
-	}
+        Time newTime = new Time("12.00.00");
+        raceEvent.setAllStartTimes(newTime);
 
-	@Test
-	public void testGetNonExistingStartTime() throws Exception {
-		assertEquals("Should be the same", raceEvent.getParticipant(2).getRace().getStart().toString(), new Time().toString());
-	}
-
-	@Test
-	public void testGetNonExistingFinishTime() throws Exception {
-		assertEquals("Should be the same", raceEvent.getFinish(part2).toString(), new Time().toString());
-	}
-
-	@Test
-	public void testAddMultipleFinishTimes() {
-		raceEvent.addFinish(part1, new Time("12.00.00"));
-		raceEvent.addFinish(part2, new Time("13.00.00"));
-		assertEquals("Should be the same", "12.00.00", raceEvent.getFinish(part1).toString());
-		assertEquals("Should be the same", "13.00.00", raceEvent.getFinish(part2).toString());
-	}
-
-	@Test
-	public void testStartAndFinish() {
-		raceEvent.addStart(part1, new Time("12.00.00"));
-		raceEvent.addFinish(part1, new Time("13.00.00"));
-		assertEquals("Should be the same", "12.00.00", raceEvent.getParticipant(1).getRace().getStart().toString());
-		assertEquals("Should be the same", "13.00.00", raceEvent.getFinish(part1).toString());
-	}
+        assertEquals("Should be same", participant.getRace().getStart(), newTime);
+        assertEquals("Should be same", p2.getRace().getStart(), newTime);
+        assertEquals("Should be same", p3.getRace().getStart(), newTime);
+    }
 
 
-	@Test
-	public void testIfInTime() {
-		raceEvent.addParticipant(part1);
-		part1.setName("Calle");
-		assertEquals("Should be the same", raceEvent.getParticipant(1).getName()),
-				"Calle");
-	}
-	
-	@Test
-	public void testTotalTime() {
-		raceEvent.addStart(part1, new Time("12.00.00"));
-		raceEvent.addFinish(part1, new Time("13.00.00"));
-		assertEquals("Should be 01.00.00", "01.00.00", raceEvent.getTotalTime(part1).toString());
-
-	}
-	
-	@Test
-	public void testMultipleLapTimesFromFile() throws FileNotFoundException {
-		Sorter sort = new SortName();
-		sort.insertInfo(enduro.getResourcePath("acceptanstester/iteration2/acceptanstest9/namnfil.txt"), "Namn", raceEvent);
-		sort = new SortStartTime();
-		sort.insertInfo(enduro.getResourcePath("acceptanstester/iteration2/acceptanstest9/starttider.txt"), "StartTider", raceEvent);
-		sort = new SortFinishTime();
-		sort.insertInfo(enduro.getResourcePath("acceptanstester/iteration2/acceptanstest9/maltider.txt"), "Maltider", raceEvent);
-		assertEquals("Should be 00.30.00", raceEvent.getLapTime(new Participant(1), 1), new Time("00.30.00"));
-		assertEquals("Should be 00.30.00", raceEvent.getLapTime(new Participant(1), 2), new Time("00.30.00"));
-		assertEquals("Should be 12.30.00", raceEvent.getLapStartTime(new Participant(1), 2), new Time("12.30.00"));
-		
-	}
 	
 
 }

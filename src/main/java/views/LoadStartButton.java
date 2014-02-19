@@ -2,8 +2,6 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 import javax.swing.*;
 
@@ -13,11 +11,10 @@ public class LoadStartButton extends JButton implements ActionListener {
 
     /**
      * Creates a loadStartbutton
-     * @param s the buttontext
      * @param statusText the statusText to print to
      */
-	public LoadStartButton(String s, JTextArea statusText) {
-		super(s);
+	public LoadStartButton(JTextArea statusText) {
+		super("Ladda in startfil");
 		this.addActionListener(this);
 		this.statusText = statusText;
 	}

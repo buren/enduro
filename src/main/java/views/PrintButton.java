@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.*;
 
 import controllers.FormatterController;
@@ -28,10 +29,10 @@ public class PrintButton extends JButton implements ActionListener {
      * @param statusText the statusText
      * @param formCont the formatterController
      */
-	public PrintButton(String s, LoadStartButton sb, LoadFinishButton fb,
+	public PrintButton(LoadStartButton sb, LoadFinishButton fb,
 			LoadNamesButton nb, JTextArea statusText,
 			FormatterController formCont, JComboBox raceType, JTextField limitField) {
-		super(s);
+		super("Spara resultat till fil");
 		this.addActionListener(this);
 		this.sb = sb;
 		this.fb = fb;
@@ -61,9 +62,7 @@ public class PrintButton extends JButton implements ActionListener {
 						nb.getPath(),raceType.getSelectedIndex(), limitField.getText(), Integer.parseInt(inputValue));  //TODO; fix shit
 				String[] results = resultat.split("\n");
 				ArrayList<String> lines = new ArrayList<>();
-				for (String s : results) {
-					lines.add(s);
-				}
+                Collections.addAll(lines, results);
 				formCont.writeToFile(filePath, lines.iterator());
 				statusText.setText("Resultatfil utskriven!");
 			} catch (FileNotFoundException ex) {

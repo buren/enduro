@@ -17,12 +17,10 @@ public class RegisterButton extends JButton implements ActionListener {
 
     /**
      * Creates a RegisterButton
-     * @param s the buttontext
-     * @param gui the GUI
      * @param cont the registerController
      */
-	public RegisterButton(String s, GUIRegister gui, RegisterController cont) {
-		super(s);
+	public RegisterButton(GUIRegister gui, RegisterController cont) {
+		super("Registrera");
 		this.cont = cont;
 		this.gui = gui;
 		addActionListener(this);
@@ -34,7 +32,7 @@ public class RegisterButton extends JButton implements ActionListener {
      */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		PreregisterPane prp = new PreregisterPane("Förregistrering");
+		PreregisterPane prp = new PreregisterPane();
 		String startNr;
 		String respons;
 		Date date = new Date();

@@ -2,7 +2,6 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.*;
 
@@ -13,11 +12,10 @@ public class LoadNamesButton extends JButton implements ActionListener {
 
     /**
      * Creates a loadNamesbutton
-     * @param s the buttontext
      * @param statusText the statusText to print to
      */
-	public LoadNamesButton(String s, JTextArea statusText) {
-		super(s);
+	public LoadNamesButton(JTextArea statusText) {
+		super("Ladda in namnfil");
 		this.addActionListener(this);
 		this.statusText = statusText;
 	}

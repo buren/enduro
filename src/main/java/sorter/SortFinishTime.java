@@ -19,23 +19,20 @@ public class SortFinishTime extends Sorter {
      * @param raceEvent , RaceEvent to sort
      * @throws FileNotFoundException
      */
-    public void insertInfo(Iterator[] files, String column, RaceEvent raceEvent)
-            throws FileNotFoundException {
-
-        Iterator[] itr = files;
-        String columns = (String) itr[0].next();
-        for (int i = 1; i < itr.length; i++) {
-            itr[i].next();
+    public void insertInfo(Iterator[] files, String column, RaceEvent raceEvent) {
+        String columns = (String) files[0].next();
+        for (int i = 1; i < files.length; i++) {
+            files[i].next();
         }
 
         columns = formatString(columns);
         String[] column_list = columns.split(";");
         int columnNbr = 0;
         for (int i = 0; i < column_list.length; i++) {
-            if (column_list[i].equals(column))
+            if (column_list[i].equals("Maltider"))
                 columnNbr = i;
         }
-        addInfo(columnNbr, itr, raceEvent);
+        addInfo(columnNbr, files, raceEvent);
     }
 
     /**
@@ -75,9 +72,9 @@ public class SortFinishTime extends Sorter {
         ArrayList<Time> timeList = new ArrayList<>();
         ArrayList<Integer> intList = new ArrayList<>();
 
-        for (int i = 0; i < itr.length; i++) {
-            while (itr[i].hasNext()) {
-                String line = (String) itr[i].next();
+        for (Iterator iterator : itr) {
+            while (iterator.hasNext()) {
+                String line = (String) iterator.next();
                 line = formatString(line);
                 String[] lines = line.split(";");
                 timeList.add(new Time(lines[columnNbr]));

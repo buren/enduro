@@ -1,14 +1,10 @@
 package models;
 
-import java.util.ArrayList;
-
 public class TimeRace extends Race {
-    private ArrayList<Lap> laps;
     private Time limit;
 
     public TimeRace(Time limit) {
-        laps = new ArrayList<>();
-        laps.add(new Lap());
+        super();
         this.limit = limit;
     }
 

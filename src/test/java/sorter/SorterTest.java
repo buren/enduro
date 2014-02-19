@@ -29,7 +29,7 @@ public class SorterTest {
 	public void setUp() throws Exception {
         path = Enduro.getInstance().getResourcePath("acceptanstester/iteration1/acceptanstest3_5/");
 		raceEvent = new RaceEvent(new LapRace(4));
-        FileReader fr = new FileReader();
+        fr = new FileReader();
 	}
 
 	@Test
@@ -42,7 +42,7 @@ public class SorterTest {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Should be same", raceEvent.getParticipant(2).getName(), "Bengt Bsson");
+		assertEquals("Should be same", "Bengt Bsson", raceEvent.getParticipant(2).getName());
 
 	}
 

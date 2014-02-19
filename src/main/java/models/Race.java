@@ -4,7 +4,11 @@ package models;
 import java.util.ArrayList;
 
 public abstract class Race {
-    private ArrayList<Lap> laps;
+    private ArrayList<Lap> laps = new ArrayList<>();
+
+    public Race() {
+        laps.add(new Lap());
+    }
 
     public Time getStart() {
         return laps.get(0).getStart();
@@ -45,13 +49,13 @@ public abstract class Race {
 
     public String print(int printLimit) {
         StringBuilder sb = new StringBuilder();
-        sb.append("; "+laps.size());
-        sb.append("; "+getTotal());
+        sb.append("; ").append(laps.size());
+        sb.append("; ").append(getTotal());
         for (int i = 0; i < printLimit ; i++) {
-            sb.append("; "+getLapTimeElapsed(i));
+            sb.append("; ").append(getLapTimeElapsed(i));
         }
         for (int i = 0; i < printLimit; i++) {
-            sb.append("; "+getLapTime(i));
+            sb.append("; ").append(getLapTime(i));
         }
         return sb.toString();
     }

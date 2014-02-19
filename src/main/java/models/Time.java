@@ -1,7 +1,6 @@
 package models;
 
 public class Time {
-
 	private int seconds;
 	private boolean empty;
 
@@ -73,8 +72,7 @@ public class Time {
 	public int compareValue(Time compare) {
 		if (this.empty || compare.empty)
 			return 0;
-		int difference = seconds - compare.seconds;
-		return (difference);
+		return seconds - compare.seconds;
 
 	}
 
@@ -84,16 +82,14 @@ public class Time {
      * @return true if this is before other
      */
     public boolean isBefore(Time time) {
-        if(seconds < time.seconds)
-            return true;
-        return false;
+        return seconds < time.seconds;
     }
 
 	/**
 	 * Compares two times. Returns false if either of the times are empty.
 	 * 
-	 * @param equals
-	 * @return
+	 * @param obj Object to compare to.
+	 * @return true if the times are the same.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -104,10 +100,8 @@ public class Time {
 		if (getClass() != obj.getClass())
 			return false;
 		Time other = (Time) obj;
-		if (seconds != other.seconds)
-			return false;
-		return true;
-	}
+        return seconds == other.seconds;
+    }
 
     /**
      * Checks if there is a time
@@ -128,11 +122,4 @@ public class Time {
 		result = prime * result + seconds;
 		return result;
 	}
-	
-	
-	public Time addTimes(Time other) {
-		int total = seconds + other.seconds;
-		return new Time(total);		
-	}
-
 }

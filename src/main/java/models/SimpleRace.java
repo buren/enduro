@@ -10,19 +10,22 @@ public class SimpleRace extends Race {
         finish = new Time();
     }
 
+    @Override
     public Time getStart() {
         return start;
     }
 
+    @Override
     public void setStart(Time start) {
         this.start = start;
     }
+
 
     public Time getFinish() {
         return finish;
     }
 
-    public void setFinish(Time finish) {
+    public void addTime(Time finish) {
         this.finish = finish;
     }
 

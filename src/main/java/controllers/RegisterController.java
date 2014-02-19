@@ -4,9 +4,8 @@ import utils.FileWriter;
 
 public class RegisterController {
 	private String filePath;
-	private String allText;
 
-	/**
+    /**
 	 * 
 	 * @param filePath
 	 *            , URL-address of target folder.
@@ -34,18 +33,18 @@ public class RegisterController {
 		String out = "";
 		StringBuilder sb = new StringBuilder();		
 		String[] startNumbers = startNr.split(",");
-		for( int i = 0; i < startNumbers.length; i++ ) {
-			startNr = startNumbers[i];
-			startNr = startNr.trim();
-			out = startNr + ";" + time + "\n";
-			sb.append(out);
-		}		
-		allText = resText + out;
+        for (String startNumber : startNumbers) {
+            startNr = startNumber;
+            startNr = startNr.trim();
+            out = startNr + ";" + time + "\n";
+            sb.append(out);
+        }
+        String allText = resText + out;
 		writeToFile(allText);		
 		return sb.toString();
 	}
 	
-	private void writeToFile(String s) {
+	private void writeToFile(String allText) {
 		FileWriter.writeFile(filePath, allText);
 	}
 }

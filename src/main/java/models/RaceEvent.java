@@ -60,15 +60,15 @@ public class RaceEvent {
         StringBuilder sb = new StringBuilder();
         sb.append("StartNo; Name; #Laps; TotalTime");
         for (int i = 0; i < printLimit; i++) {
-            sb.append(";Lap "+i);
+            sb.append(";Lap ").append(i);
         }
         sb.append("; Start");
         for (int i = 0; i < printLimit; i++) {
-            sb.append("; Checkpoint "+ i);
+            sb.append("; Checkpoint ").append(i);
         }
         sb.append("; Finish\n");
         for(Participant p : participants ) {
-            sb.append(p.print(printLimit)+"\n");
+            sb.append(p.print(printLimit)).append("\n");
         }
         return sb.toString();
     }

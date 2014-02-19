@@ -73,10 +73,8 @@ public class Participant {
 		if (getClass() != obj.getClass())
 			return false;
 		Participant other = (Participant) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+        return id == other.id;
+    }
 
     public String print(int printLimit) {
         return id+"; "+name+race.print(printLimit);

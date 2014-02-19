@@ -4,17 +4,13 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import models.RaceEvent;
-import utils.FileReader;
 
 public abstract class Sorter {
-    protected FileReader fr;
 
     /**
      * Creates a new sorter
      */
-    public Sorter() {
-        fr = new FileReader();
-    }
+    public Sorter() {}
 
     /**
      * Finds the correct column, and then inserts it in the raceEvent
@@ -24,11 +20,9 @@ public abstract class Sorter {
      * @param raceEvent , RaceEvent to sort
      * @throws FileNotFoundException
      */
-    public void insertInfo(Iterator fileIterator, String column, RaceEvent raceEvent)
-            throws FileNotFoundException {
+    public void insertInfo(Iterator fileIterator, String column, RaceEvent raceEvent) {
 
-        Iterator itr = fileIterator;
-        String columns = (String) itr.next();
+        String columns = (String) fileIterator.next();
         columns = formatString(columns);
         String[] column_list = columns.split(";");
         int columnNbr = 0;
@@ -36,7 +30,7 @@ public abstract class Sorter {
             if (column_list[i].equals(column)) {
                 columnNbr = i;
             }
-            addInfo(columnNbr, itr, raceEvent);
+            addInfo(columnNbr, fileIterator, raceEvent);
         }
     }
 

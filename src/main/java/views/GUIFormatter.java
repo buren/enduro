@@ -9,13 +9,10 @@ import java.awt.*;
 public class GUIFormatter extends JFrame {
 	private static final long serialVersionUID = -2948560310654842046L;
 
-	private JPanel topPanel;
-	private LoadStartButton sb;
+    private LoadStartButton sb;
 	private LoadFinishButton fb;
 	private LoadNamesButton nb;
-	private JPanel textPanel;
-	private JTextArea statusText;
-	private FormatterController formCont;
+    private JTextArea statusText;
 
     /**
      * Creates a new Formatter GUI
@@ -31,9 +28,9 @@ public class GUIFormatter extends JFrame {
 		int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
-		this.formCont = formCont;
+        FormatterController formCont1 = formCont;
 
-		textPanel = new JPanel();
+        JPanel textPanel = new JPanel();
 		statusText = new JTextArea();
 		textPanel.add(statusText);
 
@@ -41,16 +38,15 @@ public class GUIFormatter extends JFrame {
         JComboBox raceType = new JComboBox(raceTypes);
         JTextField limitField = new JTextField();
 
-        topPanel = new JPanel();
+        JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(2, 1));
-        sb = new LoadStartButton("Ladda in startfil", statusText);
-        fb = new LoadFinishButton("Ladda in målfil", statusText);
-        nb = new LoadNamesButton("Ladda in namnfil", statusText);
+        sb = new LoadStartButton(statusText);
+        fb = new LoadFinishButton(statusText);
+        nb = new LoadNamesButton(statusText);
         topPanel.add(sb);
         topPanel.add(fb);
         topPanel.add(nb);
-        topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb,
-        statusText, formCont, raceType, limitField));
+        topPanel.add(new PrintButton(sb, fb, nb, statusText, formCont, raceType, limitField));
 
 
 		this.add(topPanel);

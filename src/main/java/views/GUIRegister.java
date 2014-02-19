@@ -12,18 +12,15 @@ public class GUIRegister extends JFrame {
 	private static final long serialVersionUID = -2948560310654842046L;
 
 	private JPanel panel;
-    private TimeArea timeArea;
-	private JTextArea resultField;
+    private JTextArea resultField;
 	private JTextField registerField;
 	private RegisterButton registerButton;
-	private RegisterController regCont;
 
     /**
      * Creates a new Register GUI
      * @param regCont the register controller
      */
 	public GUIRegister(RegisterController regCont) {
-		this.regCont = regCont;
 		this.setTitle("Enduro");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -34,7 +31,7 @@ public class GUIRegister extends JFrame {
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
 
-        timeArea = new TimeArea();
+        TimeArea timeArea = new TimeArea();
         this.add(timeArea);
 
 		resultField = new JTextArea();
@@ -48,7 +45,7 @@ public class GUIRegister extends JFrame {
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 2));
 
-		registerButton = new RegisterButton("Registrera", this, regCont);
+		registerButton = new RegisterButton(this, regCont);
 
 		registerButton.setPreferredSize(new Dimension(width / 2, height / 2));
 

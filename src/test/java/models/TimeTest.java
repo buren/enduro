@@ -25,6 +25,8 @@ public class TimeTest {
 
 		Time time3 = time.compareTo(time2);
 		assertEquals("02.02.02", time3.toString());
+        Time empty = new Time();
+        assertEquals(new Time(), time2.compareTo(empty));
 	}
 
 	@Test

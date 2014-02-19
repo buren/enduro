@@ -13,11 +13,10 @@ public class LoadFinishButton extends JButton implements ActionListener {
 
     /**
      * Creates a loadFinishbutton
-     * @param s the buttontext
      * @param statusText the statusText to print to
      */
-    public LoadFinishButton(String s, JTextArea statusText) {
-        super(s);
+    public LoadFinishButton(JTextArea statusText) {
+        super("Ladda in målfil");
         this.addActionListener(this);
         this.statusText = statusText;
         malfiler = new ArrayList<>();
