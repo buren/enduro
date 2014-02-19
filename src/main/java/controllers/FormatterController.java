@@ -4,10 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import models.*;
-import sorter.SortFinishTime;
-import sorter.SortName;
-import sorter.SortStartTime;
-import sorter.Sorter;
+import sorter.ModelInitiator;
 import utils.FileReader;
 import utils.FileWriter;
 
@@ -61,7 +58,7 @@ public class FormatterController {
         FileReader fr = new FileReader();
 
         Iterator iterator = fr.readFileByLine(namePath);
-        Sorter sorter = new SortName();
+        ModelInitiator sorter = new SortName();
         sorter.insertInfo(iterator, "Namn", raceEvent);
 
         iterator = fr.readFileByLine(startPath);

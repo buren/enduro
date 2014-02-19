@@ -33,7 +33,7 @@ public class SimpleRace extends Race {
         return start.compareTo(finish);
     }
 
-    protected boolean testLimit(Time time) {
+    protected boolean testLimit() {
         return false;
     }
 

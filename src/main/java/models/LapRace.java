@@ -11,8 +11,8 @@ public class LapRace extends Race {
 
 
     @Override
-    protected boolean testLimit(Time time) {
-        return super.getLaps() <= limit;
+    protected boolean testLimit() {
+        return super.getLaps() < limit;
     }
 
     @Override

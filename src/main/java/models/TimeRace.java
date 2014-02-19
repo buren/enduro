@@ -10,8 +10,8 @@ public class TimeRace extends Race {
 
 
     @Override
-    protected boolean testLimit(Time time) {
-        return time.isBefore(limit);
+    protected boolean testLimit() {
+        return getTotal().isBefore(limit);
     }
 
     @Override

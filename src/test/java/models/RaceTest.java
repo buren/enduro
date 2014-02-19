@@ -36,12 +36,59 @@ public class RaceTest {;
 	}
 
 	@Test
-    public void testPrintSimple() {
+    public void testPrintSimpleRace() {
         Time startTime = new Time("12.00.00");
         race.setStart(startTime);
         Time finishTime = new Time("14.00.00");
         race.addTime(finishTime);
-        assertEquals("", "02.00.00; "+startTime+"; "+finishTime, race.print(1));
+        assertEquals("Should be same", "02.00.00; "+startTime+"; "+finishTime, race.print(1));
+    }
+
+    @Test
+    public void testPrintLapRace() {
+        Race lapRace = new LapRace(3);
+        lapRace.setStart(new Time("12.00.00"));
+        lapRace.addTime(new Time("12.30.00"));
+        lapRace.addTime(new Time("13.30.00"));
+        lapRace.addTime(new Time("14.30.00"));
+        String print = lapRace.print(3);
+        assertEquals("Should be same","; 3; 02.30.00; 00.30.00; 01.00.00; 01.00.00; 12.00.00; 12.30.00; 13.30.00; 14.30.00", print);
+        print = lapRace.print(4);
+        assertEquals("Should be same","; 3; 02.30.00; 00.30.00; 01.00.00; 01.00.00; --.--.--; 12.00.00; 12.30.00; 13.30.00; --.--.--; 14.30.00",print);
+    }
+
+    @Test
+    public void testPrintTimeRace() {
+        Race timeRace = new TimeRace(new Time("01.00.00"));
+        timeRace.setStart(new Time("12.00.00"));
+        timeRace.addTime(new Time("12.30.00"));
+        timeRace.addTime(new Time("13.00.00"));
+        String print = timeRace.print(2);
+        assertEquals("Should be same", "; 2; 01.00.00; 00.30.00; 00.30.00; 12.00.00; 12.30.00; 13.00.00",print);
+    }
+
+    @Test
+    public void testLimitLapRace() {
+        Race lapRace = new LapRace(3);
+
+        boolean testLap = lapRace.testLimit();
+        assertTrue(testLap);
+        lapRace.addTime(new Time("00.00.00"));
+        assertTrue(lapRace.testLimit());
+        lapRace.addTime(new Time("00.01.00"));
+        lapRace.addTime(new Time("00.02.00"));
+        assertFalse(lapRace.testLimit());
+    }
+
+    @Test
+    public void testLimitTimeRace() {
+        Race timeRace = new TimeRace(new Time("01.00.00"));
+        timeRace.setStart(new Time("12.00.00"));
+        assertTrue(timeRace.testLimit());
+        timeRace.addTime(new Time("12.30.00"));
+        assertTrue(timeRace.testLimit());
+        timeRace.addTime(new Time("13.00.00"));
+        assertFalse(timeRace.testLimit());
     }
 
 

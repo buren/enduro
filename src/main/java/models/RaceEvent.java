@@ -3,8 +3,9 @@ package models;
 import java.util.ArrayList;
 
 public class RaceEvent {
-	private ArrayList<Participant> participants;
+	private ArrayList<Participant> participants, invalidParticipants;
     private Race raceType;
+    public final int START_TIME = 0, FINISH_TIME = 1;
 
 
 	/**
@@ -12,6 +13,7 @@ public class RaceEvent {
 	 */
 	public RaceEvent(Race raceType) {
 		participants = new ArrayList<>();
+        invalidParticipants = new ArrayList<>();
         this.raceType = raceType;
 	}
 
@@ -33,6 +35,17 @@ public class RaceEvent {
         participant.setRace(newRace());
 		participants.add(participant);
 	}
+    public void addInvalidParticipant(Participant participant, int reason, Time time){
+        participant.setRace(newRace());
+        switch (reason) {
+            case START_TIME:
+                participant.getRace().setStart(time);
+                break;
+            case FINISH_TIME:
+                participant.getRace().addTime(time);
+        }
+        invalidParticipants.add(participant);
+    }
 
     public Participant getParticipant(int ID) {
         for(Participant p : participants ) {
