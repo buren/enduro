@@ -1,5 +1,8 @@
-package models;
+package race;
 
+
+import models.Lap;
+import models.Time;
 
 import java.util.ArrayList;
 
@@ -10,12 +13,22 @@ public abstract class Race {
         laps.add(new Lap());
     }
 
-    public Time getStart() {
+    public void addStart(Time time) {
+        laps.get(0).setStart(time);
+    }
+
+    private Time getStart() {
         return laps.get(0).getStart();
     }
 
-    public void setStart(Time time) {
-        laps.get(0).setStart(time);
+    private Time getFinish() {
+        return laps.get(laps.size() - 1).getFinish();
+    }
+
+    private Time getLastTime() {
+        if (getFinish().isEmpty())
+            return laps.get(laps.size() - 1).getStart();
+        return getFinish();
     }
 
     protected int getLaps() {
@@ -23,23 +36,25 @@ public abstract class Race {
     }
 
     private int getCompletedLaps() {
-        if (laps.get(laps.size() - 1).getFinish().equals(new Time()))
+        if (laps.get(laps.size() - 1).getFinish().isEmpty())
             return laps.size() - 1;
         return laps.size();
     }
 
     private Time getLapTimeElapsed(int lap) {
+        if (laps.size() <= lap)
+            return new Time();
         return laps.get(lap).getTotalTime();
     }
 
     private Time getLapTime(int lap) {
+        if (laps.size() <= lap)
+            return new Time();
         return laps.get(lap).getFinish();
     }
 
     protected Time getTotal() {
-        Time start = laps.get(0).getStart();
-        Time finish = laps.get(laps.size() - 1).getFinish();
-        return start.compareTo(finish);
+        return getStart().compareTo(getFinish());
     }
 
     public void addTime(Time time) {
@@ -60,25 +75,25 @@ public abstract class Race {
     public String print(int printLimit) {
         StringBuilder sb = new StringBuilder();
         sb.append("; ").append(getCompletedLaps());
-        sb.append("; ").append(getTotal());
+        if (getFinish().isEmpty()) {
+            sb.append("; ").append(getStart().compareTo(laps.get(laps.size() - 1).getStart()));
+        } else {
+            sb.append("; ").append(getTotal());
+        }
         for (int i = 0; i < printLimit; i++) {
-            if (i > laps.size() - 1) {
-                sb.append("; " + new Time());
-            } else {
-                sb.append("; ").append(getLapTimeElapsed(i));
-            }
+            sb.append("; ").append(getLapTimeElapsed(i));
         }
         sb.append("; " + getStart());
-        for (int i = 0; i < printLimit-1; i++) {
-            if (i > laps.size() - 2) {
+        for (int i = 0; i < printLimit - 1; i++) {
+            Time lapTime = getLapTime(i);
+            if (lapTime.equals(getLastTime()))
                 sb.append("; " + new Time());
-            } else {
-                sb.append("; ").append(getLapTime(i));
-            }
+            else
+                sb.append("; " + lapTime);
         }
-        sb.append("; " + laps.get(laps.size() - 1).getFinish());
+        sb.append("; " + getLastTime());
         return sb.toString();
     }
 
-    protected abstract Race copy();
+    public abstract Race copy();
 }

@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import race.SimpleRace;
 import utils.Enduro;
 
 public class RaceEventTest {
@@ -29,7 +30,7 @@ public class RaceEventTest {
     @Test
     public void testAddParticipant() {
         raceEvent.addParticipant(participant);
-        assertTrue("Should contain participant 1",raceEvent.containsParticipant(1));
+        assertTrue("Should contain participant 1", raceEvent.containsParticipant(1));
         assertFalse("Should not contain participant 2", raceEvent.containsParticipant(2));
 
         assertEquals("Should get participant", participant, raceEvent.getParticipant(1));
@@ -45,15 +46,15 @@ public class RaceEventTest {
         raceEvent.addParticipant(p2);
         raceEvent.addParticipant(p3);
 
-        p2.getRace().setStart(new Time("11.00.00"));
-        p3.getRace().setStart(new Time("10.00.00"));
+        p2.getRace().addStart(new Time("11.00.00"));
+        p3.getRace().addStart(new Time("10.00.00"));
 
         Time newTime = new Time("12.00.00");
         raceEvent.setAllStartTimes(newTime);
 
-        assertEquals("Should be same", participant.getRace().getStart(), newTime);
-        assertEquals("Should be same", p2.getRace().getStart(), newTime);
-        assertEquals("Should be same", p3.getRace().getStart(), newTime);
+        assertEquals("Should be same", "--.--.--; 12.00.00; --.--.--", participant.getRace().print(3));
+        assertEquals("Should be same", "--.--.--; 12.00.00; --.--.--", p2.getRace().print(3));
+        assertEquals("Should be same", "--.--.--; 12.00.00; --.--.--", p3.getRace().print(3));
     }
 
 

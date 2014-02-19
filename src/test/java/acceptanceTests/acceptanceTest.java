@@ -25,32 +25,33 @@ public class acceptanceTest {
 	public void tearDown() throws Exception {
 	}
 
-// Small bug in Formatter makes this fail
-//	@Test
-//	public void acceptanceTest9() throws FileNotFoundException {
-//		String acceptanceTestFolderPath = Enduro.getInstance().getResourcePath(
-//				"acceptanstester/iteration2/acceptanstest9/");
-//		String pathToStartFile = acceptanceTestFolderPath + "starttider.txt";
-//		String pathToFinishFile = acceptanceTestFolderPath + "maltider.txt";
-//		String pathToNameFile = acceptanceTestFolderPath + "namnfil.txt";
-//		String resultFilePath = acceptanceTestFolderPath + "resultat.txt";
-//		String resultList = lapsFormatter.generateResultList(pathToStartFile,
-//				pathToFinishFile, pathToNameFile, 3);
-//		assertEquals(readFileToString(resultFilePath), resultList);
-//	}
+	@Test
+	public void acceptanceTest9() throws FileNotFoundException {
+        FormatterController formatterController = new FormatterController();
+
+		String path = Enduro.getInstance().getResourcePath(
+				"acceptanstester/iteration2/acceptanstest9/");
+        String pathToNameFile = path + "namnfil.txt";
+        String pathToStartFile = path + "starttider.txt";
+        String[] pathsFinishFiles = {path + "maltider.txt"};
+        String resultFilePath = path + "resultat.txt";
+
+		String resultList = formatterController.result(pathToStartFile, pathsFinishFiles, pathToNameFile, formatterController.LAP_RACE, "3", 3);
+		assertEquals(readFileToString(resultFilePath), resultList);
+	}
 
 	@Test
 	public void acceptanceTest10() throws FileNotFoundException {
         FormatterController fc = new FormatterController();
 
-		String acceptanceTestFolderPath = Enduro.getInstance().getResourcePath(
+		String path = Enduro.getInstance().getResourcePath(
 				"acceptanstester/iteration2/acceptanstest10/");
-		String pathToStartFile = acceptanceTestFolderPath + "starttider.txt";
-		String pathToFinishFile1 = acceptanceTestFolderPath + "maltider1.txt";
-		String pathToFinishFile2 = acceptanceTestFolderPath + "maltider2.txt";
-		String pathToNameFile = acceptanceTestFolderPath + "namnfil.txt";
-		String resultFilePath = acceptanceTestFolderPath + "resultat.txt";
-		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
+        String pathToNameFile = path + "namnfil.txt";
+        String pathToStartFile = path + "starttider.txt";
+        String pathToFinishFile1 = path + "maltider1.txt";
+        String pathToFinishFile2 = path + "maltider2.txt";
+        String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
+        String resultFilePath = path + "resultat.txt";
 
         String result = fc.result(pathToStartFile, finishFileArray, pathToNameFile, fc.LAP_RACE, "3", 3);
 		assertEquals(readFileToString(resultFilePath), result);

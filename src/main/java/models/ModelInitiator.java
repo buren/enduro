@@ -1,14 +1,9 @@
-package sorter;
+package models;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import models.Participant;
-import models.RaceEvent;
-import models.Time;
-
-public abstract class ModelInitiator {
+public class ModelInitiator {
 
     private RaceEvent raceEvent;
 
@@ -38,6 +33,7 @@ public abstract class ModelInitiator {
     }
 
     private void registerParticipants(Iterator nameIterator) {
+        nameIterator.next(); //Jump first line
         while (nameIterator.hasNext()) {
             String line = (String) nameIterator.next();
             line = formatString(line);
@@ -54,16 +50,18 @@ public abstract class ModelInitiator {
             String line = (String) startTimesIterator.next();
             line = formatString(line);
             String[] lines = line.split(";");
+
             int id = Integer.parseInt(lines[0]);
             Time startTime = new Time(lines[1]);
+
             if (lines[0].equals("*")) {
                 raceEvent.setAllStartTimes(startTime);
             } else {
                 if (raceEvent.containsParticipant(id))
-                    raceEvent.getParticipant(id).getRace().setStart(startTime);
+                    raceEvent.getParticipant(id).getRace().addStart(startTime);
                 else {
                     Participant invalidParticipant = new Participant(id);
-                    raceEvent.addInvalidParticipant(invalidParticipant, raceEvent.START_TIME, startTime);
+                    raceEvent.addInvalidParticipant(invalidParticipant, raceEvent.INVALID_START_TIME, startTime);
                 }
             }
         }
@@ -87,7 +85,7 @@ public abstract class ModelInitiator {
                 timeList.add(new Time(lines[1]));
             }
         }
-        sortTime(timeList, intList);
+        sortFinishTimes(timeList, intList);
 
         for (int i = 0; i < timeList.size(); i++) {
             int id = intList.get(i);
@@ -95,8 +93,8 @@ public abstract class ModelInitiator {
             if (raceEvent.containsParticipant(id))
                 raceEvent.getParticipant(id).getRace().addTime(finishTime);
             else {
-                Participant p = new Participant(id);
-                p.getRace().addTime(finishTime);
+                Participant invalidParticipant = new Participant(id);
+                raceEvent.addInvalidParticipant(invalidParticipant, raceEvent.INVALID_FINISH_TIME, finishTime);
             }
         }
     }
@@ -107,7 +105,7 @@ public abstract class ModelInitiator {
      * @param timeList list of times to sort
      * @param idList   list of IDs to sort
      */
-    private void sortTime(ArrayList<Time> timeList, ArrayList<Integer> idList) {
+    private void sortFinishTimes(ArrayList<Time> timeList, ArrayList<Integer> idList) {
         Time[] timeArray = new Time[timeList.size()];
         timeList.toArray(timeArray);
         Integer[] intArray = new Integer[idList.size()];

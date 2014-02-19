@@ -1,11 +1,13 @@
 package models;
 
+import race.Race;
+
 import java.util.ArrayList;
 
 public class RaceEvent {
 	private ArrayList<Participant> participants, invalidParticipants;
     private Race raceType;
-    public final int START_TIME = 0, FINISH_TIME = 1;
+    public final int INVALID_START_TIME = 0, INVALID_FINISH_TIME = 1;
 
 
 	/**
@@ -38,10 +40,10 @@ public class RaceEvent {
     public void addInvalidParticipant(Participant participant, int reason, Time time){
         participant.setRace(newRace());
         switch (reason) {
-            case START_TIME:
-                participant.getRace().setStart(time);
+            case INVALID_START_TIME:
+                participant.getRace().addStart(time);
                 break;
-            case FINISH_TIME:
+            case INVALID_FINISH_TIME:
                 participant.getRace().addTime(time);
         }
         invalidParticipants.add(participant);
@@ -65,7 +67,7 @@ public class RaceEvent {
 
     public void setAllStartTimes(Time start) {
         for(Participant p : participants ) {
-            p.getRace().setStart(start);
+            p.getRace().addStart(start);
         }
     }
 
@@ -73,11 +75,11 @@ public class RaceEvent {
         StringBuilder sb = new StringBuilder();
         sb.append("StartNo; Name; #Laps; TotalTime");
         for (int i = 0; i < printLimit; i++) {
-            sb.append(";Lap ").append(i);
+            sb.append("; Lap").append(i+1);
         }
         sb.append("; Start");
-        for (int i = 0; i < printLimit; i++) {
-            sb.append("; Checkpoint ").append(i);
+        for (int i = 0; i < printLimit -1; i++) {
+            sb.append("; Checkpoint").append(i+1);
         }
         sb.append("; Finish\n");
         for(Participant p : participants ) {

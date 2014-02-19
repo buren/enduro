@@ -1,4 +1,6 @@
-package models;
+package race;
+
+import models.Time;
 
 public class TimeRace extends Race {
     private Time limit;
@@ -15,7 +17,7 @@ public class TimeRace extends Race {
     }
 
     @Override
-    protected Race copy() {
+    public Race copy() {
         return new TimeRace(limit);
     }
 }

@@ -4,13 +4,17 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import models.*;
-import sorter.ModelInitiator;
+import models.ModelInitiator;
+import race.LapRace;
+import race.Race;
+import race.SimpleRace;
+import race.TimeRace;
 import utils.FileReader;
 import utils.FileWriter;
 
 public class FormatterController {
-    public final int LAP_RACE = 0;
-    public final int TIME_RACE = 1;
+    public static final int LAP_RACE = 0;
+    public static final int TIME_RACE = 1;
 
 	/**
 	 * Writes the Strings within the Iterator to the given filepath.
@@ -57,20 +61,17 @@ public class FormatterController {
         RaceEvent raceEvent = new RaceEvent(race);
         FileReader fr = new FileReader();
 
-        Iterator iterator = fr.readFileByLine(namePath);
-        ModelInitiator sorter = new SortName();
-        sorter.insertInfo(iterator, "Namn", raceEvent);
+        Iterator fileIterator = fr.readFileByLine(namePath);
+        ModelInitiator initiator = new ModelInitiator(fileIterator, raceEvent);
 
-        iterator = fr.readFileByLine(startPath);
-        sorter = new SortStartTime();
-        sorter.insertInfo(iterator, "StartTider", raceEvent);
+        fileIterator = fr.readFileByLine(startPath);
+        initiator.registerStartTimes(fileIterator);
 
         Iterator[] iterators = new Iterator[finishPath.length];
         for (int i = 0; i < finishPath.length; i++) {
             iterators[i] = fr.readFileByLine(finishPath[i]);
         }
-        SortFinishTime finishTimeSorter = new SortFinishTime();
-        finishTimeSorter.insertInfo(iterators, "Maltider", raceEvent);
+        initiator.registerFinishTimes(iterators);
 
         return raceEvent.print(printLimit);
     }

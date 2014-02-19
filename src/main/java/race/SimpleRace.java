@@ -1,4 +1,6 @@
-package models;
+package race;
+
+import models.Time;
 
 public class SimpleRace extends Race {
 
@@ -11,18 +13,8 @@ public class SimpleRace extends Race {
     }
 
     @Override
-    public Time getStart() {
-        return start;
-    }
-
-    @Override
-    public void setStart(Time start) {
+    public void addStart(Time start) {
         this.start = start;
-    }
-
-
-    public Time getFinish() {
-        return finish;
     }
 
     public void addTime(Time finish) {
@@ -43,7 +35,7 @@ public class SimpleRace extends Race {
     }
 
     @Override
-    protected Race copy() {
+    public Race copy() {
         return new SimpleRace();
     }
 }

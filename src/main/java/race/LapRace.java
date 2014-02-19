@@ -1,4 +1,4 @@
-package models;
+package race;
 
 
 public class LapRace extends Race {
@@ -16,7 +16,7 @@ public class LapRace extends Race {
     }
 
     @Override
-    protected Race copy() {
+    public Race copy() {
         return new LapRace(limit);
     }
 }

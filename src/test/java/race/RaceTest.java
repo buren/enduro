@@ -1,8 +1,9 @@
-package models;
+package race;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
+import models.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,10 +22,9 @@ public class RaceTest {;
 
 	@Test
 	public void testStartTime() {
-        assertTrue("Should be empty", race.getStart().isEmpty());
+        assertEquals("Should be three empty times", "--.--.--; --.--.--; --.--.--", race.print(1));
         Time startTime = new Time("12.00.00");
-		race.setStart(startTime);
-		assertEquals("Should be 12.00.00", startTime, race.getStart());
+		race.addStart(startTime);
         assertEquals("Should be startTime, followed by empty totalTime and finishTime", "--.--.--; "+startTime+"; --.--.--", race.print(1));
 	}
 
@@ -38,7 +38,7 @@ public class RaceTest {;
 	@Test
     public void testPrintSimpleRace() {
         Time startTime = new Time("12.00.00");
-        race.setStart(startTime);
+        race.addStart(startTime);
         Time finishTime = new Time("14.00.00");
         race.addTime(finishTime);
         assertEquals("Should be same", "02.00.00; "+startTime+"; "+finishTime, race.print(1));
@@ -47,7 +47,7 @@ public class RaceTest {;
     @Test
     public void testPrintLapRace() {
         Race lapRace = new LapRace(3);
-        lapRace.setStart(new Time("12.00.00"));
+        lapRace.addStart(new Time("12.00.00"));
         lapRace.addTime(new Time("12.30.00"));
         lapRace.addTime(new Time("13.30.00"));
         lapRace.addTime(new Time("14.30.00"));
@@ -60,7 +60,7 @@ public class RaceTest {;
     @Test
     public void testPrintTimeRace() {
         Race timeRace = new TimeRace(new Time("01.00.00"));
-        timeRace.setStart(new Time("12.00.00"));
+        timeRace.addStart(new Time("12.00.00"));
         timeRace.addTime(new Time("12.30.00"));
         timeRace.addTime(new Time("13.00.00"));
         String print = timeRace.print(2);
@@ -83,7 +83,7 @@ public class RaceTest {;
     @Test
     public void testLimitTimeRace() {
         Race timeRace = new TimeRace(new Time("01.00.00"));
-        timeRace.setStart(new Time("12.00.00"));
+        timeRace.addStart(new Time("12.00.00"));
         assertTrue(timeRace.testLimit());
         timeRace.addTime(new Time("12.30.00"));
         assertTrue(timeRace.testLimit());

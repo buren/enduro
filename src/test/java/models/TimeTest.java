@@ -1,7 +1,6 @@
 package models;
 
 import static org.junit.Assert.*;
-import models.Time;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,6 +52,17 @@ public class TimeTest {
         assertTrue(time3.isBefore(time2));
         assertTrue(time2.isBefore(time));
         assertFalse(time.isBefore(time3));
+    }
+
+    @Test
+    public void testEquals() {
+        Time time2 = new Time("12.12.12");
+        Time time3 = new Time("12.00.00");
+
+        assertTrue(time.equals(time2));
+        assertFalse(time.equals(time3));
+        assertFalse(time.equals(null));
+        assertFalse(time.equals(this));
     }
 
 }
