@@ -2,7 +2,6 @@ package sorter;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
@@ -13,14 +12,10 @@ import models.RaceEvent;
 import org.junit.Before;
 import org.junit.Test;
 
-import sorter.SortFinishTime;
-import sorter.SortName;
-import sorter.SortStartTime;
-import sorter.Sorter;
 import utils.Enduro;
 import utils.FileReader;
 
-public class SorterTest {
+public class ModelInitiatorTest {
 	private RaceEvent raceEvent;
     FileReader fr;
     String path;
@@ -34,7 +29,7 @@ public class SorterTest {
 
 	@Test
 	public void testSetName() {
-		Sorter sort = new SortName();
+		ModelInitiator sort = new SortName();
         FileReader fr = new FileReader();
         try {
             Iterator iterator = fr.readFileByLine(path+"namnfil.txt");
@@ -48,7 +43,7 @@ public class SorterTest {
 
 	@Test
 	public void testSetFinishTime() {
-		Sorter sort = new SortFinishTime();
+		ModelInitiator sort = new SortFinishTime();
 		try {
             Iterator iterator = fr.readFileByLine(path+"maltider.txt");
 			sort.insertInfo(iterator, "Maltider", raceEvent);
@@ -61,7 +56,7 @@ public class SorterTest {
 
 	@Test
 	public void testSetSortStartTime() {
-		Sorter sort = new SortStartTime();
+		ModelInitiator sort = new SortStartTime();
 		Participant p1 = new Participant(1);
 		Participant p2 = new Participant(2);
 		Participant p3 = new Participant(3);
@@ -83,8 +78,8 @@ public class SorterTest {
 
 	@Test
 	public void testSetStartTime() {
-		Sorter sort = new SortStartTime();
-		Sorter nameSort = new SortName();
+		ModelInitiator sort = new SortStartTime();
+		ModelInitiator nameSort = new SortName();
 		try {
             Iterator iterator = fr.readFileByLine(path+"namnfil.txt");
 			nameSort.insertInfo(iterator, "Namn", raceEvent);
@@ -101,7 +96,7 @@ public class SorterTest {
 	public void testSetMultipleFinishTime() {
 		RaceEvent rc = new RaceEvent(new LapRace(10));
 		SortFinishTime sort = new SortFinishTime();
-		Sorter originalSort;
+		ModelInitiator originalSort;
 
 		try {
 			String basePath = Enduro.getInstance().getResourcePath(
@@ -134,8 +129,8 @@ public class SorterTest {
 
 	@Test
 	public void testMassStartTimes() {
-		Sorter sort = new SortStartTime();
-		Sorter namesort = new SortName();
+		ModelInitiator sort = new SortStartTime();
+		ModelInitiator namesort = new SortName();
 		try {
             Iterator iterator = fr.readFileByLine(path+"namnfil.txt");
 			namesort.insertInfo(iterator, "Namn", raceEvent);

@@ -5,12 +5,12 @@ import java.util.Iterator;
 
 import models.RaceEvent;
 
-public abstract class Sorter {
+public abstract class ModelInitiator {
 
     /**
      * Creates a new sorter
      */
-    public Sorter() {}
+    public ModelInitiator() {}
 
     /**
      * Finds the correct column, and then inserts it in the raceEvent
