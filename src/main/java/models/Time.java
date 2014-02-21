@@ -14,9 +14,10 @@ public class Time {
     /**
      * Creates a new time
      *
-     * @param time the time
+     * @param time the time, as a string formatted "HH.mm.ss".
      */
     public Time(String time) {
+        time = time.trim();
         seconds = Integer.parseInt(time.substring(0, 2)) * 3600;
         seconds += Integer.parseInt(time.substring(3, 5)) * 60;
         seconds += Integer.parseInt(time.substring(6));
@@ -54,7 +55,7 @@ public class Time {
      * Returns the absolute difference in time If one of the times is empty,
      * returns a new empty time.
      *
-     * @param compare
+     * @param compare Time to compare to.
      * @return time difference
      */
     public Time compareTo(Time compare) {

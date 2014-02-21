@@ -23,7 +23,8 @@ public class TimeArea extends JTextField implements ActionListener {
 
     /**
      * Changes the time every second.
-     * @param actionEvent
+     *
+     * @param actionEvent event
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

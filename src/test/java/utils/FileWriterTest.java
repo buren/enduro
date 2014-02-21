@@ -2,6 +2,7 @@ package utils;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import junit.framework.Assert;
@@ -23,10 +24,8 @@ public class FileWriterTest {
     public void setUp() throws Exception {
         fileReader = new FileReader();
         enduro = Enduro.getInstance();
-        lines = new ArrayList<String>();
-        for (String line : new String[]{"1", "2", "3", "4", "5"}) {
-            lines.add(line);
-        }
+        lines = new ArrayList<>();
+        Collections.addAll(lines, new String[]{"1", "2", "3", "4", "5"});
     }
 
     @After

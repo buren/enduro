@@ -8,6 +8,7 @@ public class FileReader {
 
     /**
      * Returns a list with each non-empty line for specified file.
+     *
      * @param filePath absolute path to file.
      * @return ArrayList<String> with each non-empty line.
      * @throws FileNotFoundException
@@ -34,6 +35,7 @@ public class FileReader {
 
     /**
      * Returns true if string is non-empty.
+     *
      * @param str the string to be checked.
      * @return true if string is blank, false otherwise.
      */

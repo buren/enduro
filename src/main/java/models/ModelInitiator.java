@@ -8,7 +8,10 @@ public class ModelInitiator {
     private RaceEvent raceEvent;
 
     /**
-     * Creates a new sorter
+     * Create a new ModelInitiator
+     *
+     * @param nameIterator iterator containing the names of the valid participants
+     * @param raceEvent    raceEvent to initiate with data.
      */
     public ModelInitiator(Iterator nameIterator, RaceEvent raceEvent) {
         this.raceEvent = raceEvent;
@@ -16,27 +19,14 @@ public class ModelInitiator {
     }
 
     /**
-     * Reformats string to remove blankspaces and replace "; " and ", " with ";".
+     * Register the valid participants for the event
      *
-     * @param string , string to be reformatted
-     * @return reformatted string
+     * @param nameIterator iterator containing the names of the valid participants.
      */
-    protected String formatString(String string) {
-        while (string.contains("\\s\\s")) {
-            string = string.replaceAll("\\s\\s", " ");
-        }
-        while (string.contains("; ")) {
-            string = string.replaceAll("; ", ";");
-        }
-        return string;
-
-    }
-
     private void registerParticipants(Iterator nameIterator) {
         nameIterator.next(); //Jump first line
         while (nameIterator.hasNext()) {
             String line = (String) nameIterator.next();
-            line = formatString(line);
             String[] lines = line.split(";");
             int id = Integer.parseInt(lines[0]);
             Participant participant = new Participant(id);
@@ -45,20 +35,24 @@ public class ModelInitiator {
         }
     }
 
+    /**
+     * Register the start times.
+     *
+     * @param startTimesIterator iterator containing the start times.
+     */
     public void registerStartTimes(Iterator startTimesIterator) {
         while (startTimesIterator.hasNext()) {
             String line = (String) startTimesIterator.next();
-            line = formatString(line);
-            String[] lines = line.split(";");
+            String[] rows = line.split(";");
 
-            int id = Integer.parseInt(lines[0]);
-            Time startTime = new Time(lines[1]);
+            Time startTime = new Time(rows[1]);
 
-            if (lines[0].equals("*")) {
+            if (rows[0].trim().equals("*")) {
                 raceEvent.setAllStartTimes(startTime);
             } else {
+                int id = Integer.parseInt(rows[0]);
                 if (raceEvent.containsParticipant(id))
-                    raceEvent.getParticipant(id).getRace().addStart(startTime);
+                    raceEvent.getParticipant(id).getRace().setStart(startTime);
                 else {
                     Participant invalidParticipant = new Participant(id);
                     raceEvent.addInvalidParticipant(invalidParticipant, raceEvent.INVALID_START_TIME, startTime);
@@ -68,9 +62,9 @@ public class ModelInitiator {
     }
 
     /**
-     * Adds information within the file path to the correct column, for multiple files
+     * Register the finish times.
      *
-     * @param finishTimesIterator       the iterators containing the rows
+     * @param finishTimesIterator iterator containing the finish times.
      */
     public void registerFinishTimes(Iterator[] finishTimesIterator) {
         ArrayList<Time> timeList = new ArrayList<>();
@@ -79,7 +73,6 @@ public class ModelInitiator {
         for (Iterator iterator : finishTimesIterator) {
             while (iterator.hasNext()) {
                 String line = (String) iterator.next();
-                line = formatString(line);
                 String[] lines = line.split(";");
                 intList.add(Integer.parseInt(lines[0]));
                 timeList.add(new Time(lines[1]));

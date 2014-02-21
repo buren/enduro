@@ -7,64 +7,65 @@ import models.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RaceTest {;
+public class RaceTest {
+    ;
     private Race race;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
         race = new SimpleRace();
-	}
+    }
 
-	@Test
-	public void testEmpty() {
-		assertEquals("Should be one", 1, race.getLaps());
-	}
+    @Test
+    public void testEmpty() {
+        assertEquals("Should be one", 1, race.getLaps());
+    }
 
-	@Test
-	public void testStartTime() {
+    @Test
+    public void testStartTime() {
         assertEquals("Should be three empty times", "--.--.--; --.--.--; --.--.--", race.print(1));
         Time startTime = new Time("12.00.00");
-		race.addStart(startTime);
-        assertEquals("Should be startTime, followed by empty totalTime and finishTime", "--.--.--; "+startTime+"; --.--.--", race.print(1));
-	}
+        race.setStart(startTime);
+        assertEquals("Should be startTime, followed by empty totalTime and finishTime", "--.--.--; " + startTime + "; --.--.--", race.print(1));
+    }
 
-	@Test
-	public void testFinishTime() {
-		Time finishTime = new Time("14.00.00");
-		race.addTime(finishTime);
-		assertEquals("Should be empty start and totaltimes followed by 14.00.00", "--.--.--; --.--.--; "+finishTime, race.print(1));
-	}
-
-	@Test
-    public void testPrintSimpleRace() {
-        Time startTime = new Time("12.00.00");
-        race.addStart(startTime);
+    @Test
+    public void testFinishTime() {
         Time finishTime = new Time("14.00.00");
         race.addTime(finishTime);
-        assertEquals("Should be same", "02.00.00; "+startTime+"; "+finishTime, race.print(1));
+        assertEquals("Should be empty start and totaltimes followed by 14.00.00", "--.--.--; --.--.--; " + finishTime, race.print(1));
+    }
+
+    @Test
+    public void testPrintSimpleRace() {
+        Time startTime = new Time("12.00.00");
+        race.setStart(startTime);
+        Time finishTime = new Time("14.00.00");
+        race.addTime(finishTime);
+        assertEquals("Should be same", "02.00.00; " + startTime + "; " + finishTime, race.print(1));
     }
 
     @Test
     public void testPrintLapRace() {
         Race lapRace = new LapRace(3);
-        lapRace.addStart(new Time("12.00.00"));
+        lapRace.setStart(new Time("12.00.00"));
         lapRace.addTime(new Time("12.30.00"));
         lapRace.addTime(new Time("13.30.00"));
         lapRace.addTime(new Time("14.30.00"));
         String print = lapRace.print(3);
-        assertEquals("Should be same","; 3; 02.30.00; 00.30.00; 01.00.00; 01.00.00; 12.00.00; 12.30.00; 13.30.00; 14.30.00", print);
+        assertEquals("Should be same", "; 3; 02.30.00; 00.30.00; 01.00.00; 01.00.00; 12.00.00; 12.30.00; 13.30.00; 14.30.00", print);
         print = lapRace.print(4);
-        assertEquals("Should be same","; 3; 02.30.00; 00.30.00; 01.00.00; 01.00.00; --.--.--; 12.00.00; 12.30.00; 13.30.00; --.--.--; 14.30.00",print);
+        assertEquals("Should be same", "; 3; 02.30.00; 00.30.00; 01.00.00; 01.00.00; --.--.--; 12.00.00; 12.30.00; 13.30.00; --.--.--; 14.30.00", print);
     }
 
     @Test
     public void testPrintTimeRace() {
         Race timeRace = new TimeRace(new Time("01.00.00"));
-        timeRace.addStart(new Time("12.00.00"));
+        timeRace.setStart(new Time("12.00.00"));
         timeRace.addTime(new Time("12.30.00"));
         timeRace.addTime(new Time("13.00.00"));
         String print = timeRace.print(2);
-        assertEquals("Should be same", "; 2; 01.00.00; 00.30.00; 00.30.00; 12.00.00; 12.30.00; 13.00.00",print);
+        assertEquals("Should be same", "; 2; 01.00.00; 00.30.00; 00.30.00; 12.00.00; 12.30.00; 13.00.00", print);
     }
 
     @Test
@@ -83,15 +84,11 @@ public class RaceTest {;
     @Test
     public void testLimitTimeRace() {
         Race timeRace = new TimeRace(new Time("01.00.00"));
-        timeRace.addStart(new Time("12.00.00"));
+        timeRace.setStart(new Time("12.00.00"));
         assertTrue(timeRace.testLimit());
         timeRace.addTime(new Time("12.30.00"));
         assertTrue(timeRace.testLimit());
         timeRace.addTime(new Time("13.00.00"));
         assertFalse(timeRace.testLimit());
     }
-
-
-
-
 }

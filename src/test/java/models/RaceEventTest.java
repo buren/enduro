@@ -11,20 +11,13 @@ import race.SimpleRace;
 import utils.Enduro;
 
 public class RaceEventTest {
-	private RaceEvent raceEvent;
-    private Enduro enduro;
+    private RaceEvent raceEvent;
     private Participant participant;
 
-	@Before
-	public void setUp() {
-		enduro = Enduro.getInstance();
-		raceEvent = new RaceEvent(new SimpleRace());
+    @Before
+    public void setUp() {
+        raceEvent = new RaceEvent(new SimpleRace());
         participant = new Participant(1);
-	}
-
-    @Test
-    public void testEmptyRaceEvent() {
-        assertEquals("Should be empty", 0, raceEvent.size());
     }
 
     @Test
@@ -46,8 +39,8 @@ public class RaceEventTest {
         raceEvent.addParticipant(p2);
         raceEvent.addParticipant(p3);
 
-        p2.getRace().addStart(new Time("11.00.00"));
-        p3.getRace().addStart(new Time("10.00.00"));
+        p2.getRace().setStart(new Time("11.00.00"));
+        p3.getRace().setStart(new Time("10.00.00"));
 
         Time newTime = new Time("12.00.00");
         raceEvent.setAllStartTimes(newTime);
@@ -57,7 +50,5 @@ public class RaceEventTest {
         assertEquals("Should be same", "--.--.--; 12.00.00; --.--.--", p3.getRace().print(3));
     }
 
-
-	
 
 }

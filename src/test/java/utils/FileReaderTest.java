@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import junit.framework.Assert;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,9 +21,6 @@ public class FileReaderTest {
         fileReader = new FileReader();
         enduro = Enduro.getInstance();
     }
-
-    @After
-    public void tearDown() throws Exception { }
 
     @Test
     public void testCanFindFile() throws Exception {
@@ -53,7 +49,7 @@ public class FileReaderTest {
     }
 
     @Test
-    public void testDiscardsBlankLines() throws Exception  {
+    public void testDiscardsBlankLines() throws Exception {
         Iterator<String> lines = fileReader.readFileByLine(enduro.getResourcePath("/utils/testEmptyLinesInBetween.csv"));
         Assert.assertEquals("Should have line", true, lines.hasNext());
         Assert.assertEquals("Should be 'a'", lines.next(), "a");
