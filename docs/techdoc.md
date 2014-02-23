@@ -3,22 +3,24 @@
 ##Package controllers:
 
 	###FormatterController:
-	Klassen tar in en parameter av typen String. Denna parameter är de antal varv som tävlingen ska innefatta.
-	FormatterController finns till för att skilja vyn från modellen, den tar därför endast emot String som parameter.
+	Klassen tar in diverse parametrar som beskriver vilken racetyp som ska köras, samt en relevant begränsning för 
+        t.ex. hur många	varv loppet ska bestå av. Den tar även in sökvägar till filer som innehåller: namn, starttider,   
+        måltider. FormatterController finns till för att skilja vyn från modellen.
 
 	###RegisterController:
-	Kommunikationslänk mellan vy och modell. Tar endast emot String som parametrar i samtliga metoder.
+	Kommunikationslänk mellan vy och modell. Tar endast emot String som parametrar i samtliga metoder. Vid       
+	instansiering så ges en sökväg till en tempfil.
 
 ##Package main:
 
 	###Main:
 	Instansierar programmet.
-	Tar emot en String parameter från Java.Swings.utils inputDialog som bestämmer huruvida det är registrerings- eller formateringsprogrammet som ska köras.
+	Tar emot en String parameter från Java.Swings.utils inputDialog som bestämmer huruvida det är registrerings- eller         formateringsprogrammet som ska köras.
 
 ##Package models:
 
 	###Time:
-	Består av ett int attribut som representerar en tid i sekunder från tiden 00.00.00.
+	Består av ett Integer attribut som representerar en tid i sekunder från tiden 00.00.00.
 	Konstruktorn tar emot en String parameter på formatet HH.MM.SS.
 	Har metoder för jämföring av två tider samt en toString.
 
@@ -29,33 +31,38 @@
 	
 	###Participant:
 	Modellering av en deltagare.
-	När en participant skapas anges en int parameter i konstruktorn som blir deltagarens tävlingsId.
-	I participant finns också möjlighet att lägga till ett namn.
-	Klassen innehåller också metoder för jämföring samt getters för namn och id, samt setter för namn.
+	När en participant skapas anges en Integer parameter i konstruktorn som blir deltagarens tävlingsId.
+	I participant finns också möjlighet att lägga till ett namn och ett race.
+	Klassen innehåller också metoder för jämföring samt getters för race, namn och id, samt setter för namn och race.
 	
-	###Race:
-	Modellering av en Participants tävlingsinsats.
-	Består av flera Laps.
-	Klasser har också getters och setters för start och sluttid, men även för enskilda Laps.
-	Har också metod för totaltiden för alla Laps i Racet.
-	
+	###ModelInitiator:
+	Den tar in en deltagarlista och raceEvent. Klassen används för att samla värden och sortera dem.
+
 	###RaceEvent:
 	Modellering av ett tävlingstilfälle med flera tävlare.
 	Konstruktorn tar emot en int parameter som anger hur många varv som tävligen består av.
 	Består av en samling Participants med deras tillhörande Race.
 	Har metoder för att hantera tillägg av Participants och tider.
-	
-##Package sorter:
-	
-	###Sorter: 
-	Sortern är en abstrakt klass med subklasser (SortFinishTime, SortName, SortStartTime) enligt template method. Samtliga subklasser har en separat skuggning av metoden addInfo(int, Iterator<String>, RaceEvent).
-	Det som skiljer sig åt subklasserna emellan är vilken metod i klassen RaceEvent som anropas för att spara information om Times och Participants på rätt plats.
-	Man anropar funktionen insertInfo som har tre parametrar (String filePath, String column, RaceEvent raceEvent) där filePath är URL-adress till filen som ska läsas in. 
-	Column är namnet på motsvarande kolumn som man vill läsa från och RaceEvent är det RaceEvent som informationen ska sparas till.
 
-    ###SortFinishTime:
-    SortFinishTime kan användas för att läsa flera måltider. För att läsa flera måltider så skickar man in en sträng-vektor till insertInfo istället för en vanlig sträng.
-
+##Package Race:
+	
+	###Race:
+	Generell modellering av en Participants tävlingsinsats.
+	Består av flera Laps.
+	Klasser har också getters och setters för start och sluttid, men även för enskilda Laps.
+	Har också metod för totaltiden för alla Laps i Racet.
+	
+	###LapRace:
+	Subklass till Race, används för varvbaserade lopp. Får en Integer som inparameter för att begränsa hur många varv         loppet ska bestå av.
+	
+	
+	###SimpleRace:
+	Subklass till Race, används för 'envarvslopp'.
+	
+	###TimeRace:
+	Subklass till Race, används för tidsbaserade lopp. Får en Time som inparameter för att begränsa hur länge loppet          ska köras.
+	
+	
 
 ##Package utils:
 	
@@ -67,19 +74,14 @@
 	Läser innehållet på den fil vars URL-adress anges i konstruktorn och returnerar en Iterator<String> av innehållet.
 	
 	###FileWriter:
-	Skriver ut innehållet i andra argumentet i konstruktorn (antingen en String eller en Iterator<String>) på platsen (URL-adress) som anges i det första argumentet.
+	Skriver ut innehållet i andra argumentet i konstruktorn (antingen en String eller en Iterator<String>) på platsen         (URL-adress) som anges i det första argumentet.
 
-	###Formatter:
-	Konstruktorn tar emot ett String argument som är det antal varv som tävlingen ska bestå av.
-	Den skapar ett RaceEvent som den sedan lägger in information som ligger i diverse filer. Informationen kan vara namn och tider.
-	Klassen har metoder för att generera och returnera resultat på String-format utav den inmatade informationen.
-	Har också metoder för att returnera tiden för samtliga varv som en Participant har kört, samt att returnera tiden för de x första varven.
 	
 ##Package views:
 
 	###GUIFormatter:
 	Skapar ett användargränssnitt för formattering av informationsfiler innehållande namn och tider.
-	När gränssnittet startas ges det möjlighet att ange hur många varv som ingår i den tävling som ska formatteras.
+	Vid instansiering så tar den in en FormatterController som håller all relevant information.
 	
 	###LoadStartButton:
 	Öppnar ett "file chooser"-fönster där en fil med starttider ska väljas.
@@ -101,7 +103,7 @@
 	
 	###RegisterButton:
 	Hämtar innehållet i registeringsfältet från GUIRegister.
-	Innehållet från registeringsfälet tillsammans med den aktuella tiden skrivs ut på nästa nya rad på den filplats som valdes i GUIRegisters file chooser.
+	Innehållet från registeringsfälet tillsammans med den aktuella tiden skrivs ut på nästa nya rad på den filplats 	        som valdes i GUIRegisters file chooser.
 	Om filen inte existerar så skapas en ny fil vid första registreringen.
 	
 	
