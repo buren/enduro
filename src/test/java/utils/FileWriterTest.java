@@ -24,7 +24,7 @@ public class FileWriterTest {
     public void setUp() throws Exception {
         fileReader = new FileReader();
         enduro = Enduro.getInstance();
-        lines = new ArrayList<>();
+        lines = new ArrayList<String>();
         Collections.addAll(lines, new String[]{"1", "2", "3", "4", "5"});
     }
 

@@ -20,7 +20,7 @@ public class LoadFinishButton extends JButton implements ActionListener {
         super("Ladda in målfil");
         this.addActionListener(this);
         this.statusText = statusText;
-        malfiler = new ArrayList<>();
+        malfiler = new ArrayList<String>();
     }
 
     /**
