@@ -17,7 +17,7 @@ För att använda formaterare:
 
 För att använda registerare:
 
-1. Kör .jar filen (Om programmet körs på MAC OS.X kör i sudo-läge).
+1. Kör .jar filen.
 2. Tryck på ```"Registrering"```-knappen.
 3. Välj sökväg till var du vill ha din tempfil. OBS! Om du startar programmet med samma sökväg och namn som på tidigare tempfil så sparas den gamla över och går förlorad.OBS!
 4. Skriv in deltagarens siffra i den övre vänstra textrutan och tryck sedan på ```"Registrera"```-knappen för att registrera nuvarade tid på vald deltagare.
