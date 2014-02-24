@@ -126,15 +126,15 @@ public abstract class Race {
     	boolean lapTime = false;
     	StringBuilder sb = new StringBuilder();
     	 for (int i = 0; i < printLimit; i++) {
-    		  if (getLapTimeElapsed(i).isBefore(new Time("00.15.00")) && getLapTime(i).isEmpty()) {
-    			  
+    		  if (getLapTimeElapsed(i).isBefore(new Time("00.15.00")) && !getLapTime(i).isEmpty()) {
+    			  lapTime = true;
     		  }
     	  }   	 
     	 
     	 if (lapTime)
     		 sb.append("; Omöjlig varvtid?");
     	 if (multipleStart.size() > 0) {
-    		 sb.append("Flera starttider? ");
+    		 sb.append("; Flera starttider? ");
     		 for (int i = 0; i < multipleStart.size(); i++) {
     			 sb.append(multipleStart.get(i).toString() + " ");
     		 }
