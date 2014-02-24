@@ -107,7 +107,8 @@ public class RaceEvent {
         for (String raceClass : raceClasses) {
             if(raceClass != "None")
                 sb.append(raceClass).append("\n");
-            sb.append("StartNr; Namn; #Varv; TotalTid");
+            sb.append(participants.get(0).printHeader());
+            sb.append("; #Varv; TotalTid");
             for (int i = 0; i < printLimit; i++) {
                 sb.append("; Varv").append(i + 1);
             }
