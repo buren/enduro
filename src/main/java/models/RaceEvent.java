@@ -16,8 +16,8 @@ public class RaceEvent {
      * @param raceType type of race this raceEvent is going to be.
      */
     public RaceEvent(Race raceType) {
-        participants = new ArrayList<>();
-        invalidParticipants = new ArrayList<>();
+        participants = new ArrayList<Participant>();
+        invalidParticipants = new ArrayList<Participant>();
         this.raceType = raceType;
     }
 
@@ -96,18 +96,30 @@ public class RaceEvent {
      * @return a formatted result string.
      */
     public String print(int printLimit) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("StartNo; Name; #Laps; TotalTime");
-        for (int i = 0; i < printLimit; i++) {
-            sb.append("; Lap").append(i + 1);
-        }
-        sb.append("; Start");
-        for (int i = 0; i < printLimit - 1; i++) {
-            sb.append("; Checkpoint").append(i + 1);
-        }
-        sb.append("; Finish\n");
+        ArrayList<String> raceClasses = new ArrayList<String>();
         for (Participant p : participants) {
-            sb.append(p.print(printLimit)).append("\n");
+            String raceClass = p.getRaceClass();
+            if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
+                raceClasses.add(raceClass);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String raceClass : raceClasses) {
+            if(raceClass != "None")
+                sb.append(raceClass).append("\n");
+            sb.append("StartNr; Namn; #Varv; TotalTid");
+            for (int i = 0; i < printLimit; i++) {
+                sb.append("; Varv").append(i + 1);
+            }
+            sb.append("; Start");
+            for (int i = 0; i < printLimit - 1; i++) {
+                sb.append("; Varvning").append(i + 1);
+            }
+            sb.append("; Mal\n");
+            for (Participant p : participants) {
+                if(p.getRaceClass() == raceClass)
+                    sb.append(p.print(printLimit)).append("\n");
+            }
         }
         return sb.toString();
     }

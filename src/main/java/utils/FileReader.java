@@ -14,7 +14,7 @@ public class FileReader {
      * @throws FileNotFoundException
      */
     public Iterator<String> readFileByLine(String filePath) throws FileNotFoundException {
-        ArrayList<String> fileLines = new ArrayList<>();
+        ArrayList<String> fileLines = new ArrayList<String>();
         FileInputStream inputStream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(inputStream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));

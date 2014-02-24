@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RaceTest {
-	;
+
 	private Race race;
 
 	@Before
@@ -115,7 +115,7 @@ public class RaceTest {
 		event.addParticipant(p);
 		assertEquals(
 				"Should be same",
-				"StartNo; Name; #Laps; TotalTime; Lap1; Lap2; Start; Checkpoint1; Finish\n"
+				"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
 						+ "1; Not named; 0; --.--.--; --.--.--; --.--.--; Start?; --.--.--; Slut?\n",
 				event.print(2));
 	}
@@ -130,7 +130,7 @@ public class RaceTest {
 		event.setAllStartTimes(new Time("12.45.00"));
 		assertEquals(
 				"Should be same",
-				"StartNo; Name; #Laps; TotalTime; Lap1; Lap2; Start; Checkpoint1; Finish\n"
+				"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
 						+ "1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n",
 				event.print(2));
 	}
@@ -151,7 +151,7 @@ public class RaceTest {
 		event.setAllStartTimes(new Time("12.45.00"));
 
 		StringBuilder s = new StringBuilder();
-		s.append("StartNo; Name; #Laps; TotalTime; Lap1; Lap2; Start; Checkpoint1; Finish\n");
+		s.append("StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n");
 		s.append("1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
 		s.append("2; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
 		s.append("3; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
@@ -167,8 +167,9 @@ public class RaceTest {
 		event.addParticipant(p1);
 		p1.getRace().setStart(new Time("12.00.00"));
 		p1.getRace().addTime(new Time("12.05.00"));
-		String s = "StartNo; Name; #Laps; TotalTime; Lap1; Lap2; Start; Checkpoint1; Finish\n"
+		String s = "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
 				+ "1; Not named; 1; 00.05.00; 00.05.00; --.--.--; 12.00.00; --.--.--; 12.05.00; Omöjlig varvtid?\n";
 		assertEquals("Should be same", event.print(2), s);
 	}
+
 }
