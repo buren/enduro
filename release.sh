@@ -16,7 +16,7 @@ mkdir -p $target_dir
 cp docs/* $target_dir
 cp target/*.jar $target_dir
 mkdir $target_dir/javadoc
-cp target/site/apidocs/* $target_dir/javadoc
+cp -r target/site/apidocs/* $target_dir/javadoc
 rm $target_dir/*with-dependencies.jar
 cp -r src/test/resources/acceptanstester/ $target_dir
 zip -r $release_name $target_dir
