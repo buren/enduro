@@ -125,7 +125,11 @@ public abstract class Race {
         for (int i = 0; i < printLimit; i++) {
             sb.append("; ").append(getLapTimeElapsed(i));
         }
-        sb.append("; ").append(getStart());
+        if(getStart().isEmpty()) {
+        	sb.append("; ").append("Start?");
+        }
+        else
+        	sb.append("; ").append(getStart());
         for (int i = 0; i < printLimit - 1; i++) {
             Time lapTime = getLapTime(i);
             if (lapTime.equals(getFinish()))    //Since we want the finishtime in the correct column, check this.
@@ -133,7 +137,10 @@ public abstract class Race {
             else
                 sb.append("; ").append(lapTime);
         }
-        sb.append("; ").append(getFinish());
+        if (getFinish().isEmpty())
+        	sb.append("; ").append("Slut?");
+        else
+        	sb.append("; ").append(getFinish());
         return sb.toString();
     }
 
