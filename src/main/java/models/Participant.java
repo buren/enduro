@@ -1,84 +1,93 @@
 package models;
 
+import java.util.ArrayList;
+
 import race.Race;
 
 public class Participant {
-    private int id;
-    private String name;
-    private Race race;
-    private String raceClass;
+	private int id;
+	private String name;
+	private Race race;
+	private String raceClass;
 
-    /**
-     * Participant identifies by their id/startnumber, two participants with the same id are considered the same.
-     *
-     * @param id id of participant
-     */
-    public Participant(int id) {
-        this.id = id;
-        name = "Not named";
-        raceClass = "None";
-    }
+	/**
+	 * Participant identifies by their id/startnumber, two participants with the
+	 * same id are considered the same.
+	 * 
+	 * @param id
+	 *            id of participant
+	 */
+	public Participant(int id) {
+		this.id = id;
+		name = "Not named";
+		raceClass = "None";
 
-    /**
-     * Return the participant id
-     *
-     * @return id of participant
-     */
-    public int getId() {
-        return id;
-    }
+	}
 
-    /**
-     * Set participant name to parameter name
-     *
-     * @param name name of participant
-     */
-    public void setName(String name) {
-        this.name = name.trim();
-    }
+	/**
+	 * Return the participant id
+	 * 
+	 * @return id of participant
+	 */
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * Return the participants name
-     *
-     * @return name of participant
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Set participant name to parameter name
+	 * 
+	 * @param name
+	 *            name of participant
+	 */
+	public void setName(String name) {
+		this.name = name.trim();
+	}
 
-    /**
-     * Connects the participant to a race
-     *
-     * @param race race the participant is racing.
-     */
-    public void setRace(Race race) {
-        this.race = race;
-    }
+	/**
+	 * Return the participants name
+	 * 
+	 * @return name of participant
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Return the participants race.
-     *
-     * @return race of participant
-     */
-    public Race getRace() {
-        return race;
-    }
+	/**
+	 * Connects the participant to a race
+	 * 
+	 * @param race
+	 *            race the participant is racing.
+	 */
+	public void setRace(Race race) {
+		this.race = race;
+	}
 
-    /**
-     * Sets the class of the participant.
-     * @param raceClass Name of the class.
-     */
-    public void setRaceClass(String raceClass) {
-        this.raceClass = raceClass;
-    }
+	/**
+	 * Return the participants race.
+	 * 
+	 * @return race of participant
+	 */
+	public Race getRace() {
+		return race;
+	}
 
-    /**
-     *
-     * @return class for this participant.
-     */
-    public String getRaceClass() {
-        return raceClass;
-    }
+	/**
+	 * Sets the class of the participant.
+	 * 
+	 * @param raceClass
+	 *            Name of the class.
+	 */
+	public void setRaceClass(String raceClass) {
+		this.raceClass = raceClass;
+	}
+
+	/**
+	 * 
+	 * @return class for this participant.
+	 */
+	public String getRaceClass() {
+		return raceClass;
+	}
 
     /**
      * Print a formatted result string.
@@ -101,4 +110,5 @@ public class Participant {
         Participant other = (Participant) obj;
         return id == other.id;
     }
+
 }
