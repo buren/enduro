@@ -33,7 +33,7 @@
 	Modellering av en deltagare.
 	När en participant skapas anges en Integer parameter i konstruktorn som blir deltagarens tävlingsId.
 	I participant finns också möjlighet att lägga till ett namn och ett race.
-	Klassen innehåller också metoder för jämföring samt getters för race, namn och id, samt setter för namn och race.
+	Klassen innehåller också metoder för jämföring samt getters för race, namn och id, samt setter för namn, klass och race.
 	
 	###ModelInitiator:
 	Den tar in en deltagarlista och raceEvent. Klassen används för att samla värden och sortera dem.
@@ -42,7 +42,7 @@
 	Modellering av ett tävlingstilfälle med flera tävlare.
 	Konstruktorn tar emot en int parameter som anger hur många varv som tävligen består av.
 	Består av en samling Participants med deras tillhörande Race.
-	Har metoder för att hantera tillägg av Participants och tider.
+	Har metoder för att hantera tillägg av Participants.
 
 ##Package Race:
 	
