@@ -4,6 +4,7 @@
 - [Simplified VCS](#simplified-vcs)
 - [Automatic testing](#automatic-testing)
 - [Continuous integration](#continuous-integration)
+- [Maven File Structure](#maven-file-structure)
 
 ## Getting started
 
@@ -42,3 +43,12 @@ After ```gs done``` a precommit hook script will be called, which will run the e
 ## Continuous integration
 
 After ```gs done``` is done the project will be sent to Travis CI, which will then build the project and run its entire test suite. [Travis CI for Enduro.](https://travis-ci.org/buren/enduro)
+
+## Maven File Structure
+
+Maven is a tool which is used to configure a project for several users. The structure that it uses is the following:
+Main: Where your programcode is placed.
+Test: Where your testcode is placed.
+Target: When maven builds your project it is placed in the Target folder.
+
+
