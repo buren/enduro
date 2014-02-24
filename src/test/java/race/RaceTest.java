@@ -98,7 +98,7 @@ public class RaceTest {
     	RaceEvent event = new RaceEvent(lapRace);
     	Participant p = new Participant(1);
     	event.addParticipant(p);
-    	assertEquals("Should be same", "StartNo; Name; #Laps; TotalTime; Lap1; Lap2; Start; Checkpoint1; Finish\n" + 
+    	assertEquals("Should be same", "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n" +
 "1; Not named; 0; --.--.--; --.--.--; --.--.--; Start?; --.--.--; Slut?\n", event.print(2));
     }
     

@@ -6,6 +6,7 @@ public class Participant {
     private int id;
     private String name;
     private Race race;
+    private String raceClass;
 
     /**
      * Participant identifies by their id/startnumber, two participants with the same id are considered the same.
@@ -15,6 +16,7 @@ public class Participant {
     public Participant(int id) {
         this.id = id;
         name = "Not named";
+        raceClass = "None";
     }
 
     /**
@@ -60,6 +62,22 @@ public class Participant {
      */
     public Race getRace() {
         return race;
+    }
+
+    /**
+     * Sets the class of the participant.
+     * @param raceClass Name of the class.
+     */
+    public void setRaceClass(String raceClass) {
+        this.raceClass = raceClass;
+    }
+
+    /**
+     *
+     * @return class for this participant.
+     */
+    public String getRaceClass() {
+        return raceClass;
     }
 
     /**

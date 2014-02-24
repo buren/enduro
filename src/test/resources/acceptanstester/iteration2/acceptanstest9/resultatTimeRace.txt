@@ -1,4 +1,4 @@
-StartNo; Name; #Laps; TotalTime; Lap1; Lap2; Lap3; Start; Checkpoint1; Checkpoint2; Finish
+StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mal
 1; Anders Asson; 2; 01.00.00; 00.30.00; 00.30.00; --.--.--; 12.00.00; 12.30.00; --.--.--; 13.00.00
 2; Bengt Bsson; 3; 01.14.16; 00.20.00; 00.20.00; 00.34.16; 12.01.00; 12.21.00; 12.41.00; 13.15.16
 3; Chris Csson; 3; 01.03.06; 00.20.00; 00.20.00; 00.23.06; 12.02.00; 12.22.00; 12.42.00; 13.05.06

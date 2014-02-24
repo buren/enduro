@@ -25,13 +25,21 @@ public class ModelInitiator {
      */
     private void registerParticipants(Iterator nameIterator) {
         nameIterator.next(); //Jump first line
+        String raceClass = "";
         while (nameIterator.hasNext()) {
             String line = (String) nameIterator.next();
+            if (!line.contains(";")) {
+                raceClass = line.toString();
+            } else {
             String[] lines = line.split(";");
             int id = Integer.parseInt(lines[0]);
             Participant participant = new Participant(id);
             participant.setName(lines[1]);
+            if(!raceClass.isEmpty()) {
+                participant.setRaceClass(raceClass);
+            }
             raceEvent.addParticipant(participant);
+            }
         }
     }
 
@@ -67,8 +75,8 @@ public class ModelInitiator {
      * @param finishTimesIterator iterator containing the finish times.
      */
     public void registerFinishTimes(Iterator[] finishTimesIterator) {
-        ArrayList<Time> timeList = new ArrayList<>();
-        ArrayList<Integer> intList = new ArrayList<>();
+        ArrayList<Time> timeList = new ArrayList<Time>();
+        ArrayList<Integer> intList = new ArrayList<Integer>();
 
         for (Iterator iterator : finishTimesIterator) {
             while (iterator.hasNext()) {

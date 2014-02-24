@@ -47,10 +47,9 @@ public class RaceEvent {
 		if (!notRegisteredParticipants.contains(participant)) {
 			participant.setRace(newRace());
 			notRegisteredParticipants.add(participant);
-		}
-		else{
-			for(Participant p : notRegisteredParticipants){
-				if(p.equals(participant)){
+		} else {
+			for (Participant p : notRegisteredParticipants) {
+				if (p.equals(participant)) {
 					participant = p;
 				}
 			}
@@ -128,22 +127,34 @@ public class RaceEvent {
 	}
 
 	private String print(int printLimit, ArrayList<Participant> list) {
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("StartNo; Name; #Laps; TotalTime");
-		for (int i = 0; i < printLimit; i++) {
-			sb.append("; Lap").append(i + 1);
+		{
+			ArrayList<String> raceClasses = new ArrayList<String>();
+			for (Participant p : list) {
+				String raceClass = p.getRaceClass();
+				if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
+					raceClasses.add(raceClass);
+				}
+			}
+			StringBuilder sb = new StringBuilder();
+			for (String raceClass : raceClasses) {
+				if (raceClass != "None")
+					sb.append(raceClass).append("\n");
+				sb.append("StartNr; Namn; #Varv; TotalTid");
+				for (int i = 0; i < printLimit; i++) {
+					sb.append("; Varv").append(i + 1);
+				}
+				sb.append("; Start");
+				for (int i = 0; i < printLimit - 1; i++) {
+					sb.append("; Varvning").append(i + 1);
+				}
+				sb.append("; Mal\n");
+				for (Participant p : list) {
+					if (p.getRaceClass() == raceClass)
+						sb.append(p.print(printLimit)).append("\n");
+				}
+			}
+			return sb.toString();
 		}
-		sb.append("; Start");
-		for (int i = 0; i < printLimit - 1; i++) {
-			sb.append("; Checkpoint").append(i + 1);
-		}
-		sb.append("; Finish\n");
-		for (Participant p : list) {
-			sb.append(p.print(printLimit)).append("\n");
-		}
-
-		return sb.toString();
 	}
 
 	/**
@@ -153,5 +164,4 @@ public class RaceEvent {
 	private Race newRace() {
 		return raceType.copy();
 	}
-
 }
