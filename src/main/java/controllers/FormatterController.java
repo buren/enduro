@@ -15,6 +15,7 @@ import utils.FileWriter;
 
 public class FormatterController {
     public static final int SIMPLE_RACE = 0, LAP_RACE = 1, TIME_RACE = 2;
+    private RaceEvent raceEvent;
 
     /**
      * Writes the Strings within the Iterator to the given filepath.
@@ -54,7 +55,7 @@ public class FormatterController {
             default:
                 throw new IllegalArgumentException("Racetypen finns inte!");
         }
-        RaceEvent raceEvent = new RaceEvent(race);
+        raceEvent = new RaceEvent(race);
         FileReader fr = new FileReader();
 
         Iterator fileIterator = fr.readFileByLine(namePath);
@@ -68,7 +69,11 @@ public class FormatterController {
             iterators[i] = fr.readFileByLine(finishPath[i]);
         }
         initiator.registerFinishTimes(iterators);
-
+        
         return raceEvent.print(printLimit);
+    }
+    
+    public void resetRace(){
+    	raceEvent = null;
     }
 }

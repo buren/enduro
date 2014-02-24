@@ -66,6 +66,10 @@ public class acceptanceTest {
 
         String result = formatterController.result(pathToStartFile, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3);
         assertEquals(readFileToString(resultFilePath), result);
+        formatterController.resetRace();
+        result = formatterController.result(pathToStartFile, finishFileArray,
+                pathToNameFile, FormatterController.LAP_RACE, "3", 3);
+        assertEquals(readFileToString(resultFilePath), result);
     }
 
     @Test

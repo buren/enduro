@@ -45,9 +45,9 @@ public class RaceEventTest {
         Time newTime = new Time("12.00.00");
         raceEvent.setAllStartTimes(newTime);
 
-        assertEquals("Should be same", "--.--.--; 12.00.00; --.--.--", participant.getRace().print(3));
-        assertEquals("Should be same", "--.--.--; 12.00.00; --.--.--", p2.getRace().print(3));
-        assertEquals("Should be same", "--.--.--; 12.00.00; --.--.--", p3.getRace().print(3));
+        assertEquals("Should be same", "--.--.--; 12.00.00; Slut?", participant.getRace().print(3));
+        assertEquals("Should be same", "--.--.--; 12.00.00; Slut?", p2.getRace().print(3));
+        assertEquals("Should be same", "--.--.--; 12.00.00; Slut?", p3.getRace().print(3));
     }
 
 
