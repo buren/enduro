@@ -50,7 +50,7 @@ public abstract class Race {
     /**
      * @return return the number of completed laps.
      */
-    private int getCompletedLaps() {
+    protected int getCompletedLaps() {
         if (laps.get(laps.size() - 1).getFinish().isEmpty())
             return laps.size() - 1;
         return laps.size();
@@ -86,14 +86,13 @@ public abstract class Race {
      * @return time elapsed during whole race.
      */
     protected Time getTotal() {
-        return getStart().compareTo(getFinish());
+        return getStart().getDifference(getFinish());
     }
 
     /**
      * Add a new finishtime
      *
      * @param time time to add.
-     * @return true if a Time was successfully added, else false.
      */
     public void addTime(Time time) {
         if (laps.get(laps.size() - 1).getFinish().isEmpty())
@@ -137,6 +136,10 @@ public abstract class Race {
         return sb.toString();
     }
 
+    public abstract int compareTo(Race race);
+   
+	
+    
     /**
      * @return a new Race with the same time limit
      */
@@ -182,7 +185,7 @@ public abstract class Race {
          * @return the duration of the race, if incomplete, return a empty time.
          */
         public Time getTotalTime() {
-            return startTime.compareTo(finishTime);
+            return startTime.getDifference(finishTime);
         }
 
         /**

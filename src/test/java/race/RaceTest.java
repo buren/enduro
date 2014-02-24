@@ -91,4 +91,35 @@ public class RaceTest {
         timeRace.addTime(new Time("13.00.00"));
         assertFalse(timeRace.testLimit());
     }
+    
+    @Test
+    public void testTimeRaceCompareTo() {
+    	Race timeRace1 = new TimeRace(new Time("01.00.00"));
+    	Race timeRace2 = new TimeRace(new Time("01.00.00"));
+    	timeRace1.setStart(new Time("12.00.00"));
+    	timeRace2.setStart(new Time("12.00.00"));
+    	timeRace1.addTime(new Time("12.30.00"));
+    	timeRace1.addTime(new Time("13.00.00"));
+    	timeRace2.addTime(new Time("12.15.00"));
+    	timeRace2.addTime(new Time("12.30.00"));
+    	assertTrue(timeRace1.compareTo(timeRace2)==0);
+    	timeRace2.addTime(new Time("12.45.00"));
+    	timeRace2.addTime(new Time("13.00.00"));
+    	assertTrue(timeRace1.compareTo(timeRace2)<0);
+    	assertFalse(timeRace1.compareTo(timeRace2)>0);
+    }
+    @Test
+    public void testLapRaceCompareTo() {
+    	Race lapRace1 = new LapRace(3);
+    	Race lapRace2 = new LapRace(3);
+    	lapRace1.setStart(new Time("12.00.00"));
+    	lapRace2.setStart(new Time("12.00.00"));
+    	lapRace1.addTime(new Time("12.30.00"));
+    	lapRace2.addTime(new Time("12.30.00"));
+    	assertTrue(lapRace1.compareTo(lapRace2)==0);
+    	lapRace1.addTime(new Time("13.00.00"));
+    	lapRace2.addTime(new Time("12.45.00"));
+    	assertTrue(lapRace1.compareTo(lapRace2)>0);
+    	assertFalse(lapRace1.compareTo(lapRace2)<0);
+    }
 }
