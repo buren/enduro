@@ -24,7 +24,10 @@ public class Main {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (startOption == REGISTER_GUI) {
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.showSaveDialog(null);
+            JFrame frame = new JFrame();
+            frame.setTitle("Välj fildestination");
+            frame.setVisible(true);
+            fileChooser.showSaveDialog(frame);
             File file = fileChooser.getSelectedFile();
             if (file == null) {
                 System.exit(0);
