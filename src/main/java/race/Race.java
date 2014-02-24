@@ -178,7 +178,7 @@ public abstract class Race {
 			else
 				sb.append("; ").append(lapTime);
 		}
-		if (getFinish().isEmpty())
+		if (getFinish().isEmpty() || getStart().equals(getFinish()))
 			sb.append("; ").append("Slut?");
 		else
 			sb.append("; ").append(getFinish());
