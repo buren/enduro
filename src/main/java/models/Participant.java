@@ -1,12 +1,14 @@
 package models;
 
+import java.util.ArrayList;
+
 import race.Race;
 
 public class Participant {
     private int id;
     private String name;
     private Race race;
-
+   
     /**
      * Participant identifies by their id/startnumber, two participants with the same id are considered the same.
      *
@@ -15,6 +17,7 @@ public class Participant {
     public Participant(int id) {
         this.id = id;
         name = "Not named";
+        
     }
 
     /**

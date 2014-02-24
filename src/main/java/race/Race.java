@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public abstract class Race {
     protected ArrayList<Lap> laps = new ArrayList<>();
+    protected ArrayList<Time> multipleStart = new ArrayList<>();
 
     /**
      * Create a new Race.
@@ -21,7 +22,11 @@ public abstract class Race {
      * @param time Time to set as start.
      */
     public void setStart(Time time) {
-        laps.get(0).setStart(time);
+    	if (laps.get(0).getStart().isEmpty()) 
+    		laps.get(0).setStart(time);
+    	else
+    		multipleStart.add(time);
+    	
     }
 
     /**
@@ -113,17 +118,44 @@ public abstract class Race {
     protected abstract boolean testLimit();
 
     /**
+     * Creates a string with information in the extra column
+     * @param printLimit Number of laps that we print
+     * @return returns a string with the error information
+     */
+    protected String printErrors(int printLimit) {
+    	boolean lapTime = false;
+    	StringBuilder sb = new StringBuilder();
+    	 for (int i = 0; i < printLimit; i++) {
+    		  if (getLapTimeElapsed(i).isBefore(new Time("00.15.00")) && getLapTime(i).isEmpty()) {
+    			  
+    		  }
+    	  }   	 
+    	 
+    	 if (lapTime)
+    		 sb.append("; Omöjlig varvtid?");
+    	 if (multipleStart.size() > 0) {
+    		 sb.append("Flera starttider? ");
+    		 for (int i = 0; i < multipleStart.size(); i++) {
+    			 sb.append(multipleStart.get(i).toString() + " ");
+    		 }
+    	 }
+    	 
+    	return sb.toString();
+    }
+    /**
      * Print a formatted result for this race.
      *
      * @param printLimit max number of laps to print.
      * @return a formatted string for this race.
      */
     public String print(int printLimit) {
+    	
         StringBuilder sb = new StringBuilder();
         sb.append("; ").append(getCompletedLaps());
         sb.append("; ").append(getTotal());
         for (int i = 0; i < printLimit; i++) {
             sb.append("; ").append(getLapTimeElapsed(i));
+            
         }
         if(getStart().isEmpty()) {
         	sb.append("; ").append("Start?");
@@ -141,7 +173,10 @@ public abstract class Race {
         	sb.append("; ").append("Slut?");
         else
         	sb.append("; ").append(getFinish());
+        
+        sb.append(printErrors(printLimit));
         return sb.toString();
+        
     }
 
     /**
