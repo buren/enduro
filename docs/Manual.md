@@ -13,6 +13,7 @@ För att använda formaterare:
 7. Tryck på ```"Ladda in "namnfil"```-knappen och välj sedan textfilen med namn.
 8. Tryck på ```"Spara resultat till fil"```-knappen och välj sedan plats där du vill spara filen och skriv namnet du vill ha på filen.
 9. Ange de antal varv som du vill få med i utskriften. Tryck ```"OK"```
+10. Om återställning önskas för att mata in nya kriterier (Byta tävlingstyp eller begränsningar) eller filvägar för tryck ```"Återställ"```-knappen.  
 
 För att använda registerare:
 
