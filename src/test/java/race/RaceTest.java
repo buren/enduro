@@ -23,17 +23,17 @@ public class RaceTest {
 
     @Test
     public void testStartTime() {
-        assertEquals("Should be three empty times", "--.--.--; --.--.--; --.--.--", race.print(1));
+        assertEquals("Should be empty totaltime and asking for missing times", "--.--.--; Start?; Slut?", race.print(1));
         Time startTime = new Time("12.00.00");
         race.setStart(startTime);
-        assertEquals("Should be startTime, followed by empty totalTime and finishTime", "--.--.--; " + startTime + "; --.--.--", race.print(1));
+        assertEquals("Should be startTime, followed by empty totalTime and asking for finishtime", "--.--.--; " + startTime + "; Slut?", race.print(1));
     }
 
     @Test
     public void testFinishTime() {
         Time finishTime = new Time("14.00.00");
         race.addTime(finishTime);
-        assertEquals("Should be empty start and totaltimes followed by 14.00.00", "--.--.--; --.--.--; " + finishTime, race.print(1));
+        assertEquals("Should be asking for starttime, empty totaltime followed by 14.00.00", "--.--.--; Start?; " + finishTime, race.print(1));
     }
 
     @Test
@@ -91,4 +91,21 @@ public class RaceTest {
         timeRace.addTime(new Time("13.00.00"));
         assertFalse(timeRace.testLimit());
     }
+    
+    @Test
+    public void testLapAndTimeRaceNoTimes() {
+    	Race lapRace = new LapRace(2); 
+    	RaceEvent event = new RaceEvent(lapRace);
+    	Participant p = new Participant(1);
+    	event.addParticipant(p);
+    	assertEquals("Should be same", "StartNo; Name; #Laps; TotalTime; Lap1; Lap2; Start; Checkpoint1; Finish\n" + 
+"1; Not named; 0; --.--.--; --.--.--; --.--.--; Start?; --.--.--; Slut?\n", event.print(2));
+    }
+    
+   
+    
+    
+    
+    
+    
 }
