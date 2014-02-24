@@ -38,8 +38,19 @@ public abstract class Race {
 		return getStart().getDifference(getFinish());
 	}
 
-	public abstract int compareTo(Race race);
+	public int compareTo(Race race) {
+		if (race.getClass().equals(this.getClass())) {
+			if (getCompletedLaps() < race.getCompletedLaps())
+				return -1;
+			else if (getCompletedLaps() > race.getCompletedLaps())
+				return 1;
+			else if(getCompletedLaps()==race.getCompletedLaps()){
+				return getTotal().compareTo(race.getTotal());
+			}
+		}
 
+		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
+	}
 	/**
 	 * @return a new Race with the same time limit
 	 */
@@ -135,7 +146,7 @@ public abstract class Race {
 	/**
 	 * @return return the number of completed laps.
 	 */
-	protected int getCompletedLaps() {
+	public int getCompletedLaps() {
 		if (laps.get(laps.size() - 1).getFinish().isEmpty())
 			return laps.size() - 1;
 		return laps.size();

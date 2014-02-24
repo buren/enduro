@@ -1,12 +1,14 @@
 package models;
 
 import race.Race;
+import utils.Sorter;
 
 import java.util.ArrayList;
 
 public class RaceEvent {
 	private ArrayList<Participant> participants, notRegisteredParticipants;
 	private Race raceType;
+	private Sorter sorter;
 	public static final int START_TIME = 0, LAP_TIME = 1;
 
 	/**
@@ -18,6 +20,7 @@ public class RaceEvent {
 	public RaceEvent(Race raceType) {
 		participants = new ArrayList<Participant>();
 		notRegisteredParticipants = new ArrayList<Participant>();
+		sorter = new Sorter();
 		this.raceType = raceType;
 	}
 
@@ -117,6 +120,7 @@ public class RaceEvent {
 	 */
 	public String print(int printLimit) {
 		StringBuilder sb = new StringBuilder();
+		sort();
 		sb.append(print(printLimit, participants));
 		if (!(notRegisteredParticipants.size() == 0)) {
 			sb.append("Icke existerande startnummer:\n");
@@ -138,8 +142,8 @@ public class RaceEvent {
 			for (String raceClass : raceClasses) {
 				if (raceClass != "None")
 					sb.append(raceClass).append("\n");
-                sb.append(participants.get(0).printHeader());
-                sb.append("; #Varv; TotalTid");
+				sb.append(participants.get(0).printHeader());
+				sb.append("; #Varv; TotalTid");
 				for (int i = 0; i < printLimit; i++) {
 					sb.append("; Varv").append(i + 1);
 				}
@@ -163,5 +167,9 @@ public class RaceEvent {
 	 */
 	private Race newRace() {
 		return raceType.copy();
+	}
+	
+	public void sort(){
+		participants = sorter.sort(participants);
 	}
 }

@@ -36,20 +36,20 @@ public class SorterTest {
 		Participant p1 = new Participant(1);
 		Race r0 = new TimeRace(new Time("01.00.00"));
 		Race r1 = new TimeRace(new Time("01.00.00"));
-		r0.addTime(new Time());
-		r0.addTime(new Time());
-		r0.addTime(new Time());
-		r1.addTime(new Time());
-		r1.addTime(new Time());
+		r0.setStart(new Time("12.00.00"));
+		r0.addTime(new Time("12.15.00"));
+		r0.addTime(new Time("12.30.00"));
+		r1.setStart(new Time("12.00.00"));
+		r1.addTime(new Time("12.20.00"));
 		p0.setRace(r0);
 		p1.setRace(r1);
 		participantList.add(p0);
 		participantList.add(p1);
-		participantList = sort.sortByNumberOfLaps(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p0);
 		r1.addTime(new Time());
 		r1.addTime(new Time());
-		participantList = sort.sortByNumberOfLaps(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p1);
 
 	}
@@ -86,7 +86,7 @@ public class SorterTest {
 		participantList.add(p1);
 		participantList.add(p2);
 		participantList.add(p3);
-		participantList = sort.sortByNumberOfLaps(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p2);
 		assertEquals(participantList.get(1), p0);
 		assertEquals(participantList.get(2), p3);
@@ -97,7 +97,7 @@ public class SorterTest {
 	@Test
 	public void sortEmptyListTest() {
 		participantList.clear();
-		sort.sortByNumberOfLaps(participantList);
+		sort.sort(participantList);
 		assertEquals(participantList.size(), 0);
 	}
 
@@ -106,20 +106,20 @@ public class SorterTest {
 
 		Participant p0 = new Participant(0);
 		Participant p1 = new Participant(1);
-		Race r0 = new LapRace(10);
-		Race r1 = new LapRace(10);
+		Race r0 = new LapRace(1);
+		Race r1 = new LapRace(1);
 		r0.setStart(new Time("12.00.00"));
 		r0.addTime(new Time("12.30.00"));
 		r1.setStart(new Time("12.00.00"));
-		r1.addTime(new Time("12.15.00"));
+		r1.addTime(new Time("12.20.00"));
 		p0.setRace(r0);
 		p1.setRace(r1);
 		participantList.add(p0);
 		participantList.add(p1);
-		participantList = sort.sortByTotalTime(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p1);
 		r1.addTime(new Time("13.00.00"));
-		participantList = sort.sortByTotalTime(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p0);
 
 	}

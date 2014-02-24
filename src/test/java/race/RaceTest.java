@@ -58,10 +58,10 @@ public class RaceTest {
 		timeRace1.setStart(new Time("12.00.00"));
 		timeRace2.setStart(new Time("12.00.00"));
 		timeRace1.addTime(new Time("12.30.00"));
-		timeRace1.addTime(new Time("13.00.00"));
-		timeRace2.addTime(new Time("12.15.00"));
 		timeRace2.addTime(new Time("12.30.00"));
 		assertTrue(timeRace1.compareTo(timeRace2) == 0);
+		timeRace1.addTime(new Time("13.00.00"));
+		timeRace2.addTime(new Time("12.35.00"));
 		timeRace2.addTime(new Time("12.45.00"));
 		timeRace2.addTime(new Time("13.00.00"));
 		assertTrue(timeRace1.compareTo(timeRace2) < 0);
