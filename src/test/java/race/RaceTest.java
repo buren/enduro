@@ -131,7 +131,7 @@ public class RaceTest {
 		assertEquals(
 				"Should be same",
 				"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
-						+ "1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n",
+						+ "1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n",
 				event.print(2));
 	}
 
@@ -152,10 +152,10 @@ public class RaceTest {
 
 		StringBuilder s = new StringBuilder();
 		s.append("StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n");
-		s.append("1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
-		s.append("2; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
-		s.append("3; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
-		s.append("4; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
+		s.append("1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
+		s.append("2; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
+		s.append("3; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
+		s.append("4; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
 		assertEquals("Should be same", s.toString(), event.print(2));
 	}
 

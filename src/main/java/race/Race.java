@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public abstract class Race {
 	protected ArrayList<Lap> laps = new ArrayList<>();
 	protected ArrayList<Time> multipleStart = new ArrayList<>();
+	protected ArrayList<Time> multipleFinish = new ArrayList<>();
 
 	/**
 	 * Create a new Race.
@@ -110,6 +111,8 @@ public abstract class Race {
 			Lap lap = new Lap();
 			lap.setStart(time);
 			laps.add(lap);
+		} else {
+			multipleFinish.add(time);
 		}
 	}
 
@@ -145,9 +148,16 @@ public abstract class Race {
 				sb.append(multipleStart.get(i).toString() + " ");
 			}
 		}
+		if (multipleFinish.size() > 1) {
+			sb.append("; Flera maltider? ");
+			for (int i = 1; i < multipleFinish.size(); i++) {
+				sb.append(multipleFinish.get(i).toString() + " ");
+			}
+		}
 
 		return sb.toString();
 	}
+
 
 	/**
 	 * Print a formatted result for this race.
@@ -178,7 +188,7 @@ public abstract class Race {
 			else
 				sb.append("; ").append(lapTime);
 		}
-		if (getFinish().isEmpty())
+		if (getFinish().isEmpty() || getFinish().equals(getStart()))
 			sb.append("; ").append("Slut?");
 		else
 			sb.append("; ").append(getFinish());
