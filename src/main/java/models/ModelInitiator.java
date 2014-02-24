@@ -23,11 +23,12 @@ public class ModelInitiator {
      *
      * @param nameIterator iterator containing the names of the valid participants.
      */
-    private void registerParticipants(Iterator nameIterator) {
-        nameIterator.next(); //Jump first line
+    private void registerParticipants(Iterator<String> nameIterator) {
+        String header = nameIterator.next();
+        String[] headerSplit = header.split(";");
         String raceClass = "";
         while (nameIterator.hasNext()) {
-            String line = (String) nameIterator.next();
+            String line = nameIterator.next();
             if (!line.contains(";")) {
                 raceClass = line.toString();
             } else {
@@ -35,6 +36,9 @@ public class ModelInitiator {
             int id = Integer.parseInt(lines[0]);
             Participant participant = new Participant(id);
             participant.setName(lines[1]);
+            for (int i = 2; i < headerSplit.length; i++) {
+                participant.addInfo(headerSplit[i], lines[i]);
+            }
             if(!raceClass.isEmpty()) {
                 participant.setRaceClass(raceClass);
             }
@@ -48,9 +52,9 @@ public class ModelInitiator {
      *
      * @param startTimesIterator iterator containing the start times.
      */
-    public void registerStartTimes(Iterator startTimesIterator) {
+    public void registerStartTimes(Iterator<String> startTimesIterator) {
         while (startTimesIterator.hasNext()) {
-            String line = (String) startTimesIterator.next();
+            String line = startTimesIterator.next();
             String[] rows = line.split(";");
 
             Time startTime = new Time(rows[1]);
@@ -74,13 +78,13 @@ public class ModelInitiator {
      *
      * @param finishTimesIterator iterator containing the finish times.
      */
-    public void registerFinishTimes(Iterator[] finishTimesIterator) {
+    public void registerFinishTimes(Iterator<String>[] finishTimesIterator) {
         ArrayList<Time> timeList = new ArrayList<Time>();
         ArrayList<Integer> intList = new ArrayList<Integer>();
 
-        for (Iterator iterator : finishTimesIterator) {
+        for (Iterator<String> iterator : finishTimesIterator) {
             while (iterator.hasNext()) {
-                String line = (String) iterator.next();
+                String line = iterator.next();
                 String[] lines = line.split(";");
                 intList.add(Integer.parseInt(lines[0]));
                 timeList.add(new Time(lines[1]));
