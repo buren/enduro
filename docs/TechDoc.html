@@ -1,0 +1,103 @@
+<h2 id="packagemain">Package main:</h2>
+
+<pre><code>###Main:
+Instansierar programmet.
+Tar emot en String parameter från Java.Swings.utils inputDialog som bestämmer huruvida det är registrerings- eller         formateringsprogrammet som ska köras.
+</code></pre>
+
+<h2 id="packagemodels">Package models:</h2>
+
+<pre><code>###Time:
+Består av ett Integer attribut som representerar en tid i sekunder från tiden 00.00.00.
+Konstruktorn tar emot en String parameter på formatet HH.MM.SS.
+Har metoder för jämföring av två tider samt en toString.
+
+###Lap:
+Modellering av ett varv eller en etapp.
+Består av två Time-objekt där den ena representerar starttiden för varvet och den andra sluttiden.
+Har metoder för att sätta och hämta start respektive sluttid.
+
+###Participant:
+Modellering av en deltagare.
+När en participant skapas anges en Integer parameter i konstruktorn som blir deltagarens tävlingsId.
+I participant finns också möjlighet att lägga till ett namn och ett race.
+Klassen innehåller också metoder för jämföring samt getters för race, namn och id, samt setter för namn, klass och race.
+
+###ModelInitiator:
+Den tar in en deltagarlista och raceEvent. Klassen används för att samla värden och sortera dem.
+
+###RaceEvent:
+Modellering av ett tävlingstilfälle med flera tävlare.
+Konstruktorn tar emot en int parameter som anger hur många varv som tävligen består av.
+Består av en samling Participants med deras tillhörande Race.
+Har metoder för att hantera tillägg av Participants.
+</code></pre>
+
+<h2 id="packagerace">Package Race:</h2>
+
+<pre><code>###Race:
+Generell modellering av en Participants tävlingsinsats.
+Består av flera Laps.
+Klasser har också getters och setters för start och sluttid, men även för enskilda Laps.
+Har också metod för totaltiden för alla Laps i Racet.
+
+###LapRace:
+Subklass till Race, används för varvbaserade lopp. Får en Integer som inparameter för att begränsa hur många varv         loppet ska bestå av.
+
+
+###SimpleRace:
+Subklass till Race, används för 'envarvslopp'.
+
+###TimeRace:
+Subklass till Race, används för tidsbaserade lopp. Får en Time som inparameter för att begränsa hur länge loppet          ska köras.
+</code></pre>
+
+<h2 id="packageutils">Package utils:</h2>
+
+<pre><code>###Enduro:
+Singeltonklass som kan generera en absolut URL-adress till en mapp i projektet.
+Används för att inte relativa vägar ska användas då det blir fel om samma adress anropas på olika konton.
+
+###FileReader:
+Läser innehållet på den fil vars URL-adress anges i konstruktorn och returnerar en Iterator&lt;String&gt; av innehållet.
+
+###FileWriter:
+Skriver ut innehållet i andra argumentet i konstruktorn (antingen en String eller en Iterator&lt;String&gt;) på platsen         (URL-adress) som anges i det första argumentet.
+</code></pre>
+
+<p>###Sorter:
+  Sorterar en ArrayList av participants efter varvtider resp. totaltider m.h.a bubblesort.</p>
+
+<h2 id="packageviews">Package views:</h2>
+
+<pre><code>###GUIFormatter:
+Skapar ett användargränssnitt för formattering av informationsfiler innehållande namn och tider.
+Vid instansiering så tar den in en FormatterController som håller all relevant information.
+
+###LoadStartButton:
+Öppnar ett "file chooser"-fönster där en fil med starttider ska väljas.
+
+###LoadFinishButton:
+Öppnar ett "file chooser"-fönster där en fil med sluttider ska väljas.
+
+###LoadNamesButton:
+Öppnar ett "file chooser"-fönster där en fil med namn ska väljas.
+
+###PrintButton:
+Öppnar ett "file chooser"-fönster där platsen för var resultatfilen ska sparas väljs.
+Frågar hur många varv som ska vara med i resultatfilen.
+Skapar en fil på vald plats med en resultatlista baserad på det som laddats in sen tidigare.
+
+###GUIRegister:
+Skapar ett användargränssnitt för registrering av tider med tillhörande tävlingsid.
+Öppnar ett "file chooser"-fönster där önskad plats för sparning av registeringar ska väljas.
+
+###RegisterButton:
+Hämtar innehållet i registeringsfältet från GUIRegister.
+Innehållet från registeringsfälet tillsammans med den aktuella tiden skrivs ut på nästa nya rad på den filplats             som valdes i GUIRegisters file chooser.
+Om filen inte existerar så skapas en ny fil vid första registreringen.
+
+###ResetButton
+</code></pre>
+
+<p>Används för att nollställa sökvägarna i formateringsprogrammet till filer med starttider, måltider och namn.</p>

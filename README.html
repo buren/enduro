@@ -1,0 +1,58 @@
+<h1 id="endurobuildstatushttpstravisciorgburenenduropngbranchmasterhttpstravisciorgburenenduro">Enduro <a href="https://travis-ci.org/buren/enduro"><img src="https://travis-ci.org/buren/enduro.png?branch=master" alt="Build Status" title="" /></a></h1>
+
+<ul>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#simplified-vcs">Simplified VCS</a></li>
+<li><a href="#automatic-testing">Automatic testing</a></li>
+<li><a href="#continuous-integration">Continuous integration</a></li>
+<li><a href="#maven-file-structure">Maven File Structure</a></li>
+</ul>
+
+<h2 id="gettingstarted">Getting started</h2>
+
+<p>If you haven't generated ssh-keys, then you need to do so.
+You can follow the guide here: https://help.github.com/articles/generating-ssh-keys</p>
+
+<p>Then copy and paste this command:</p>
+
+<pre><code>curl https://raw2.github.com/buren/enduro/master/install_enduro.sh | bash
+</code></pre>
+
+<p>install logs are saved to ~/eda260<em>pvg/_*</em>install.log.</p>
+
+<p>This will download the Enduro project and include a simplified VCS command line utility. </p>
+
+<h2 id="simplifiedvcs">Simplified VCS</h2>
+
+<p>VCS tool: <a href="https://github.com/buren/git-story">git-story</a></p>
+
+<h4 id="workflow">Workflow:</h4>
+
+<pre><code>$ gs dev story23                 
+</code></pre>
+
+<p>use when starting on a new story.
+This will download the latest changes from master and create a new branch named 'story23'.
+You will now be ready to implement your story/task/bugfix.</p>
+
+<pre><code>$ gs done 'Implemented Story 23'
+</code></pre>
+
+<p>When a story is finished, commit with a descriptive message. 
+This is when you'll be ready for potential merge conflicts.
+(Automatic test will run see the Automatic testing section for details.)</p>
+
+<h2 id="automatictesting">Automatic testing</h2>
+
+<p>After <code>gs done</code> a precommit hook script will be called, which will run the entire test suite and prompt you to answer if any of the tests fail. You can then either choose to abort or ignore failing tests and commit anyway.</p>
+
+<h2 id="continuousintegration">Continuous integration</h2>
+
+<p>After <code>gs done</code> is done the project will be sent to Travis CI, which will then build the project and run its entire test suite. <a href="https://travis-ci.org/buren/enduro">Travis CI for Enduro.</a></p>
+
+<h2 id="mavenfilestructure">Maven File Structure</h2>
+
+<p>Maven is a tool which is used to configure a project for several users. The structure that it uses is the following:
+Main: Where your programcode is placed.
+Test: Where your testcode is placed.
+Target: When maven builds your project it is placed in the Target folder.</p>

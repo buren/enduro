@@ -10,8 +10,8 @@ read -p "What version is this? " version_number
 release_name="enduro_release_v$version_number"
 
 target_dir=release/release_v$version_number/
-mvn package
-mvn javadoc:javadoc
+$HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn package
+$HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn javadoc:javadoc
 mkdir -p $target_dir
 cp docs/* $target_dir
 cp target/*.jar $target_dir
