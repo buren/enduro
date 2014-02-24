@@ -22,3 +22,22 @@ För att använda registerare:
 4. Skriv in deltagarens siffra i den övre vänstra textrutan och tryck sedan på ```"Registrera"```-knappen för att registrera nuvarade tid på vald deltagare.
 5. Om du vill ha masstart så matas stjärna (*) in i den vänstra textrutan.
 6. Om du trycker på ```"Registrera"```-knappen först så sparas tiden direkt och det kommer upp en prompt ruta där du kan skriva upp numret i efterhand.
+
+
+Filernas formattering:
+
+   Namnfiler har en headerrad och sen består den av rader liknade det, tex.
+
+    StartNr; Namn
+    1; Anders Asson
+
+   Starttids och måltidsfiler har ingen headerrad utan ser ut tex såhär.
+
+    1; 12.00.00
+    2; 12.01.00
+    3; 12.02.00
+
+
+   För masstart ser startfilerna ut följande.
+
+    *; 12.00.00
