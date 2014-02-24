@@ -69,7 +69,7 @@ public class FormatterController {
             iterators[i] = fr.readFileByLine(finishPath[i]);
         }
         initiator.registerFinishTimes(iterators);
-
+        
         return raceEvent.print(printLimit);
     }
     
