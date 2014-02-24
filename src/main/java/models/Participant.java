@@ -117,7 +117,7 @@ public class Participant {
             }
         }
 
-        return id + "; " + name+ values + race.print(printLimit);
+        return id + "; " + name + values + race.print(printLimit);
     }
 
     public String printHeader() {

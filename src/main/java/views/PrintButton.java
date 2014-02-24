@@ -61,7 +61,9 @@ public class PrintButton extends JButton implements ActionListener {
                         .showInputDialog("Hur många varvtider önskas skrivas ut?");
                 int printLimit = Integer.parseInt(printLimitString);
                 String limitFieldText = limitField.getText();
-                if (limitFieldText.isEmpty() && !(raceType.getSelectedIndex() == FormatterController.SIMPLE_RACE))
+                int raceTypeInt = raceType.getSelectedIndex();
+                if (limitFieldText.isEmpty() && (raceTypeInt == FormatterController.LAP_RACE
+                        || raceTypeInt == FormatterController.LAP_RACE))
                     throw new IllegalArgumentException();
                 String resultat = formCont.result(sb.getPath(), fb.getPaths(),
                         nb.getPath(), raceType.getSelectedIndex(), limitFieldText , printLimit);  //TODO; snälla gör snyggare

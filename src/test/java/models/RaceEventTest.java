@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import race.SimpleRace;
-import utils.Enduro;
 
 public class RaceEventTest {
     private RaceEvent raceEvent;
@@ -39,8 +38,8 @@ public class RaceEventTest {
         raceEvent.addParticipant(p2);
         raceEvent.addParticipant(p3);
 
-        p2.getRace().setStart(new Time("11.00.00"));
-        p3.getRace().setStart(new Time("10.00.00"));
+        p2.getRace().addStartTime(new Time("11.00.00"));
+        p3.getRace().addStartTime(new Time("10.00.00"));
 
         Time newTime = new Time("12.00.00");
         raceEvent.setAllStartTimes(newTime);

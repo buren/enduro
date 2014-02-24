@@ -66,6 +66,15 @@ public class Time {
     }
 
     /**
+     * Returns a new time combining the two times.
+     * @param other time to add with.
+     * @return the sum of the times.
+     */
+    public Time addTo(Time other) {
+        return new Time(this.seconds+= other.seconds);
+    }
+
+    /**
      * Compares two times to see which is earlier.
      *
      * @param time Time to compare to.

@@ -1,20 +1,18 @@
 package controllers;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import models.ModelInitiator;
 import models.RaceEvent;
 import models.Time;
-import race.LapRace;
-import race.Race;
-import race.SimpleRace;
-import race.TimeRace;
+import race.*;
 import utils.FileReader;
 import utils.FileWriter;
 
 public class FormatterController {
-    public static final int SIMPLE_RACE = 0, LAP_RACE = 1, TIME_RACE = 2;
+    public static final int SIMPLE_RACE = 0, LAP_RACE = 1, TIME_RACE = 2, STAGE_RACE = 3;
     private RaceEvent raceEvent;
 
     /**
@@ -38,7 +36,7 @@ public class FormatterController {
      * @return A fully formatted result table as a string
      * @throws FileNotFoundException
      */
-    public String result(String startPath, String[] finishPath, String namePath, int raceType, String limit, int printLimit) throws FileNotFoundException {
+    public String result(String[] startPath, String[] finishPath, String namePath, int raceType, String limit, int printLimit) throws FileNotFoundException {
         Race race;
         switch (raceType) {
             case SIMPLE_RACE:
@@ -52,6 +50,9 @@ public class FormatterController {
                 Time timeLimit = new Time(limit);
                 race = new TimeRace(timeLimit);
                 break;
+            case STAGE_RACE:
+                race = new StageRace();
+                break;
             default:
                 throw new IllegalArgumentException("Racetypen finns inte!");
         }
@@ -61,10 +62,14 @@ public class FormatterController {
         Iterator fileIterator = fr.readFileByLine(namePath);
         ModelInitiator initiator = new ModelInitiator(fileIterator, raceEvent);
 
-        fileIterator = fr.readFileByLine(startPath);
-        initiator.registerStartTimes(fileIterator);
 
-        Iterator[] iterators = new Iterator[finishPath.length];
+        Iterator[] iterators = new Iterator[startPath.length];
+        for (int i = 0; i < startPath.length; i++) {
+            iterators[i] = fr.readFileByLine(startPath[i]);
+        }
+        initiator.registerStartTimes(iterators);
+
+        iterators = new Iterator[finishPath.length];
         for (int i = 0; i < finishPath.length; i++) {
             iterators[i] = fr.readFileByLine(finishPath[i]);
         }

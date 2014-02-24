@@ -28,7 +28,7 @@ public class acceptanceTest {
         String path = enduro.getInstance().getResourcePath(
                 "acceptanstester/iteration2/acceptanstest9/");
         String pathToNameFile = path + "namnfil.txt";
-        String pathToStartFile = path + "starttider.txt";
+        String[] pathToStartFile = {path + "starttider.txt"};
         String[] pathsFinishFiles = {path + "maltider.txt"};
         String resultFilePath = path + "resultat.txt";
 
@@ -43,7 +43,7 @@ public class acceptanceTest {
         String path = enduro.getInstance().getResourcePath(
                 "acceptanstester/iteration2/acceptanstest9/");
         String pathToNameFile = path + "namnfil.txt";
-        String pathToStartFile = path + "starttider.txt";
+        String[] pathToStartFile = {path + "starttider.txt"};
         String[] pathsFinishFiles = {path + "maltider.txt"};
         String resultFilePath = path + "resultatTimeRace.txt";
 
@@ -58,16 +58,16 @@ public class acceptanceTest {
         String path = enduro.getInstance().getResourcePath(
                 "acceptanstester/iteration2/acceptanstest10/");
         String pathToNameFile = path + "namnfil.txt";
-        String pathToStartFile = path + "starttider.txt";
+        String[] pathToStartFiles = {path + "starttider.txt"};
         String pathToFinishFile1 = path + "maltider1.txt";
         String pathToFinishFile2 = path + "maltider2.txt";
         String[] finishFileArray = {pathToFinishFile1, pathToFinishFile2};
         String resultFilePath = path + "resultat.txt";
 
-        String result = formatterController.result(pathToStartFile, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3);
+        String result = formatterController.result(pathToStartFiles, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3);
         assertEquals(readFileToString(resultFilePath), result);
         formatterController.resetRace();
-        result = formatterController.result(pathToStartFile, finishFileArray,
+        result = formatterController.result(pathToStartFiles, finishFileArray,
                 pathToNameFile, FormatterController.LAP_RACE, "3", 3);
         assertEquals(readFileToString(resultFilePath), result);
     }
@@ -79,7 +79,7 @@ public class acceptanceTest {
         String path = enduro.getInstance().getResourcePath(
                 "acceptanstester/iteration2/acceptanstest13/");
         String pathToNameFile = path + "namnfil.txt";
-        String pathToStartFile = path + "starttider.txt";
+        String[] pathToStartFile = {path + "starttider.txt"};
         String pathToFinishFile1 = path + "maltider1.txt";
         String pathToFinishFile2 = path + "maltider2.txt";
         String[] finishFileArray = {pathToFinishFile1, pathToFinishFile2};
@@ -96,7 +96,7 @@ public class acceptanceTest {
         String path = enduro.getInstance().getResourcePath(
                 "acceptanstester/iteration2/acceptanstest16/");
         String pathToNameFile = path + "namnfil.txt";
-        String pathToStartFile = path + "starttider.txt";
+        String[] pathToStartFile = {path + "starttider.txt"};
         String pathToFinishFile = path + "maltider.txt";
         String[] finishFileArray = {pathToFinishFile};
         String resultFilePath = path + "resultat.txt";
@@ -112,7 +112,7 @@ public class acceptanceTest {
         String path = enduro.getInstance().getResourcePath(
                 "acceptanstester/iteration2/acceptanstest17/");
         String pathToNameFile = path + "namnfil.txt";
-        String pathToStartFile = path + "starttider.txt";
+        String[] pathToStartFile = {path + "starttider.txt"};
         String pathToFinishFile1 = path + "maltider1.txt";
         String pathToFinishFile2 = path + "maltider2.txt";
         String[] finishFileArray = {pathToFinishFile1, pathToFinishFile2};

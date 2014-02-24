@@ -21,12 +21,11 @@ public abstract class Race {
 	 * @param time
 	 *            Time to set as start.
 	 */
-	public void setStart(Time time) {
+	public void addStartTime(Time time) {
 		if (laps.get(0).getStart().isEmpty())
 			laps.get(0).setStart(time);
 		else
 			multipleStart.add(time);
-
 	}
 
 	/**
@@ -68,7 +67,7 @@ public abstract class Race {
 	 *            specified lap
 	 * @return time spent running a lap.
 	 */
-	private Time getLapTimeElapsed(int lap) {
+	protected Time getLapTimeElapsed(int lap) {
 		if (laps.size() <= lap)
 			return new Time();
 		return laps.get(lap).getTotalTime();
@@ -101,9 +100,8 @@ public abstract class Race {
 	 * 
 	 * @param time
 	 *            time to add.
-	 * @return true if a Time was successfully added, else false.
 	 */
-	public void addTime(Time time) {
+	public void addFinishTime(Time time) {
 		if (laps.get(laps.size() - 1).getFinish().isEmpty())
 			laps.get(laps.size() - 1).setFinish(time);
 		if (testLimit()) {
@@ -136,7 +134,6 @@ public abstract class Race {
 				lapTime = true;
 			}
 		}
-
 		if (lapTime)
 			sb.append("; Omöjlig varvtid?");
 		if (multipleStart.size() > 0) {
@@ -145,7 +142,6 @@ public abstract class Race {
 				sb.append(multipleStart.get(i).toString() + " ");
 			}
 		}
-
 		return sb.toString();
 	}
 
@@ -157,13 +153,11 @@ public abstract class Race {
 	 * @return a formatted string for this race.
 	 */
 	public String print(int printLimit) {
-
 		StringBuilder sb = new StringBuilder();
 		sb.append("; ").append(getCompletedLaps());
 		sb.append("; ").append(getTotal());
 		for (int i = 0; i < printLimit; i++) {
 			sb.append("; ").append(getLapTimeElapsed(i));
-
 		}
 		if (getStart().isEmpty()) {
 			sb.append("; ").append("Start?");
@@ -171,9 +165,7 @@ public abstract class Race {
 			sb.append("; ").append(getStart());
 		for (int i = 0; i < printLimit - 1; i++) {
 			Time lapTime = getLapTime(i);
-			if (lapTime.equals(getFinish())) // Since we want the finishtime in
-												// the correct column, check
-												// this.
+			if (lapTime.equals(getFinish())) // Since we want the finishtime in the correct column, check this.
 				sb.append("; ").append(new Time());
 			else
 				sb.append("; ").append(lapTime);
@@ -182,11 +174,29 @@ public abstract class Race {
 			sb.append("; ").append("Slut?");
 		else
 			sb.append("; ").append(getFinish());
-
 		sb.append(printErrors(printLimit));
 		return sb.toString();
-
 	}
+
+
+    /**
+     * Prints a header for the result
+     * @param printLimit max number of laps to print.
+     * @return a formatted string.
+     */
+    public String printHeader(int printLimit) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("; #Varv; TotalTid");
+        for (int i = 0; i < printLimit; i++) {
+            sb.append("; Varv").append(i + 1);
+        }
+        sb.append("; Start");
+        for (int i = 0; i < printLimit - 1; i++) {
+            sb.append("; Varvning").append(i + 1);
+        }
+        sb.append("; Mal\n");
+        return sb.toString();
+    }
 
 	/**
 	 * @return a new Race with the same time limit
@@ -196,7 +206,7 @@ public abstract class Race {
 	/**
 	 * A Private class to easily abstract laps.
 	 */
-	private class Lap {
+	protected class Lap {
 
 		private Time startTime;
 		private Time finishTime;

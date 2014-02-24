@@ -26,7 +26,7 @@ public class RaceTest {
 		assertEquals("Should be empty totaltime and asking for missing times",
 				"--.--.--; Start?; Slut?", race.print(1));
 		Time startTime = new Time("12.00.00");
-		race.setStart(startTime);
+		race.addStartTime(startTime);
 		assertEquals(
 				"Should be startTime, followed by empty totalTime and asking for finishtime",
 				"--.--.--; " + startTime + "; Slut?", race.print(1));
@@ -35,7 +35,7 @@ public class RaceTest {
 	@Test
 	public void testFinishTime() {
 		Time finishTime = new Time("14.00.00");
-		race.addTime(finishTime);
+		race.addFinishTime(finishTime);
 		assertEquals(
 				"Should be asking for starttime, empty totaltime followed by 14.00.00",
 				"--.--.--; Start?; " + finishTime, race.print(1));
@@ -44,9 +44,9 @@ public class RaceTest {
 	@Test
 	public void testPrintSimpleRace() {
 		Time startTime = new Time("12.00.00");
-		race.setStart(startTime);
+		race.addStartTime(startTime);
 		Time finishTime = new Time("14.00.00");
-		race.addTime(finishTime);
+		race.addFinishTime(finishTime);
 		assertEquals("Should be same", "02.00.00; " + startTime + "; "
 				+ finishTime, race.print(1));
 	}
@@ -54,10 +54,10 @@ public class RaceTest {
 	@Test
 	public void testPrintLapRace() {
 		Race lapRace = new LapRace(3);
-		lapRace.setStart(new Time("12.00.00"));
-		lapRace.addTime(new Time("12.30.00"));
-		lapRace.addTime(new Time("13.30.00"));
-		lapRace.addTime(new Time("14.30.00"));
+		lapRace.addStartTime(new Time("12.00.00"));
+		lapRace.addFinishTime(new Time("12.30.00"));
+		lapRace.addFinishTime(new Time("13.30.00"));
+		lapRace.addFinishTime(new Time("14.30.00"));
 		String print = lapRace.print(3);
 		assertEquals(
 				"Should be same",
@@ -73,9 +73,9 @@ public class RaceTest {
 	@Test
 	public void testPrintTimeRace() {
 		Race timeRace = new TimeRace(new Time("01.00.00"));
-		timeRace.setStart(new Time("12.00.00"));
-		timeRace.addTime(new Time("12.30.00"));
-		timeRace.addTime(new Time("13.00.00"));
+		timeRace.addStartTime(new Time("12.00.00"));
+		timeRace.addFinishTime(new Time("12.30.00"));
+		timeRace.addFinishTime(new Time("13.00.00"));
 		String print = timeRace.print(2);
 		assertEquals(
 				"Should be same",
@@ -89,21 +89,21 @@ public class RaceTest {
 
 		boolean testLap = lapRace.testLimit();
 		assertTrue(testLap);
-		lapRace.addTime(new Time("00.00.00"));
+		lapRace.addFinishTime(new Time("00.00.00"));
 		assertTrue(lapRace.testLimit());
-		lapRace.addTime(new Time("00.01.00"));
-		lapRace.addTime(new Time("00.02.00"));
+		lapRace.addFinishTime(new Time("00.01.00"));
+		lapRace.addFinishTime(new Time("00.02.00"));
 		assertFalse(lapRace.testLimit());
 	}
 
 	@Test
 	public void testLimitTimeRace() {
 		Race timeRace = new TimeRace(new Time("01.00.00"));
-		timeRace.setStart(new Time("12.00.00"));
+		timeRace.addStartTime(new Time("12.00.00"));
 		assertTrue(timeRace.testLimit());
-		timeRace.addTime(new Time("12.30.00"));
+		timeRace.addFinishTime(new Time("12.30.00"));
 		assertTrue(timeRace.testLimit());
-		timeRace.addTime(new Time("13.00.00"));
+		timeRace.addFinishTime(new Time("13.00.00"));
 		assertFalse(timeRace.testLimit());
 	}
 
@@ -165,8 +165,8 @@ public class RaceTest {
 		RaceEvent event = new RaceEvent(lapRace);
 		Participant p1 = new Participant(1);
 		event.addParticipant(p1);
-		p1.getRace().setStart(new Time("12.00.00"));
-		p1.getRace().addTime(new Time("12.05.00"));
+		p1.getRace().addStartTime(new Time("12.00.00"));
+		p1.getRace().addFinishTime(new Time("12.05.00"));
 		String s = "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
 				+ "1; Not named; 1; 00.05.00; 00.05.00; --.--.--; 12.00.00; --.--.--; 12.05.00; Omöjlig varvtid?\n";
 		assertEquals("Should be same", event.print(2), s);

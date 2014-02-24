@@ -31,7 +31,7 @@ public class GUIFormatter extends JFrame {
         statusText.setEnabled(false);
         statusTextPanel.add(statusText);
 
-        String[] raceTypes = {"Envarvstävling", "Varvbaserad tävling", "Tidsbaserad tävling"};
+        String[] raceTypes = {"Envarvstävling", "Varvbaserad tävling", "Tidsbaserad tävling", "Etappbaserad tävling"};
         JComboBox raceType = new JComboBox(raceTypes);
         JTextField limitField = new JTextField();
 
