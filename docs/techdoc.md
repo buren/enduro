@@ -76,6 +76,8 @@
 	###FileWriter:
 	Skriver ut innehållet i andra argumentet i konstruktorn (antingen en String eller en Iterator<String>) på platsen         (URL-adress) som anges i det första argumentet.
 
+  ###Sorter:
+  Sorterar en ArrayList av participants efter varvtider resp. totaltider m.h.a bubblesort.
 	
 ##Package views:
 
@@ -106,7 +108,8 @@
 	Innehållet från registeringsfälet tillsammans med den aktuella tiden skrivs ut på nästa nya rad på den filplats 	        som valdes i GUIRegisters file chooser.
 	Om filen inte existerar så skapas en ny fil vid första registreringen.
 	
-	
-	
+	###ResetButton
+  Används för att nollställa sökvägarna i formateringsprogrammet till filer med starttider, måltider och namn.
+  
 	
 	
