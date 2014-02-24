@@ -9,10 +9,12 @@ public class Enduro {
         return ourInstance;
     }
 
-    private Enduro() { }
+    private Enduro() {
+    }
 
     /**
      * Get path relative to root.
+     *
      * @param relativePath the relative path to get (Starting at src/test/resources).
      * @return the absolute path to resource.
      */

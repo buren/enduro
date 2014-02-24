@@ -7,86 +7,58 @@ import controllers.FormatterController;
 import java.awt.*;
 
 public class GUIFormatter extends JFrame {
-	private static final long serialVersionUID = -2948560310654842046L;
-
-	private JPanel topPanel;
-	private LoadStartButton sb;
-	private LoadFinishButton fb;
-	private LoadNamesButton nb;
-	private JPanel textPanel;
-	private JTextArea statusText;
-	private FormatterController formCont;
+    private static final long serialVersionUID = -2948560310654842046L;
 
     /**
      * Creates a new Formatter GUI
+     *
      * @param formCont the formatter Controller
      */
-	public GUIFormatter(FormatterController formCont) {
+    public GUIFormatter(FormatterController formCont) {
+        this.setTitle("Enduro Formatter");
+        this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setResizable(true);
+        this.setLayout(new GridLayout( 1, 2));
+        int width = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width / 2;
+        int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
+        this.setSize(width, height);
+        this.setLocationRelativeTo(null);
 
-		this.setTitle("Enduro Formatter");
-		this.setVisible(true);
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		this.setResizable(true);
-		this.setLayout(new GridLayout(2, 1));
-		int width = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width / 2;
-		int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 2;
-		this.setSize(width, height);
-		this.setLocationRelativeTo(null);
-		this.formCont = formCont;
+        JPanel statusTextPanel = new JPanel();
+        statusTextPanel.setLayout(new GridLayout(1,1));
+        JTextArea statusText = new JTextArea();
+        statusText.setEnabled(false);
+        statusTextPanel.add(statusText);
 
-		Font font1 = new Font("SansSerif", Font.BOLD, 60);
-		Font font2 = new Font("SansSerif", Font.BOLD, 16);
+        String[] raceTypes = {"Enkelt Race", "Varv-race", "Tids-Race"};
+        JComboBox raceType = new JComboBox(raceTypes);
+        JTextField limitField = new JTextField();
 
-		textPanel = new JPanel();
-		statusText = new JTextArea();
-		textPanel.add(statusText);
+        JPanel raceOptionsPanel = new JPanel();
+        raceOptionsPanel.setLayout(new GridLayout(1, 2));
+        raceOptionsPanel.add(raceType);
+        raceOptionsPanel.add(limitField);
 
-		topPanel = new JPanel();
-		topPanel.setLayout(new GridLayout(2, 1));
-		sb = new LoadStartButton("Ladda in startfil", statusText);
-		fb = new LoadFinishButton("Ladda in målfil", statusText);
-		nb = new LoadNamesButton("Ladda in namnfil", statusText);
-		topPanel.add(sb);
-		topPanel.add(fb);
-		topPanel.add(nb);
-		topPanel.add(new PrintButton("Spara resultat till fil", sb, fb, nb,
-				statusText, formCont));
 
-		this.add(topPanel);
-		this.add(textPanel);
 
-		this.pack();
-	}
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2, 2));
+        LoadStartButton sb = new LoadStartButton(statusText);
+        LoadFinishButton fb = new LoadFinishButton(statusText);
+        LoadNamesButton nb = new LoadNamesButton(statusText);
+        buttonPanel.add(sb);
+        buttonPanel.add(fb);
+        buttonPanel.add(nb);
+        buttonPanel.add(new PrintButton(sb, fb, nb, statusText, formCont, raceType, limitField));
 
-    /**
-     * @return the namebutton
-     */
-	public JButton getNameButton() {
-		return nb;
-	}
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new GridLayout(2, 1));
+        leftPanel.add(buttonPanel);
+        leftPanel.add(raceOptionsPanel);
+        this.add(leftPanel);
+        this.add(statusTextPanel);
 
-    /**
-     *
-     * @return the StartButton
-     */
-	public JButton getStartButton() {
-		return sb;
-	}
-
-    /**
-     *
-     * @return the Finishbutton
-     */
-	public JButton getFinishButton() {
-		return fb;
-	}
-
-    /**
-     *
-     * @return the StatusText
-     */
-	public JTextArea getStatusText() {
-		return statusText;
-	}
-
+        this.pack();
+    }
 }

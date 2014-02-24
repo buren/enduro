@@ -8,12 +8,13 @@ public class FileReader {
 
     /**
      * Returns a list with each non-empty line for specified file.
+     *
      * @param filePath absolute path to file.
      * @return ArrayList<String> with each non-empty line.
      * @throws FileNotFoundException
      */
     public Iterator<String> readFileByLine(String filePath) throws FileNotFoundException {
-        ArrayList<String> fileLines = new ArrayList<String>();
+        ArrayList<String> fileLines = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(inputStream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -34,6 +35,7 @@ public class FileReader {
 
     /**
      * Returns true if string is non-empty.
+     *
      * @param str the string to be checked.
      * @return true if string is blank, false otherwise.
      */
