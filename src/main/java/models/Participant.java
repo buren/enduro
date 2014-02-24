@@ -89,14 +89,26 @@ public class Participant {
 		return raceClass;
 	}
 
-	/**
-	 * Print a formatted result string.
-	 * 
-	 * @param printLimit
-	 *            max number of laps to print.
-	 * @return a formatted string.
-	 */
-	public String print(int printLimit) {
-		return id + "; " + name + race.print(printLimit);
-	}
+    /**
+     * Print a formatted result string.
+     *
+     * @param printLimit max number of laps to print.
+     * @return a formatted string.
+     */
+    public String print(int printLimit) {
+        return id + "; " + name + race.print(printLimit);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Participant other = (Participant) obj;
+        return id == other.id;
+    }
+
 }
