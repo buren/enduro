@@ -16,8 +16,8 @@ public class RaceEvent {
 	 *            type of race this raceEvent is going to be.
 	 */
 	public RaceEvent(Race raceType) {
-		participants = new ArrayList<>();
-		notRegisteredParticipants = new ArrayList<>();
+		participants = new ArrayList<Participant>();
+		notRegisteredParticipants = new ArrayList<Participant>();
 		this.raceType = raceType;
 	}
 
@@ -122,7 +122,6 @@ public class RaceEvent {
 			sb.append("Icke existerande startnummer:\n");
 			sb.append(print(printLimit, notRegisteredParticipants));
 		}
-
 		return sb.toString();
 	}
 
@@ -139,7 +138,8 @@ public class RaceEvent {
 			for (String raceClass : raceClasses) {
 				if (raceClass != "None")
 					sb.append(raceClass).append("\n");
-				sb.append("StartNr; Namn; #Varv; TotalTid");
+                sb.append(participants.get(0).printHeader());
+                sb.append("; #Varv; TotalTid");
 				for (int i = 0; i < printLimit; i++) {
 					sb.append("; Varv").append(i + 1);
 				}

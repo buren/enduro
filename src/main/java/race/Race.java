@@ -17,6 +17,100 @@ public abstract class Race {
 	}
 
 	/**
+	 * @return Time the race was started.
+	 */
+	private Time getStart() {
+		return laps.get(0).getStart();
+	}
+
+	/**
+	 * @return return the number of started laps.
+	 */
+	protected int getLaps() {
+		return laps.size();
+	}
+
+	/**
+	 * Return the total time this race took.
+	 * 
+	 * @return time elapsed during whole race.
+	 */
+	protected Time getTotal() {
+		return getStart().getDifference(getFinish());
+	}
+
+	public abstract int compareTo(Race race);
+
+	/**
+	 * @return a new Race with the same time limit
+	 */
+	public abstract Race copy();
+
+	/**
+	 * A Private class to easily abstract laps.
+	 */
+	private class Lap {
+
+		private Time startTime;
+		private Time finishTime;
+
+		/**
+		 * Create a lap consisting of one start time and one finish time.
+		 */
+		public Lap() {
+			startTime = new Time();
+			finishTime = new Time();
+		}
+
+		/**
+		 * Set the start time.
+		 * 
+		 * @param startTime
+		 *            Time to set as start.
+		 */
+		public void setStart(Time startTime) {
+			this.startTime = startTime;
+		}
+
+		/**
+		 * Set the finish time.
+		 * 
+		 * @param finishTime
+		 *            Time to set as finish.
+		 */
+		public void setFinish(Time finishTime) {
+			this.finishTime = finishTime;
+		}
+
+		/**
+		 * Return the duration of the race.
+		 * 
+		 * @return the duration of the race, if incomplete, return a empty time.
+		 */
+		public Time getTotalTime() {
+			return startTime.getDifference(finishTime);
+		}
+
+		/**
+		 * Return the start time
+		 * 
+		 * @return start time
+		 */
+		public Time getStart() {
+			return startTime;
+		}
+
+		/**
+		 * Return the finish time
+		 * 
+		 * @return finish time
+		 */
+		public Time getFinish() {
+			return finishTime;
+		}
+	}
+
+	/**
 	 * Set the starttime.
 	 * 
 	 * @param time
@@ -31,13 +125,6 @@ public abstract class Race {
 	}
 
 	/**
-	 * @return Time the race was started.
-	 */
-	private Time getStart() {
-		return laps.get(0).getStart();
-	}
-
-	/**
 	 * @return return the Time a finishtime was last registered.
 	 */
 	private Time getFinish() {
@@ -47,16 +134,9 @@ public abstract class Race {
 	}
 
 	/**
-	 * @return return the number of started laps.
-	 */
-	protected int getLaps() {
-		return laps.size();
-	}
-
-	/**
 	 * @return return the number of completed laps.
 	 */
-	private int getCompletedLaps() {
+	protected int getCompletedLaps() {
 		if (laps.get(laps.size() - 1).getFinish().isEmpty())
 			return laps.size() - 1;
 		return laps.size();
@@ -86,15 +166,6 @@ public abstract class Race {
 		if (laps.size() <= lap)
 			return new Time();
 		return laps.get(lap).getFinish();
-	}
-
-	/**
-	 * Return the total time this race took.
-	 * 
-	 * @return time elapsed during whole race.
-	 */
-	protected Time getTotal() {
-		return getStart().compareTo(getFinish());
 	}
 
 	/**
@@ -158,7 +229,6 @@ public abstract class Race {
 		return sb.toString();
 	}
 
-
 	/**
 	 * Print a formatted result for this race.
 	 * 
@@ -198,72 +268,4 @@ public abstract class Race {
 
 	}
 
-	/**
-	 * @return a new Race with the same time limit
-	 */
-	public abstract Race copy();
-
-	/**
-	 * A Private class to easily abstract laps.
-	 */
-	private class Lap {
-
-		private Time startTime;
-		private Time finishTime;
-
-		/**
-		 * Create a lap consisting of one start time and one finish time.
-		 */
-		public Lap() {
-			startTime = new Time();
-			finishTime = new Time();
-		}
-
-		/**
-		 * Set the start time.
-		 * 
-		 * @param startTime
-		 *            Time to set as start.
-		 */
-		public void setStart(Time startTime) {
-			this.startTime = startTime;
-		}
-
-		/**
-		 * Set the finish time.
-		 * 
-		 * @param finishTime
-		 *            Time to set as finish.
-		 */
-		public void setFinish(Time finishTime) {
-			this.finishTime = finishTime;
-		}
-
-		/**
-		 * Return the duration of the race.
-		 * 
-		 * @return the duration of the race, if incomplete, return a empty time.
-		 */
-		public Time getTotalTime() {
-			return startTime.compareTo(finishTime);
-		}
-
-		/**
-		 * Return the start time
-		 * 
-		 * @return start time
-		 */
-		public Time getStart() {
-			return startTime;
-		}
-
-		/**
-		 * Return the finish time
-		 * 
-		 * @return finish time
-		 */
-		public Time getFinish() {
-			return finishTime;
-		}
-	}
 }
