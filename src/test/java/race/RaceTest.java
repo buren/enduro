@@ -1,11 +1,12 @@
 package race;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-
 import models.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import controllers.FormatterController;
 
 public class RaceTest {
 
@@ -23,12 +24,12 @@ public class RaceTest {
 
 	@Test
 	public void testStartTime() {
-		assertEquals("Should be empty totaltime and asking for missing times",
+		assertEquals("Should be three empty times",
 				"--.--.--; Start?; Slut?", race.print(1));
 		Time startTime = new Time("12.00.00");
 		race.setStart(startTime);
 		assertEquals(
-				"Should be startTime, followed by empty totalTime and asking for finishtime",
+				"Should be startTime, followed by empty totalTime and finishTime",
 				"--.--.--; " + startTime + "; Slut?", race.print(1));
 	}
 
@@ -37,7 +38,7 @@ public class RaceTest {
 		Time finishTime = new Time("14.00.00");
 		race.addTime(finishTime);
 		assertEquals(
-				"Should be asking for starttime, empty totaltime followed by 14.00.00",
+				"Should be empty start and totaltimes followed by 14.00.00",
 				"--.--.--; Start?; " + finishTime, race.print(1));
 	}
 
@@ -49,6 +50,38 @@ public class RaceTest {
 		race.addTime(finishTime);
 		assertEquals("Should be same", "02.00.00; " + startTime + "; "
 				+ finishTime, race.print(1));
+	}
+
+	@Test
+	public void testTimeRaceCompareTo() {
+		Race timeRace1 = new TimeRace(new Time("01.00.00"));
+		Race timeRace2 = new TimeRace(new Time("01.00.00"));
+		timeRace1.setStart(new Time("12.00.00"));
+		timeRace2.setStart(new Time("12.00.00"));
+		timeRace1.addTime(new Time("12.30.00"));
+		timeRace1.addTime(new Time("13.00.00"));
+		timeRace2.addTime(new Time("12.15.00"));
+		timeRace2.addTime(new Time("12.30.00"));
+		assertTrue(timeRace1.compareTo(timeRace2) == 0);
+		timeRace2.addTime(new Time("12.45.00"));
+		timeRace2.addTime(new Time("13.00.00"));
+		assertTrue(timeRace1.compareTo(timeRace2) < 0);
+		assertFalse(timeRace1.compareTo(timeRace2) > 0);
+	}
+
+	@Test
+	public void testLapRaceCompareTo() {
+		Race lapRace1 = new LapRace(3);
+		Race lapRace2 = new LapRace(3);
+		lapRace1.setStart(new Time("12.00.00"));
+		lapRace2.setStart(new Time("12.00.00"));
+		lapRace1.addTime(new Time("12.30.00"));
+		lapRace2.addTime(new Time("12.30.00"));
+		assertTrue(lapRace1.compareTo(lapRace2) == 0);
+		lapRace1.addTime(new Time("13.00.00"));
+		lapRace2.addTime(new Time("12.45.00"));
+		assertTrue(lapRace1.compareTo(lapRace2) > 0);
+		assertFalse(lapRace1.compareTo(lapRace2) < 0);
 	}
 
 	@Test
@@ -131,7 +164,7 @@ public class RaceTest {
 		assertEquals(
 				"Should be same",
 				"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
-						+ "1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n",
+						+ "1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n",
 				event.print(2));
 	}
 
@@ -152,10 +185,10 @@ public class RaceTest {
 
 		StringBuilder s = new StringBuilder();
 		s.append("StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n");
-		s.append("1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
-		s.append("2; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
-		s.append("3; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
-		s.append("4; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; 12.00.00; Flera starttider? 12.45.00 \n");
+		s.append("1; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
+		s.append("2; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
+		s.append("3; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
+		s.append("4; Not named; 0; --.--.--; --.--.--; --.--.--; 12.00.00; --.--.--; Slut?; Flera starttider? 12.45.00 \n");
 		assertEquals("Should be same", s.toString(), event.print(2));
 	}
 
@@ -171,5 +204,19 @@ public class RaceTest {
 				+ "1; Not named; 1; 00.05.00; 00.05.00; --.--.--; 12.00.00; --.--.--; 12.05.00; Omöjlig varvtid?\n";
 		assertEquals("Should be same", event.print(2), s);
 	}
-
+	
+	@Test
+	public void testNoStartTime() {
+		Race lapRace = new LapRace(2);
+		RaceEvent event = new RaceEvent(lapRace);
+		Participant p1 = new Participant(1);
+		event.addParticipant(p1);
+		p1.getRace().addTime(new Time("30.30.30"));
+		
+		String s = "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
+		 + "1; Not named; 1; --.--.--; --.--.--; --.--.--; Start?; --.--.--; 30.30.30; Omöjlig varvtid?\n";
+		
+		assertEquals("Should be same", event.print(2), s);
+	}
+	
 }

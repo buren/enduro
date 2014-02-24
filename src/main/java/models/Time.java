@@ -58,11 +58,20 @@ public class Time {
      * @param compare Time to compare to.
      * @return time difference
      */
-    public Time compareTo(Time compare) {
+    public Time getDifference(Time compare) {
         if (this.empty || compare.empty)
             return new Time(0);
         int difference = Math.abs(seconds - compare.seconds);
         return new Time(difference);
+    }
+    
+    /**
+     * Compares the amount of seconds passed since 00.00.00
+     * @param time
+     * @return Positive if argument seconds are less, negative if more, 0 if equal. 
+     */
+    public int compareTo(Time time){
+    	return seconds - time.seconds;
     }
 
     /**

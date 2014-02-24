@@ -4,25 +4,26 @@ import java.util.ArrayList;
 
 import race.Race;
 
+import java.util.TreeMap;
+
 public class Participant {
-	private int id;
-	private String name;
-	private Race race;
-	private String raceClass;
+    private int id;
+    private String name;
+    private Race race;
+    private String raceClass;
+    private TreeMap<String, String> extraInfo;
 
-	/**
-	 * Participant identifies by their id/startnumber, two participants with the
-	 * same id are considered the same.
-	 * 
-	 * @param id
-	 *            id of participant
-	 */
-	public Participant(int id) {
-		this.id = id;
-		name = "Not named";
-		raceClass = "None";
-
-	}
+    /**
+     * Participant identifies by their id/startnumber, two participants with the same id are considered the same.
+     *
+     * @param id id of participant
+     */
+    public Participant(int id) {
+        this.id = id;
+        extraInfo = new TreeMap<String, String>();
+        name = "Not named";
+        raceClass = "None";
+    }
 
 	/**
 	 * Return the participant id
@@ -43,6 +44,17 @@ public class Participant {
 		this.name = name.trim();
 	}
 
+
+    /**
+     * Adds a piece of extra information to this participant
+     *
+     * @param key   the type of information
+     * @param value the actual information
+     */
+    public void addInfo(String key, String value) {
+        extraInfo.put(key.trim(), value.trim());
+    }
+
 	/**
 	 * Return the participants name
 	 * 
@@ -51,6 +63,7 @@ public class Participant {
 	public String getName() {
 		return name;
 	}
+
 
 	/**
 	 * Connects the participant to a race
@@ -62,32 +75,31 @@ public class Participant {
 		this.race = race;
 	}
 
-	/**
-	 * Return the participants race.
-	 * 
-	 * @return race of participant
-	 */
-	public Race getRace() {
-		return race;
-	}
 
-	/**
-	 * Sets the class of the participant.
-	 * 
-	 * @param raceClass
-	 *            Name of the class.
-	 */
-	public void setRaceClass(String raceClass) {
-		this.raceClass = raceClass;
-	}
+    /**
+     * Return the participants race.
+     *
+     * @return race of participant
+     */
+    public Race getRace() {
+        return race;
+    }
 
-	/**
-	 * 
-	 * @return class for this participant.
-	 */
-	public String getRaceClass() {
-		return raceClass;
-	}
+    /**
+     * Sets the class of the participant.
+     *
+     * @param raceClass Name of the class.
+     */
+    public void setRaceClass(String raceClass) {
+        this.raceClass = raceClass;
+    }
+
+    /**
+     * @return class for this participant.
+     */
+    public String getRaceClass() {
+        return raceClass;
+    }
 
     /**
      * Print a formatted result string.
@@ -96,7 +108,28 @@ public class Participant {
      * @return a formatted string.
      */
     public String print(int printLimit) {
-        return id + "; " + name + race.print(printLimit);
+        String values = "";
+        if (!extraInfo.isEmpty()) {
+            String[] keyArray = new String[extraInfo.keySet().size()];
+            extraInfo.keySet().toArray(keyArray);
+            for (int i = 0; i < keyArray.length; i++) {
+                values +="; "+extraInfo.get(keyArray[i]);
+            }
+        }
+
+        return id + "; " + name+ values + race.print(printLimit);
+    }
+
+    public String printHeader() {
+        String keys = "";
+        if (!extraInfo.isEmpty()) {
+            String[] keyArray = new String[extraInfo.keySet().size()];
+            extraInfo.keySet().toArray(keyArray);
+            for (int i = 0; i < keyArray.length; i++) {
+                keys += "; " + keyArray[i];
+            }
+        }
+        return "StartNr; Namn" + keys;
     }
     
     @Override
