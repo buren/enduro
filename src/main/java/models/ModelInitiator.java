@@ -67,7 +67,7 @@ public class ModelInitiator {
                     raceEvent.getParticipant(id).getRace().setStart(startTime);
                 else {
                     Participant invalidParticipant = new Participant(id);
-                    raceEvent.addInvalidParticipant(invalidParticipant, raceEvent.INVALID_START_TIME, startTime);
+                    raceEvent.addNotRegisteredParticipant(invalidParticipant, RaceEvent.START_TIME, startTime);
                 }
             }
         }
@@ -98,8 +98,8 @@ public class ModelInitiator {
             if (raceEvent.containsParticipant(id))
                 raceEvent.getParticipant(id).getRace().addTime(finishTime);
             else {
-                Participant invalidParticipant = new Participant(id);
-                raceEvent.addInvalidParticipant(invalidParticipant, raceEvent.INVALID_FINISH_TIME, finishTime);
+                Participant notRegisteredParticipant = new Participant(id);
+                raceEvent.addNotRegisteredParticipant(notRegisteredParticipant, RaceEvent.LAP_TIME, finishTime);
             }
         }
     }

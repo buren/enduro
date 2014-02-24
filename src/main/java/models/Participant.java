@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import race.Race;
 
 import java.util.TreeMap;
@@ -23,32 +25,25 @@ public class Participant {
         raceClass = "None";
     }
 
-    /**
-     * Return the participant id
-     *
-     * @return id of participant
-     */
-    public int getId() {
-        return id;
-    }
+	/**
+	 * Return the participant id
+	 * 
+	 * @return id of participant
+	 */
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * Set participant name to parameter name
-     *
-     * @param name name of participant
-     */
-    public void setName(String name) {
-        this.name = name.trim();
-    }
+	/**
+	 * Set participant name to parameter name
+	 * 
+	 * @param name
+	 *            name of participant
+	 */
+	public void setName(String name) {
+		this.name = name.trim();
+	}
 
-    /**
-     * Return the participants name
-     *
-     * @return name of participant
-     */
-    public String getName() {
-        return name;
-    }
 
     /**
      * Adds a piece of extra information to this participant
@@ -60,14 +55,26 @@ public class Participant {
         extraInfo.put(key.trim(), value.trim());
     }
 
-    /**
-     * Connects the participant to a race
-     *
-     * @param race race the participant is racing.
-     */
-    public void setRace(Race race) {
-        this.race = race;
-    }
+	/**
+	 * Return the participants name
+	 * 
+	 * @return name of participant
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+	/**
+	 * Connects the participant to a race
+	 * 
+	 * @param race
+	 *            race the participant is racing.
+	 */
+	public void setRace(Race race) {
+		this.race = race;
+	}
+
 
     /**
      * Return the participants race.
@@ -124,4 +131,17 @@ public class Participant {
         }
         return "StartNr; Namn" + keys;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Participant other = (Participant) obj;
+        return id == other.id;
+    }
+
 }

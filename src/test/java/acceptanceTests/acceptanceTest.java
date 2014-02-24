@@ -88,6 +88,22 @@ public class acceptanceTest {
         String result = formatterController.result(pathToStartFile, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 2);
         assertEquals(readFileToString(resultFilePath), result);
     }
+    
+    @Test
+    public void acceptanceTest16() throws FileNotFoundException {
+        FormatterController formatterController = new FormatterController();
+
+        String path = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest16/");
+        String pathToNameFile = path + "namnfil.txt";
+        String pathToStartFile = path + "starttider.txt";
+        String pathToFinishFile = path + "maltider.txt";
+        String[] finishFileArray = {pathToFinishFile};
+        String resultFilePath = path + "resultat.txt";
+
+        String result = formatterController.result(pathToStartFile, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3);
+        assertEquals(readFileToString(resultFilePath), result);
+    }
 
     @Test
     public void acceptanceTest17() throws FileNotFoundException {
