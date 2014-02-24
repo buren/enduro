@@ -67,7 +67,19 @@ public class SimpleRace extends Race {
 	 */
 	@Override
 	public String print(int printLimit) {
-		return getTotal() + "; " + start + "; " + finish;
+		String startString;
+		String finishString;
+		if (start.isEmpty()) {
+			startString = "Start?";
+		} else {
+			startString = start.toString();
+		}
+		if (finish.isEmpty()) {
+			finishString = "Slut?";
+		} else {
+			finishString = finish.toString();
+		}
+		return getTotal() + "; " + startString + "; " + finishString;
 	}
 
 	/**

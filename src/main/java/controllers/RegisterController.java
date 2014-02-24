@@ -43,7 +43,7 @@ public class RegisterController {
 
     private void writeToFile(String registeredText) {
         String[] results = registeredText.split("\n");
-        ArrayList<String> lines = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<String>();
         Collections.addAll(lines, results);
         FileWriter.writeFile(filePath, lines.iterator());
     }
