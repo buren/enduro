@@ -17,6 +17,12 @@ mvn javadoc:javadoc
 for i in docs/*.md; do
   perl docs/markdown_to_html/Markdown.pl --html4tags $i > ${i%.*}.html
 done;
+for i in docs/*.html; do
+  converted_doc=$(cat $i)
+  echo '<html><head><meta charset="UTF-8"></head><body>' > $i  # Replace file $i content
+  echo $converted_doc >> $i                                    # Append content to $i
+  echo '</body></html>' >> $i                                  # Append $html_end to $i
+done;
 mkdir -p $target_dir
 cp docs/*.html $target_dir
 cp docs/*.png $target_dir
