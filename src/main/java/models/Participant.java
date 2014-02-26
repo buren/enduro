@@ -1,12 +1,17 @@
 package models;
 
+import java.util.ArrayList;
+
 import race.Race;
+
+import java.util.TreeMap;
 
 public class Participant {
     private int id;
     private String name;
     private Race race;
     private String raceClass;
+    private TreeMap<String, String> extraInfo;
 
     /**
      * Participant identifies by their id/startnumber, two participants with the same id are considered the same.
@@ -15,45 +20,61 @@ public class Participant {
      */
     public Participant(int id) {
         this.id = id;
+        extraInfo = new TreeMap<String, String>();
         name = "Not named";
         raceClass = "None";
     }
 
-    /**
-     * Return the participant id
-     *
-     * @return id of participant
-     */
-    public int getId() {
-        return id;
-    }
+	/**
+	 * Return the participant id
+	 * 
+	 * @return id of participant
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * Set participant name to parameter name
+	 * 
+	 * @param name
+	 *            name of participant
+	 */
+	public void setName(String name) {
+		this.name = name.trim();
+	}
+
 
     /**
-     * Set participant name to parameter name
+     * Adds a piece of extra information to this participant
      *
-     * @param name name of participant
+     * @param key   the type of information
+     * @param value the actual information
      */
-    public void setName(String name) {
-        this.name = name.trim();
+    public void addInfo(String key, String value) {
+        extraInfo.put(key.trim(), value.trim());
     }
 
-    /**
-     * Return the participants name
-     *
-     * @return name of participant
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Return the participants name
+	 * 
+	 * @return name of participant
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Connects the participant to a race
-     *
-     * @param race race the participant is racing.
-     */
-    public void setRace(Race race) {
-        this.race = race;
-    }
+
+	/**
+	 * Connects the participant to a race
+	 * 
+	 * @param race
+	 *            race the participant is racing.
+	 */
+	public void setRace(Race race) {
+		this.race = race;
+	}
+
 
     /**
      * Return the participants race.
@@ -66,6 +87,7 @@ public class Participant {
 
     /**
      * Sets the class of the participant.
+     *
      * @param raceClass Name of the class.
      */
     public void setRaceClass(String raceClass) {
@@ -73,7 +95,6 @@ public class Participant {
     }
 
     /**
-     *
      * @return class for this participant.
      */
     public String getRaceClass() {
@@ -87,6 +108,40 @@ public class Participant {
      * @return a formatted string.
      */
     public String print(int printLimit) {
-        return id + "; " + name + race.print(printLimit);
+        String values = "";
+        if (!extraInfo.isEmpty()) {
+            String[] keyArray = new String[extraInfo.keySet().size()];
+            extraInfo.keySet().toArray(keyArray);
+            for (int i = 0; i < keyArray.length; i++) {
+                values +="; "+extraInfo.get(keyArray[i]);
+            }
+        }
+
+        return id + "; " + name+ values + race.print(printLimit);
     }
+
+    public String printHeader() {
+        String keys = "";
+        if (!extraInfo.isEmpty()) {
+            String[] keyArray = new String[extraInfo.keySet().size()];
+            extraInfo.keySet().toArray(keyArray);
+            for (int i = 0; i < keyArray.length; i++) {
+                keys += "; " + keyArray[i];
+            }
+        }
+        return "StartNr; Namn" + keys;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Participant other = (Participant) obj;
+        return id == other.id;
+    }
+
 }

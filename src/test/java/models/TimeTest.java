@@ -22,10 +22,10 @@ public class TimeTest {
     public void testCompareTo() {
         Time time2 = new Time("10.10.10");
 
-        Time time3 = time.compareTo(time2);
+        Time time3 = time.getDifference(time2);
         assertEquals("02.02.02", time3.toString());
         Time empty = new Time();
-        assertEquals(new Time(), time2.compareTo(empty));
+        assertEquals(new Time(), time2.getDifference(empty));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class TimeTest {
         time = new Time("10.10.10");
         Time time2 = new Time("12.12.12");
 
-        Time time3 = time.compareTo(time2);
+        Time time3 = time.getDifference(time2);
         assertEquals("02.02.02", time3.toString());
     }
 
