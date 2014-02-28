@@ -35,6 +35,19 @@ public class acceptanceTest {
     }
 
     @Test
+    public void acceptanceTest5() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
+
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration1/acceptanstest5/");
+        makePaths();
+
+        String resultList = fc.result(pathToStartFile, pathsToFinishFiles, pathToNameFile,
+                FormatterController.SIMPLE_RACE, "1", 1);
+        assertEquals(readFileToString(pathToExpectedResult), resultList);
+    }
+
+    @Test
     public void acceptanceTest6() throws FileNotFoundException {
         FormatterController fc = new FormatterController();
 
@@ -80,6 +93,22 @@ public class acceptanceTest {
 
         basePath = enduro.getInstance().getResourcePath(
                 "acceptanstester/iteration2/acceptanstest10/");
+        makePaths();
+        String pathToFinishFile1 = basePath + "maltider1.txt";
+        String pathToFinishFile2 = basePath + "maltider2.txt";
+        String[] finishFileArray = {pathToFinishFile1, pathToFinishFile2};
+
+        String result = fc.result(pathToStartFile, finishFileArray, pathToNameFile,
+                FormatterController.LAP_RACE, "3", 3);
+        assertEquals(readFileToString(pathToExpectedResult), result);
+    }
+
+    @Test
+    public void acceptanceTest11() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
+
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest11/");
         makePaths();
         String pathToFinishFile1 = basePath + "maltider1.txt";
         String pathToFinishFile2 = basePath + "maltider2.txt";
@@ -146,7 +175,7 @@ public class acceptanceTest {
         assertEquals(readFileToString(pathToExpectedResult), result);
     }
 
-    private String readFileToString(String filePath)
+    public static String readFileToString(String filePath)
             throws FileNotFoundException {
         FileReader fr = new FileReader();
         Iterator<String> itr = fr.readFileByLine(filePath);

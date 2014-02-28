@@ -72,7 +72,7 @@ public class FormatterController {
         
         return raceEvent.print(printLimit);
     }
-    
+
     public void resetRace(){
     	raceEvent = null;
     }
