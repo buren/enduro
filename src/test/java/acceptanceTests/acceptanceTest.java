@@ -13,170 +13,149 @@ import utils.Enduro;
 import utils.FileReader;
 
 public class acceptanceTest {
+    private Enduro enduro;
+    private String basePath;
+    private String pathToNameFile;
+    private String pathToStartFile;
+    private String[] pathsToFinishFiles;
+    private String pathToExpectedResult;
 
-	private Enduro enduro;
 
-	@Before
-	public void setUp() throws Exception {
-		enduro = Enduro.getInstance();
-	}
+    @Before
+    public void setUp() throws Exception {
+        enduro = Enduro.getInstance();
+    }
 
-	@Test
-	public void acceptanceTest6() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+    private void makePaths() {
+        pathToNameFile = basePath + "namnfil.txt";
+        pathToStartFile = basePath + "starttider.txt";
+        pathToExpectedResult = basePath + "resultat.txt";
+        pathsToFinishFiles = new String[1];
+        pathsToFinishFiles[0] = basePath + "maltider.txt";
+    }
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration1/acceptanstest6/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String[] pathsFinishFiles = { path + "maltider.txt" };
-		String resultFilePath = path + "resultat.txt";
+    @Test
+    public void acceptanceTest6() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
 
-		String resultList = formatterController.result(pathToStartFile,
-				pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
-				"1", 1);
-		assertEquals(readFileToString(resultFilePath), resultList);
-	}
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration1/acceptanstest6/");
+        makePaths();
 
-	@Test
-	public void acceptanceTest9() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+        String resultList = fc.result(pathToStartFile, pathsToFinishFiles, pathToNameFile,
+                FormatterController.LAP_RACE, "1", 1);
+        assertEquals(readFileToString(pathToExpectedResult), resultList);
+    }
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration2/acceptanstest9/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String[] pathsFinishFiles = { path + "maltider.txt" };
-		String resultFilePath = path + "resultat.txt";
+    @Test
+    public void acceptanceTest9() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
 
-		String resultList = formatterController.result(pathToStartFile,
-				pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
-		assertEquals(readFileToString(resultFilePath), resultList);
-	}
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest9/");
+        makePaths();
 
-	@Test
-	public void acceptanceTest9TimeRace() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+        String resultList = fc.result(pathToStartFile, pathsToFinishFiles, pathToNameFile,
+                FormatterController.LAP_RACE, "3", 3);
+        assertEquals(readFileToString(pathToExpectedResult), resultList);
+    }
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration2/acceptanstest9/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String[] pathsFinishFiles = { path + "maltider.txt" };
-		String resultFilePath = path + "resultatTimeRace.txt";
+    @Test
+    public void acceptanceTest9TimeRace() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
 
-		String resultList = formatterController.result(pathToStartFile,
-				pathsFinishFiles, pathToNameFile,
-				FormatterController.TIME_RACE, "01.00.00", 3);
-		assertEquals(readFileToString(resultFilePath), resultList);
-	}
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest9/");
+        makePaths();
+        pathToExpectedResult = basePath + "resultatTimeRace.txt";
 
-	@Test
-	public void acceptanceTest10() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+        String resultList = fc.result(pathToStartFile, pathsToFinishFiles, pathToNameFile,
+                FormatterController.TIME_RACE, "01.00.00", 3);
+        assertEquals(readFileToString(pathToExpectedResult), resultList);
+    }
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration2/acceptanstest10/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String pathToFinishFile1 = path + "maltider1.txt";
-		String pathToFinishFile2 = path + "maltider2.txt";
-		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
-		String resultFilePath = path + "resultat.txt";
+    @Test
+    public void acceptanceTest10() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
 
-		String result = formatterController.result(pathToStartFile,
-				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
-		assertEquals(readFileToString(resultFilePath), result);
-		formatterController.resetRace();
-		result = formatterController.result(pathToStartFile, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3);
-		assertEquals(readFileToString(resultFilePath), result);
-	}
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest10/");
+        makePaths();
+        String pathToFinishFile1 = basePath + "maltider1.txt";
+        String pathToFinishFile2 = basePath + "maltider2.txt";
+        String[] finishFileArray = {pathToFinishFile1, pathToFinishFile2};
 
-	@Test
-	public void acceptanceTest13() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+        String result = fc.result(pathToStartFile, finishFileArray, pathToNameFile,
+                FormatterController.LAP_RACE, "3", 3);
+        assertEquals(readFileToString(pathToExpectedResult), result);
+    }
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration2/acceptanstest13/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String pathToFinishFile1 = path + "maltider1.txt";
-		String pathToFinishFile2 = path + "maltider2.txt";
-		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
-		String resultFilePath = path + "resultat.txt";
+    @Test
+    public void acceptanceTest13() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
 
-		String result = formatterController.result(pathToStartFile,
-				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 2);
-		assertEquals(readFileToString(resultFilePath), result);
-	}
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest13/");
+        makePaths();
+        String pathToFinishFile1 = basePath + "maltider1.txt";
+        String pathToFinishFile2 = basePath + "maltider2.txt";
+        String[] finishFileArray = {pathToFinishFile1, pathToFinishFile2};
 
-	@Test
-	public void acceptanceTest15() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+        String result = fc.result(pathToStartFile, finishFileArray, pathToNameFile,
+                FormatterController.LAP_RACE, "3", 2);
+        assertEquals(readFileToString(pathToExpectedResult), result);
+    }
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration2/acceptanstest15/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String[] pathsFinishFiles = { path + "maltider.txt" };
-		String resultFilePath = path + "resultat.txt";
-		String resultList = formatterController.result(pathToStartFile,
-				pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
-				"30", 3);
-		assertEquals(readFileToString(resultFilePath), resultList);
-	}
+    @Test
+    public void acceptanceTest15() throws FileNotFoundException {
+        FormatterController fc = new FormatterController();
 
-	@Test
-	public void acceptanceTest16() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest15/");
+        makePaths();
+        String resultList = fc.result(pathToStartFile, pathsToFinishFiles, pathToNameFile,
+                FormatterController.LAP_RACE, "30", 3);
+        assertEquals(readFileToString(pathToExpectedResult), resultList);
+    }
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration2/acceptanstest16/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String pathToFinishFile = path + "maltider.txt";
-		String[] finishFileArray = { pathToFinishFile };
-		String resultFilePath = path + "resultat.txt";
+    @Test
+    public void acceptanceTest16() throws FileNotFoundException {
+        FormatterController formatterController = new FormatterController();
 
-		String result = formatterController.result(pathToStartFile,
-				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
-		assertEquals(readFileToString(resultFilePath), result);
-	}
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest16/");
+        makePaths();
+        String result = formatterController.result(pathToStartFile, pathsToFinishFiles, pathToNameFile,
+                FormatterController.LAP_RACE, "3", 3);
+        assertEquals(readFileToString(pathToExpectedResult), result);
+    }
 
-	@Test
-	public void acceptanceTest17() throws FileNotFoundException {
-		FormatterController formatterController = new FormatterController();
+    @Test
+    public void acceptanceTest17() throws FileNotFoundException {
+        FormatterController formatterController = new FormatterController();
 
-		String path = enduro.getInstance().getResourcePath(
-				"acceptanstester/iteration2/acceptanstest17/");
-		String pathToNameFile = path + "namnfil.txt";
-		String pathToStartFile = path + "starttider.txt";
-		String pathToFinishFile1 = path + "maltider1.txt";
-		String pathToFinishFile2 = path + "maltider2.txt";
-		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
-		String resultFilePath = path + "resultat.txt";
+        basePath = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest17/");
+        makePaths();
+        String pathToFinishFile1 = basePath + "maltider1.txt";
+        String pathToFinishFile2 = basePath + "maltider2.txt";
+        String[] finishFileArray = {pathToFinishFile1, pathToFinishFile2};
 
-		String result = formatterController.result(pathToStartFile,
-				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
-		assertEquals(readFileToString(resultFilePath), result);
-	}
+        String result = formatterController.result(pathToStartFile, finishFileArray, pathToNameFile,
+                FormatterController.LAP_RACE, "3", 3);
+        assertEquals(readFileToString(pathToExpectedResult), result);
+    }
 
-	private String readFileToString(String filePath)
-			throws FileNotFoundException {
-		FileReader fr = new FileReader();
-		Iterator<String> itr = fr.readFileByLine(filePath);
-		StringBuilder sb = new StringBuilder();
+    private String readFileToString(String filePath)
+            throws FileNotFoundException {
+        FileReader fr = new FileReader();
+        Iterator<String> itr = fr.readFileByLine(filePath);
+        StringBuilder sb = new StringBuilder();
 
-		while (itr.hasNext()) {
-			sb.append(itr.next());
-			sb.append("\n");
-		}
-		return sb.toString();
-	}
+        while (itr.hasNext()) {
+            sb.append(itr.next());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }

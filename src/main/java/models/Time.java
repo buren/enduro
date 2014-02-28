@@ -60,7 +60,7 @@ public class Time {
      */
     public Time getDifference(Time compare) {
         if (this.empty || compare.empty)
-            return new Time(0);
+            return new Time();
         int difference = Math.abs(seconds - compare.seconds);
         return new Time(difference);
     }

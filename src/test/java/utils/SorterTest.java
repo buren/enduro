@@ -91,7 +91,6 @@ public class SorterTest {
 		assertEquals(participantList.get(1), p0);
 		assertEquals(participantList.get(2), p3);
 		assertEquals(participantList.get(3), p1);
-
 	}
 
 	@Test
