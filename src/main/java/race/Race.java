@@ -5,8 +5,9 @@ import models.Time;
 import java.util.ArrayList;
 
 public abstract class Race {
-	protected ArrayList<Lap> laps = new ArrayList<Lap>();
-	protected ArrayList<Time> multipleStart = new ArrayList<Time>();
+	protected ArrayList<Lap> laps = new ArrayList<>();
+	protected ArrayList<Time> multipleStart = new ArrayList<>();
+	protected ArrayList<Time> multipleFinish = new ArrayList<>();
 
 	/**
 	 * Create a new Race.
@@ -14,6 +15,31 @@ public abstract class Race {
 	public Race() {
 		laps.add(new Lap());
 	}
+
+	/**
+	 * @return Time the race was started.
+	 */
+	private Time getStart() {
+		return laps.get(0).getStart();
+	}
+
+	/**
+	 * @return return the number of started laps.
+	 */
+	protected int getLaps() {
+		return laps.size();
+	}
+
+	/**
+	 * Return the total time this race took.
+	 * 
+	 * @return time elapsed during whole race.
+	 */
+	protected Time getTotal() {
+		return getStart().getDifference(getFinish());
+	}
+
+	public abstract int compareTo(Race race);
 
 	/**
 	 * Set the starttime.
@@ -29,13 +55,6 @@ public abstract class Race {
 	}
 
 	/**
-	 * @return Time the race was started.
-	 */
-	private Time getStart() {
-		return laps.get(0).getStart();
-	}
-
-	/**
 	 * @return return the Time a finishtime was last registered.
 	 */
 	private Time getFinish() {
@@ -45,16 +64,9 @@ public abstract class Race {
 	}
 
 	/**
-	 * @return return the number of started laps.
-	 */
-	protected int getLaps() {
-		return laps.size();
-	}
-
-	/**
 	 * @return return the number of completed laps.
 	 */
-	private int getCompletedLaps() {
+	protected int getCompletedLaps() {
 		if (laps.get(laps.size() - 1).getFinish().isEmpty())
 			return laps.size() - 1;
 		return laps.size();
@@ -87,15 +99,6 @@ public abstract class Race {
 	}
 
 	/**
-	 * Return the total time this race took.
-	 * 
-	 * @return time elapsed during whole race.
-	 */
-	protected Time getTotal() {
-		return getStart().compareTo(getFinish());
-	}
-
-	/**
 	 * Add a new finishtime
 	 * 
 	 * @param time
@@ -108,6 +111,8 @@ public abstract class Race {
 			Lap lap = new Lap();
 			lap.setStart(time);
 			laps.add(lap);
+		} else {
+			multipleFinish.add(time);
 		}
 	}
 
@@ -142,6 +147,12 @@ public abstract class Race {
 				sb.append(multipleStart.get(i).toString() + " ");
 			}
 		}
+		if (multipleFinish.size() > 1) {
+			sb.append("; Flera maltider? ");
+			for (int i = 1; i < multipleFinish.size(); i++) {
+				sb.append(multipleFinish.get(i).toString() + " ");
+			}
+		}
 		return sb.toString();
 	}
 
@@ -170,14 +181,13 @@ public abstract class Race {
 			else
 				sb.append("; ").append(lapTime);
 		}
-		if (getFinish().isEmpty())
+		if (getFinish().isEmpty() || getFinish().equals(getStart()))
 			sb.append("; ").append("Slut?");
 		else
 			sb.append("; ").append(getFinish());
 		sb.append(printErrors(printLimit));
 		return sb.toString();
 	}
-
 
     /**
      * Prints a header for the result
@@ -245,7 +255,7 @@ public abstract class Race {
 		 * @return the duration of the race, if incomplete, return a empty time.
 		 */
 		public Time getTotalTime() {
-			return startTime.compareTo(finishTime);
+			return startTime.getDifference(finishTime);
 		}
 
 		/**

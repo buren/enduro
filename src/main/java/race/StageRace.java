@@ -115,6 +115,10 @@ public class StageRace extends Race {
         return true;
     }
 
+    public int compareTo(Race race) {
+        return 0;
+    }
+
     /**
      * @return a new Race with the same time limit
      */

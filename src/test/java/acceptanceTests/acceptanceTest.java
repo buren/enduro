@@ -22,6 +22,23 @@ public class acceptanceTest {
     }
 
     @Test
+    public void acceptanceTest6() throws FileNotFoundException {
+        FormatterController formatterController = new FormatterController();
+
+        String path = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration1/acceptanstest6/");
+        String pathToNameFile = path + "namnfil.txt";
+        String[] pathsToStartFiles = { path + "starttider.txt" };
+        String[] pathsFinishFiles = { path + "maltider.txt" };
+        String resultFilePath = path + "resultat.txt";
+
+        String resultList = formatterController.result(pathsToStartFiles,
+                pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
+                "1", 1);
+        assertEquals(readFileToString(resultFilePath), resultList);
+    }
+
+    @Test
     public void acceptanceTest9() throws FileNotFoundException {
         FormatterController formatterController = new FormatterController();
 
@@ -88,7 +105,23 @@ public class acceptanceTest {
         String result = formatterController.result(pathToStartFile, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 2);
         assertEquals(readFileToString(resultFilePath), result);
     }
-    
+
+    @Test
+    public void acceptanceTest15() throws FileNotFoundException {
+        FormatterController formatterController = new FormatterController();
+
+        String path = enduro.getInstance().getResourcePath(
+                "acceptanstester/iteration2/acceptanstest15/");
+        String pathToNameFile = path + "namnfil.txt";
+        String[] pathsToStartFiles = { path + "starttider.txt" };
+        String[] pathsFinishFiles = { path + "maltider.txt" };
+        String resultFilePath = path + "resultat.txt";
+        String resultList = formatterController.result(pathsToStartFiles,
+                pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
+                "30", 3);
+        assertEquals(readFileToString(resultFilePath), resultList);
+    }
+
     @Test
     public void acceptanceTest16() throws FileNotFoundException {
         FormatterController formatterController = new FormatterController();

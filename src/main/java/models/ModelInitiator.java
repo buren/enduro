@@ -80,7 +80,7 @@ public class ModelInitiator {
                 int id = intList.get(i);
                 Time startTime = timeList.get(i);
                 if (raceEvent.containsParticipant(id))
-                    raceEvent.getParticipant(id).getRace().addFinishTime(startTime);
+                    raceEvent.getParticipant(id).getRace().addStartTime(startTime);
                 else {
                     Participant invalidParticipant = new Participant(id);
                     raceEvent.addNotRegisteredParticipant(invalidParticipant, RaceEvent.START_TIME, startTime);
@@ -153,6 +153,4 @@ public class ModelInitiator {
             idList.add(intArray[i]);
         }
     }
-
-
 }
