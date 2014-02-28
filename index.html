@@ -37,10 +37,12 @@
 <li><a href="#simplified-vcs">Simplified VCS</a></li>
 <li><a href="#automatic-testing">Automatic testing</a></li>
 <li><a href="#continuous-integration">Continuous integration</a></li>
+<li><a href="#maven-file-structure">Maven File Structure</a></li>
 </ul><h2>
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
-<p>Navigate (in a terminal) to the folder where you'd like to put the Enduro project folder.</p>
+<p>If you haven't generated ssh-keys, then you need to do so.
+You can follow the guide here: <a href="https://help.github.com/articles/generating-ssh-keys">https://help.github.com/articles/generating-ssh-keys</a></p>
 
 <p>Then copy and paste this command:</p>
 
@@ -82,6 +84,14 @@ This is when you'll be ready for potential merge conflicts.
 <a name="continuous-integration" class="anchor" href="#continuous-integration"><span class="octicon octicon-link"></span></a>Continuous integration</h2>
 
 <p>After <code>gs done</code> is done the project will be sent to Travis CI, which will then build the project and run its entire test suite. <a href="https://travis-ci.org/buren/enduro">Travis CI for Enduro.</a></p>
+
+<h2>
+<a name="maven-file-structure" class="anchor" href="#maven-file-structure"><span class="octicon octicon-link"></span></a>Maven File Structure</h2>
+
+<p>Maven is a tool which is used to configure a project for several users. The structure that it uses is the following:
+Main: Where your programcode is placed.
+Test: Where your testcode is placed.
+Target: When maven builds your project it is placed in the Target folder.</p>
         </section>
 
         <aside id="sidebar">
