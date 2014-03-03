@@ -29,9 +29,8 @@ public class SorterTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void sortByNumberOfLapsTest() {
 
+	public void sortByNumberOfLapsTest() {
 		Participant p0 = new Participant(0);
 		Participant p1 = new Participant(1);
 		Race r0 = new TimeRace(new Time("01.00.00"));
@@ -54,7 +53,7 @@ public class SorterTest {
 
 	}
 
-	@Test
+
 	public void multipleSortByNumberOfLapsTest() {
 
 		Participant p0 = new Participant(0);
@@ -91,7 +90,6 @@ public class SorterTest {
 		assertEquals(participantList.get(1), p0);
 		assertEquals(participantList.get(2), p3);
 		assertEquals(participantList.get(3), p1);
-
 	}
 
 	@Test
@@ -101,7 +99,7 @@ public class SorterTest {
 		assertEquals(participantList.size(), 0);
 	}
 
-	@Test
+
 	public void sortByTotalTimeTest() {
 
 		Participant p0 = new Participant(0);
