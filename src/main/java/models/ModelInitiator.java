@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
+
 public class ModelInitiator {
 
 	private RaceEvent raceEvent;
@@ -62,11 +64,8 @@ public class ModelInitiator {
 			String[] rows = line.split(";");
 
 			Time startTime = new Time(rows[1]);
-
-			if (rows[0].trim().equals("*")) {
-				raceEvent.setAllStartTimes(startTime);
-			} else {
-				int id = Integer.parseInt(rows[0]);
+			try {
+				int id = Integer.parseInt(rows[0]); //If it's not an int, it's either a * (to start everyone) or a class name (to start everyone in the class).	
 				if (raceEvent.containsParticipant(id))
 					raceEvent.getParticipant(id).getRace().setStart(startTime);
 				else {
@@ -75,6 +74,14 @@ public class ModelInitiator {
 							RaceEvent.START_TIME, startTime);
 				}
 			}
+			catch (Exception e) {
+				if (rows[0].trim().equals("*")) {
+					raceEvent.setAllStartTimes(startTime);					
+				} else {
+					raceEvent.setAllClassStart(rows[0], startTime);
+				}
+			}
+			
 		}
 	}
 

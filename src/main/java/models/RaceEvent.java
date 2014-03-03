@@ -91,6 +91,19 @@ public class RaceEvent {
             p.getRace().setStart(startTime);
         }
     }
+    
+    /**
+     * Sets the starttime for everyone in the class 'className'.
+     * @param className A string containing the class name that we want to start
+     * @param startTime The time that we want the starttimes to be
+     */
+    public void setAllClassStart(String className, Time startTime) {
+    	for (Participant p : participants) {
+    		if (p.getRaceClass().equals(className)) {
+    			p.getRace().setStart(startTime);
+    		} 
+    	}
+    }
 
     /**
      * Print a formatted result table as string.

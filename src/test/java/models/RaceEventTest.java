@@ -98,6 +98,14 @@ public class RaceEventTest {
                 "2; Not named; --.--.--; Start?; Slut?\n";
         assertEquals(expected, raceEvent.print(1));
     }
+    
+    @Test
+    public void testStartOneByClass()
+    {
+    	participant.setRaceClass("Lexforce");
+    	raceEvent.setAllClassStart("Lexforce", new Time("13.37.00"));
+    	System.out.println(raceEvent.print(0));
+    }
 
 
 }
