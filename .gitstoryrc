@@ -5,3 +5,5 @@ GS_PACKAGE="$enduro_package"
 GS_RELEASE="$enduro_package && bash release.sh"
 GS_PRINT_CHECKLIST=true
 GS_PROMPT_ON_DONE=true
+
+GS_GIT_STORY_BRANCH='enduro'
