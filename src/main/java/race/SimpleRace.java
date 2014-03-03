@@ -81,6 +81,20 @@ public class SimpleRace extends Race {
     }
 
     /**
+     * Prints a header for the result
+     * @param printLimit max number of laps to print.
+     * @return a formatted string.
+     */
+    @Override
+    public String printHeader(int printLimit) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("; TotalTid");
+        sb.append("; Start");
+        sb.append("; Mal\n");
+        return sb.toString();
+    }
+
+    /**
      * @return a new SimpleRace with the same time limit
      */
     @Override
