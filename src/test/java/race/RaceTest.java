@@ -147,6 +147,11 @@ public class RaceTest {
     }
 
     @Test
+    public void testPrintHeaderSimpleRace() {
+        assertEquals("; TotalTid; Start; Mal\n", race.printHeader(0));
+    }
+
+    @Test
     public void testLimitSimpleRace() {
         assertFalse(race.testLimit());
     }

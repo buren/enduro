@@ -64,7 +64,7 @@ public class RaceEventTest {
         Participant invalidParticipant = new Participant(1);
         raceEvent.addNotRegisteredParticipant(invalidParticipant, RaceEvent.START_TIME, new Time("12.00.00"));
         String expected = "Icke existerande startnummer:\n" +
-                "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n" +
+                "StartNr; Namn; TotalTid; Start; Mal\n" +
                 "1; Not named; --.--.--; 12.00.00; Slut?\n";
         assertEquals(expected, raceEvent.print(2));
     }
@@ -78,7 +78,7 @@ public class RaceEventTest {
         raceEvent.addNotRegisteredParticipant(invalid2, RaceEvent.LAP_TIME, new Time("13.00.00"));
         String actual = raceEvent.print(3);
         String expected = "Icke existerande startnummer:\n" +
-                "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mal\n" +
+                "StartNr; Namn; TotalTid; Start; Mal\n" +
                 "2; Not named; 01.00.00; 12.00.00; 13.00.00\n";
         assertEquals(expected, actual);
     }
@@ -90,10 +90,10 @@ public class RaceEventTest {
         p2.setRaceClass("SENIOR");
         raceEvent.addParticipant(p2);
         String expected = "JUNIOR\n" +
-                "StartNr; Namn; #Varv; TotalTid; Varv1; Start; Mal\n" +
+                "StartNr; Namn; TotalTid; Start; Mal\n" +
                 "1; Not named; --.--.--; Start?; Slut?\n" +
                 "SENIOR\n" +
-                "StartNr; Namn; #Varv; TotalTid; Varv1; Start; Mal\n" +
+                "StartNr; Namn; TotalTid; Start; Mal\n" +
                 "2; Not named; --.--.--; Start?; Slut?\n";
         assertEquals(expected, raceEvent.print(1));
     }
