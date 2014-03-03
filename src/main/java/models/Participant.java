@@ -23,7 +23,7 @@ public class Participant implements Comparable {
         extraInfo = new TreeMap<String, String>();
         name = "Not named";
         raceClass = "None";
-        placement = "-";
+        placement = " ";
     }
 
     /**
