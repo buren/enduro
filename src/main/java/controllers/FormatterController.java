@@ -53,6 +53,7 @@ public class FormatterController {
 		default:
 			throw new IllegalArgumentException("Racetypen finns inte!");
 		}
+
 		race.changeLapTimeLimit(lapTimeLimit);
 		raceEvent = new RaceEvent(race);
 		FileReader fr = new FileReader();
