@@ -20,7 +20,7 @@ done;
 for i in docs/*.html; do
   converted_doc=$(cat $i)
   echo '<html><head><meta charset="UTF-8"></head><body>' > $i  # Replace file $i content
-  echo $converted_doc >> $i                                    # Append content to $i
+  echo $converted_doc >> $i                                    # Append $converted_doc to $i
   echo '</body></html>' >> $i                                  # Append $html_end to $i
 done;
 mkdir -p $target_dir
