@@ -9,6 +9,7 @@ import java.util.Collections;
 import javax.swing.*;
 
 import controllers.FormatterController;
+import utils.FileWriter;
 
 public class PrintButton extends JButton implements ActionListener {
 
@@ -70,7 +71,7 @@ public class PrintButton extends JButton implements ActionListener {
                 String[] results = resultat.split("\n");
                 ArrayList<String> lines = new ArrayList<String>();
                 Collections.addAll(lines, results);
-                formCont.writeToFile(filePath, lines.iterator());
+                FileWriter.writeFile(filePath, lines.iterator());
                 statusText.setText("Resultatfil utskriven!");
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();

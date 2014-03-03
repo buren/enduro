@@ -51,7 +51,6 @@ public class GUIFormatter extends JFrame {
         buttonPanel.add(fb);
         buttonPanel.add(nb);
         buttonPanel.add(new PrintButton(sb, fb, nb, statusText, formCont, raceType, limitField));
-        buttonPanel.add(new ResetButton(formCont, statusText));
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new GridLayout(2, 1));
         leftPanel.add(buttonPanel);

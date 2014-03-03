@@ -12,7 +12,7 @@ public class StageRace extends Race {
     @Override
     public void addStartTime(Time startTime) {
         boolean addedStart = false;
-        for (int i = 0; i < laps.size(); i++) {
+        for (int i = 0; i < laps.size() && !addedStart; i++) {
             if(laps.get(i).getStart().isEmpty()){
                 laps.get(i).setStart(startTime);
                 addedStart = true;
@@ -33,7 +33,7 @@ public class StageRace extends Race {
      */
     public void addFinishTime(Time finishTime) {
         boolean addedFinish = false;
-        for (int i = 0; i < laps.size(); i++) {
+        for (int i = 0; i < laps.size() && !addedFinish; i++) {
             if(laps.get(i).getFinish().isEmpty()){
                 laps.get(i).setFinish(finishTime);
                 addedFinish = true;
@@ -92,13 +92,13 @@ public class StageRace extends Race {
      */
     public String printHeader(int printLimit) {
         StringBuilder sb = new StringBuilder();
-        sb.append("; TotalTid; #Etapper");
+        sb.append("; Totaltid; #Etapper");
         for (int i = 0; i < printLimit; i++) {
-            sb.append("; Etapp ").append(i + 1);
+            sb.append("; Etapp").append(i + 1);
         }
         for(int i = 0; i < printLimit; i++) {
             sb.append("; Start").append(i+1);
-            sb.append("; Mål").append(i+1);
+            sb.append("; Mal").append(i+1);
         }
         sb.append("\n");
         return sb.toString();
@@ -113,10 +113,6 @@ public class StageRace extends Race {
     @Override
     protected boolean testLimit() {
         return true;
-    }
-
-    public int compareTo(Race race) {
-        return 0;
     }
 
     /**

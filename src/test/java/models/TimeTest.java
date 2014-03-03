@@ -113,4 +113,10 @@ public class TimeTest {
         assertFalse(time.equals(this));
     }
 
+    @Test
+    public void testAddTo() {
+        Time time2 = new Time("02.00.00");
+        assertEquals(new Time("14.12.12"), time.addTo(time2));
+    }
+
 }
