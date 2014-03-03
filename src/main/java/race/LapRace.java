@@ -42,4 +42,5 @@ public class LapRace extends Race {
 
 		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
 	}
+
 }

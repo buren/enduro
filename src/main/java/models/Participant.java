@@ -56,16 +56,6 @@ public class Participant {
     }
 
 	/**
-	 * Return the participants name
-	 * 
-	 * @return name of participant
-	 */
-	public String getName() {
-		return name;
-	}
-
-
-	/**
 	 * Connects the participant to a race
 	 * 
 	 * @param race
@@ -117,7 +107,7 @@ public class Participant {
             }
         }
 
-        return id + "; " + name+ values + race.print(printLimit);
+        return id + "; " + name + values + race.print(printLimit);
     }
 
     public String printHeader() {

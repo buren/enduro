@@ -2,11 +2,12 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 public class LoadStartButton extends JButton implements ActionListener {
-    private String startfil;
+    private ArrayList<String> startfiler;
     private JTextArea statusText;
 
     /**
@@ -17,6 +18,7 @@ public class LoadStartButton extends JButton implements ActionListener {
     public LoadStartButton(JTextArea statusText) {
         super("Ladda in startfil");
         this.addActionListener(this);
+        startfiler = new ArrayList<String>();
         this.statusText = statusText;
     }
 
@@ -30,7 +32,7 @@ public class LoadStartButton extends JButton implements ActionListener {
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         try {
-            startfil = fc.getSelectedFile().getAbsolutePath();
+            startfiler.add(fc.getSelectedFile().getAbsolutePath());
             statusText.append("Startfil inläst\n");
         } catch (NullPointerException nullPointer) {
             statusText.append("Ingen fil vald \n");
@@ -42,7 +44,9 @@ public class LoadStartButton extends JButton implements ActionListener {
      *
      * @return the path
      */
-    public String getPath() {
-        return startfil;
+    public String[] getPath() {
+        String[] paths = new String[startfiler.size()];
+        startfiler.toArray(paths);
+        return paths;
     }
 }

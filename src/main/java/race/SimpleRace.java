@@ -1,9 +1,9 @@
 package race;
 
 import models.Time;
+import sun.print.resources.serviceui_pt_BR;
 
 public class SimpleRace extends Race {
-
 	private Time start;
 	private Time finish;
 
@@ -22,7 +22,7 @@ public class SimpleRace extends Race {
 	 *            Time to set as start.
 	 */
 	@Override
-	public void setStart(Time start) {
+	public void addStartTime(Time start) {
 		this.start = start;
 	}
 
@@ -44,7 +44,7 @@ public class SimpleRace extends Race {
 	 * @return true if a Time was successfully added, else false.
 	 */
 	@Override
-	public void addTime(Time finish) {
+	public void addFinishTime(Time finish) {
 		this.finish = finish;
 	}
 
@@ -67,19 +67,20 @@ public class SimpleRace extends Race {
 	 */
 	@Override
 	public String print(int printLimit) {
-		String startString;
-		String finishString;
-		if (start.isEmpty()) {
-			startString = "Start?";
-		} else {
-			startString = start.toString();
-		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("; ").append(getTotal());
+		sb.append("; ");
+		if (start.isEmpty())
+			sb.append("Start?");
+		else
+			sb.append(start.toString());
+		sb.append("; ");
 		if (finish.isEmpty()) {
-			finishString = "Slut?";
+			sb.append("Slut?");
 		} else {
-			finishString = finish.toString();
+			sb.append(finish.toString());
 		}
-		return getTotal() + "; " + startString + "; " + finishString;
+		return sb.toString();
 	}
 
 	/**

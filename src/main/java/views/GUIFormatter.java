@@ -33,7 +33,7 @@ public class GUIFormatter extends JFrame {
 		statusTextPanel.add(statusText);
 
 		String[] raceTypes = { "Envarvstävling", "Varvbaserad tävling",
-				"Tidsbaserad tävling" };
+				"Tidsbaserad tävling", "Etappbaserad tävling" };
 		JComboBox raceType = new JComboBox(raceTypes);
 		JTextField limitField = new JTextField();
 
@@ -54,7 +54,6 @@ public class GUIFormatter extends JFrame {
 		buttonPanel.add(tb);
 		buttonPanel.add(new PrintButton(sb, fb, nb, statusText, formCont,
 				raceType, limitField, tb));
-		buttonPanel.add(new ResetButton(formCont, statusText));
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new GridLayout(2, 1));
 		leftPanel.add(buttonPanel);
@@ -64,4 +63,5 @@ public class GUIFormatter extends JFrame {
 
 		this.pack();
 	}
+
 }

@@ -9,6 +9,7 @@ import java.util.Collections;
 import javax.swing.*;
 
 import controllers.FormatterController;
+import utils.FileWriter;
 
 public class PrintButton extends JButton implements ActionListener {
 
@@ -72,19 +73,20 @@ public class PrintButton extends JButton implements ActionListener {
 						.showInputDialog("Hur många varvtider önskas skrivas ut?");
 				int printLimit = Integer.parseInt(printLimitString);
 				String limitFieldText = limitField.getText();
+				int raceTypeInt = raceType.getSelectedIndex();
 				if (limitFieldText.isEmpty()
-						&& !(raceType.getSelectedIndex() == FormatterController.SIMPLE_RACE))
+						&& (raceTypeInt == FormatterController.LAP_RACE || raceTypeInt == FormatterController.LAP_RACE))
 					throw new IllegalArgumentException();
 				String resultat = formCont.result(sb.getPath(), fb.getPaths(),
 						nb.getPath(), raceType.getSelectedIndex(),
 						limitFieldText, printLimit, tb.getLimit()); // TODO;
 																	// snälla
 																	// gör
-				// snyggare
+																	// snyggare
 				String[] results = resultat.split("\n");
 				ArrayList<String> lines = new ArrayList<String>();
 				Collections.addAll(lines, results);
-				formCont.writeToFile(filePath, lines.iterator());
+				FileWriter.writeFile(filePath, lines.iterator());
 				statusText.setText("Resultatfil utskriven!");
 			} catch (FileNotFoundException ex) {
 				ex.printStackTrace();

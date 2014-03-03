@@ -38,9 +38,6 @@ public class TimeRace extends Race {
 
 	@Override
 	public int compareTo(Race race) {
-		if (race.getClass().equals(this.getClass())) {
-			return getCompletedLaps() - race.getCompletedLaps();
-		}
-		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
+		return 0;
 	}
 }
