@@ -48,8 +48,8 @@ public class RaceEventTest {
         Participant p2 = new Participant(2);
         raceEvent.addParticipant(p2);
 
-        participant.getRace().addStartTime(new Time("05.00.00"));
-        p2.getRace().addStartTime(new Time("14.00.00"));
+        participant.getRace().addStartTime(new Time());
+        p2.getRace().addStartTime(new Time());
 
         Time newTime = new Time("12.00.00");
         raceEvent.setAllStartTimes(newTime);

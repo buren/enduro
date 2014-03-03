@@ -25,6 +25,7 @@ for i in docs/*.html; do
 done;
 mkdir -p $target_dir
 cp docs/*.html $target_dir
+rm docs/*.html #Remove files after being generated and copied.
 cp docs/*.png $target_dir
 cp target/*.jar $target_dir
 mkdir $target_dir/javadoc
