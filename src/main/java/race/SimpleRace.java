@@ -77,9 +77,9 @@ public class SimpleRace extends Race {
                 sb.append(" ").append(multipleStart.get(i).toString());
             }
         }
-        if (multipleFinish.size() > 1) {
+        if (multipleFinish.size() > 0) {
             sb.append("; Flera maltider?");
-            for (int i = 1; i < multipleFinish.size(); i++) {
+            for (int i = 0; i < multipleFinish.size(); i++) {
                 sb.append(" ").append(multipleFinish.get(i).toString());
             }
         }

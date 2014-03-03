@@ -190,4 +190,14 @@ public class RaceTest {
         assertTrue(race.compareTo(race2) > 0);
     }
 
+    @Test
+    public void testPrintErrorsSimpleRace() {
+        race.addStartTime(new Time("12.00.00"));
+        race.addStartTime(new Time("12.01.00"));
+        race.addFinishTime(new Time("12.10.00"));
+        race.addFinishTime(new Time("12.12.00"));
+        String expected = "; 00.10.00; 12.00.00; 12.10.00; Omöjlig varvtid?; Flera starttider? 12.01.00; Flera maltider? 12.12.00";
+        assertEquals(expected, race.print(1));
+    }
+
 }
