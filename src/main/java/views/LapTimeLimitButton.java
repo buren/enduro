@@ -2,6 +2,7 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.*;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -39,14 +40,23 @@ public class LapTimeLimitButton extends JButton implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		Pattern p = Pattern.compile("[0-2][0-9]\\.[0-5][0-9]\\.[0-5][0-9]");
+		
 		lapTimeLimit = JOptionPane
 				.showInputDialog("Vad vill du ska vara den nya tidsgränsen på ett varv? tex hh.mm.ss");
+		Matcher m = p.matcher(lapTimeLimit);
+		
 		if (lapTimeLimit == null) {
 			lapTimeLimit = "00.15.00";
 			statusText
 					.append("Ingen indata, varvgräns återställs till 00.15.00. \n");
-		} else {
+		} else if (m.matches()) {
 			statusText.append("Varvgräns bytt till " + lapTimeLimit + ".\n");
+		} else {
+			lapTimeLimit = "00.15.00";
+			statusText
+			.append("Felaktig indata, varvgräns återställs till 00.15.00. \n");
 		}
+
 	}
 }

@@ -48,7 +48,6 @@ public abstract class Race {
                 return getTotal().compareTo(race.getTotal());
             }
         }
-
         throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
     }
 
@@ -271,7 +270,7 @@ public abstract class Race {
     public boolean allLapsWithinLimit(){
     	for(Lap lap: laps){
     		if(lap.getTotalTime().isBefore(lapLimitTime)){
-    		return false;
+    		    return false;
     		}
     	}
     	return true;

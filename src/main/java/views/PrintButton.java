@@ -67,13 +67,10 @@ public class PrintButton extends JButton implements ActionListener {
         if (f != null) {
             filePath = f.getAbsolutePath();
             try {
-            	int sortButton = JOptionPane.YES_NO_OPTION;
-            	int sortOption = JOptionPane.showConfirmDialog(this, "Vill du sortera?", "Sortera",sortButton);
-                String printLimitString = "";
-                if(sortOption==1){
-                printLimitString = JOptionPane.showInputDialog("Hur många varvtider önskas skrivas ut?");
-                }
+                String printLimitString = JOptionPane.showInputDialog("Hur många varvtider önskas skrivas ut?");
                 int printLimit = Integer.parseInt(printLimitString);
+                int sortButton = JOptionPane.YES_NO_OPTION;
+                int sortOption = JOptionPane.showConfirmDialog(this, "Vill du sortera?", "Sortera",sortButton);
                 String limitFieldText = limitField.getText();
                 int raceTypeInt = raceType.getSelectedIndex();
                 if (limitFieldText.isEmpty() && (raceTypeInt == FormatterController.LAP_RACE
