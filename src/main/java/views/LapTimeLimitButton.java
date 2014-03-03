@@ -48,6 +48,5 @@ public class LapTimeLimitButton extends JButton implements ActionListener {
 		} else {
 			statusText.append("Varvgräns bytt till " + lapTimeLimit + ".\n");
 		}
-
 	}
 }
