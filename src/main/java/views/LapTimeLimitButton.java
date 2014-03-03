@@ -40,7 +40,7 @@ public class LapTimeLimitButton extends JButton implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Pattern p = Pattern.compile("[0-9]+\\.[0-5][0-9]\\.[0-5][0-9]");
+		Pattern p = Pattern.compile("[0-9][0-9]\\.[0-5][0-9]\\.[0-5][0-9]");
 		
 		lapTimeLimit = JOptionPane
 				.showInputDialog("Vad vill du ska vara den nya tidsgränsen på ett varv? tex hh.mm.ss");
