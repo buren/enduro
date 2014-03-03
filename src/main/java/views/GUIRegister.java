@@ -19,7 +19,7 @@ public class GUIRegister extends JFrame {
     /**
      * Creates a new Register GUI
      *
-     * @param regCont the register controller
+     * @param regCont the register controllers
      */
     public GUIRegister(RegisterController regCont) {
         this.setTitle("Enduro");
