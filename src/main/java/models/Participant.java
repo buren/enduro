@@ -61,6 +61,7 @@ public class Participant implements Comparable {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Return the participants name
 	 * 
 	 * @return name of participant
@@ -70,6 +71,8 @@ public class Participant implements Comparable {
 	}
 
 	/**
+=======
+>>>>>>> 3add6841261609823ad6fa05aa5b0f194f9d396f
 	 * Connects the participant to a race
 	 * 
 	 * @param race
@@ -105,26 +108,6 @@ public class Participant implements Comparable {
 		return raceClass;
 	}
 
-	/**
-	 * Print a formatted result string.
-	 * 
-	 * @param printLimit
-	 *            max number of laps to print.
-	 * @return a formatted string.
-	 */
-	public String print(int printLimit) {
-		String values = "";
-		if (!extraInfo.isEmpty()) {
-			String[] keyArray = new String[extraInfo.keySet().size()];
-			extraInfo.keySet().toArray(keyArray);
-			for (int i = 0; i < keyArray.length; i++) {
-				values += "; " + extraInfo.get(keyArray[i]);
-			}
-		}
-
-		return id + "; " + name + values + race.print(printLimit);
-	}
-	
 	public String printSorted(){
 		String values = "";
 		if (!extraInfo.isEmpty()) {
@@ -138,29 +121,6 @@ public class Participant implements Comparable {
 		return placement +"; "+ id + "; " + name + values + race.printSorted();
 	}
 
-	public String printHeader() {
-		String keys = "";
-		if (!extraInfo.isEmpty()) {
-			String[] keyArray = new String[extraInfo.keySet().size()];
-			extraInfo.keySet().toArray(keyArray);
-			for (int i = 0; i < keyArray.length; i++) {
-				keys += "; " + keyArray[i];
-			}
-		}
-		return "StartNr; Namn" + keys;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Participant other = (Participant) obj;
-		return id == other.id;
-	}
 /**
  *	Compares participants
  *	@return Positive if better, negative if worse, 0 if equal.
@@ -176,5 +136,48 @@ public class Participant implements Comparable {
 	public void setPlacment(String plac){
 		placement= plac;
 	}
+
+    /**
+     * Print a formatted result string.
+     *
+     * @param printLimit max number of laps to print.
+     * @return a formatted string.
+     */
+    public String print(int printLimit) {
+        String values = "";
+        if (!extraInfo.isEmpty()) {
+            String[] keyArray = new String[extraInfo.keySet().size()];
+            extraInfo.keySet().toArray(keyArray);
+            for (int i = 0; i < keyArray.length; i++) {
+                values +="; "+extraInfo.get(keyArray[i]);
+            }
+        }
+
+        return id + "; " + name + values + race.print(printLimit);
+    }
+
+    public String printHeader() {
+        String keys = "";
+        if (!extraInfo.isEmpty()) {
+            String[] keyArray = new String[extraInfo.keySet().size()];
+            extraInfo.keySet().toArray(keyArray);
+            for (int i = 0; i < keyArray.length; i++) {
+                keys += "; " + keyArray[i];
+            }
+        }
+        return "StartNr; Namn" + keys;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Participant other = (Participant) obj;
+        return id == other.id;
+    }
 
 }

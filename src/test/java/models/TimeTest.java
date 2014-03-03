@@ -14,55 +14,109 @@ public class TimeTest {
     }
 
     @Test
-    public void testStringTime() {
-        assertEquals("12.12.12", time.toString());
-    }
-
-    @Test
-    public void testCompareTo() {
-        Time time2 = new Time("10.10.10");
-
-        Time time3 = time.getDifference(time2);
-        assertEquals("02.02.02", time3.toString());
-        Time empty = new Time();
-        assertEquals(new Time(), time2.getDifference(empty));
-    }
-
-    @Test
-    public void testCompareToNegative() {
-        time = new Time("10.10.10");
-        Time time2 = new Time("12.12.12");
-
-        Time time3 = time.getDifference(time2);
-        assertEquals("02.02.02", time3.toString());
+    public void testTimeToString() {
+        Time time2 = new Time("05.10.00");
+        assertEquals("05.10.00", time2.toString());
     }
 
     @Test
     public void testEmptyTime() {
         time = new Time();
-        assertEquals("--.--.--", time.toString());
         assertTrue(time.isEmpty());
     }
 
     @Test
-    public void testIsBefore() {
-        Time time2 = new Time("10.00.00");
-        Time time3 = new Time("09.30.00");
-
-        assertTrue(time3.isBefore(time2));
-        assertTrue(time2.isBefore(time));
-        assertFalse(time.isBefore(time3));
+    public void testEmptyTimeString() {
+        time = new Time();
+        assertEquals("--.--.--", time.toString());
     }
 
     @Test
-    public void testEquals() {
-        Time time2 = new Time("12.12.12");
-        Time time3 = new Time("12.00.00");
+    public void testEmptySeconds() {
+        time = new Time(0);
+        assertTrue(time.isEmpty());
+    }
 
+    @Test
+    public void testGetDifference() {
+        Time time2 = new Time("13.13.13");
+        assertEquals("01.01.01", time.getDifference(time2).toString());
+    }
+
+    @Test
+    public void testGetDifferenceIsAbsolute() {
+        Time time2 = new Time("10.10.10");
+        assertEquals("02.02.02", time.getDifference(time2).toString());
+    }
+
+    @Test
+    public void testGetDifferenceWithEmptyTime() {
+        Time time2 = new Time();
+        Time shouldBeEmpty = time.getDifference(time2);
+        assertTrue(shouldBeEmpty.isEmpty());
+    }
+
+    @Test
+    public void testIsBefore() {
+        Time time2 = new Time("13.00.00");
+        assertTrue(time.isBefore(time2));
+    }
+
+    @Test
+    public void testIsNotBefore() {
+        Time time2 = new Time("09.30.00");
+        assertFalse(time.isBefore(time2));
+    }
+
+    @Test
+    public void testEqual() {
+        Time time2 = new Time("12.12.12");
         assertTrue(time.equals(time2));
-        assertFalse(time.equals(time3));
-        assertFalse(time.equals(null)); //To cover the a case of trying to compare with null, maximizing code coverage.
-        assertFalse(time.equals(this)); //To cover the a case of trying to compare different objects
+    }
+
+    @Test
+    public void testNotEqual() {
+        Time time2 = new Time("12.00.00");
+        assertFalse(time.equals(time2));
+    }
+
+    @Test
+    public void testEqualWithNull() {
+        assertFalse(time.equals(null));
+    }
+
+    @Test
+    public void testCompareToEqual() {
+        Time time2 = new Time("12.12.12");
+        assertTrue(time.compareTo(time2) == 0);
+    }
+
+    @Test
+    public void testCompareToLarger() {
+        Time time2 = new Time("13.00.00");
+        assertTrue(time.compareTo(time2) > 0);
+    }
+
+    @Test
+    public void testCompareToSmaller() {
+        Time time2 = new Time("11.00.00");
+        assertTrue(time.compareTo(time2) < 0);
+    }
+
+    @Test
+    public void testEqualWithSameObject() {
+        assertTrue(time.equals(time));
+    }
+
+    @Test
+    public void testEqualWithDifferentObject() {
+        assertFalse(time.equals(this));
+    }
+
+    @Test
+    public void testAddTo() {
+        Time time2 = new Time("02.00.00");
+        assertEquals(new Time("14.12.12"), time.addTo(time2));
     }
 
 }
