@@ -95,4 +95,9 @@ public class ParticipantTest {
         assertFalse(p.equals(this));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCompareTo() {
+        p.compareTo(this);
+    }
+
 }

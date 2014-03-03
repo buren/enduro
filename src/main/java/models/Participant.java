@@ -55,15 +55,6 @@ public class Participant implements Comparable {
     }
 
     /**
-     * Return the participants name
-     *
-     * @return name of participant
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
      * Connects the participant to a race
      *
      * @param race race the participant is racing.

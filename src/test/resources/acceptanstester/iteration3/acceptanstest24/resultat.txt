@@ -1,0 +1,7 @@
+JUNIOR
+StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mal
+1; Ander Asson; Aklubb; ATM; 2; 00.11.01; 00.30.00; 00.41.01; --.--.--; 12.30.00; 12.00.00; --.--.--; 12.41.01
+2; Bengt Bsson; Bklubb; BTM; 2; 00.13.02; 00.19.00; 00.32.02; --.--.--; 12.30.00; 12.11.00; --.--.--; 12.43.02
+SENIOR
+StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mal
+3; Claes Csson; Cklubb; CTM; 2; 00.15.03; 00.09.00; 00.24.03; --.--.--; 12.31.00; 12.22.00; --.--.--; 12.46.03; Omöjlig varvtid?

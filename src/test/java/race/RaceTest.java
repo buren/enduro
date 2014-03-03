@@ -164,4 +164,30 @@ public class RaceTest {
 	public void testLimitSimpleRace() {
 		assertFalse(race.testLimit());
 	}
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testCompareToSimpleRaceException() {
+        race.compareTo(new LapRace(3));
+    }
+
+    @Test
+    public void testCompareToSimpleRace() {
+        race.addStartTime(new Time("12.00.00"));
+        race.addFinishTime(new Time("12.30.00"));
+        SimpleRace race2 = new SimpleRace();
+        race2.addStartTime(new Time("12.00.00"));
+        race2.addFinishTime(new Time("12.30.00"));
+        assertEquals(0, race.compareTo(race2));
+    }
+
+    @Test
+    public void testCompareToSimpleRaceBetter() {
+        race.addStartTime(new Time("12.00.00"));
+        race.addFinishTime(new Time("12.30.00"));
+        SimpleRace race2 = new SimpleRace();
+        race2.addStartTime(new Time("12.00.00"));
+        race2.addFinishTime(new Time("12.40.00"));
+        assertTrue(race.compareTo(race2) > 0);
+    }
+
 }

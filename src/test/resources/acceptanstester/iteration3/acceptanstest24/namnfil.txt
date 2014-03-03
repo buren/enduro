@@ -1,0 +1,7 @@
+StartNr; Namn; Klubb; MC
+JUNIOR
+1; Ander Asson; Aklubb; ATM
+2; Bengt Bsson; Bklubb; BTM
+SENIOR
+3; Claes Csson; Cklubb; CTM
+
