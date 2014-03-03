@@ -100,4 +100,21 @@ public class SimpleRace extends Race {
 		}
 		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
 	}
+
+	/**
+	 * Prints a header for the result
+	 * 
+	 * @param printLimit
+	 *            max number of laps to print.
+	 * @return a formatted string.
+	 */
+	@Override
+	public String printHeader(int printLimit) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("; TotalTid");
+		sb.append("; Start");
+		sb.append("; Mal\n");
+		return sb.toString();
+	}
+
 }

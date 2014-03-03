@@ -29,8 +29,8 @@ public class RaceTest {
 
 	@Test
 	public void testStartTime() {
-		assertEquals("Should be three empty times", "; --.--.--; Start?; Slut?",
-				race.print(1));
+		assertEquals("Should be three empty times",
+				"; --.--.--; Start?; Slut?", race.print(1));
 		Time startTime = new Time("12.00.00");
 		race.addStartTime(startTime);
 		assertEquals("; --.--.--; 12.00.00; Slut?", race.print(1));
@@ -215,8 +215,12 @@ public class RaceTest {
 	}
 
 	@Test
+	public void testPrintHeaderSimpleRace() {
+		assertEquals("; TotalTid; Start; Mal\n", race.printHeader(0));
+	}
+
+	@Test
 	public void testLimitSimpleRace() {
 		assertFalse(race.testLimit());
 	}
-
 }
