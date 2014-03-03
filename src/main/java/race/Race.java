@@ -8,12 +8,14 @@ public abstract class Race {
 	protected ArrayList<Lap> laps = new ArrayList<>();
 	protected ArrayList<Time> multipleStart = new ArrayList<>();
 	protected ArrayList<Time> multipleFinish = new ArrayList<>();
+	protected Time lapLimitTime;
 
 	/**
 	 * Create a new Race.
 	 */
 	public Race() {
 		laps.add(new Lap());
+		lapLimitTime = new Time("00.15.00");
 	}
 
 	/**
@@ -40,6 +42,14 @@ public abstract class Race {
 	}
 
 	public abstract int compareTo(Race race);
+
+	
+	/**
+	 * Changes the lapTimeLimit to newTimeLimit
+	 */
+	public void changeLapTimeLimit(String newTimeLimit) {
+		lapLimitTime = new Time(newTimeLimit);
+	}
 
 	/**
 	 * @return a new Race with the same time limit
@@ -205,7 +215,7 @@ public abstract class Race {
 		boolean lapTime = false;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < printLimit; i++) {
-			if (getLapTimeElapsed(i).isBefore(new Time("00.15.00"))
+			if (getLapTimeElapsed(i).isBefore(lapLimitTime)
 					&& !getLapTime(i).isEmpty()) {
 				lapTime = true;
 			}

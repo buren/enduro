@@ -15,10 +15,12 @@ import utils.FileReader;
 public class acceptanceTest {
 
 	private Enduro enduro;
+	private String standardLapLimit;
 
 	@Before
 	public void setUp() throws Exception {
 		enduro = Enduro.getInstance();
+		standardLapLimit = "00.15.00";
 	}
 
 	@Test
@@ -34,7 +36,7 @@ public class acceptanceTest {
 
 		String resultList = formatterController.result(pathToStartFile,
 				pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
-				"1", 1);
+				"1", 1, standardLapLimit );
 		assertEquals(readFileToString(resultFilePath), resultList);
 	}
 
@@ -51,7 +53,7 @@ public class acceptanceTest {
 
 		String resultList = formatterController.result(pathToStartFile,
 				pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
+				"3", 3, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), resultList);
 	}
 
@@ -68,7 +70,7 @@ public class acceptanceTest {
 
 		String resultList = formatterController.result(pathToStartFile,
 				pathsFinishFiles, pathToNameFile,
-				FormatterController.TIME_RACE, "01.00.00", 3);
+				FormatterController.TIME_RACE, "01.00.00", 3, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), resultList);
 	}
 
@@ -87,11 +89,11 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathToStartFile,
 				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
+				"3", 3, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), result);
 		formatterController.resetRace();
 		result = formatterController.result(pathToStartFile, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3);
+				pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), result);
 	}
 
@@ -110,7 +112,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathToStartFile,
 				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 2);
+				"3", 2, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), result);
 	}
 
@@ -126,7 +128,7 @@ public class acceptanceTest {
 		String resultFilePath = path + "resultat.txt";
 		String resultList = formatterController.result(pathToStartFile,
 				pathsFinishFiles, pathToNameFile, FormatterController.LAP_RACE,
-				"30", 3);
+				"30", 3, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), resultList);
 	}
 
@@ -144,7 +146,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathToStartFile,
 				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
+				"3", 3, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), result);
 	}
 
@@ -163,7 +165,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathToStartFile,
 				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3);
+				"3", 3, standardLapLimit);
 		assertEquals(readFileToString(resultFilePath), result);
 	}
 

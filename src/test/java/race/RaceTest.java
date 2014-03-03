@@ -24,8 +24,8 @@ public class RaceTest {
 
 	@Test
 	public void testStartTime() {
-		assertEquals("Should be three empty times",
-				"--.--.--; Start?; Slut?", race.print(1));
+		assertEquals("Should be three empty times", "--.--.--; Start?; Slut?",
+				race.print(1));
 		Time startTime = new Time("12.00.00");
 		race.setStart(startTime);
 		assertEquals(
@@ -204,7 +204,7 @@ public class RaceTest {
 				+ "1; Not named; 1; 00.05.00; 00.05.00; --.--.--; 12.00.00; --.--.--; 12.05.00; Omöjlig varvtid?\n";
 		assertEquals("Should be same", event.print(2), s);
 	}
-	
+
 	@Test
 	public void testNoStartTime() {
 		Race lapRace = new LapRace(2);
@@ -212,11 +212,40 @@ public class RaceTest {
 		Participant p1 = new Participant(1);
 		event.addParticipant(p1);
 		p1.getRace().addTime(new Time("30.30.30"));
-		
+
 		String s = "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
-		 + "1; Not named; 1; --.--.--; --.--.--; --.--.--; Start?; --.--.--; 30.30.30; Omöjlig varvtid?\n";
-		
+				+ "1; Not named; 1; --.--.--; --.--.--; --.--.--; Start?; --.--.--; 30.30.30; Omöjlig varvtid?\n";
+
 		assertEquals("Should be same", event.print(2), s);
 	}
-	
+
+	@Test
+	public void testFailLapVariableLimit() {
+		Race lapRace = new LapRace(2);
+		lapRace.changeLapTimeLimit("00.20.00");
+		RaceEvent event = new RaceEvent(lapRace);
+		Participant p1 = new Participant(1);
+		event.addParticipant(p1);
+		p1.getRace().setStart(new Time("12.00.00"));
+		p1.getRace().addTime(new Time("12.05.00"));
+		p1.getRace().addTime(new Time("12.30.00"));
+		String s = "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
+				+ "1; Not named; 2; 00.30.00; 00.05.00; 00.25.00; 12.00.00; 12.05.00; 12.30.00; Omöjlig varvtid?\n";
+		assertEquals("Should be same", event.print(2), s);
+	}
+
+	@Test
+	public void testTrueLapVariableLimit() {
+		Race lapRace = new LapRace(2);
+		lapRace.changeLapTimeLimit("00.20.00");
+		RaceEvent event = new RaceEvent(lapRace);
+		Participant p1 = new Participant(1);
+		event.addParticipant(p1);
+		p1.getRace().setStart(new Time("12.00.00"));
+		p1.getRace().addTime(new Time("12.25.00"));
+		p1.getRace().addTime(new Time("12.50.00"));
+		String s = "StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mal\n"
+				+ "1; Not named; 2; 00.50.00; 00.25.00; 00.25.00; 12.00.00; 12.25.00; 12.50.00\n";
+		assertEquals("Should be same", event.print(2), s);
+	}
 }

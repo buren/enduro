@@ -83,11 +83,13 @@ public class SimpleRace extends Race {
 	}
 
 	/**
-	 * @return a new SimpleRace with the same time limit
+	 * @return a new SimpleRace with the same time limit and lapLimitTime
 	 */
 	@Override
 	public Race copy() {
-		return new SimpleRace();
+		Race tmprace = new SimpleRace();
+		tmprace.changeLapTimeLimit(lapLimitTime.toString());
+		return tmprace;
 	}
 
 	@Override
