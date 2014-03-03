@@ -6,24 +6,28 @@ import race.Race;
 
 import java.util.TreeMap;
 
-public class Participant {
-    private int id;
-    private String name;
-    private Race race;
-    private String raceClass;
-    private TreeMap<String, String> extraInfo;
+public class Participant implements Comparable {
+	private int id;
+	private String name;
+	private Race race;
+	private String raceClass;
+	private TreeMap<String, String> extraInfo;
+	private String placement;
 
-    /**
-     * Participant identifies by their id/startnumber, two participants with the same id are considered the same.
-     *
-     * @param id id of participant
-     */
-    public Participant(int id) {
-        this.id = id;
-        extraInfo = new TreeMap<String, String>();
-        name = "Not named";
-        raceClass = "None";
-    }
+	/**
+	 * Participant identifies by their id/startnumber, two participants with the
+	 * same id are considered the same.
+	 * 
+	 * @param id
+	 *            id of participant
+	 */
+	public Participant(int id) {
+		this.id = id;
+		extraInfo = new TreeMap<String, String>();
+		name = "Not named";
+		raceClass = "None";
+		placement = "-";
+	}
 
 	/**
 	 * Return the participant id
@@ -44,16 +48,17 @@ public class Participant {
 		this.name = name.trim();
 	}
 
-
-    /**
-     * Adds a piece of extra information to this participant
-     *
-     * @param key   the type of information
-     * @param value the actual information
-     */
-    public void addInfo(String key, String value) {
-        extraInfo.put(key.trim(), value.trim());
-    }
+	/**
+	 * Adds a piece of extra information to this participant
+	 * 
+	 * @param key
+	 *            the type of information
+	 * @param value
+	 *            the actual information
+	 */
+	public void addInfo(String key, String value) {
+		extraInfo.put(key.trim(), value.trim());
+	}
 
 	/**
 	 * Return the participants name
@@ -63,7 +68,6 @@ public class Participant {
 	public String getName() {
 		return name;
 	}
-
 
 	/**
 	 * Connects the participant to a race
@@ -75,73 +79,102 @@ public class Participant {
 		this.race = race;
 	}
 
+	/**
+	 * Return the participants race.
+	 * 
+	 * @return race of participant
+	 */
+	public Race getRace() {
+		return race;
+	}
 
-    /**
-     * Return the participants race.
-     *
-     * @return race of participant
-     */
-    public Race getRace() {
-        return race;
-    }
+	/**
+	 * Sets the class of the participant.
+	 * 
+	 * @param raceClass
+	 *            Name of the class.
+	 */
+	public void setRaceClass(String raceClass) {
+		this.raceClass = raceClass;
+	}
 
-    /**
-     * Sets the class of the participant.
-     *
-     * @param raceClass Name of the class.
-     */
-    public void setRaceClass(String raceClass) {
-        this.raceClass = raceClass;
-    }
+	/**
+	 * @return class for this participant.
+	 */
+	public String getRaceClass() {
+		return raceClass;
+	}
 
-    /**
-     * @return class for this participant.
-     */
-    public String getRaceClass() {
-        return raceClass;
-    }
+	/**
+	 * Print a formatted result string.
+	 * 
+	 * @param printLimit
+	 *            max number of laps to print.
+	 * @return a formatted string.
+	 */
+	public String print(int printLimit) {
+		String values = "";
+		if (!extraInfo.isEmpty()) {
+			String[] keyArray = new String[extraInfo.keySet().size()];
+			extraInfo.keySet().toArray(keyArray);
+			for (int i = 0; i < keyArray.length; i++) {
+				values += "; " + extraInfo.get(keyArray[i]);
+			}
+		}
 
-    /**
-     * Print a formatted result string.
-     *
-     * @param printLimit max number of laps to print.
-     * @return a formatted string.
-     */
-    public String print(int printLimit) {
-        String values = "";
-        if (!extraInfo.isEmpty()) {
-            String[] keyArray = new String[extraInfo.keySet().size()];
-            extraInfo.keySet().toArray(keyArray);
-            for (int i = 0; i < keyArray.length; i++) {
-                values +="; "+extraInfo.get(keyArray[i]);
-            }
-        }
+		return id + "; " + name + values + race.print(printLimit);
+	}
+	
+	public String printSorted(){
+		String values = "";
+		if (!extraInfo.isEmpty()) {
+			String[] keyArray = new String[extraInfo.keySet().size()];
+			extraInfo.keySet().toArray(keyArray);
+			for (int i = 0; i < keyArray.length; i++) {
+				values += "; " + extraInfo.get(keyArray[i]);
+			}
+		}
+		
+		return placement +"; "+ id + "; " + name + values + race.printSorted();
+	}
 
-        return id + "; " + name+ values + race.print(printLimit);
-    }
+	public String printHeader() {
+		String keys = "";
+		if (!extraInfo.isEmpty()) {
+			String[] keyArray = new String[extraInfo.keySet().size()];
+			extraInfo.keySet().toArray(keyArray);
+			for (int i = 0; i < keyArray.length; i++) {
+				keys += "; " + keyArray[i];
+			}
+		}
+		return "StartNr; Namn" + keys;
+	}
 
-    public String printHeader() {
-        String keys = "";
-        if (!extraInfo.isEmpty()) {
-            String[] keyArray = new String[extraInfo.keySet().size()];
-            extraInfo.keySet().toArray(keyArray);
-            for (int i = 0; i < keyArray.length; i++) {
-                keys += "; " + keyArray[i];
-            }
-        }
-        return "StartNr; Namn" + keys;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Participant other = (Participant) obj;
-        return id == other.id;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Participant other = (Participant) obj;
+		return id == other.id;
+	}
+/**
+ *	Compares participants
+ *	@return Positive if better, negative if worse, 0 if equal.
+ */
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Participant) {
+			return race.compareTo(((Participant) o).race);
+		}
+		throw new IllegalArgumentException("Jämförelse med felaktig datatyp!");
+	}
+	
+	public void setPlacment(String plac){
+		placement= plac;
+	}
 
 }

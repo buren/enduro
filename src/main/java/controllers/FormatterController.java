@@ -14,7 +14,7 @@ import utils.FileReader;
 import utils.FileWriter;
 
 public class FormatterController {
-    public static final int SIMPLE_RACE = 0, LAP_RACE = 1, TIME_RACE = 2;
+    public static final int SIMPLE_RACE = 0, LAP_RACE = 1, TIME_RACE = 2, SORT=0, DONT_SORT=1;
     private RaceEvent raceEvent;
 
     /**
@@ -38,7 +38,7 @@ public class FormatterController {
      * @return A fully formatted result table as a string
      * @throws FileNotFoundException
      */
-    public String result(String startPath, String[] finishPath, String namePath, int raceType, String limit, int printLimit) throws FileNotFoundException {
+    public String result(String startPath, String[] finishPath, String namePath, int raceType, String limit, int printLimit, int sortOption) throws FileNotFoundException {
         Race race;
         switch (raceType) {
             case SIMPLE_RACE:
@@ -70,10 +70,19 @@ public class FormatterController {
         }
         initiator.registerFinishTimes(iterators);
         
-        return raceEvent.print(printLimit);
+        if(sortOption == SORT){
+        	sort();
+        	return raceEvent.print(printLimit, SORT);
+        }
+        
+        return raceEvent.print(printLimit, DONT_SORT);
     }
     
     public void resetRace(){
     	raceEvent = null;
+    }
+    
+    public void sort(){
+    	raceEvent.sort();
     }
 }

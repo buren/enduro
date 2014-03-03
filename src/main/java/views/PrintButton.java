@@ -59,12 +59,14 @@ public class PrintButton extends JButton implements ActionListener {
             try {
                 String printLimitString = JOptionPane
                         .showInputDialog("Hur många varvtider önskas skrivas ut?");
+                int sortButton = JOptionPane.YES_NO_OPTION;
+                int sortOption = JOptionPane.showConfirmDialog(this, "Vill du sortera?", "Sortera",sortButton);
                 int printLimit = Integer.parseInt(printLimitString);
                 String limitFieldText = limitField.getText();
                 if (limitFieldText.isEmpty() && !(raceType.getSelectedIndex() == FormatterController.SIMPLE_RACE))
                     throw new IllegalArgumentException();
                 String resultat = formCont.result(sb.getPath(), fb.getPaths(),
-                        nb.getPath(), raceType.getSelectedIndex(), limitFieldText , printLimit);  //TODO; snälla gör snyggare
+                        nb.getPath(), raceType.getSelectedIndex(), limitFieldText , printLimit, sortOption);  //TODO; snälla gör snyggare
                 String[] results = resultat.split("\n");
                 ArrayList<String> lines = new ArrayList<String>();
                 Collections.addAll(lines, results);

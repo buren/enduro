@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public abstract class Race {
 	protected ArrayList<Lap> laps = new ArrayList<>();
-	protected ArrayList<Time> multipleStart = new ArrayList<Time>();
+	protected ArrayList<Time> multipleStart = new ArrayList<>();
+	protected ArrayList<Time> multipleFinish = new ArrayList<>();
 
 	/**
 	 * Create a new Race.
@@ -38,19 +39,25 @@ public abstract class Race {
 		return getStart().getDifference(getFinish());
 	}
 
+	/**
+	 * 
+	 * @param race
+	 * @return Positive if better, negative if worse, 0 if equal.
+	 */
 	public int compareTo(Race race) {
 		if (race.getClass().equals(this.getClass())) {
 			if (getCompletedLaps() < race.getCompletedLaps())
 				return -1;
 			else if (getCompletedLaps() > race.getCompletedLaps())
 				return 1;
-			else if(getCompletedLaps()==race.getCompletedLaps()){
+			else if (getCompletedLaps() == race.getCompletedLaps()) {
 				return getTotal().compareTo(race.getTotal());
 			}
 		}
 
 		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
 	}
+
 	/**
 	 * @return a new Race with the same time limit
 	 */
@@ -192,6 +199,8 @@ public abstract class Race {
 			Lap lap = new Lap();
 			lap.setStart(time);
 			laps.add(lap);
+		} else {
+			multipleFinish.add(time);
 		}
 	}
 
@@ -227,6 +236,12 @@ public abstract class Race {
 				sb.append(multipleStart.get(i).toString() + " ");
 			}
 		}
+		if (multipleFinish.size() > 1) {
+			sb.append("; Flera maltider? ");
+			for (int i = 1; i < multipleFinish.size(); i++) {
+				sb.append(multipleFinish.get(i).toString() + " ");
+			}
+		}
 
 		return sb.toString();
 	}
@@ -260,7 +275,7 @@ public abstract class Race {
 			else
 				sb.append("; ").append(lapTime);
 		}
-		if (getFinish().isEmpty())
+		if (getFinish().isEmpty() || getFinish().equals(getStart()))
 			sb.append("; ").append("Slut?");
 		else
 			sb.append("; ").append(getFinish());
@@ -270,4 +285,15 @@ public abstract class Race {
 
 	}
 
+	public String printSorted() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("; ").append(getCompletedLaps());
+		sb.append("; ").append(getTotal());
+		for (int i = 0; i < getCompletedLaps(); i++) {
+			sb.append("; ").append(getLapTimeElapsed(i));
+
+		}
+		return sb.toString();
+	}
 }

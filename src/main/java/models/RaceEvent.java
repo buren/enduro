@@ -9,7 +9,8 @@ public class RaceEvent {
 	private ArrayList<Participant> participants, notRegisteredParticipants;
 	private Race raceType;
 	private Sorter sorter;
-	public static final int START_TIME = 0, LAP_TIME = 1;
+	public static final int START_TIME = 0, LAP_TIME = 1, SORT = 0,
+			DONT_SORT = 1;
 
 	/**
 	 * Create a new RaceEvent
@@ -118,14 +119,49 @@ public class RaceEvent {
 	 *            max number of laps to print
 	 * @return a formatted result string.
 	 */
-	public String print(int printLimit) {
+	public String print(int printLimit, int sortOption) {
 		StringBuilder sb = new StringBuilder();
-		sort();
-		sb.append(print(printLimit, participants));
-		if (!(notRegisteredParticipants.size() == 0)) {
-			sb.append("Icke existerande startnummer:\n");
-			sb.append(print(printLimit, notRegisteredParticipants));
+		if (sortOption == DONT_SORT) {
+			sb.append(print(printLimit, participants));
+			if (!(notRegisteredParticipants.size() == 0)) {
+				sb.append("Icke existerande startnummer:\n");
+				sb.append(print(printLimit, notRegisteredParticipants));
+			}
+		} else if (sortOption == SORT) {
+			sort();
+			sb.append(printSorted(participants));
+
 		}
+
+		return sb.toString();
+	}
+
+	private String printSorted(ArrayList<Participant> list) {
+		ArrayList<String> raceClasses = new ArrayList<String>();
+		for (Participant p : list) {
+			String raceClass = p.getRaceClass();
+			if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
+				raceClasses.add(raceClass);
+			}
+		}
+		StringBuilder sb = new StringBuilder();
+		for (String raceClass : raceClasses) {
+			if (raceClass != "None")
+				sb.append(raceClass).append("\n");
+			sb.append("Plac; ");
+			sb.append(participants.get(0).printHeader());
+			sb.append("; #Varv; TotalTid");
+			for (int i = 0; i < participants.get(0).getRace()
+					.getCompletedLaps(); i++) {
+				sb.append("; Varv").append(i + 1);
+			}
+			sb.append("\n");
+			for (Participant p : list) {
+				if (p.getRaceClass() == raceClass)
+					sb.append(p.printSorted()).append("\n");
+			}
+		}
+
 		return sb.toString();
 	}
 
@@ -137,6 +173,7 @@ public class RaceEvent {
 				if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
 					raceClasses.add(raceClass);
 				}
+
 			}
 			StringBuilder sb = new StringBuilder();
 			for (String raceClass : raceClasses) {
@@ -168,8 +205,28 @@ public class RaceEvent {
 	private Race newRace() {
 		return raceType.copy();
 	}
-	
-	public void sort(){
+
+	public void sort() {
 		participants = sorter.sort(participants);
+		givePlacement();
+
+	}
+	
+	private void givePlacement(){
+		ArrayList<String> raceClasses = new ArrayList<String>();
+		for (Participant p : participants) {
+			String raceClass = p.getRaceClass();
+			if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
+				raceClasses.add(raceClass);
+			}
+		}
+		for (String raceClass : raceClasses) {
+			int plac = 1;
+			for (int i = 0; i < participants.size() - 1; i++) {
+				if(participants.get(i).getRaceClass().equals(raceClass)) {
+					participants.get(i).setPlacment(Integer.toString(plac++));
+				}
+			}
+		}
 	}
 }

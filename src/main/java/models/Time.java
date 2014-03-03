@@ -71,7 +71,7 @@ public class Time {
      * @return Positive if argument seconds are less, negative if more, 0 if equal. 
      */
     public int compareTo(Time time){
-    	return time.seconds-seconds;
+    	return time.seconds - seconds;
     }
 
     /**

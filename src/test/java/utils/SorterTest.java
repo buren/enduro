@@ -68,6 +68,7 @@ public class SorterTest {
 		r0.addTime(new Time());
 		r0.addTime(new Time());
 		r0.addTime(new Time());
+		r0.addTime(new Time());
 		r1.addTime(new Time());
 		r1.addTime(new Time());
 		r2.addTime(new Time());
@@ -106,8 +107,8 @@ public class SorterTest {
 
 		Participant p0 = new Participant(0);
 		Participant p1 = new Participant(1);
-		Race r0 = new LapRace(1);
-		Race r1 = new LapRace(1);
+		Race r0 = new LapRace(2);
+		Race r1 = new LapRace(2);
 		r0.setStart(new Time("12.00.00"));
 		r0.addTime(new Time("12.30.00"));
 		r1.setStart(new Time("12.00.00"));
@@ -119,9 +120,9 @@ public class SorterTest {
 		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p1);
 		r1.addTime(new Time("13.00.00"));
+		r0.addTime(new Time("12.50.00"));
 		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p0);
-
 	}
 
 }
