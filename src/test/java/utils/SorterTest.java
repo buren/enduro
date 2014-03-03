@@ -46,8 +46,9 @@ public class SorterTest {
 		participantList.add(p1);
 		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p0);
-		r1.addFinishTime(new Time("13.00.00"));
+		r1.addFinishTime(new Time("12.35.00"));
 		r1.addFinishTime(new Time("12.50.00"));
+		r0.addFinishTime(new Time("13.00.00"));
 		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p1);
 

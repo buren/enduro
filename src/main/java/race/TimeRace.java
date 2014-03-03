@@ -35,9 +35,4 @@ public class TimeRace extends Race {
 		tmpRace.changeLapTimeLimit(lapLimitTime.toString());
 		return tmpRace;
 	}
-
-	@Override
-	public int compareTo(Race race) {
-		return 0;
-	}
 }

@@ -200,10 +200,12 @@ public abstract class Race {
 	 */
 	public int compareTo(Race race) {
 		if (race.getClass().equals(this.getClass())) {
-			if (getCompletedLaps() < race.getCompletedLaps())
+			if (getCompletedLaps() < race.getCompletedLaps()){
 				return -1;
-			else if (getCompletedLaps() > race.getCompletedLaps())
+			}
+			else if (getCompletedLaps() > race.getCompletedLaps()){
 				return 1;
+			}
 			else if (getCompletedLaps() == race.getCompletedLaps()) {
 				return getTotal().compareTo(race.getTotal());
 			}

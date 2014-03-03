@@ -34,13 +34,4 @@ public class LapRace extends Race {
 		return tmprace;
 	}
 
-	@Override
-	public int compareTo(Race race) {
-		if (race.getClass().equals(this.getClass())) {
-			return getTotal().compareTo(race.getTotal());
-		}
-
-		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
-	}
-
 }
