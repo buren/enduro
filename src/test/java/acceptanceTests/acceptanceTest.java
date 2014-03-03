@@ -198,7 +198,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathToStartFile,
 				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3, standardLapLimit, FormatterController.SORT);
+				"3", 3, "00.20.00", FormatterController.SORT);
 		assertEquals(readFileToString(resultFilePath), result);
 	}
 

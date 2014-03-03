@@ -346,5 +346,14 @@ public abstract class Race {
         sb.append("; Mal\n");
         return sb.toString();
     }
+    
+    public boolean allLapsWithinLimit(){
+    	for(Lap lap: laps){
+    		if(lap.getTotalTime().isBefore(lapLimitTime)){
+    		return false;
+    		}
+    	}
+    	return true;
+    }
 
 }
