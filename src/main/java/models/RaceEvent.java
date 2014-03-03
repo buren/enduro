@@ -37,27 +37,20 @@ public class RaceEvent {
      * @param reason      reason why the participant is invalid.
      * @param time        type of time that was invalid
      */
-    public void addNotRegisteredParticipant(Participant participant,
-                                            int reason, Time time) {
-        if (!notRegisteredParticipants.contains(participant)) {
+
+    public void addNotRegisteredParticipant(Participant participant, int reason, Time time) {
+        if (notRegisteredParticipants.contains(participant)) {
+            for (Participant p : notRegisteredParticipants)
+                if (p.equals(participant))
+                    participant = p;
+        } else {
             participant.setRace(newRace());
             notRegisteredParticipants.add(participant);
-        } else {
-            for (Participant p : notRegisteredParticipants) {
-                if (p.equals(participant)) {
-                    participant = p;
-                }
-            }
         }
-        switch (reason) {
-            case START_TIME:
-                participant.getRace().addStartTime(time);
-                break;
-            case LAP_TIME:
-                participant.getRace().addFinishTime(time);
-                break;
-        }
-
+        if (reason == START_TIME)
+            participant.getRace().addStartTime(time);
+        else if (reason == LAP_TIME)
+            participant.getRace().addFinishTime(time);
     }
 
     /**
@@ -109,12 +102,13 @@ public class RaceEvent {
     public String print(int printLimit) {
         StringBuilder sb = new StringBuilder();
         sb.append(print(printLimit, participants));
-        if (!(notRegisteredParticipants.size() == 0)) {
+        if (notRegisteredParticipants.size() > 0) {
             sb.append("Icke existerande startnummer:\n");
             sb.append(print(printLimit, notRegisteredParticipants));
         }
         return sb.toString();
     }
+
 
     private String print(int printLimit, ArrayList<Participant> list) {
         ArrayList<String> raceClasses = new ArrayList<String>();
@@ -128,7 +122,7 @@ public class RaceEvent {
         for (String raceClass : raceClasses) {
             if (raceClass != "None")
                 sb.append(raceClass).append("\n");
-            sb.append(participants.get(0).printHeader());
+            sb.append(list.get(0).printHeader());
             sb.append(raceType.printHeader(printLimit));
             for (Participant p : list) {
                 if (p.getRaceClass() == raceClass)

@@ -56,16 +56,6 @@ public class Participant {
     }
 
 	/**
-	 * Return the participants name
-	 * 
-	 * @return name of participant
-	 */
-	public String getName() {
-		return name;
-	}
-
-
-	/**
 	 * Connects the participant to a race
 	 * 
 	 * @param race

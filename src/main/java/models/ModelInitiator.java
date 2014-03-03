@@ -67,10 +67,10 @@ public class ModelInitiator {
                 if (lines[0].trim().equals("*")) {
                     raceEvent.setAllStartTimes(startTime);
                     masstart = true;
+                } else {
+                    intList.add(Integer.parseInt(lines[0]));
+                    timeList.add(startTime);
                 }
-
-                intList.add(Integer.parseInt(lines[0]));
-                timeList.add(startTime);
             }
         }
 
