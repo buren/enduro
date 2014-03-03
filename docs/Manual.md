@@ -8,6 +8,7 @@ För att använda formaterare:
 2. Tryck på ```"Formaterare"```-knappen.
 3. Välj mellan ```"Varv-lopp"```, ```"Tids-lopp"```,  ```"Etapp-lopp"``` och ```"Envarvs-lopp"```.
 4. Skriv in antal varv (siffror) eller tidsgräns på format hh.mm.ss beroende på val av lopp.
+4b. Önskas en annan varvgräns än 00.15.00, klicka på ```"Ändra Varvgräns"``` och skriv in den nya varvgränsen på format hh.mm.ss.  
 5. Tryck på ```"Ladda in "startfil"```-knappen och välj sedan textfilen med starttider.
 6. Tryck på ```"Ladda in "målfil"```-knappen och välj sedan textfilen med måltider.
 7. Tryck på ```"Ladda in "namnfil"```-knappen och välj sedan textfilen med namn samt klass.
