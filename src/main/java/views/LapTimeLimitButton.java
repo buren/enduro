@@ -41,7 +41,13 @@ public class LapTimeLimitButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		lapTimeLimit = JOptionPane
 				.showInputDialog("Vad vill du ska vara den nya tidsgränsen på ett varv? tex hh.mm.ss");
-		statusText.append("Varvgräns bytt till " + lapTimeLimit + ".\n");
-	}
+		if (lapTimeLimit == null) {
+			lapTimeLimit = "00.15.00";
+			statusText
+					.append("Ingen indata, varvgräns återställs till 00.15.00. \n");
+		} else {
+			statusText.append("Varvgräns bytt till " + lapTimeLimit + ".\n");
+		}
 
+	}
 }
