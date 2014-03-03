@@ -35,10 +35,10 @@ public class SorterTest {
 		Participant p1 = new Participant(1);
 		Race r0 = new TimeRace(new Time("01.00.00"));
 		Race r1 = new TimeRace(new Time("01.00.00"));
-		r0.addFinishTime(new Time("12.00.00"));
+		r0.addStartTime(new Time("12.00.00"));
 		r0.addFinishTime(new Time("12.15.00"));
 		r0.addFinishTime(new Time("12.30.00"));
-		r1.addFinishTime(new Time("12.00.00"));
+		r1.addStartTime(new Time("12.00.00"));
 		r1.addFinishTime(new Time("12.20.00"));
 		p0.setRace(r0);
 		p1.setRace(r1);
@@ -46,8 +46,8 @@ public class SorterTest {
 		participantList.add(p1);
 		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p0);
-		r1.addFinishTime(new Time());
-		r1.addFinishTime(new Time());
+		r1.addFinishTime(new Time("13.00.00"));
+		r1.addFinishTime(new Time("12.50.00"));
 		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p1);
 

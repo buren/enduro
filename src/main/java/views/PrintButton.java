@@ -13,37 +13,46 @@ import utils.FileWriter;
 
 public class PrintButton extends JButton implements ActionListener {
 
-    private LoadStartButton sb;
-    private LoadFinishButton fb;
-    private LoadNamesButton nb;
-    private JTextArea statusText;
-    private FormatterController formCont;
-    private JComboBox raceType;
-    private JTextField limitField;
+	private LoadStartButton sb;
+	private LoadFinishButton fb;
+	private LoadNamesButton nb;
+	private LapTimeLimitButton tb;
+	private JTextArea statusText;
+	private FormatterController formCont;
+	private JComboBox raceType;
+	private JTextField limitField;
 
-    /**
-     * Creates a new PrintButton
-     *
-     * @param sb         a LoadStartButton
-     * @param fb         a LoadFinishButton
-     * @param nb         a LoadNamesButton
-     * @param statusText the statusText
-     * @param formCont   the formatterController
-     */
-    public PrintButton(LoadStartButton sb, LoadFinishButton fb,
-                       LoadNamesButton nb, JTextArea statusText,
-                       FormatterController formCont, JComboBox raceType, JTextField limitField) {
-        super("Spara resultat till fil");
-        this.addActionListener(this);
-        this.sb = sb;
-        this.fb = fb;
-        this.nb = nb;
-        this.statusText = statusText;
-        this.formCont = formCont;
-        this.raceType = raceType;
-        this.limitField = limitField;
-    }
-
+	/**
+	 * Creates a new PrintButton
+	 * 
+	 * @param sb
+	 *            a LoadStartButton
+	 * @param fb
+	 *            a LoadFinishButton
+	 * @param nb
+	 *            a LoadNamesButton
+	 * @param statusText
+	 *            the statusText
+	 * @param formCont
+	 *            the formatterController
+	 * @param tb
+	 *            a LaptimeLimitButton
+	 */
+	public PrintButton(LoadStartButton sb, LoadFinishButton fb,
+			LoadNamesButton nb, JTextArea statusText,
+			FormatterController formCont, JComboBox raceType,
+			JTextField limitField, LapTimeLimitButton tb) {
+		super("Spara resultat till fil");
+		this.addActionListener(this);
+		this.sb = sb;
+		this.fb = fb;
+		this.nb = nb;
+		this.tb = tb;
+		this.statusText = statusText;
+		this.formCont = formCont;
+		this.raceType = raceType;
+		this.limitField = limitField;
+	}
     /**
      * Prints the results to a file
      *
@@ -58,10 +67,12 @@ public class PrintButton extends JButton implements ActionListener {
         if (f != null) {
             filePath = f.getAbsolutePath();
             try {
-                String printLimitString = JOptionPane
-                        .showInputDialog("Hur många varvtider önskas skrivas ut?");
-                int sortButton = JOptionPane.YES_NO_OPTION;
-                int sortOption = JOptionPane.showConfirmDialog(this, "Vill du sortera?", "Sortera",sortButton);
+            	int sortButton = JOptionPane.YES_NO_OPTION;
+            	int sortOption = JOptionPane.showConfirmDialog(this, "Vill du sortera?", "Sortera",sortButton);
+                String printLimitString = "";
+                if(sortOption==1){
+                printLimitString = JOptionPane.showInputDialog("Hur många varvtider önskas skrivas ut?");
+                }
                 int printLimit = Integer.parseInt(printLimitString);
                 String limitFieldText = limitField.getText();
                 int raceTypeInt = raceType.getSelectedIndex();
@@ -69,7 +80,7 @@ public class PrintButton extends JButton implements ActionListener {
                         || raceTypeInt == FormatterController.LAP_RACE))
                     throw new IllegalArgumentException();
                 String resultat = formCont.result(sb.getPath(), fb.getPaths(),
-                        nb.getPath(), raceType.getSelectedIndex(), limitFieldText , printLimit, sortOption);  //TODO; snälla gör snyggare
+                        nb.getPath(), raceType.getSelectedIndex(), limitFieldText , printLimit, tb.getLimit(), sortOption);  //TODO; snälla gör snyggare
                 String[] results = resultat.split("\n");
                 ArrayList<String> lines = new ArrayList<String>();
                 Collections.addAll(lines, results);

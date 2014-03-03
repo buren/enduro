@@ -61,7 +61,6 @@ public class Participant implements Comparable {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Return the participants name
 	 * 
 	 * @return name of participant
@@ -71,8 +70,6 @@ public class Participant implements Comparable {
 	}
 
 	/**
-=======
->>>>>>> 3add6841261609823ad6fa05aa5b0f194f9d396f
 	 * Connects the participant to a race
 	 * 
 	 * @param race
@@ -132,6 +129,11 @@ public class Participant implements Comparable {
 		}
 		throw new IllegalArgumentException("Jämförelse med felaktig datatyp!");
 	}
+	
+	/**
+	 * Sets the placement for this partcipant in current race.
+	 * @param plac
+	 */
 	
 	public void setPlacment(String plac){
 		placement= plac;

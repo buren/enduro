@@ -68,7 +68,7 @@ public class Time {
     /**
      * Compares the amount of seconds passed since 00.00.00
      * @param time
-     * @return Positive if argument seconds are less, negative if more, 0 if equal. 
+     * @return Positive if argument seconds are more, negative if less, 0 if equal. 
      */
     public int compareTo(Time time){
     	return time.seconds - seconds;

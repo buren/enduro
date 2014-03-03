@@ -27,10 +27,17 @@ public class TimeRace extends Race {
 	}
 
 	/**
-	 * @return a new TimeRace with the same time limit
+	 * @return a new TimeRace with the same time limit and lapLimitTime
 	 */
 	@Override
 	public Race copy() {
-		return new TimeRace(limit);
+		Race tmpRace = new TimeRace(limit);
+		tmpRace.changeLapTimeLimit(lapLimitTime.toString());
+		return tmpRace;
+	}
+
+	@Override
+	public int compareTo(Race race) {
+		return 0;
 	}
 }

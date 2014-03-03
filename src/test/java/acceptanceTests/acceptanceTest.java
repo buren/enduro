@@ -21,10 +21,12 @@ public class acceptanceTest {
 	private String[] pathsToStartFiles;
 	private String[] pathsToFinishFiles;
 	private String pathToExpectedResult;
+	private String standardLapLimit;
 
 	@Before
 	public void setUp() throws Exception {
 		enduro = Enduro.getInstance();
+		standardLapLimit = "00.15.00";
 	}
 
 	private void makePaths() {
@@ -43,8 +45,7 @@ public class acceptanceTest {
 		basePath = enduro.getInstance().getResourcePath(
 				"acceptanstester/iteration1/acceptanstest5/");
 		makePaths();
-
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles, pathToNameFile, FormatterController.SIMPLE_RACE, "1", 1, FormatterController.DONT_SORT);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles, pathToNameFile, FormatterController.SIMPLE_RACE, "1", 1, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -56,8 +57,7 @@ public class acceptanceTest {
 				"acceptanstester/iteration1/acceptanstest6/");
 		makePaths();
 
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.LAP_RACE, "1", 1, FormatterController.DONT_SORT);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles, pathToNameFile, FormatterController.LAP_RACE, "1", 1, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -69,8 +69,8 @@ public class acceptanceTest {
 				"acceptanstester/iteration2/acceptanstest9/");
 		makePaths();
 
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3, FormatterController.DONT_SORT);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -83,8 +83,8 @@ public class acceptanceTest {
 		makePaths();
 		pathToExpectedResult = basePath + "resultatTimeRace.txt";
 
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.TIME_RACE, "01.00.00", 3, FormatterController.DONT_SORT);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles, pathToNameFile, FormatterController.TIME_RACE, "01.00.00", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -99,8 +99,8 @@ public class acceptanceTest {
 		String pathToFinishFile2 = basePath + "maltider2.txt";
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
-		String result = fc.result(pathsToStartFiles, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3, FormatterController.DONT_SORT);
+		String result = fc.result(pathsToStartFiles, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -116,7 +116,7 @@ public class acceptanceTest {
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
 		String result = fc.result(pathsToStartFiles, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3, FormatterController.DONT_SORT);
+				pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -131,8 +131,8 @@ public class acceptanceTest {
 		String pathToFinishFile2 = basePath + "maltider2.txt";
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
-		String result = fc.result(pathsToStartFiles, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 2, FormatterController.DONT_SORT);
+		String result = fc.result(pathsToStartFiles, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 2, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -145,7 +145,8 @@ public class acceptanceTest {
 				"acceptanstester/iteration2/acceptanstest15/");
 		makePaths();
 		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.LAP_RACE, "30", 3, FormatterController.DONT_SORT);
+				pathToNameFile, FormatterController.LAP_RACE, "30", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -159,7 +160,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathsToStartFiles,
 				pathsToFinishFiles, pathToNameFile,
-				FormatterController.LAP_RACE, "3", 3, FormatterController.DONT_SORT);
+				FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -176,8 +177,8 @@ public class acceptanceTest {
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
 		String result = formatterController.result(pathsToStartFiles,
-				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3, FormatterController.DONT_SORT);
+				finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -197,7 +198,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathToStartFile,
 				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3, FormatterController.SORT);
+				"3", 3, standardLapLimit, FormatterController.SORT);
 		assertEquals(readFileToString(resultFilePath), result);
 	}
 
@@ -217,7 +218,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathToStartFile,
 				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3, FormatterController.DONT_SORT);
+				"3", 3, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(resultFilePath), result);
 	}
 
@@ -239,7 +240,8 @@ public class acceptanceTest {
 
 		String result = formatterController.result(startFileArray,
 				finishFileArray, pathToNameFile,
-				FormatterController.STAGE_RACE, "", 2, FormatterController.DONT_SORT);
+				FormatterController.STAGE_RACE, "", 2, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 

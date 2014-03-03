@@ -12,9 +12,7 @@ import utils.FileReader;
 import utils.FileWriter;
 
 public class FormatterController {
-	
     public static final int SIMPLE_RACE = 0, LAP_RACE = 1, TIME_RACE = 2, STAGE_RACE = 3, SORT=0, DONT_SORT=1;
-
     private RaceEvent raceEvent;
 
     /**
@@ -28,7 +26,7 @@ public class FormatterController {
      * @return A fully formatted result table as a string
      * @throws FileNotFoundException
      */
-    public String result(String[] startPath, String[] finishPath, String namePath, int raceType, String limit, int printLimit, int sortOption) throws FileNotFoundException {
+    public String result(String[] startPath, String[] finishPath, String namePath, int raceType, String limit, int printLimit, String lapTimeLimit, int sortOption) throws FileNotFoundException {
         Race race;
         switch (raceType) {
             case SIMPLE_RACE:
@@ -48,30 +46,26 @@ public class FormatterController {
             default:
                 throw new IllegalArgumentException("Racetypen finns inte!");
         }
+        race.changeLapTimeLimit(lapTimeLimit);
         raceEvent = new RaceEvent(race);
         FileReader fr = new FileReader();
+		Iterator fileIterator = fr.readFileByLine(namePath);
+		ModelInitiator initiator = new ModelInitiator(fileIterator, raceEvent);
+		Iterator[] iterators = new Iterator[startPath.length];
+		for (int i = 0; i < startPath.length; i++) {
+			iterators[i] = fr.readFileByLine(startPath[i]);
+		}
+		initiator.registerStartTimes(iterators);
 
-        Iterator fileIterator = fr.readFileByLine(namePath);
-        ModelInitiator initiator = new ModelInitiator(fileIterator, raceEvent);
-
-
-        Iterator[] iterators = new Iterator[startPath.length];
-        for (int i = 0; i < startPath.length; i++) {
-            iterators[i] = fr.readFileByLine(startPath[i]);
-        }
-        initiator.registerStartTimes(iterators);
-
-        iterators = new Iterator[finishPath.length];
-        for (int i = 0; i < finishPath.length; i++) {
-            iterators[i] = fr.readFileByLine(finishPath[i]);
-        }
-        initiator.registerFinishTimes(iterators);
-        
+		iterators = new Iterator[finishPath.length];
+		for (int i = 0; i < finishPath.length; i++) {
+			iterators[i] = fr.readFileByLine(finishPath[i]);
+		}
+		initiator.registerFinishTimes(iterators);
         if(sortOption == SORT){
         	sort();
         	return raceEvent.print(printLimit, SORT);
         }
-        
         return raceEvent.print(printLimit, DONT_SORT);
     }
     
@@ -81,6 +75,5 @@ public class FormatterController {
     
     public void sort(){
     	raceEvent.sort();
-    }
-
+	}
 }

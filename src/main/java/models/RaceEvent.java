@@ -145,9 +145,21 @@ public class RaceEvent {
 					sb.append(p.printSorted()).append("\n");
 			}
 		}
-
 		return sb.toString();
 	}
+    
+    /**
+     * Sets the starttime for everyone in the class 'className'.
+     * @param className A string containing the class name that we want to start
+     * @param startTime The time that we want the starttimes to be
+     */
+    public void setAllClassStart(String className, Time startTime) {
+    	for (Participant p : participants) {
+    		if (p.getRaceClass().equals(className)) {
+    			p.getRace().addStartTime(startTime);
+    		} 
+    	}
+    }
 
 	/**
 	 * @return a new race for this event, to easily create new races of same

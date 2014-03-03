@@ -25,10 +25,22 @@ public class LapRace extends Race {
 	}
 
 	/**
-	 * @return a new lapRace with the same lap limit
+	 * @return a new lapRace with the same lap limit and lapLimitTime
 	 */
 	@Override
 	public Race copy() {
-		return new LapRace(limit);
+		Race tmprace = new LapRace(limit);
+		tmprace.changeLapTimeLimit(lapLimitTime.toString());
+		return tmprace;
 	}
+
+	@Override
+	public int compareTo(Race race) {
+		if (race.getClass().equals(this.getClass())) {
+			return getTotal().compareTo(race.getTotal());
+		}
+
+		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
+	}
+
 }

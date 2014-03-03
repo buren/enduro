@@ -61,7 +61,9 @@
 	
 	###TimeRace:
 	Subklass till Race, används för tidsbaserade lopp. Får en Time som inparameter för att begränsa hur länge loppet          ska köras.
-	
+
+	###StageRace:
+	Subklass till Race, används för ettapplopp, sortering funkar ej än.
 	
 
 ##Package utils:
@@ -105,6 +107,10 @@
 	Hämtar innehållet i registeringsfältet från GUIRegister.
 	Innehållet från registeringsfälet tillsammans med den aktuella tiden skrivs ut på nästa nya rad på den filplats 	        som valdes i GUIRegisters file chooser.
 	Om filen inte existerar så skapas en ny fil vid första registreringen.
+	
+	###RegisterField:
+	Ett textfält som tar in RegisterButton i konstruktorn, och lägger till en KeyEvent-lyssnare(enter) till
+	den, så att även enter funkar att registrera tävlanden med. 
 	
 	
 	
