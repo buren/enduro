@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>main</OriginalElement>
+  <nodes>
+    <node x="2384.5" y="1961.0">views.GUIRegister</node>
+    <node x="2261.833333333333" y="1768.0">views.RegisterButton</node>
+    <node x="1972.8333333333333" y="1810.0">views.TimeArea</node>
+    <node x="1033.8333333333333" y="1648.0">views.LoadFinishButton</node>
+    <node x="960.4601094651882" y="1466.0">models.ModelInitiator</node>
+    <node x="634.8333333333333" y="1658.5">controllers.FormatterController</node>
+    <node x="2630.833333333333" y="1820.5">views.RegisterField</node>
+    <node x="699.5" y="1220.0">models.RaceEvent</node>
+    <node x="632.8183872767861" y="0.0">models.Time</node>
+    <node x="1651.8333333333333" y="1648.0">views.LoadNamesButton</node>
+    <node x="1111.5" y="1283.0">utils.Sorter</node>
+    <node x="251.0" y="2217.0">utils.FileWriter</node>
+    <node x="1342.8333333333333" y="1648.0">views.LoadStartButton</node>
+    <node x="1198.3333333333333" y="1810.0">views.PrintButton</node>
+    <node x="1553.7083333333333" y="2123.0">main.Main</node>
+    <node x="1388.25" y="1487.0">utils.FileReader</node>
+    <node x="594.0" y="1016.0">race.LapRace</node>
+    <node x="1630.5" y="963.5">race.SimpleRace</node>
+    <node x="577.0844336219336" y="275.0">race.Race.Lap</node>
+    <node x="642.6106240981239" y="488.0">race.Race</node>
+    <node x="1413.0208333333333" y="2003.0">views.GUIFormatter</node>
+    <node x="250.0" y="963.5">race.StageRace</node>
+    <node x="1034.75" y="932.0">models.Participant</node>
+    <node x="40.0" y="1016.0">race.TimeRace</node>
+    <node x="0.0" y="2217.0">utils.Enduro</node>
+    <node x="2030.8333333333333" y="1648.0">controllers.RegisterController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="views.GUIRegister" target="views.RegisterField">
+      <point x="91.66666666666697" y="-56.0" />
+      <point x="2586.166666666667" y="1941.0" />
+      <point x="2715.583333333333" y="1941.0" />
+      <point x="28.25" y="14.0" />
+    </edge>
+    <edge source="views.GUIRegister" target="views.RegisterButton">
+      <point x="-55.0" y="-56.0" />
+      <point x="2439.5" y="1931.0" />
+      <point x="2320.0" y="1931.0" />
+      <point x="-116.33333333333348" y="66.5" />
+    </edge>
+    <edge source="views.GUIFormatter" target="views.PrintButton">
+      <point x="-14.375" y="-14.0" />
+      <point x="1456.1458333333333" y="1931.0" />
+      <point x="1332.8333333333333" y="1931.0" />
+      <point x="0.0" y="24.5" />
+    </edge>
+    <edge source="models.ModelInitiator" target="models.Time">
+      <point x="126.33333333333348" y="-56.0" />
+      <point x="1276.2934427985217" y="1441.0" />
+      <point x="1620.0" y="1441.0" />
+      <point x="1620.0" y="215.0" />
+      <point x="843.7729327313316" y="215.0" />
+      <point x="74.4545454545455" y="87.5" />
+    </edge>
+    <edge source="race.StageRace" target="race.Race.Lap">
+      <point x="0.0" y="-87.5" />
+      <point x="412.0" y="468.0" />
+      <point x="602.1844336219335" y="468.0" />
+      <point x="-100.40000000000009" y="66.5" />
+    </edge>
+    <edge source="controllers.FormatterController" target="utils.FileReader">
+      <point x="126.33333333333326" y="-24.5" />
+      <point x="950.6666666666665" y="1618.0" />
+      <point x="1546.25" y="1618.0" />
+      <point x="0.0" y="35.0" />
+    </edge>
+    <edge source="race.SimpleRace" target="race.Race">
+      <point x="-108.0" y="-87.5" />
+      <point x="1684.5" y="902.0" />
+      <point x="1073.4439574314574" y="902.0" />
+      <point x="195.83333333333348" y="182.0" />
+    </edge>
+    <edge source="controllers.FormatterController" target="models.RaceEvent">
+      <point x="42.111111111111086" y="-24.5" />
+      <point x="866.4444444444443" y="1628.0" />
+      <point x="835.3333333333333" y="1628.0" />
+      <point x="835.3333333333333" y="1441.0" />
+      <point x="895.0" y="1441.0" />
+      <point x="0.0" y="98.0" />
+    </edge>
+    <edge source="controllers.FormatterController" target="models.Time">
+      <point x="-168.44444444444434" y="-24.5" />
+      <point x="655.8888888888889" y="1628.0" />
+      <point x="29.5" y="1628.0" />
+      <point x="29.5" y="225.0" />
+      <point x="645.2274781858771" y="225.0" />
+      <point x="-124.09090909090901" y="87.5" />
+    </edge>
+    <edge source="race.LapRace" target="race.Race">
+      <point x="0.0" y="-35.0" />
+      <point x="689.0" y="902.0" />
+      <point x="838.4439574314574" y="902.0" />
+      <point x="-39.166666666666515" y="182.0" />
+    </edge>
+    <edge source="controllers.FormatterController" target="race.TimeRace">
+      <point x="-126.33333333333348" y="-24.5" />
+      <point x="697.9999999999998" y="1618.0" />
+      <point x="135.0" y="1618.0" />
+      <point x="0.0" y="35.0" />
+    </edge>
+    <edge source="race.Race" target="race.Race.Lap">
+      <point x="-134.28571428571422" y="-182.0" />
+      <point x="743.3249098124097" y="468.0" />
+      <point x="702.5844336219336" y="468.0" />
+      <point x="0.0" y="66.5" />
+    </edge>
+    <edge source="race.Race" target="models.Time">
+      <point x="67.14285714285688" y="-182.0" />
+      <point x="944.7534812409808" y="448.0" />
+      <point x="838.5844336219336" y="448.0" />
+      <point x="838.5844336219336" y="245.0" />
+      <point x="769.3183872767861" y="245.0" />
+      <point x="0.0" y="87.5" />
+    </edge>
+    <edge source="utils.Sorter" target="models.Participant">
+      <point x="0.0" y="-35.0" />
+      <point x="1360.5" y="1195.0" />
+      <point x="1279.75" y="1195.0" />
+      <point x="98.0" y="119.0" />
+    </edge>
+    <edge source="race.StageRace" target="race.Race">
+      <point x="108.0" y="-87.5" />
+      <point x="520.0" y="892.0" />
+      <point x="760.1106240981239" y="892.0" />
+      <point x="-117.5" y="182.0" />
+    </edge>
+    <edge source="race.Race.Lap" target="race.Race">
+      <point x="100.40000000000009" y="66.5" />
+      <point x="802.9844336219337" y="458.0" />
+      <point x="877.6106240981239" y="458.0" />
+      <point x="0.0" y="-182.0" />
+    </edge>
+    <edge source="main.Main" target="controllers.FormatterController">
+      <point x="-63.0" y="-24.5" />
+      <point x="1574.7083333333333" y="2103.0" />
+      <point x="729.5833333333333" y="2103.0" />
+      <point x="-94.75" y="24.5" />
+    </edge>
+    <edge source="race.Race.Lap" target="models.Time">
+      <point x="62.75" y="-66.5" />
+      <point x="765.3344336219336" y="255.0" />
+      <point x="744.5002054586041" y="255.0" />
+      <point x="-24.818181818181984" y="87.5" />
+    </edge>
+    <edge source="race.TimeRace" target="race.Race">
+      <point x="47.5" y="-35.0" />
+      <point x="182.5" y="882.0" />
+      <point x="681.7772907647905" y="882.0" />
+      <point x="-195.83333333333348" y="182.0" />
+    </edge>
+    <edge source="race.TimeRace" target="models.Time">
+      <point x="-47.5" y="-35.0" />
+      <point x="87.5" y="235.0" />
+      <point x="670.0456600040586" y="235.0" />
+      <point x="-99.27272727272748" y="87.5" />
+    </edge>
+    <edge source="main.Main" target="controllers.RegisterController">
+      <point x="21.0" y="-24.5" />
+      <point x="1658.7083333333333" y="2093.0" />
+      <point x="1962.3333333333333" y="2093.0" />
+      <point x="1962.3333333333333" y="1748.0" />
+      <point x="2115.083333333333" y="1748.0" />
+      <point x="-84.25" y="35.0" />
+    </edge>
+    <edge source="models.RaceEvent" target="models.Participant">
+      <point x="97.75" y="-98.0" />
+      <point x="992.75" y="1195.0" />
+      <point x="1083.75" y="1195.0" />
+      <point x="-98.0" y="119.0" />
+    </edge>
+    <edge source="controllers.FormatterController" target="race.StageRace">
+      <point x="-84.22222222222217" y="-24.5" />
+      <point x="740.1111111111111" y="1608.0" />
+      <point x="412.0" y="1608.0" />
+      <point x="0.0" y="87.5" />
+    </edge>
+    <edge source="main.Main" target="views.GUIRegister">
+      <point x="63.0" y="-24.5" />
+      <point x="1700.7083333333333" y="2103.0" />
+      <point x="2494.5" y="2103.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+    <edge source="views.GUIRegister" target="views.TimeArea">
+      <point x="-91.66666666666652" y="-56.0" />
+      <point x="2402.8333333333335" y="1941.0" />
+      <point x="2107.333333333333" y="1941.0" />
+      <point x="0.0" y="24.5" />
+    </edge>
+    <edge source="views.RegisterButton" target="controllers.RegisterController">
+      <point x="0.0" y="-66.5" />
+      <point x="2436.333333333333" y="1748.0" />
+      <point x="2283.583333333333" y="1748.0" />
+      <point x="84.25" y="35.0" />
+    </edge>
+    <edge source="controllers.FormatterController" target="race.SimpleRace">
+      <point x="168.44444444444434" y="-24.5" />
+      <point x="992.7777777777776" y="1628.0" />
+      <point x="1792.5" y="1628.0" />
+      <point x="0.0" y="87.5" />
+    </edge>
+    <edge source="models.RaceEvent" target="race.Race">
+      <point x="-97.75" y="-98.0" />
+      <point x="797.25" y="912.0" />
+      <point x="916.7772907647905" y="912.0" />
+      <point x="39.166666666666515" y="182.0" />
+    </edge>
+    <edge source="models.ModelInitiator" target="models.RaceEvent">
+      <point x="-126.33333333333348" y="-56.0" />
+      <point x="1023.6267761318547" y="1441.0" />
+      <point x="1025.3333333333335" y="1441.0" />
+      <point x="130.33333333333348" y="98.0" />
+    </edge>
+    <edge source="views.GUIFormatter" target="views.LoadFinishButton">
+      <point x="-43.125" y="-14.0" />
+      <point x="1427.3958333333333" y="1941.0" />
+      <point x="1122.6458333333333" y="1941.0" />
+      <point x="1122.6458333333333" y="1748.0" />
+      <point x="1106.0833333333333" y="1748.0" />
+      <point x="-72.25" y="35.0" />
+    </edge>
+    <edge source="views.PrintButton" target="views.LoadStartButton">
+      <point x="33.625" y="-24.5" />
+      <point x="1366.4583333333333" y="1748.0" />
+      <point x="1415.0833333333333" y="1748.0" />
+      <point x="-72.25" y="35.0" />
+    </edge>
+    <edge source="models.ModelInitiator" target="models.Participant">
+      <point x="0.0" y="-56.0" />
+      <point x="1149.9601094651882" y="1441.0" />
+      <point x="1101.0" y="1441.0" />
+      <point x="1101.0" y="1195.0" />
+      <point x="1181.75" y="1195.0" />
+      <point x="0.0" y="119.0" />
+    </edge>
+    <edge source="race.StageRace" target="models.Time">
+      <point x="-108.0" y="-87.5" />
+      <point x="304.0" y="872.0" />
+      <point x="249.75" y="872.0" />
+      <point x="249.75" y="245.0" />
+      <point x="694.8638418222406" y="245.0" />
+      <point x="-74.4545454545455" y="87.5" />
+    </edge>
+    <edge source="models.Participant" target="race.Race">
+      <point x="0.0" y="-119.0" />
+      <point x="1181.75" y="912.0" />
+      <point x="995.1106240981239" y="912.0" />
+      <point x="117.5" y="182.0" />
+    </edge>
+    <edge source="views.RegisterButton" target="views.GUIRegister">
+      <point x="116.33333333333348" y="66.5" />
+      <point x="2552.666666666667" y="1921.0" />
+      <point x="2512.8333333333335" y="1921.0" />
+      <point x="18.333333333333485" y="-56.0" />
+    </edge>
+    <edge source="controllers.FormatterController" target="models.ModelInitiator">
+      <point x="84.22222222222217" y="-24.5" />
+      <point x="908.5555555555554" y="1608.0" />
+      <point x="1149.9601094651882" y="1608.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+    <edge source="main.Main" target="views.GUIFormatter">
+      <point x="-21.0" y="-24.5" />
+      <point x="1616.7083333333333" y="2093.0" />
+      <point x="1470.5208333333333" y="2093.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="views.GUIFormatter" target="views.LoadStartButton">
+      <point x="14.375" y="-14.0" />
+      <point x="1484.8958333333333" y="1931.0" />
+      <point x="1543.0208333333333" y="1931.0" />
+      <point x="1543.0208333333333" y="1738.0" />
+      <point x="1559.5833333333333" y="1738.0" />
+      <point x="72.25" y="35.0" />
+    </edge>
+    <edge source="views.PrintButton" target="views.LoadFinishButton">
+      <point x="-33.625" y="-24.5" />
+      <point x="1299.2083333333333" y="1748.0" />
+      <point x="1250.5833333333333" y="1748.0" />
+      <point x="72.25" y="35.0" />
+    </edge>
+    <edge source="views.GUIFormatter" target="views.LoadNamesButton">
+      <point x="43.125" y="-14.0" />
+      <point x="1513.6458333333333" y="1941.0" />
+      <point x="1868.5833333333333" y="1941.0" />
+      <point x="72.25" y="35.0" />
+    </edge>
+    <edge source="race.SimpleRace" target="models.Time">
+      <point x="0.0" y="-87.5" />
+      <point x="1792.5" y="912.0" />
+      <point x="1812.2101094651882" y="912.0" />
+      <point x="1812.2101094651882" y="205.0" />
+      <point x="868.5911145495131" y="205.0" />
+      <point x="99.27272727272702" y="87.5" />
+    </edge>
+    <edge source="controllers.FormatterController" target="race.LapRace">
+      <point x="-42.111111111111086" y="-24.5" />
+      <point x="782.2222222222222" y="1598.0" />
+      <point x="689.0" y="1598.0" />
+      <point x="0.0" y="35.0" />
+    </edge>
+    <edge source="views.PrintButton" target="controllers.FormatterController">
+      <point x="-100.875" y="-24.5" />
+      <point x="1231.9583333333333" y="1738.0" />
+      <point x="919.0833333333333" y="1738.0" />
+      <point x="94.75" y="24.5" />
+    </edge>
+    <edge source="views.PrintButton" target="views.LoadNamesButton">
+      <point x="100.875" y="-24.5" />
+      <point x="1433.7083333333333" y="1748.0" />
+      <point x="1724.0833333333333" y="1748.0" />
+      <point x="-72.25" y="35.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5" x="1050.0" y="1289.0" />
+  <SelectedNodes>
+    <node>views.LoadFinishButton</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

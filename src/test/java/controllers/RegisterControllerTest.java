@@ -1,11 +1,10 @@
-package controller;
+package controllers;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import controllers.RegisterController;
 import utils.Enduro;
 
 public class RegisterControllerTest {
@@ -34,11 +33,7 @@ public class RegisterControllerTest {
     @Test
     public void testMassRegistrationWithWeirdFormats() {
         String respons = regCont.formatResults("", " 1,  2 ,    3,   4     , 5    ", "12.13.14");
-        assertEquals(respons,
-                "1;12.13.14\n" +
-                        "2;12.13.14\n" +
-                        "3;12.13.14\n" +
-                        "4;12.13.14\n" +
-                        "5;12.13.14\n");
+        String expected = "1;12.13.14\n" + "2;12.13.14\n" + "3;12.13.14\n" + "4;12.13.14\n" + "5;12.13.14\n";
+        assertEquals(expected, respons);
     }
 }

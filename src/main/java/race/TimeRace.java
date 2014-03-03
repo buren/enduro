@@ -27,18 +27,17 @@ public class TimeRace extends Race {
 	}
 
 	/**
-	 * @return a new TimeRace with the same time limit
+	 * @return a new TimeRace with the same time limit and lapLimitTime
 	 */
 	@Override
 	public Race copy() {
-		return new TimeRace(limit);
+		Race tmpRace = new TimeRace(limit);
+		tmpRace.changeLapTimeLimit(lapLimitTime.toString());
+		return tmpRace;
 	}
 
 	@Override
 	public int compareTo(Race race) {
-		if (race.getClass().equals(this.getClass())) {
-			return getCompletedLaps() - race.getCompletedLaps();
-		}
-		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
+		return 0;
 	}
 }

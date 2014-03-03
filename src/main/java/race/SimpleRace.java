@@ -1,9 +1,9 @@
 package race;
 
 import models.Time;
+import sun.print.resources.serviceui_pt_BR;
 
 public class SimpleRace extends Race {
-
 	private Time start;
 	private Time finish;
 
@@ -22,7 +22,7 @@ public class SimpleRace extends Race {
 	 *            Time to set as start.
 	 */
 	@Override
-	public void setStart(Time start) {
+	public void addStartTime(Time start) {
 		this.start = start;
 	}
 
@@ -44,7 +44,7 @@ public class SimpleRace extends Race {
 	 * @return true if a Time was successfully added, else false.
 	 */
 	@Override
-	public void addTime(Time finish) {
+	public void addFinishTime(Time finish) {
 		this.finish = finish;
 	}
 
@@ -67,27 +67,30 @@ public class SimpleRace extends Race {
 	 */
 	@Override
 	public String print(int printLimit) {
-		String startString;
-		String finishString;
-		if (start.isEmpty()) {
-			startString = "Start?";
-		} else {
-			startString = start.toString();
-		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("; ").append(getTotal());
+		sb.append("; ");
+		if (start.isEmpty())
+			sb.append("Start?");
+		else
+			sb.append(start.toString());
+		sb.append("; ");
 		if (finish.isEmpty()) {
-			finishString = "Slut?";
+			sb.append("Slut?");
 		} else {
-			finishString = finish.toString();
+			sb.append(finish.toString());
 		}
-		return getTotal() + "; " + startString + "; " + finishString;
+		return sb.toString();
 	}
 
 	/**
-	 * @return a new SimpleRace with the same time limit
+	 * @return a new SimpleRace with the same time limit and lapLimitTime
 	 */
 	@Override
 	public Race copy() {
-		return new SimpleRace();
+		Race tmprace = new SimpleRace();
+		tmprace.changeLapTimeLimit(lapLimitTime.toString());
+		return tmprace;
 	}
 
 	@Override
@@ -97,4 +100,21 @@ public class SimpleRace extends Race {
 		}
 		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
 	}
+
+	/**
+	 * Prints a header for the result
+	 * 
+	 * @param printLimit
+	 *            max number of laps to print.
+	 * @return a formatted string.
+	 */
+	@Override
+	public String printHeader(int printLimit) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("; TotalTid");
+		sb.append("; Start");
+		sb.append("; Mal\n");
+		return sb.toString();
+	}
+
 }
