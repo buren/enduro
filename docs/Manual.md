@@ -23,6 +23,7 @@ För att använda registerare:
 4. Skriv in deltagarens siffra i den övre vänstra textrutan och tryck sedan på ```"Registrera"```-knappen för att registrera nuvarade tid på vald deltagare.
 5. Om du vill ha masstart så matas stjärna (*) in i den vänstra textrutan.
 6. Om du trycker på ```"Registrera"```-knappen först så sparas tiden direkt och det kommer upp en prompt ruta där du kan skriva upp numret i efterhand.
+7. Om du vill masstarta en klass, skriv då in klassnamnet och registrera det. OBS! Klassnamnen du vill starta måste skrivas in precis som i namnfilen! 
 
 
 Filernas formattering:

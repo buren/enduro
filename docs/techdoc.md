@@ -108,6 +108,10 @@
 	Innehållet från registeringsfälet tillsammans med den aktuella tiden skrivs ut på nästa nya rad på den filplats 	        som valdes i GUIRegisters file chooser.
 	Om filen inte existerar så skapas en ny fil vid första registreringen.
 	
+	###RegisterField:
+	Ett textfält som tar in RegisterButton i konstruktorn, och lägger till en KeyEvent-lyssnare(enter) till
+	den, så att även enter funkar att registrera tävlanden med. 
+	
 	
 	
 	

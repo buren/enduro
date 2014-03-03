@@ -97,6 +97,76 @@ public class RaceEventTest {
                 "2; Not named; --.--.--; Start?; Slut?\n";
         assertEquals(expected, raceEvent.print(1));
     }
+    
+    @Test
+    public void testStartOneByClass()
+    {
+    	participant.setRaceClass("Lexforce");
+    	raceEvent.setAllClassStart("Lexforce", new Time("13.37.00"));
+    	assertEquals(raceEvent.print(0), "Lexforce\n" + 
+    	"StartNr; Namn; TotalTid; Start; Mal\n" +
+    	"1; Not named; --.--.--; 13.37.00; Slut?\n"	);
+    }
+    
+    @Test
+    public void testStartManyByClass() {
+    	participant.setRaceClass("Lexforce");    	
+    	Participant p1= new Participant(14);
+    	p1.setRaceClass("Lexforce");
+    	Participant p2= new Participant(16);
+    	p2.setRaceClass("Lexforce");
+    	Participant p3= new Participant(15);
+    	p3.setRaceClass("Lexforce");
+    	raceEvent.addParticipant(p1);
+    	raceEvent.addParticipant(p2);
+    	raceEvent.addParticipant(p3);
+    	raceEvent.setAllClassStart("Lexforce", new Time("13.37.00"));
+    	assertEquals(raceEvent.print(0), "Lexforce\n" + 
+    	"StartNr; Namn; TotalTid; Start; Mal\n" +
+    	"1; Not named; --.--.--; 13.37.00; Slut?\n"	+
+    	"14; Not named; --.--.--; 13.37.00; Slut?\n" +
+    	"16; Not named; --.--.--; 13.37.00; Slut?\n" +
+    	"15; Not named; --.--.--; 13.37.00; Slut?\n");
+    }
 
+    @Test
+    public void testManyClassesStart() {
+    	participant.setRaceClass("Lexforce");    	
+    	Participant p1= new Participant(14);
+    	p1.setRaceClass("Lexforce");
+    	Participant p2= new Participant(16);
+    	p2.setRaceClass("StarBase");
+    	Participant p3= new Participant(15);
+    	p3.setRaceClass("StarBase");
+    	raceEvent.addParticipant(p1);
+    	raceEvent.addParticipant(p2);
+    	raceEvent.addParticipant(p3);
+    	raceEvent.setAllClassStart("Lexforce", new Time("13.37.00"));
+    	raceEvent.setAllClassStart("StarBase", new Time("04.20.00"));
+    	assertEquals(raceEvent.print(0), "Lexforce\n" + 
+    	"StartNr; Namn; TotalTid; Start; Mal\n" +
+    	"1; Not named; --.--.--; 13.37.00; Slut?\n"	+
+    	"14; Not named; --.--.--; 13.37.00; Slut?\n" +
+    	"StarBase\n" + 
+    	"StartNr; Namn; TotalTid; Start; Mal\n" +
+    	"16; Not named; --.--.--; 04.20.00; Slut?\n" +
+    	"15; Not named; --.--.--; 04.20.00; Slut?\n");
+    }
 
+    @Test
+    public void testClassCaseSensitivity() {
+    	participant.setRaceClass("StarBase");    	
+    	Participant p1= new Participant(14);
+    	p1.setRaceClass("StarBase");
+    	Participant p2= new Participant(16);
+    	p2.setRaceClass("StarBase");
+    	raceEvent.addParticipant(p1);
+    	raceEvent.addParticipant(p2);
+    	raceEvent.setAllClassStart("Starbase", new Time("14.20.00"));
+    	assertEquals(raceEvent.print(0), "StarBase\n" + 
+    	    	"StartNr; Namn; TotalTid; Start; Mal\n" +
+    	    	"1; Not named; --.--.--; Start?; Slut?\n"	+
+    	    	"14; Not named; --.--.--; Start?; Slut?\n" +
+    	    	"16; Not named; --.--.--; Start?; Slut?\n");
+    }
 }
