@@ -5,9 +5,9 @@ import models.Time;
 import java.util.ArrayList;
 
 public abstract class Race {
-	private ArrayList<Lap> laps = new ArrayList<>();
-	private ArrayList<Time> multipleStart = new ArrayList<>();
-	private ArrayList<Time> multipleFinish = new ArrayList<>();
+	private ArrayList<Lap> laps = new ArrayList<Lap>();
+	private ArrayList<Time> multipleStart = new ArrayList<Time>();
+	private ArrayList<Time> multipleFinish = new ArrayList<Time>();
 
 	/**
 	 * Create a new Race.
