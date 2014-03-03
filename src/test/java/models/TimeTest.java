@@ -94,13 +94,13 @@ public class TimeTest {
     @Test
     public void testCompareToLarger() {
         Time time2 = new Time("13.00.00");
-        assertTrue(time.compareTo(time2) < 0);
+        assertTrue(time.compareTo(time2) > 0);
     }
 
     @Test
     public void testCompareToSmaller() {
         Time time2 = new Time("11.00.00");
-        assertTrue(time.compareTo(time2) > 0);
+        assertTrue(time.compareTo(time2) < 0);
     }
 
     @Test

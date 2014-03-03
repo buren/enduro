@@ -1,13 +1,16 @@
 package models;
 
 import race.Race;
+import utils.Sorter;
 
 import java.util.ArrayList;
 
 public class RaceEvent {
     private ArrayList<Participant> participants, notRegisteredParticipants;
     private Race raceType;
-    public static final int START_TIME = 0, LAP_TIME = 1;
+    private Sorter sorter;
+    public static final int START_TIME = 0, LAP_TIME = 1, SORT = 0,
+            DONT_SORT = 1;
 
     /**
      * Create a new RaceEvent
@@ -17,6 +20,7 @@ public class RaceEvent {
     public RaceEvent(Race raceType) {
         participants = new ArrayList<Participant>();
         notRegisteredParticipants = new ArrayList<Participant>();
+        sorter = new Sorter();
         this.raceType = raceType;
     }
 
@@ -38,7 +42,8 @@ public class RaceEvent {
      * @param time        type of time that was invalid
      */
 
-    public void addNotRegisteredParticipant(Participant participant, int reason, Time time) {
+    public void addNotRegisteredParticipant(Participant participant,
+                                            int reason, Time time) {
         if (notRegisteredParticipants.contains(participant)) {
             for (Participant p : notRegisteredParticipants)
                 if (p.equals(participant))
@@ -92,18 +97,82 @@ public class RaceEvent {
             p.getRace().addStartTime(startTime);
         }
     }
-    
+
     /**
      * Sets the starttime for everyone in the class 'className'.
+     *
      * @param className A string containing the class name that we want to start
      * @param startTime The time that we want the starttimes to be
      */
     public void setAllClassStart(String className, Time startTime) {
-    	for (Participant p : participants) {
-    		if (p.getRaceClass().equals(className)) {
-    			p.getRace().addStartTime(startTime);
-    		} 
-    	}
+        for (Participant p : participants) {
+            if (p.getRaceClass().equals(className)) {
+                p.getRace().addStartTime(startTime);
+            }
+        }
+    }
+
+    /**
+     * @return a new race for this event, to easily create new races of same
+     * type and limit.
+     */
+    private Race newRace() {
+        return raceType.copy();
+    }
+
+    public void sort() {
+        participants = sorter.sort(participants);
+        addPlacement();
+    }
+
+    private void addPlacement() {
+        ArrayList<String> raceClasses = new ArrayList<String>();
+        for (Participant p : participants) {
+            String raceClass = p.getRaceClass();
+            if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
+                raceClasses.add(raceClass);
+            }
+        }
+        for (String raceClass : raceClasses) {
+            int place = 1;
+            for (int i = 0; i < participants.size() - 1; i++) {
+                Participant p = participants.get(i);
+                if (p.getRaceClass().equals(raceClass)
+                        && p.getRace().allLapsWithinLimit()) {
+                    participants.get(i).setPlacment(Integer.toString(place++));
+                }
+            }
+            for (int i = 0; i < participants.size(); i++) {
+                Participant p = participants.get(i);
+                if(p.getPlacement().equals("-")) {
+                    participants.remove(p);
+                    participants.add(participants.size()-1 ,p);
+                }
+            }
+        }
+    }
+
+    /**
+     * Print a formatted result table as string.
+     *
+     * @param printLimit max number of laps to print
+     * @return a formatted result string.
+     */
+    public String print(int printLimit, int sortOption) {
+        StringBuilder sb = new StringBuilder();
+        if (sortOption == DONT_SORT) {
+            sb.append(print(printLimit, participants));
+            if (!(notRegisteredParticipants.size() == 0)) {
+                sb.append("Icke existerande startnummer:\n");
+                sb.append(print(printLimit, notRegisteredParticipants));
+            }
+        } else if (sortOption == SORT) {
+            sort();
+            sb.append(printSorted(participants));
+
+        }
+
+        return sb.toString();
     }
 
     /**
@@ -122,6 +191,33 @@ public class RaceEvent {
         return sb.toString();
     }
 
+    private String printSorted(ArrayList<Participant> list) {
+        ArrayList<String> raceClasses = new ArrayList<String>();
+        for (Participant p : list) {
+            String raceClass = p.getRaceClass();
+            if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
+                raceClasses.add(raceClass);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String raceClass : raceClasses) {
+            if (raceClass != "None")
+                sb.append(raceClass).append("\n");
+            sb.append("Plac; ");
+            sb.append(list.get(0).printHeader());
+            sb.append("; #Varv; TotalTid");
+            for (int i = 0; i < participants.get(0).getRace()
+                    .getCompletedLaps(); i++) {
+                sb.append("; Varv").append(i + 1);
+            }
+            sb.append("\n");
+            for (Participant p : list) {
+                if (p.getRaceClass() == raceClass)
+                    sb.append(p.printSorted()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
 
     private String print(int printLimit, ArrayList<Participant> list) {
         ArrayList<String> raceClasses = new ArrayList<String>();
@@ -143,13 +239,5 @@ public class RaceEvent {
             }
         }
         return sb.toString();
-    }
-
-    /**
-     * @return a new race for this event, to easily create new races of same
-     * type and limit.
-     */
-    private Race newRace() {
-        return raceType.copy();
     }
 }

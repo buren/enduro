@@ -1,20 +1,20 @@
 package models;
 
-import java.util.ArrayList;
-
 import race.Race;
 
 import java.util.TreeMap;
 
-public class Participant {
+public class Participant implements Comparable {
     private int id;
     private String name;
     private Race race;
     private String raceClass;
     private TreeMap<String, String> extraInfo;
+    private String placement;
 
     /**
-     * Participant identifies by their id/startnumber, two participants with the same id are considered the same.
+     * Participant identifies by their id/startnumber, two participants with the
+     * same id are considered the same.
      *
      * @param id id of participant
      */
@@ -23,27 +23,26 @@ public class Participant {
         extraInfo = new TreeMap<String, String>();
         name = "Not named";
         raceClass = "None";
+        placement = "-";
     }
 
-	/**
-	 * Return the participant id
-	 * 
-	 * @return id of participant
-	 */
-	public int getId() {
-		return id;
-	}
+    /**
+     * Return the participant id
+     *
+     * @return id of participant
+     */
+    public int getId() {
+        return id;
+    }
 
-	/**
-	 * Set participant name to parameter name
-	 * 
-	 * @param name
-	 *            name of participant
-	 */
-	public void setName(String name) {
-		this.name = name.trim();
-	}
-
+    /**
+     * Set participant name to parameter name
+     *
+     * @param name name of participant
+     */
+    public void setName(String name) {
+        this.name = name.trim();
+    }
 
     /**
      * Adds a piece of extra information to this participant
@@ -55,16 +54,23 @@ public class Participant {
         extraInfo.put(key.trim(), value.trim());
     }
 
-	/**
-	 * Connects the participant to a race
-	 * 
-	 * @param race
-	 *            race the participant is racing.
-	 */
-	public void setRace(Race race) {
-		this.race = race;
-	}
+    /**
+     * Return the participants name
+     *
+     * @return name of participant
+     */
+    public String getName() {
+        return name;
+    }
 
+    /**
+     * Connects the participant to a race
+     *
+     * @param race race the participant is racing.
+     */
+    public void setRace(Race race) {
+        this.race = race;
+    }
 
     /**
      * Return the participants race.
@@ -91,6 +97,45 @@ public class Participant {
         return raceClass;
     }
 
+    public String printSorted() {
+        String values = "";
+        if (!extraInfo.isEmpty()) {
+            String[] keyArray = new String[extraInfo.keySet().size()];
+            extraInfo.keySet().toArray(keyArray);
+            for (int i = 0; i < keyArray.length; i++) {
+                values += "; " + extraInfo.get(keyArray[i]);
+            }
+        }
+
+        return placement + "; " + id + "; " + name + values + race.printSorted();
+    }
+
+    /**
+     * Compares participants
+     *
+     * @return Positive if better, negative if worse, 0 if equal.
+     */
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Participant) {
+            return race.compareTo(((Participant) o).race);
+        }
+        throw new IllegalArgumentException("Jämförelse med felaktig datatyp!");
+    }
+
+    /**
+     * Sets the placement for this partcipant in current race.
+     *
+     * @param place
+     */
+    public void setPlacment(String place) {
+        placement = place;
+    }
+
+    public String getPlacement() {
+        return placement;
+    }
+
     /**
      * Print a formatted result string.
      *
@@ -103,13 +148,17 @@ public class Participant {
             String[] keyArray = new String[extraInfo.keySet().size()];
             extraInfo.keySet().toArray(keyArray);
             for (int i = 0; i < keyArray.length; i++) {
-                values +="; "+extraInfo.get(keyArray[i]);
+                values += "; " + extraInfo.get(keyArray[i]);
             }
         }
 
         return id + "; " + name + values + race.print(printLimit);
     }
 
+    /**
+     * Prints a header for the participant, including extrainfo
+     * @return a formatted header.
+     */
     public String printHeader() {
         String keys = "";
         if (!extraInfo.isEmpty()) {
@@ -121,7 +170,7 @@ public class Participant {
         }
         return "StartNr; Namn" + keys;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

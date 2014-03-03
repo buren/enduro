@@ -143,5 +143,4 @@ public class SimpleRace extends Race {
         sb.append("; Mal\n");
         return sb.toString();
     }
-
 }

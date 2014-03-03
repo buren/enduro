@@ -6,14 +6,15 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import controllers.FormatterController;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import utils.Enduro;
 import utils.FileReader;
+import utils.Sorter;
 
 public class acceptanceTest {
-
 	private Enduro enduro;
 	private String basePath;
 	private String pathToNameFile;
@@ -44,10 +45,7 @@ public class acceptanceTest {
 		basePath = enduro.getInstance().getResourcePath(
 				"acceptanstester/iteration1/acceptanstest5/");
 		makePaths();
-
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.SIMPLE_RACE, "1", 1,
-				standardLapLimit);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles, pathToNameFile, FormatterController.SIMPLE_RACE, "1", 1, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -59,9 +57,7 @@ public class acceptanceTest {
 				"acceptanstester/iteration1/acceptanstest6/");
 		makePaths();
 
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.LAP_RACE, "1", 1,
-				standardLapLimit);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles, pathToNameFile, FormatterController.LAP_RACE, "1", 1, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -73,9 +69,8 @@ public class acceptanceTest {
 				"acceptanstester/iteration2/acceptanstest9/");
 		makePaths();
 
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3,
-				standardLapLimit);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -88,9 +83,8 @@ public class acceptanceTest {
 		makePaths();
 		pathToExpectedResult = basePath + "resultatTimeRace.txt";
 
-		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.TIME_RACE, "01.00.00", 3,
-				standardLapLimit);
+		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles, pathToNameFile, FormatterController.TIME_RACE, "01.00.00", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -105,9 +99,8 @@ public class acceptanceTest {
 		String pathToFinishFile2 = basePath + "maltider2.txt";
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
-		String result = fc.result(pathsToStartFiles, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3,
-				standardLapLimit);
+		String result = fc.result(pathsToStartFiles, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -123,8 +116,7 @@ public class acceptanceTest {
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
 		String result = fc.result(pathsToStartFiles, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 3,
-				standardLapLimit);
+				pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -139,9 +131,8 @@ public class acceptanceTest {
 		String pathToFinishFile2 = basePath + "maltider2.txt";
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
-		String result = fc.result(pathsToStartFiles, finishFileArray,
-				pathToNameFile, FormatterController.LAP_RACE, "3", 2,
-				standardLapLimit);
+		String result = fc.result(pathsToStartFiles, finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 2, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -154,8 +145,8 @@ public class acceptanceTest {
 				"acceptanstester/iteration2/acceptanstest15/");
 		makePaths();
 		String resultList = fc.result(pathsToStartFiles, pathsToFinishFiles,
-				pathToNameFile, FormatterController.LAP_RACE, "30", 3,
-				standardLapLimit);
+				pathToNameFile, FormatterController.LAP_RACE, "30", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), resultList);
 	}
 
@@ -169,7 +160,7 @@ public class acceptanceTest {
 
 		String result = formatterController.result(pathsToStartFiles,
 				pathsToFinishFiles, pathToNameFile,
-				FormatterController.LAP_RACE, "3", 3, standardLapLimit);
+				FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -186,9 +177,47 @@ public class acceptanceTest {
 		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
 
 		String result = formatterController.result(pathsToStartFiles,
-				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
-				"3", 3, standardLapLimit);
+				finishFileArray, pathToNameFile, FormatterController.LAP_RACE, "3", 3, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
+	}
+
+	@Test
+	public void acceptanceTest18Sort() throws FileNotFoundException {
+		FormatterController formatterController = new FormatterController();
+
+		String path = enduro.getInstance().getResourcePath(
+				"acceptanstester/iteration2/acceptanstest18/");
+		String pathToNameFile = path + "namnfil.txt";
+		String[] pathToStartFile = { path + "starttider.txt" };
+		String pathToFinishFile1 = path + "maltider1.txt";
+		String pathToFinishFile2 = path + "maltider2.txt";
+		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
+		String resultFilePath = path + "sortresultat.txt";
+
+		String result = formatterController.result(pathToStartFile,
+				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
+				"3", 3, "00.20.00", FormatterController.SORT);
+		assertEquals(readFileToString(resultFilePath), result);
+	}
+
+	@Test
+	public void acceptanceTest18DontSort() throws FileNotFoundException {
+		FormatterController formatterController = new FormatterController();
+
+		String path = enduro.getInstance().getResourcePath(
+				"acceptanstester/iteration2/acceptanstest18/");
+		String pathToNameFile = path + "namnfil.txt";
+		String[] pathToStartFile = { path + "starttider.txt" };
+		String pathToFinishFile1 = path + "maltider1.txt";
+		String pathToFinishFile2 = path + "maltider2.txt";
+		String[] finishFileArray = { pathToFinishFile1, pathToFinishFile2 };
+		String resultFilePath = path + "resultat.txt";
+
+		String result = formatterController.result(pathToStartFile,
+				finishFileArray, pathToNameFile, FormatterController.LAP_RACE,
+				"3", 3, standardLapLimit, FormatterController.DONT_SORT);
+		assertEquals(readFileToString(resultFilePath), result);
 	}
 
 	@Test
@@ -209,7 +238,8 @@ public class acceptanceTest {
 
 		String result = formatterController.result(startFileArray,
 				finishFileArray, pathToNameFile,
-				FormatterController.STAGE_RACE, "", 2, standardLapLimit);
+				FormatterController.STAGE_RACE, "", 2, standardLapLimit, FormatterController.DONT_SORT);
+
 		assertEquals(readFileToString(pathToExpectedResult), result);
 	}
 
@@ -225,5 +255,4 @@ public class acceptanceTest {
 		}
 		return sb.toString();
 	}
-
 }

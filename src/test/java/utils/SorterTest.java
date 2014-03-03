@@ -29,33 +29,32 @@ public class SorterTest {
 	public void tearDown() throws Exception {
 	}
 
-
+	@Test
 	public void sortByNumberOfLapsTest() {
 		Participant p0 = new Participant(0);
 		Participant p1 = new Participant(1);
 		Race r0 = new TimeRace(new Time("01.00.00"));
 		Race r1 = new TimeRace(new Time("01.00.00"));
-		r0.addFinishTime(new Time());
-		r0.addFinishTime(new Time());
-		r0.addFinishTime(new Time());
-		r1.addFinishTime(new Time());
-		r1.addFinishTime(new Time());
+		r0.addStartTime(new Time("12.00.00"));
+		r0.addFinishTime(new Time("12.15.00"));
+		r0.addFinishTime(new Time("12.30.00"));
+		r1.addStartTime(new Time("12.00.00"));
+		r1.addFinishTime(new Time("12.20.00"));
 		p0.setRace(r0);
 		p1.setRace(r1);
 		participantList.add(p0);
 		participantList.add(p1);
-		participantList = sort.sortByNumberOfLaps(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p0);
-		r1.addFinishTime(new Time());
-		r1.addFinishTime(new Time());
-		participantList = sort.sortByNumberOfLaps(participantList);
+		r1.addFinishTime(new Time("12.35.00"));
+		r1.addFinishTime(new Time("12.50.00"));
+		r0.addFinishTime(new Time("13.00.00"));
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p1);
 
 	}
-
-
+	@Test
 	public void multipleSortByNumberOfLapsTest() {
-
 		Participant p0 = new Participant(0);
 		Participant p1 = new Participant(1);
 		Participant p2 = new Participant(2);
@@ -64,6 +63,7 @@ public class SorterTest {
 		Race r1 = new TimeRace(new Time("01.00.00"));
 		Race r2 = new TimeRace(new Time("01.00.00"));
 		Race r3 = new TimeRace(new Time("01.00.00"));
+		r0.addFinishTime(new Time());
 		r0.addFinishTime(new Time());
 		r0.addFinishTime(new Time());
 		r0.addFinishTime(new Time());
@@ -85,7 +85,7 @@ public class SorterTest {
 		participantList.add(p1);
 		participantList.add(p2);
 		participantList.add(p3);
-		participantList = sort.sortByNumberOfLaps(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p2);
 		assertEquals(participantList.get(1), p0);
 		assertEquals(participantList.get(2), p3);
@@ -95,13 +95,12 @@ public class SorterTest {
 	@Test
 	public void sortEmptyListTest() {
 		participantList.clear();
-		sort.sortByNumberOfLaps(participantList);
+		sort.sort(participantList);
 		assertEquals(participantList.size(), 0);
 	}
 
-
+	@Test
 	public void sortByTotalTimeTest() {
-
 		Participant p0 = new Participant(0);
 		Participant p1 = new Participant(1);
 		Race r0 = new LapRace(10);
@@ -114,12 +113,12 @@ public class SorterTest {
 		p1.setRace(r1);
 		participantList.add(p0);
 		participantList.add(p1);
-		participantList = sort.sortByTotalTime(participantList);
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p1);
 		r1.addFinishTime(new Time("13.00.00"));
-		participantList = sort.sortByTotalTime(participantList);
+		r0.addFinishTime(new Time("12.50.00"));
+		participantList = sort.sort(participantList);
 		assertEquals(participantList.get(0), p0);
-
 	}
 
 }

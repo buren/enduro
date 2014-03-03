@@ -53,50 +53,47 @@ public class PrintButton extends JButton implements ActionListener {
 		this.raceType = raceType;
 		this.limitField = limitField;
 	}
-
-	/**
-	 * Prints the results to a file
-	 * 
-	 * @param e
-	 *            event
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		JFileChooser fc = new JFileChooser();
-		fc.showSaveDialog(this);
-		String filePath;
-		File f = fc.getSelectedFile();
-		if (f != null) {
-			filePath = f.getAbsolutePath();
-			try {
-				String printLimitString = JOptionPane
-						.showInputDialog("Hur många varvtider önskas skrivas ut?");
-				int printLimit = Integer.parseInt(printLimitString);
-				String limitFieldText = limitField.getText();
-				int raceTypeInt = raceType.getSelectedIndex();
-				if (limitFieldText.isEmpty()
-						&& (raceTypeInt == FormatterController.LAP_RACE || raceTypeInt == FormatterController.LAP_RACE))
-					throw new IllegalArgumentException();
-				String resultat = formCont.result(sb.getPath(), fb.getPaths(),
-						nb.getPath(), raceType.getSelectedIndex(),
-						limitFieldText, printLimit, tb.getLimit()); // TODO;
-																	// snälla
-																	// gör
-																	// snyggare
-				String[] results = resultat.split("\n");
-				ArrayList<String> lines = new ArrayList<String>();
-				Collections.addAll(lines, results);
-				FileWriter.writeFile(filePath, lines.iterator());
-				statusText.setText("Resultatfil utskriven!");
-			} catch (FileNotFoundException ex) {
-				ex.printStackTrace();
-				statusText.setText("Fel! En av filerna hittades inte!");
-			} catch (NumberFormatException numberFormatex) {
-				statusText
-						.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");
-			} catch (IllegalArgumentException ex) {
-				statusText.append("Fel! Ange maxvarv eller maxtid!");
-			}
-		}
-	}
+    /**
+     * Prints the results to a file
+     *
+     * @param e event
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JFileChooser fc = new JFileChooser();
+        fc.showSaveDialog(this);
+        String filePath;
+        File f = fc.getSelectedFile();
+        if (f != null) {
+            filePath = f.getAbsolutePath();
+            try {
+            	int sortButton = JOptionPane.YES_NO_OPTION;
+            	int sortOption = JOptionPane.showConfirmDialog(this, "Vill du sortera?", "Sortera",sortButton);
+                String printLimitString = "";
+                if(sortOption==1){
+                printLimitString = JOptionPane.showInputDialog("Hur många varvtider önskas skrivas ut?");
+                }
+                int printLimit = Integer.parseInt(printLimitString);
+                String limitFieldText = limitField.getText();
+                int raceTypeInt = raceType.getSelectedIndex();
+                if (limitFieldText.isEmpty() && (raceTypeInt == FormatterController.LAP_RACE
+                        || raceTypeInt == FormatterController.LAP_RACE))
+                    throw new IllegalArgumentException();
+                String resultat = formCont.result(sb.getPath(), fb.getPaths(),
+                        nb.getPath(), raceType.getSelectedIndex(), limitFieldText , printLimit, tb.getLimit(), sortOption);  //TODO; snälla gör snyggare
+                String[] results = resultat.split("\n");
+                ArrayList<String> lines = new ArrayList<String>();
+                Collections.addAll(lines, results);
+                FileWriter.writeFile(filePath, lines.iterator());
+                statusText.setText("Resultatfil utskriven!");
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+                statusText.setText("Fel! En av filerna hittades inte!");
+            } catch (NumberFormatException numberFormatex) {
+                statusText.append("Fel! Endast siffror tillåtna när du väljer antal varv. \n");
+            } catch (IllegalArgumentException ex) {
+                statusText.append("Fel! Ange maxvarv eller maxtid!");
+            }
+        }
+    }
 }

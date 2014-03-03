@@ -64,23 +64,25 @@ public class Time {
         int difference = Math.abs(seconds - compare.seconds);
         return new Time(difference);
     }
-    
+
     /**
      * Compares the amount of seconds passed since 00.00.00
+     *
      * @param time
-     * @return Positive if argument seconds are less, negative if more, 0 if equal. 
+     * @return Positive if argument seconds are more, negative if less, 0 if equal.
      */
-    public int compareTo(Time time){
-    	return seconds - time.seconds;
+    public int compareTo(Time time) {
+        return time.seconds - seconds;
     }
 
     /**
      * Returns a new time combining the two times.
+     *
      * @param other time to add with.
      * @return the sum of the times.
      */
     public Time addTo(Time other) {
-        return new Time(this.seconds+= other.seconds);
+        return new Time(this.seconds += other.seconds);
     }
 
     /**
