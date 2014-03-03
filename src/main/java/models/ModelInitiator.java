@@ -76,7 +76,7 @@ public class ModelInitiator {
 					try {
 						intList.add(Integer.parseInt(lines[0]));
 						timeList.add(startTime);
-					} catch (Exception e) {
+					} catch (NumberFormatException e) {
 						raceEvent.setAllClassStart(lines[0], startTime);
 					}
 

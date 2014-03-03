@@ -151,6 +151,8 @@ public class RaceEventTest {
     	"StartNr; Namn; TotalTid; Start; Mal\n" +
     	"16; Not named; --.--.--; 04.20.00; Slut?\n" +
     	"15; Not named; --.--.--; 04.20.00; Slut?\n");
+    	
+    	System.out.println(raceEvent.print(0));
     }
 
     @Test
@@ -169,4 +171,6 @@ public class RaceEventTest {
     	    	"14; Not named; --.--.--; Start?; Slut?\n" +
     	    	"16; Not named; --.--.--; Start?; Slut?\n");
     }
+    
+    
 }

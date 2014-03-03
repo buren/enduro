@@ -23,7 +23,7 @@ This will download the Enduro project and include a simplified VCS command line 
 
 VCS tool: [git-story](https://github.com/buren/git-story)
 
-####Workflow:
+#### Workflow:
 
     $ gs dev story23                 
 use when starting on a new story.
