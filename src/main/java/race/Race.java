@@ -31,6 +31,27 @@ public abstract class Race {
 		return getCompletedLaps() > compare.getCompletedLaps();
 	}
 
+    /**
+     *
+     * @param race
+     * @return Positive if better, negative if worse, 0 if equal.
+     */
+    public int compareTo(Race race) {
+        if (race.getClass().equals(this.getClass())) {
+            if (getCompletedLaps() < race.getCompletedLaps()){
+                return -1;
+            }
+            else if (getCompletedLaps() > race.getCompletedLaps()){
+                return 1;
+            }
+            else if (getCompletedLaps() == race.getCompletedLaps()) {
+                return getTotal().compareTo(race.getTotal());
+            }
+        }
+
+        throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
+    }
+
 	/**
 	 * @return Time the race was started.
 	 */
@@ -40,7 +61,7 @@ public abstract class Race {
 
 	/**
 	 * Set the starttime.
-	 * 
+	 *
 	 * @param time
 	 *            Time to set as start.
 	 */
@@ -62,7 +83,7 @@ public abstract class Race {
 
 	/**
 	 * Add a new finishtime
-	 * 
+	 *
 	 * @param time
 	 *            time to add.
 	 */
@@ -80,7 +101,7 @@ public abstract class Race {
 
 	/**
 	 * Tests if the last finishTime in the race is empty
-	 * 
+	 *
 	 * @return True if it is, else false.
 	 */
 	private boolean isLastTimeEmpty() {
@@ -94,9 +115,18 @@ public abstract class Race {
 		return laps.size();
 	}
 
+    /**
+     * @return return the number of completed laps.
+     */
+    public int getCompletedLaps() {
+        if (isLastTimeEmpty())
+            return laps.size() - 1;
+        return laps.size();
+    }
+
 	/**
 	 * Return the total time this race took.
-	 * 
+	 *
 	 * @return time elapsed during whole race.
 	 */
 	protected Time getTotal() {
@@ -115,118 +145,10 @@ public abstract class Race {
 	 */
 	public abstract Race copy();
 
-	/**
-	 * A Private class to easily abstract laps.
-	 */
-	protected class Lap {
-
-		private Time startTime;
-		private Time finishTime;
-
-		/**
-		 * Create a lap consisting of one start time and one finish time.
-		 */
-		public Lap() {
-			startTime = new Time();
-			finishTime = new Time();
-		}
-
-		/**
-		 * Set the start time.
-		 * 
-		 * @param startTime
-		 *            Time to set as start.
-		 */
-		public void setStart(Time startTime) {
-			this.startTime = startTime;
-		}
-
-		/**
-		 * Set the finish time.
-		 * 
-		 * @param finishTime
-		 *            Time to set as finish.
-		 */
-		public void setFinish(Time finishTime) {
-			this.finishTime = finishTime;
-		}
-
-		/**
-		 * Return the duration of the race.
-		 * 
-		 * @return the duration of the race, if incomplete, return a empty time.
-		 */
-		public Time getTotalTime() {
-			return startTime.getDifference(finishTime);
-		}
-
-		/**
-		 * Return the start time
-		 * 
-		 * @return start time
-		 */
-		public Time getStart() {
-			return startTime;
-		}
-
-		/**
-		 * Return the finish time
-		 * 
-		 * @return finish time
-		 */
-		public Time getFinish() {
-			return finishTime;
-		}
-	}
-
-	/**
-	 * Set the starttime.
-	 * 
-	 * @param time
-	 *            Time to set as start.
-	 */
-	public void setStart(Time time) {
-		if (laps.get(0).getStart().isEmpty())
-			laps.get(0).setStart(time);
-		else
-			multipleStart.add(time);
-
-	}
-
-	/**
-	 * 
-	 * @param race
-	 * @return Positive if better, negative if worse, 0 if equal.
-	 */
-	public int compareTo(Race race) {
-		if (race.getClass().equals(this.getClass())) {
-			if (getCompletedLaps() < race.getCompletedLaps()){
-				return -1;
-			}
-			else if (getCompletedLaps() > race.getCompletedLaps()){
-				return 1;
-			}
-			else if (getCompletedLaps() == race.getCompletedLaps()) {
-				return getTotal().compareTo(race.getTotal());
-			}
-		}
-
-		throw new IllegalArgumentException("Jämförelse med annan objekttyp.");
-	}
-
-
-	/**
-	 * @return return the number of completed laps.
-	 */
-	public int getCompletedLaps() {
-		if (isLastTimeEmpty())
-			return laps.size() - 1;
-		return laps.size();
-	}
 
 	/**
 	 * Return time spent running a lap.
-	 * 
+	 *
 	 * @param lap
 	 *            specified lap
 	 * @return time spent running a lap.
@@ -239,7 +161,7 @@ public abstract class Race {
 
 	/**
 	 * Return when the lap was finished.
-	 * 
+	 *
 	 * @param lap
 	 *            specified lap
 	 * @return when lap was finished.
@@ -252,7 +174,7 @@ public abstract class Race {
 
 	/**
 	 * Creates a string with information in the extra column
-	 * 
+	 *
 	 * @param printLimit
 	 *            Number of laps that we print
 	 * @return returns a string with the error information
@@ -285,7 +207,7 @@ public abstract class Race {
 
 	/**
 	 * Print a formatted result for this race.
-	 * 
+	 *
 	 * @param printLimit
 	 *            max number of laps to print.
 	 * @return a formatted string for this race.
@@ -318,16 +240,15 @@ public abstract class Race {
 	}
 
 	public String printSorted() {
-
 		StringBuilder sb = new StringBuilder();
 		sb.append("; ").append(getCompletedLaps());
 		sb.append("; ").append(getTotal());
 		for (int i = 0; i < getCompletedLaps(); i++) {
 			sb.append("; ").append(getLapTimeElapsed(i));
-
 		}
 		return sb.toString();
 	}
+
     /**
      * Prints a header for the result
      * @param printLimit max number of laps to print.
@@ -346,7 +267,7 @@ public abstract class Race {
         sb.append("; Mal\n");
         return sb.toString();
     }
-    
+
     public boolean allLapsWithinLimit(){
     	for(Lap lap: laps){
     		if(lap.getTotalTime().isBefore(lapLimitTime)){
@@ -354,6 +275,70 @@ public abstract class Race {
     		}
     	}
     	return true;
+    }
+
+    /**
+     * A Private class to easily abstract laps.
+     */
+    protected class Lap {
+
+        private Time startTime;
+        private Time finishTime;
+
+        /**
+         * Create a lap consisting of one start time and one finish time.
+         */
+        public Lap() {
+            startTime = new Time();
+            finishTime = new Time();
+        }
+
+        /**
+         * Set the start time.
+         *
+         * @param startTime
+         *            Time to set as start.
+         */
+        public void setStart(Time startTime) {
+            this.startTime = startTime;
+        }
+
+        /**
+         * Set the finish time.
+         *
+         * @param finishTime
+         *            Time to set as finish.
+         */
+        public void setFinish(Time finishTime) {
+            this.finishTime = finishTime;
+        }
+
+        /**
+         * Return the duration of the race.
+         *
+         * @return the duration of the race, if incomplete, return a empty time.
+         */
+        public Time getTotalTime() {
+            return startTime.getDifference(finishTime);
+        }
+
+        /**
+         * Return the start time
+         *
+         * @return start time
+         */
+        public Time getStart() {
+            return startTime;
+        }
+
+        /**
+         * Return the finish time
+         *
+         * @return finish time
+         */
+        public Time getFinish() {
+            return finishTime;
+        }
     }
 
 }

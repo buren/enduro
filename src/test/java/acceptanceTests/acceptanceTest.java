@@ -184,7 +184,6 @@ public class acceptanceTest {
 
 	@Test
 	public void acceptanceTest18Sort() throws FileNotFoundException {
-		Sorter sorter = new Sorter();
 		FormatterController formatterController = new FormatterController();
 
 		String path = enduro.getInstance().getResourcePath(
@@ -204,7 +203,6 @@ public class acceptanceTest {
 
 	@Test
 	public void acceptanceTest18DontSort() throws FileNotFoundException {
-		Sorter sorter = new Sorter();
 		FormatterController formatterController = new FormatterController();
 
 		String path = enduro.getInstance().getResourcePath(

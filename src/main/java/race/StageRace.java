@@ -119,9 +119,9 @@ public class StageRace extends Race {
 	 */
 	@Override
 	public Race copy() {
-		Race tmprace = new StageRace();
-		tmprace.changeLapTimeLimit(lapLimitTime.toString());
-		return tmprace;
+		Race tempRace = new StageRace();
+		tempRace.changeLapTimeLimit(lapLimitTime.toString());
+		return tempRace;
 	}
 
 	
