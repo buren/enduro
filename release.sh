@@ -12,8 +12,8 @@ read -p "What version is this?  " version_number
 release_name="enduro_release_v$version_number"
 current_dir=$(pwd)
 target_dir=release/release_v$version_number/
-mvn package
-mvn javadoc:javadoc
+$HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn package
+$HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn javadoc:javadoc
 for i in docs/*.md; do
   perl docs/markdown_to_html/Markdown.pl --html4tags $i > ${i%.*}.html
 done;

@@ -58,8 +58,5 @@ public class LapTimeLimitButton extends JButton implements ActionListener {
 			.append("Felaktig indata, varvgräns återställs till 00.15.00. \n");
 		}
 
-		
-		
-		
 	}
 }
