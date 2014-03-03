@@ -164,4 +164,32 @@ public class RaceTest {
 	public void testLimitSimpleRace() {
 		assertFalse(race.testLimit());
 	}
+	
+	@Test
+	public void testCompareTo() {
+		SimpleRace sr1 = new SimpleRace();
+		SimpleRace sr2 = new SimpleRace();
+		
+		sr1.addStartTime(new Time("10.10.10"));
+		sr2.addStartTime(new Time("12.12.12"));
+		
+		assertTrue(sr1.compareTo(sr2) < 1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCompareWrongObject() {
+		race.compareTo((Race) new LapRace(15));
+	}
+	
+	@Test
+	public void testPrintErrors() {
+		race.addStartTime(new Time("10.10.10"));
+		race.addFinishTime(new Time("10.10.11"));
+		String st = race.print(5);
+		assertEquals(st, "; 00.00.01; 10.10.10; 10.10.11; Omöjlig varvtid?");
+	}
 }
+
+
+
+
