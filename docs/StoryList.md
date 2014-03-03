@@ -13,3 +13,5 @@ Story 13
 Story 14
 Story 26
 Story B3
+Story 19
+Story 24
