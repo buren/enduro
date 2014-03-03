@@ -58,30 +58,46 @@ public class ModelInitiator {
 	 * @param startTimesIterator
 	 *            iterator containing the start times.
 	 */
-	public void registerStartTimes(Iterator<String> startTimesIterator) {
-		while (startTimesIterator.hasNext()) {
-			String line = startTimesIterator.next();
-			String[] rows = line.split(";");
+	public void registerStartTimes(Iterator<String>[] startTimesIterator) {
+		ArrayList<Time> timeList = new ArrayList<Time>();
+		ArrayList<Integer> intList = new ArrayList<Integer>();
 
-			Time startTime = new Time(rows[1]);
-			try {
-				int id = Integer.parseInt(rows[0]); //If it's not an int, it's either a * (to start everyone) or a class name (to start everyone in the class).	
+		boolean masstart = false;
+		for (Iterator<String> iterator : startTimesIterator) {
+			while (iterator.hasNext() && (!masstart)) {
+				String line = iterator.next();
+				String[] lines = line.split(";");
+
+				Time startTime = new Time(lines[1]);
+				if (lines[0].trim().equals("*")) {
+					raceEvent.setAllStartTimes(startTime);
+					masstart = true;
+				} else {
+					try {
+						intList.add(Integer.parseInt(lines[0]));
+						timeList.add(startTime);
+					} catch (Exception e) {
+						raceEvent.setAllClassStart(lines[0], startTime);
+					}
+
+				}
+			}
+		}
+
+		if (!masstart) {
+			sortTimesWithID(timeList, intList);
+			for (int i = 0; i < timeList.size(); i++) {
+				int id = intList.get(i);
+				Time startTime = timeList.get(i);
 				if (raceEvent.containsParticipant(id))
-					raceEvent.getParticipant(id).getRace().setStart(startTime);
+					raceEvent.getParticipant(id).getRace()
+							.addStartTime(startTime);
 				else {
 					Participant invalidParticipant = new Participant(id);
 					raceEvent.addNotRegisteredParticipant(invalidParticipant,
 							RaceEvent.START_TIME, startTime);
 				}
 			}
-			catch (Exception e) {
-				if (rows[0].trim().equals("*")) {
-					raceEvent.setAllStartTimes(startTime);					
-				} else {
-					raceEvent.setAllClassStart(rows[0], startTime);
-				}
-			}
-			
 		}
 	}
 
@@ -103,13 +119,14 @@ public class ModelInitiator {
 				timeList.add(new Time(lines[1]));
 			}
 		}
-		sortFinishTimes(timeList, intList);
+		sortTimesWithID(timeList, intList);
 
 		for (int i = 0; i < timeList.size(); i++) {
 			int id = intList.get(i);
 			Time finishTime = timeList.get(i);
 			if (raceEvent.containsParticipant(id))
-				raceEvent.getParticipant(id).getRace().addTime(finishTime);
+				raceEvent.getParticipant(id).getRace()
+						.addFinishTime(finishTime);
 			else {
 				Participant notRegisteredParticipant = new Participant(id);
 				raceEvent.addNotRegisteredParticipant(notRegisteredParticipant,
@@ -127,7 +144,7 @@ public class ModelInitiator {
 	 * @param idList
 	 *            list of IDs to sort
 	 */
-	private void sortFinishTimes(ArrayList<Time> timeList,
+	private void sortTimesWithID(ArrayList<Time> timeList,
 			ArrayList<Integer> idList) {
 		Time[] timeArray = new Time[timeList.size()];
 		timeList.toArray(timeArray);

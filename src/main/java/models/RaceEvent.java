@@ -37,6 +37,7 @@ public class RaceEvent {
      * @param reason      reason why the participant is invalid.
      * @param time        type of time that was invalid
      */
+
     public void addNotRegisteredParticipant(Participant participant, int reason, Time time) {
         if (notRegisteredParticipants.contains(participant)) {
             for (Participant p : notRegisteredParticipants)
@@ -47,9 +48,9 @@ public class RaceEvent {
             notRegisteredParticipants.add(participant);
         }
         if (reason == START_TIME)
-            participant.getRace().setStart(time);
+            participant.getRace().addStartTime(time);
         else if (reason == LAP_TIME)
-            participant.getRace().addTime(time);
+            participant.getRace().addFinishTime(time);
     }
 
     /**
@@ -88,7 +89,7 @@ public class RaceEvent {
      */
     public void setAllStartTimes(Time startTime) {
         for (Participant p : participants) {
-            p.getRace().setStart(startTime);
+            p.getRace().addStartTime(startTime);
         }
     }
     
@@ -100,7 +101,7 @@ public class RaceEvent {
     public void setAllClassStart(String className, Time startTime) {
     	for (Participant p : participants) {
     		if (p.getRaceClass().equals(className)) {
-    			p.getRace().setStart(startTime);
+    			p.getRace().addStartTime(startTime);
     		} 
     	}
     }
@@ -121,29 +122,21 @@ public class RaceEvent {
         return sb.toString();
     }
 
+
     private String print(int printLimit, ArrayList<Participant> list) {
-        if (list.size() < 1)
-            return "";
         ArrayList<String> raceClasses = new ArrayList<String>();
         for (Participant p : list) {
             String raceClass = p.getRaceClass();
-            if (!raceClasses.contains(raceClass))
+            if (!raceClass.isEmpty() && !(raceClasses.contains(raceClass))) {
                 raceClasses.add(raceClass);
+            }
         }
         StringBuilder sb = new StringBuilder();
         for (String raceClass : raceClasses) {
             if (raceClass != "None")
                 sb.append(raceClass).append("\n");
             sb.append(list.get(0).printHeader());
-            sb.append("; #Varv; TotalTid");
-            for (int i = 0; i < printLimit; i++) {
-                sb.append("; Varv").append(i + 1);
-            }
-            sb.append("; Start");
-            for (int i = 0; i < printLimit - 1; i++) {
-                sb.append("; Varvning").append(i + 1);
-            }
-            sb.append("; Mal\n");
+            sb.append(raceType.printHeader(printLimit));
             for (Participant p : list) {
                 if (p.getRaceClass() == raceClass)
                     sb.append(p.print(printLimit)).append("\n");

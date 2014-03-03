@@ -18,7 +18,7 @@ public class LapRaceTest {
     @Test
     public void testCopyLapRaceSameLimit() {
         Race lapRaceCopy = new LapRace(1).copy();
-        lapRaceCopy.addTime(new Time("12.12.12"));
+        lapRaceCopy.addFinishTime(new Time("12.12.12"));
         assertFalse(lapRaceCopy.testLimit());
     }
 
@@ -31,9 +31,9 @@ public class LapRaceTest {
     @Test
     public void testOverLimitLapRaceOver() {
         Race lapRace = new LapRace(3);
-        lapRace.addTime(new Time("00.00.00"));
-        lapRace.addTime(new Time("00.01.00"));
-        lapRace.addTime(new Time("00.02.00"));
+        lapRace.addFinishTime(new Time("00.00.00"));
+        lapRace.addFinishTime(new Time("00.01.00"));
+        lapRace.addFinishTime(new Time("00.02.00"));
         assertFalse(lapRace.testLimit());
     }
 

@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import race.SimpleRace;
-import utils.Enduro;
 
 import static org.junit.Assert.*;
 
@@ -49,8 +48,8 @@ public class RaceEventTest {
         Participant p2 = new Participant(2);
         raceEvent.addParticipant(p2);
 
-        participant.getRace().setStart(new Time("05.00.00"));
-        p2.getRace().setStart(new Time("11.00.00"));
+        participant.getRace().addStartTime(new Time("05.00.00"));
+        p2.getRace().addStartTime(new Time("14.00.00"));
 
         Time newTime = new Time("12.00.00");
         raceEvent.setAllStartTimes(newTime);
@@ -104,8 +103,40 @@ public class RaceEventTest {
     {
     	participant.setRaceClass("Lexforce");
     	raceEvent.setAllClassStart("Lexforce", new Time("13.37.00"));
-    	System.out.println(raceEvent.print(0));
+//    	System.out.println(raceEvent.print(0));
+    }
+    
+    @Test
+    public void testStartManyByClass() {
+    	participant.setRaceClass("Lexforce");    	
+    	Participant p1= new Participant(14);
+    	p1.setRaceClass("Lexforce");
+    	Participant p2= new Participant(16);
+    	p2.setRaceClass("Lexforce");
+    	Participant p3= new Participant(15);
+    	p3.setRaceClass("Lexforce");
+    	raceEvent.addParticipant(p1);
+    	raceEvent.addParticipant(p2);
+    	raceEvent.addParticipant(p3);
+    	raceEvent.setAllClassStart("Lexforce", new Time("13.37.00"));
+//    	System.out.println(raceEvent.print(0));
     }
 
+    @Test
+    public void testManyClassesStart() {
+    	participant.setRaceClass("Lexforce");    	
+    	Participant p1= new Participant(14);
+    	p1.setRaceClass("Lexforce");
+    	Participant p2= new Participant(16);
+    	p2.setRaceClass("Starbase");
+    	Participant p3= new Participant(15);
+    	p3.setRaceClass("StarBase");
+    	raceEvent.addParticipant(p1);
+    	raceEvent.addParticipant(p2);
+    	raceEvent.addParticipant(p3);
+    	raceEvent.setAllClassStart("Lexforce", new Time("13.37.00"));
+    	raceEvent.setAllClassStart("StarBase", new Time("04.20.00"));
+    	System.out.println(raceEvent.print(0));
+    }
 
 }

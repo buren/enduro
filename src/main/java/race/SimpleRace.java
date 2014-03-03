@@ -21,7 +21,7 @@ public class SimpleRace extends Race {
      * @param start Time to set as start.
      */
     @Override
-    public void setStart(Time start) {
+    public void addStartTime(Time start) {
         this.start = start;
     }
 
@@ -42,7 +42,7 @@ public class SimpleRace extends Race {
      * @return true if a Time was successfully added, else false.
      */
     @Override
-    public void addTime(Time finish) {
+    public void addFinishTime(Time finish) {
         this.finish = finish;
     }
 
