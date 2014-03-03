@@ -135,16 +135,19 @@ public class RaceEvent {
         }
         for (String raceClass : raceClasses) {
             int place = 1;
-            for (int i = 0; i < participants.size() - 1; i++) {
+            for (int i = 0; i < participants.size(); i++) {
                 Participant p = participants.get(i);
                 if (p.getRaceClass().equals(raceClass)
                         && p.getRace().allLapsWithinLimit()) {
-                    participants.get(i).setPlacment(Integer.toString(place++));
+                    p.setPlacment(Integer.toString(place++));
+                } else if (p.getRaceClass().equals(raceClass)) {
+                    p.setPlacment("-");
                 }
             }
             for (int i = 0; i < participants.size(); i++) {
                 Participant p = participants.get(i);
-                if(p.getPlacement().equals("-")) {
+                if(p.getRaceClass().equals(raceClass)
+                        && p.getPlacement().equals("-")) {
                     participants.remove(p);
                     participants.add(participants.size()-1 ,p);
                 }
