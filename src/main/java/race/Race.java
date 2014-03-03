@@ -6,7 +6,7 @@ import models.Time;
 import java.util.ArrayList;
 
 public abstract class Race {
-    protected ArrayList<Lap> laps = new ArrayList<>();
+    protected ArrayList<Lap> laps = new ArrayList<Lap>();
 
     /**
      * Create a new Race.

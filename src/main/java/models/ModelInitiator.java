@@ -67,8 +67,8 @@ public class ModelInitiator {
      * @param finishTimesIterator iterator containing the finish times.
      */
     public void registerFinishTimes(Iterator[] finishTimesIterator) {
-        ArrayList<Time> timeList = new ArrayList<>();
-        ArrayList<Integer> intList = new ArrayList<>();
+        ArrayList<Time> timeList = new ArrayList<Time>();
+        ArrayList<Integer> intList = new ArrayList<Integer>();
 
         for (Iterator iterator : finishTimesIterator) {
             while (iterator.hasNext()) {

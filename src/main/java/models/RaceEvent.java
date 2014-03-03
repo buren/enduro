@@ -16,8 +16,8 @@ public class RaceEvent {
      * @param raceType type of race this raceEvent is going to be.
      */
     public RaceEvent(Race raceType) {
-        participants = new ArrayList<>();
-        invalidParticipants = new ArrayList<>();
+        participants = new ArrayList<Participant>();
+        invalidParticipants = new ArrayList<Participant>();
         this.raceType = raceType;
     }
 

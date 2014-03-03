@@ -66,7 +66,7 @@ public class PrintButton extends JButton implements ActionListener {
                 String resultat = formCont.result(sb.getPath(), fb.getPaths(),
                         nb.getPath(), raceType.getSelectedIndex(), limitFieldText , printLimit);  //TODO; snälla gör snyggare
                 String[] results = resultat.split("\n");
-                ArrayList<String> lines = new ArrayList<>();
+                ArrayList<String> lines = new ArrayList<String>();
                 Collections.addAll(lines, results);
                 formCont.writeToFile(filePath, lines.iterator());
                 statusText.setText("Resultatfil utskriven!");
