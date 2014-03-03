@@ -61,7 +61,9 @@
 	
 	###TimeRace:
 	Subklass till Race, används för tidsbaserade lopp. Får en Time som inparameter för att begränsa hur länge loppet          ska köras.
-	
+
+	###StageRace:
+	Subklass till Race, används för ettapplopp, sortering funkar ej än.
 	
 
 ##Package utils:
