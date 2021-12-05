@@ -1,8 +1,0 @@
-GemensamKlass
-StartNr; Namn; Klubb; MC; Totaltid; #Etapper; Etapp1; Etapp2; Start1; Mål1; Start2; Mål2
-1; Ander Asson; Aklubb; ATM; 01.11.01; 2; 01.00.00; 00.11.01; 11.00.00; 12.00.00; 12.30.00; 12.41.01; Flera Sluttider Etapp1 12.11.00
-2; Bengt Bsson; Bklubb; BTM; 00.12.02; 1; ; 00.12.02; 11.01.00; Slut?; 12.31.00; 12.43.02; Flera Starttider Etapp1 11.02.00
-3; Claes Csson; Cklubb; CTM; 00.14.03; 1; ; 00.14.03; Start?; 12.22.00; 12.32.00; 12.46.03
-Icke existerande startnummer
-StartNr; Namn; Klubb; MC; Totaltid; #Etapper; Etapp1; Etapp2; Start1; Mål1; Start2; Mål2
-4; ; ; ; --.--.--; 0; ; ; 11.03.00; ; ;

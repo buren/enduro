@@ -1,6 +1,0 @@
-StartNr; Namn; Klubb; MC
-GemensamKlass
-1; Ander Asson; Aklubb; ATM
-2; Bengt Bsson; Bklubb; BTM
-3; Claes Csson; Cklubb; CTM;
-

@@ -1,9 +1,0 @@
-SENIOR
-StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mal
-1; Anders Asson; 3; --.--.--; --.--.--; 00.30.00; 00.23.34; Start?; 12.30.00; 13.00.00; 13.23.34; Omöjlig varvtid?
-2; Bengt Bsson; 0; --.--.--; --.--.--; --.--.--; --.--.--; 12.01.00; --.--.--; --.--.--; Slut?
-3; Chris Csson; 3; 01.03.06; 00.20.00; 00.20.00; 00.23.06; 12.02.00; 12.22.00; 12.42.00; 13.05.06; Flera starttider? 12.05.00
-JUNIOR
-StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mal
-4; David Dsson; 3; 00.49.07; 00.20.00; 00.20.00; 00.09.07; 12.03.00; 12.23.00; 12.43.00; 12.52.07; Omöjlig varvtid?
-5; Erik Esson; 3; 01.12.07; 00.20.00; 00.20.00; 00.32.07; 12.04.00; 12.24.00; 12.44.00; 13.16.07
